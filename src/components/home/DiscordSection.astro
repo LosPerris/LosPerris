@@ -1,0 +1,65 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<section
+    id="discord"
+    class="py-24 bg-[#2d2d2d] text-center relative overflow-hidden"
+>
+    <div class="container mx-auto px-6 relative z-10">
+        <h2
+            class="text-4xl md:text-5xl font-bold mb-6 text-white flex items-center justify-center gap-4"
+        >
+            <i class="fab fa-discord text-[#5865F2]"></i> Únete a nuestra Comunidad
+        </h2>
+        <p
+            class="text-xl text-[#b0b0b0] mb-12 max-w-3xl mx-auto leading-relaxed"
+        >
+            ¡Somos nuevos, pero estamos listos. Soporte 24/7, actualizaciones
+            constantes y una comunidad que recién comienza.!
+        </p>
+        <div
+            class="flex flex-wrap justify-center gap-8 mb-12 max-w-4xl mx-auto"
+        >
+            <div class="flex flex-col items-center gap-3 p-4">
+                <i
+                    class="fas fa-headset text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
+                ></i>
+                <span class="text-[#b0b0b0] font-medium">Soporte Seguro</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 p-4">
+                <i
+                    class="fas fa-bell text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
+                ></i>
+                <span class="text-[#b0b0b0] font-medium"
+                    >Notificaciones de Actualizaciones</span
+                >
+            </div>
+            <div class="flex flex-col items-center gap-3 p-4">
+                <i
+                    class="fas fa-users text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
+                ></i>
+                <span class="text-[#b0b0b0] font-medium">Nueva Comunidad</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 p-4">
+                <i
+                    class="fas fa-gift text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
+                ></i>
+                <span class="text-[#b0b0b0] font-medium">Eventos y Sorteos</span
+                >
+            </div>
+        </div>
+        <div class="flex gap-4 justify-center flex-wrap">
+            <Button href="https://discord.gg/JKPUVf9aeU" target="_blank">
+                <i class="fab fa-discord"></i> Unirse al Server Principal
+            </Button>
+            <Button
+                variant="outline"
+                href="https://discord.gg/JKPUVf9aeU"
+                target="_blank"
+            >
+                <i class="fas fa-headset"></i> Canal de Ayuda
+            </Button>
+        </div>
+    </div>
+</section>

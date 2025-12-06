@@ -1,0 +1,100 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<div class="mb-12 max-w-4xl mx-auto">
+    <div class="flex flex-col md:flex-row gap-4 mb-8">
+        <div class="flex-1 relative">
+            <i
+                class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-[#b0b0b0]"
+            ></i>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar guías..."
+                class="w-full bg-[#2d2d2d] text-white pl-12 pr-6 py-3 rounded-xl border border-[#404040] focus:border-white focus:outline-none transition-colors"
+            />
+        </div>
+    </div>
+
+    <div
+        class="flex flex-wrap justify-center gap-3 md:gap-4"
+        id="filterButtons"
+    >
+        <button
+            class="filter-btn active px-6 py-2 rounded-full border border-[#404040] bg-[#404040] text-white hover:bg-[#505050] transition-colors cursor-pointer data-[active=true]:bg-white data-[active=true]:text-black"
+            data-filter="all"
+        >
+            Todas
+        </button>
+        <button
+            class="filter-btn px-6 py-2 rounded-full border border-[#404040] bg-[#2d2d2d] text-[#b0b0b0] hover:bg-[#404040] hover:text-white transition-colors cursor-pointer"
+            data-filter="bot-ayuda"
+        >
+            <i class="fas fa-robot mr-2"></i>Bot Ayuda
+        </button>
+        <button
+            class="filter-btn px-6 py-2 rounded-full border border-[#404040] bg-[#2d2d2d] text-[#b0b0b0] hover:bg-[#404040] hover:text-white transition-colors cursor-pointer"
+            data-filter="bot-gaming"
+        >
+            <i class="fas fa-gamepad mr-2"></i>Bot Gaming
+        </button>
+        <button
+            class="filter-btn px-6 py-2 rounded-full border border-[#404040] bg-[#2d2d2d] text-[#b0b0b0] hover:bg-[#404040] hover:text-white transition-colors cursor-pointer"
+            data-filter="configuracion"
+        >
+            <i class="fas fa-cog mr-2"></i>Configuración
+        </button>
+    </div>
+</div>
+
+<script>
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const searchInput = document.getElementById("searchInput");
+
+    function filterCards() {
+        const cards = document.querySelectorAll(".guide-card");
+        const activeBtn = document.querySelector(".filter-btn.active");
+        const filterValue = activeBtn?.getAttribute("data-filter") || "all";
+        const searchTerm =
+            (searchInput as HTMLInputElement)?.value.toLowerCase() || "";
+
+        cards.forEach((card) => {
+            const category = card.getAttribute("data-category");
+            const title = card.getAttribute("data-title") || "";
+            const description = card.getAttribute("data-description") || "";
+
+            const matchesFilter =
+                filterValue === "all" || category === filterValue;
+            const matchesSearch =
+                title.includes(searchTerm) || description.includes(searchTerm);
+
+            if (matchesFilter && matchesSearch) {
+                (card as HTMLElement).style.display = "flex";
+                card.classList.add("animate-[fadeInUp_0.4s_ease-out_forwards]");
+            } else {
+                (card as HTMLElement).style.display = "none";
+                card.classList.remove(
+                    "animate-[fadeInUp_0.4s_ease-out_forwards]",
+                );
+            }
+        });
+    }
+
+    filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            filterButtons.forEach((b) => {
+                b.classList.remove("active", "bg-[#404040]", "text-white");
+                b.classList.add("bg-[#2d2d2d]", "text-[#b0b0b0]");
+                if (b === btn) {
+                    b.classList.add("active", "bg-[#404040]", "text-white");
+                    b.classList.remove("bg-[#2d2d2d]", "text-[#b0b0b0]");
+                }
+            });
+
+            filterCards();
+        });
+    });
+
+    searchInput?.addEventListener("input", filterCards);
+</script>

@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "./legacy.css";
 
+/* 
+  @theme is a valid Tailwind CSS v4 directive. 
+  If your editor flags this as an error, please update your Tailwind CSS extension 
+  or ignore the "Unknown at rule" warning.
+*/
 @theme {
     --color-primary: #1a1a1a;
     --color-secondary: #2d2d2d;
