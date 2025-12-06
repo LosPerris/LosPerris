@@ -25,9 +25,8 @@
         <p
             class="text-xl md:text-2xl text-[#b0b0b0] mb-8 max-w-3xl mx-auto font-light opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
         >
-            Únete a una comunidad de gaming auténtica y en crecimiento. Aquí
-            encontrarás amigos, proyectos y un ambiente real donde lo importante
-            es pasarla bien.
+            Somos una pequeña comunidad de amigos que disfrutan de los
+            videojuegos y la tecnología. Únete a pasar el rato.
         </p>
 
         <div
@@ -84,35 +83,31 @@
                 >
             </div>
         </div>
-
-        <script is:inline>
-            fetch(
-                "https://discord.com/api/v9/invites/JKPUVf9aeU?with_counts=true",
-            )
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.approximate_member_count) {
-                        const members = data.approximate_member_count;
-                        const formattedMembers =
-                            members > 1000
-                                ? (members / 1000).toFixed(1) + "k+"
-                                : members;
-                        document.getElementById("member-count").innerText =
-                            formattedMembers;
-                    }
-                    if (data.approximate_presence_count) {
-                        const online = data.approximate_presence_count;
-                        const formattedOnline =
-                            online > 1000
-                                ? (online / 1000).toFixed(1) + "k+"
-                                : online;
-                        document.getElementById("online-count").innerText =
-                            formattedOnline;
-                    }
-                })
-                .catch((e) =>
-                    console.error("Error fetching Discord stats:", e),
-                );
-        </script>
     </div>
+
+    <script is:inline>
+        fetch("https://discord.com/api/v9/invites/JKPUVf9aeU?with_counts=true")
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.approximate_member_count) {
+                    const members = data.approximate_member_count;
+                    const formattedMembers =
+                        members > 1000
+                            ? (members / 1000).toFixed(1) + "k+"
+                            : members;
+                    document.getElementById("member-count").innerText =
+                        formattedMembers;
+                }
+                if (data.approximate_presence_count) {
+                    const online = data.approximate_presence_count;
+                    const formattedOnline =
+                        online > 1000
+                            ? (online / 1000).toFixed(1) + "k+"
+                            : online;
+                    document.getElementById("online-count").innerText =
+                        formattedOnline;
+                }
+            })
+            .catch((e) => console.error("Error fetching Discord stats:", e));
+    </script>
 </section>
