@@ -1,7 +1,7 @@
 ---
 interface Props {
     withWallpaper?: boolean;
-    variant?: "default" | "hero" | "global";
+    variant?: "default" | "hero" | "global" | "discrete";
     showBlobs?: boolean;
 }
 
@@ -14,7 +14,9 @@ const {
 const blobSize =
     variant === "hero" || variant === "global"
         ? "w-[900px] h-[900px] opacity-20"
-        : "w-[600px] h-[600px] opacity-10";
+        : variant === "discrete"
+          ? "w-[100px] h-[300px] opacity-[0.005]"
+          : "w-[600px] h-[600px] opacity-10";
 ---
 
 <div
@@ -30,11 +32,11 @@ const blobSize =
             <>
                 <div
                     class={`absolute top-0 right-0 ${blobSize} bg-[#5865F2]/20 rounded-full blur-[120px] animate-pulse`}
-                ></div>
+                />
                 <div
                     class={`absolute bottom-0 left-0 ${blobSize} bg-purple-500/20 rounded-full blur-[120px] animate-pulse`}
                     style="animation-delay: 2s;"
-                ></div>
+                />
             </>
         )
     }
