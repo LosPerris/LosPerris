@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "./legacy.css";
+
+@theme {
+    --color-primary: #1a1a1a;
+    --color-secondary: #2d2d2d;
+    --color-accent: #404040;
+
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #b0b0b0;
+    --color-text-muted: #808080;
+
+    --color-border-color: #404040;
+
+    --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

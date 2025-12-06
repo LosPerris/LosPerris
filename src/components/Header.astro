@@ -1,0 +1,138 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const isHome =
+    pathname === "/" || pathname === "/index.html" || pathname === "/index";
+const isContacto = pathname.includes("contacto");
+
+const getLink = (hash: string) => {
+    if (hash.startsWith("http")) return hash;
+    if (hash === "index.html" || hash === "/") return "/";
+    if (!hash.startsWith("#")) return hash;
+    return isHome ? hash : `/${hash}`;
+};
+---
+
+<header
+    class="fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-gradient-to-br from-[#0f0f0f] via-primary to-[#0f0f0f] border-b border-white/5 shadow-lg"
+>
+    <nav class="relative py-4">
+        <div
+            class="container mx-auto px-5 flex justify-between items-center relative"
+        >
+            <div
+                class="flex items-center gap-3 px-4 py-2 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all hover:-translate-y-px hover:shadow-lg group cursor-pointer"
+            >
+                <img
+                    src="/img/Real.png"
+                    alt="Los Perris Logo"
+                    class="w-10 h-10 rounded-full border-2 border-white/15 transition-all group-hover:border-white/30 group-hover:rotate-[360deg] brightness-110 contrast-110"
+                />
+                <span
+                    class="text-xl font-bold text-white tracking-wide shadow-sm"
+                    >LosPerris - Real</span
+                >
+            </div>
+
+            <ul
+                class="hidden md:flex gap-2 bg-white/5 p-2 rounded-full border border-white/10 backdrop-blur-md"
+            >
+                <li class="relative">
+                    <a
+                        href={isHome ? "#home" : "/"}
+                        class="block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md"
+                        >Inicio</a
+                    >
+                </li>
+                <li class="relative group">
+                    <a
+                        href={getLink("#bots")}
+                        class="block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md group-hover:bg-white/10 group-hover:text-white"
+                        >Bots</a
+                    >
+                    <div
+                        class="absolute top-full left-1/2 -ml-32 w-64 bg-[#1e1e1e]/95 border border-white/10 rounded-xl backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 mt-4 py-4 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-ml-2 before:border-l-8 before:border-l-transparent before:border-r-8 before:border-r-transparent before:border-b-8 before:border-b-[#1e1e1e]/95"
+                    >
+                        <a
+                            href={getLink("#help-bot")}
+                            class="block text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                        >
+                            <i class="fas fa-shield-alt w-6 mr-2 text-center"
+                            ></i>
+                            LosPerrisHelp
+                        </a>
+                        <a
+                            href={getLink("#game-bot")}
+                            class="block text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                        >
+                            <i class="fas fa-gamepad w-6 mr-2 text-center"></i>
+                            LosPerrisGame
+                        </a>
+                        <a
+                            href={getLink("#stats")}
+                            class="block text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                        >
+                            <i class="fas fa-chart-bar w-6 mr-2 text-center"
+                            ></i>
+                            Estadísticas
+                        </a>
+                    </div>
+                </li>
+                <li class="relative group">
+                    <a
+                        href={getLink("#comunidad")}
+                        class="block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md group-hover:bg-white/10 group-hover:text-white"
+                        >Comunidad</a
+                    >
+                    <div
+                        class="absolute top-full left-1/2 -ml-32 w-64 bg-[#1e1e1e]/95 border border-white/10 rounded-xl backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 mt-4 py-4 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-ml-2 before:border-l-8 before:border-l-transparent before:border-r-8 before:border-r-transparent before:border-b-8 before:border-b-[#1e1e1e]/95"
+                    >
+                        <a
+                            href="https://discord.gg/JKPUVf9aeU"
+                            class="block text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                        >
+                            <i class="fab fa-discord w-6 mr-2 text-center"></i>
+                            Discord
+                        </a>
+                        <a
+                            href={getLink("#support")}
+                            class="block text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                        >
+                            <i class="fas fa-life-ring w-6 mr-2 text-center"
+                            ></i>
+                            Soporte
+                        </a>
+                        <a
+                            href={getLink("#updates")}
+                            class="block text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                        >
+                            <i class="fas fa-bell w-6 mr-2 text-center"></i>
+                            Actualizaciones
+                        </a>
+                    </div>
+                </li>
+                <li class="relative">
+                    <a
+                        href="/contacto"
+                        class:list={[
+                            "block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md",
+                            { "bg-white/10 text-white shadow-md": isContacto },
+                        ]}>Contacto</a
+                    >
+                </li>
+            </ul>
+            <div
+                class="flex flex-col cursor-pointer p-2.5 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all md:hidden"
+            >
+                <span
+                    class="w-5 h-0.5 bg-gradient-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                ></span>
+                <span
+                    class="w-5 h-0.5 bg-gradient-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                ></span>
+                <span
+                    class="w-5 h-0.5 bg-gradient-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                ></span>
+            </div>
+        </div>
+    </nav>
+</header>

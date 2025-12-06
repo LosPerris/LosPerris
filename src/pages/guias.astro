@@ -1,0 +1,325 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Guías de Uso - LosPerris">
+    <section
+        class="min-h-[50vh] flex items-center justify-center text-center relative overflow-hidden mt-20 bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d]"
+    >
+        <div
+            class="absolute inset-0 bg-[url('/img/back.png')] bg-cover bg-center opacity-30 mix-blend-overlay z-10 pointer-events-none"
+        >
+        </div>
+        <div class="relative z-30 max-w-4xl px-8">
+            <h1
+                class="text-6xl font-extrabold mb-6 animate-[fadeInUp_1s_ease-out_0.3s_forwards] translate-y-8 opacity-0 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+            >
+                Guías de Uso
+            </h1>
+            <p
+                class="text-2xl text-[#b0b0b0] animate-[fadeInUp_1s_ease-out_0.6s_forwards] translate-y-8 opacity-0 font-light tracking-wide"
+            >
+                Aprende a usar nuestros bots paso a paso
+            </p>
+        </div>
+    </section>
+
+    <main class="py-20 bg-[#1a1a1a] relative">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 text-center">
+                <div
+                    class="relative max-w-2xl mx-auto mb-12 translate-y-5 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.9s_forwards]"
+                >
+                    <i
+                        class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-[#b0b0b0] text-xl z-20"
+                    ></i>
+                    <input
+                        type="text"
+                        placeholder="Buscar guías..."
+                        id="searchInput"
+                        class="w-full py-5 pl-14 pr-6 border-2 border-[#404040] rounded-full bg-[#2d2d2d] text-white text-lg focus:outline-none focus:border-[#404040] focus:shadow-xl transition-all focus:-translate-y-1"
+                    />
+                </div>
+                <div
+                    class="flex justify-center gap-4 flex-wrap translate-y-5 opacity-0 animate-[fadeInUp_0.8s_ease-out_1.2s_forwards]"
+                >
+                    <button
+                        class="filter-btn active px-8 py-3 border-2 border-[#404040] rounded-full bg-[#2d2d2d] text-[#b0b0b0] cursor-pointer transition-all font-medium hover:border-[#404040] hover:text-white hover:-translate-y-1 hover:shadow-lg [&.active]:bg-[#404040] [&.active]:text-white [&.active]:font-semibold [&.active]:shadow-lg"
+                        data-filter="all">Todas</button
+                    >
+                    <button
+                        class="filter-btn px-8 py-3 border-2 border-[#404040] rounded-full bg-[#2d2d2d] text-[#b0b0b0] cursor-pointer transition-all font-medium hover:border-[#404040] hover:text-white hover:-translate-y-1 hover:shadow-lg [&.active]:bg-[#404040] [&.active]:text-white [&.active]:font-semibold [&.active]:shadow-lg"
+                        data-filter="bot-ayuda">Bot Ayuda</button
+                    >
+                    <button
+                        class="filter-btn px-8 py-3 border-2 border-[#404040] rounded-full bg-[#2d2d2d] text-[#b0b0b0] cursor-pointer transition-all font-medium hover:border-[#404040] hover:text-white hover:-translate-y-1 hover:shadow-lg [&.active]:bg-[#404040] [&.active]:text-white [&.active]:font-semibold [&.active]:shadow-lg"
+                        data-filter="bot-gaming">Bot Gaming</button
+                    >
+                    <button
+                        class="filter-btn px-8 py-3 border-2 border-[#404040] rounded-full bg-[#2d2d2d] text-[#b0b0b0] cursor-pointer transition-all font-medium hover:border-[#404040] hover:text-white hover:-translate-y-1 hover:shadow-lg [&.active]:bg-[#404040] [&.active]:text-white [&.active]:font-semibold [&.active]:shadow-lg"
+                        data-filter="configuracion">Configuración</button
+                    >
+                </div>
+            </div>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12 pb-20"
+            >
+                <div
+                    class="guide-card group bg-gradient-to-br from-[#2d2d2d] to-[#404040] border border-[#404040] rounded-xl p-10 text-center transition-all relative overflow-hidden hover:-translate-y-2 hover:border-[#404040] hover:shadow-2xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] translate-y-8"
+                    style="animation-delay: 0.1s;"
+                    data-category="bot-ayuda"
+                >
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-full flex items-center justify-center text-3xl text-white shadow-lg transition-transform group-hover:scale-110"
+                    >
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">
+                        Comandos Básicos
+                    </h3>
+                    <p class="text-[#b0b0b0] mb-6 leading-relaxed">
+                        Aprende los comandos esenciales del Bot Ayuda
+                    </p>
+                    <div class="flex justify-center gap-4 mb-8">
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-green-400 text-black"
+                            >Fácil</span
+                        >
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#2d2d2d] text-[#b0b0b0] border border-[#404040]"
+                            >5 min</span
+                        >
+                    </div>
+                    <button
+                        class="bg-[#404040] text-white border-none px-8 py-3 rounded-full font-semibold cursor-pointer transition-all text-base shadow-lg hover:-translate-y-1 hover:shadow-xl hover:bg-[#505050]"
+                        onclick="openGuide('comandos-basicos')">Ver Guía</button
+                    >
+                </div>
+
+                <div
+                    class="guide-card group bg-gradient-to-br from-[#2d2d2d] to-[#404040] border border-[#404040] rounded-xl p-10 text-center transition-all relative overflow-hidden hover:-translate-y-2 hover:border-[#404040] hover:shadow-2xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] translate-y-8"
+                    style="animation-delay: 0.2s;"
+                    data-category="bot-ayuda"
+                >
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-full flex items-center justify-center text-3xl text-white shadow-lg transition-transform group-hover:scale-110"
+                    >
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">
+                        Moderación
+                    </h3>
+                    <p class="text-[#b0b0b0] mb-6 leading-relaxed">
+                        Configura y usa las funciones de moderación
+                    </p>
+                    <div class="flex justify-center gap-4 mb-8">
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-yellow-400 text-black"
+                            >Intermedio</span
+                        >
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#2d2d2d] text-[#b0b0b0] border border-[#404040]"
+                            >10 min</span
+                        >
+                    </div>
+                    <button
+                        class="bg-[#404040] text-white border-none px-8 py-3 rounded-full font-semibold cursor-pointer transition-all text-base shadow-lg hover:-translate-y-1 hover:shadow-xl hover:bg-[#505050]"
+                        onclick="openGuide('moderacion')">Ver Guía</button
+                    >
+                </div>
+
+                <div
+                    class="guide-card group bg-gradient-to-br from-[#2d2d2d] to-[#404040] border border-[#404040] rounded-xl p-10 text-center transition-all relative overflow-hidden hover:-translate-y-2 hover:border-[#404040] hover:shadow-2xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] translate-y-8"
+                    style="animation-delay: 0.3s;"
+                    data-category="bot-ayuda"
+                >
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-full flex items-center justify-center text-3xl text-white shadow-lg transition-transform group-hover:scale-110"
+                    >
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">
+                        Configuración Avanzada
+                    </h3>
+                    <p class="text-[#b0b0b0] mb-6 leading-relaxed">
+                        Personaliza el bot según tus necesidades
+                    </p>
+                    <div class="flex justify-center gap-4 mb-8">
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-red-500 text-white"
+                            >Avanzado</span
+                        >
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#2d2d2d] text-[#b0b0b0] border border-[#404040]"
+                            >15 min</span
+                        >
+                    </div>
+                    <button
+                        class="bg-[#404040] text-white border-none px-8 py-3 rounded-full font-semibold cursor-pointer transition-all text-base shadow-lg hover:-translate-y-1 hover:shadow-xl hover:bg-[#505050]"
+                        onclick="openGuide('configuracion-avanzada')"
+                        >Ver Guía</button
+                    >
+                </div>
+
+                <div
+                    class="guide-card group bg-gradient-to-br from-[#2d2d2d] to-[#404040] border border-[#404040] rounded-xl p-10 text-center transition-all relative overflow-hidden hover:-translate-y-2 hover:border-[#404040] hover:shadow-2xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] translate-y-8"
+                    style="animation-delay: 0.4s;"
+                    data-category="bot-gaming"
+                >
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-full flex items-center justify-center text-3xl text-white shadow-lg transition-transform group-hover:scale-110"
+                    >
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">
+                        Comandos de Gaming
+                    </h3>
+                    <p class="text-[#b0b0b0] mb-6 leading-relaxed">
+                        Descubre todos los comandos de juegos disponibles
+                    </p>
+                    <div class="flex justify-center gap-4 mb-8">
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-green-400 text-black"
+                            >Fácil</span
+                        >
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#2d2d2d] text-[#b0b0b0] border border-[#404040]"
+                            >7 min</span
+                        >
+                    </div>
+                    <button
+                        class="bg-[#404040] text-white border-none px-8 py-3 rounded-full font-semibold cursor-pointer transition-all text-base shadow-lg hover:-translate-y-1 hover:shadow-xl hover:bg-[#505050]"
+                        onclick="openGuide('comandos-gaming')">Ver Guía</button
+                    >
+                </div>
+
+                <div
+                    class="guide-card group bg-gradient-to-br from-[#2d2d2d] to-[#404040] border border-[#404040] rounded-xl p-10 text-center transition-all relative overflow-hidden hover:-translate-y-2 hover:border-[#404040] hover:shadow-2xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] translate-y-8"
+                    style="animation-delay: 0.5s;"
+                    data-category="bot-gaming"
+                >
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-full flex items-center justify-center text-3xl text-white shadow-lg transition-transform group-hover:scale-110"
+                    >
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">
+                        Estadísticas de Juegos
+                    </h3>
+                    <p class="text-[#b0b0b0] mb-6 leading-relaxed">
+                        Consulta stats de Fortnite, LoL, Valorant y más
+                    </p>
+                    <div class="flex justify-center gap-4 mb-8">
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-yellow-400 text-black"
+                            >Intermedio</span
+                        >
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#2d2d2d] text-[#b0b0b0] border border-[#404040]"
+                            >12 min</span
+                        >
+                    </div>
+                    <button
+                        class="bg-[#404040] text-white border-none px-8 py-3 rounded-full font-semibold cursor-pointer transition-all text-base shadow-lg hover:-translate-y-1 hover:shadow-xl hover:bg-[#505050]"
+                        onclick="openGuide('estadisticas-juegos')"
+                        >Ver Guía</button
+                    >
+                </div>
+
+                <div
+                    class="guide-card group bg-gradient-to-br from-[#2d2d2d] to-[#404040] border border-[#404040] rounded-xl p-10 text-center transition-all relative overflow-hidden hover:-translate-y-2 hover:border-[#404040] hover:shadow-2xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] translate-y-8"
+                    style="animation-delay: 0.6s;"
+                    data-category="configuracion"
+                >
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-full flex items-center justify-center text-3xl text-white shadow-lg transition-transform group-hover:scale-110"
+                    >
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">
+                        Configuración del Servidor
+                    </h3>
+                    <p class="text-[#b0b0b0] mb-6 leading-relaxed">
+                        Configura tu servidor para usar los bots
+                    </p>
+                    <div class="flex justify-center gap-4 mb-8">
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-yellow-400 text-black"
+                            >Intermedio</span
+                        >
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#2d2d2d] text-[#b0b0b0] border border-[#404040]"
+                            >8 min</span
+                        >
+                    </div>
+                    <button
+                        class="bg-[#404040] text-white border-none px-8 py-3 rounded-full font-semibold cursor-pointer transition-all text-base shadow-lg hover:-translate-y-1 hover:shadow-xl hover:bg-[#505050]"
+                        onclick="openGuide('configuracion-servidor')"
+                        >Ver Guía</button
+                    >
+                </div>
+
+                <div
+                    class="guide-card group bg-gradient-to-br from-[#2d2d2d] to-[#404040] border border-[#404040] rounded-xl p-10 text-center transition-all relative overflow-hidden hover:-translate-y-2 hover:border-[#404040] hover:shadow-2xl opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards] translate-y-8"
+                    style="animation-delay: 0.7s;"
+                    data-category="configuracion"
+                >
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-full flex items-center justify-center text-3xl text-white shadow-lg transition-transform group-hover:scale-110"
+                    >
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">
+                        Permisos y Roles
+                    </h3>
+                    <p class="text-[#b0b0b0] mb-6 leading-relaxed">
+                        Gestiona permisos y roles correctamente
+                    </p>
+                    <div class="flex justify-center gap-4 mb-8">
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-red-500 text-white"
+                            >Avanzado</span
+                        >
+                        <span
+                            class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-[#2d2d2d] text-[#b0b0b0] border border-[#404040]"
+                            >18 min</span
+                        >
+                    </div>
+                    <button
+                        class="bg-[#404040] text-white border-none px-8 py-3 rounded-full font-semibold cursor-pointer transition-all text-base shadow-lg hover:-translate-y-1 hover:shadow-xl hover:bg-[#505050]"
+                        onclick="openGuide('permisos-roles')">Ver Guía</button
+                    >
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div
+        id="guideModal"
+        class="hidden fixed inset-0 z-[1000] bg-black/90 animate-[fadeIn_0.3s_ease]"
+    >
+        <div
+            class="bg-gradient-to-br from-[#2d2d2d] to-[#404040] border-2 border-[#404040] rounded-xl w-[90%] max-w-4xl max-h-[80vh] overflow-hidden shadow-2xl animate-[slideInUp_0.4s_ease] m-[5%_auto] p-0 flex flex-col"
+        >
+            <div
+                class="bg-[#2d2d2d] px-8 py-6 flex justify-between items-center border-b border-[#404040] rounded-t-xl"
+            >
+                <h2 id="modalTitle" class="text-2xl font-bold text-white m-0">
+                    Título de la Guía
+                </h2>
+                <span
+                    class="text-white text-4xl font-bold cursor-pointer transition-all w-10 h-10 flex items-center justify-center rounded-full bg-[#404040] hover:bg-[#505050] hover:scale-110"
+                    onclick="closeGuide()">&times;</span
+                >
+            </div>
+            <div
+                class="p-8 max-h-[60vh] overflow-y-auto text-white"
+                id="modalBody"
+            >
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/guias.js" is:inline></script>
+</Layout>
