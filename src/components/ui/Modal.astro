@@ -22,7 +22,10 @@ const { id, title } = Astro.props;
             </h2>
             <span
                 class="text-[#b0b0b0] text-4xl font-bold cursor-pointer transition-colors hover:text-white hover:scale-110 close-modal"
-                data-target={id}>&times;</span
+                data-target={id}
+                role="button"
+                aria-label="Cerrar modal"
+                tabindex="0">&times;</span
             >
         </div>
         <div class="p-8 overflow-y-auto modal-body">

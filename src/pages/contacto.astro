@@ -5,29 +5,39 @@ import ContactForm from "../components/contact/ContactForm.astro";
 import ContactInfo from "../components/contact/ContactInfo.astro";
 import FAQSection from "../components/contact/FAQSection.astro";
 import Modal from "../components/ui/Modal.astro";
+import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
 ---
 
 <Layout title="Contacto - LosPerris Real">
-    <main class="pt-20 bg-[#1a1a1a]">
-        <Section class="bg-[#1a1a1a] text-white text-center">
+    <main class="min-h-screen bg-[#151515] relative overflow-hidden pt-20">
+        <!-- Background Elements -->
+        <BackgroundEffects />
+
+        <Section class="text-white text-center relative z-10">
             <h1
-                class="text-5xl font-bold mb-4 animate-[fadeInUp_0.8s_ease-out] text-white"
+                class="text-5xl md:text-7xl font-black mb-6 animate-[fadeInUp_0.8s_ease-out] text-white tracking-tight"
             >
-                Contáctanos
+                CONTÁCTANOS
             </h1>
             <p
-                class="text-xl opacity-90 max-w-2xl mx-auto animate-[fadeInUp_0.8s_ease-out_0.2s_both] text-[#b0b0b0]"
+                class="text-xl md:text-2xl text-[#b0b0b0] opacity-90 max-w-2xl mx-auto animate-[fadeInUp_0.8s_ease-out_0.2s_both] font-light"
             >
                 ¿Tienes alguna pregunta o necesitas ayuda? Estamos aquí para ti
             </p>
         </Section>
 
-        <Section class="bg-[#1a1a1a]">
+        <Section class="bg-transparent relative z-10">
             <div
                 class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto"
             >
-                <ContactForm />
-                <ContactInfo />
+                <div
+                    class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm shadow-xl"
+                >
+                    <ContactForm />
+                </div>
+                <div class="space-y-8">
+                    <ContactInfo />
+                </div>
             </div>
         </Section>
 

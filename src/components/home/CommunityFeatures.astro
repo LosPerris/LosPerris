@@ -1,0 +1,39 @@
+---
+import { communityFeatures } from "../../data/community";
+import Section from "../ui/Section.astro";
+import Card from "../ui/Card.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+---
+
+<Section class="relative overflow-hidden">
+    <SectionHeader
+        badge="Comunidad"
+        title="MÁS QUE UN"
+        highlight="SERVIDOR"
+        description="Somos una comunidad vibrante donde gamers, creadores y amigos se encuentran."
+    />
+
+    <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10"
+    >
+        {
+            communityFeatures.map((feature, index) => (
+                <Card class="bg-white/[0.02] bg-none border border-white/10 hover:border-[#5865F2]/50 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-300 shadow-lg backdrop-blur-sm">
+                    <div class="flex flex-col items-center text-center p-6">
+                        <div
+                            class={`w-20 h-20 rounded-2xl bg-[#2d2d2d]/50 flex items-center justify-center mb-6 border border-white/5 group-hover:scale-110 transition-transform ${feature.color}`}
+                        >
+                            <i class={`${feature.icon} text-4xl`} />
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">
+                            {feature.title}
+                        </h3>
+                        <p class="text-[rgb(176,176,176)] text-base leading-relaxed">
+                            {feature.description}
+                        </p>
+                    </div>
+                </Card>
+            ))
+        }
+    </div>
+</Section>

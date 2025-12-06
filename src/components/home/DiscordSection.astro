@@ -1,64 +1,95 @@
 ---
 import Button from "../ui/Button.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 ---
 
-<section
-    id="discord"
-    class="py-24 bg-[#2d2d2d] text-center relative overflow-hidden"
->
+<section id="discord" class="py-24 relative overflow-hidden">
     <div class="container mx-auto px-6 relative z-10">
-        <h2
-            class="text-4xl md:text-5xl font-bold mb-6 text-white flex items-center justify-center gap-4"
+        <SectionHeader
+            align="left"
+            title="ÚNETE A LA"
+            highlight="MANADA"
+            description="No es solo un servidor, es tu nuevo hogar digital. Soporte 24/7, eventos exclusivos y la mejor comunidad de LATAM."
         >
-            <i class="fab fa-discord text-[#5865F2]"></i> Únete a nuestra Comunidad
-        </h2>
-        <p
-            class="text-xl text-[#b0b0b0] mb-12 max-w-3xl mx-auto leading-relaxed"
-        >
-            ¡Somos nuevos, pero estamos listos. Soporte 24/7, actualizaciones
-            constantes y una comunidad que recién comienza.!
-        </p>
+            <span
+                slot="badge"
+                class="inline-block py-1 px-3 rounded-full bg-[#5865F2]/20 text-[#5865F2] border border-[#5865F2]/30 text-sm font-semibold mb-6 animate-[fadeInUp_1s_ease-out]"
+            >
+                <i class="fab fa-discord mr-2"></i>Comunidad Oficial
+            </span>
+        </SectionHeader>
+
         <div
-            class="flex flex-wrap justify-center gap-8 mb-12 max-w-4xl mx-auto"
+            class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-5xl mx-auto animate-[fadeInUp_1s_ease-out_0.6s_both]"
         >
-            <div class="flex flex-col items-center gap-3 p-4">
-                <i
-                    class="fas fa-headset text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
-                ></i>
-                <span class="text-[#b0b0b0] font-medium">Soporte Seguro</span>
-            </div>
-            <div class="flex flex-col items-center gap-3 p-4">
-                <i
-                    class="fas fa-bell text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
-                ></i>
-                <span class="text-[#b0b0b0] font-medium"
-                    >Notificaciones de Actualizaciones</span
+            <div
+                class="p-6 rounded-2xl bg-white/[0.02] bg-none border border-white/10 hover:bg-white/[0.04] transition-all hover:-translate-y-1 group"
+            >
+                <div
+                    class="w-12 h-12 rounded-xl bg-[#5865F2]/20 flex items-center justify-center text-[#5865F2] text-2xl mb-4 group-hover:scale-110 transition-transform"
                 >
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="text-white font-bold mb-1">Soporte 24/7</h3>
+                <p class="text-xs text-[#808080]">Siempre disponibles</p>
             </div>
-            <div class="flex flex-col items-center gap-3 p-4">
-                <i
-                    class="fas fa-users text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
-                ></i>
-                <span class="text-[#b0b0b0] font-medium">Nueva Comunidad</span>
-            </div>
-            <div class="flex flex-col items-center gap-3 p-4">
-                <i
-                    class="fas fa-gift text-3xl text-white bg-[#404040] w-16 h-16 rounded-full flex items-center justify-center mb-2"
-                ></i>
-                <span class="text-[#b0b0b0] font-medium">Eventos y Sorteos</span
+
+            <div
+                class="p-6 rounded-2xl bg-white/[0.02] bg-none border border-white/10 hover:bg-white/[0.04] transition-all hover:-translate-y-1 group"
+            >
+                <div
+                    class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-500 text-2xl mb-4 group-hover:scale-110 transition-transform"
                 >
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3 class="text-white font-bold mb-1">Noticias</h3>
+                <p class="text-xs text-[#808080]">Actualizaciones al día</p>
+            </div>
+
+            <div
+                class="p-6 rounded-2xl bg-white/[0.02] bg-none border border-white/10 hover:bg-white/[0.04] transition-all hover:-translate-y-1 group"
+            >
+                <div
+                    class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center text-green-500 text-2xl mb-4 group-hover:scale-110 transition-transform"
+                >
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="text-white font-bold mb-1">Comunidad</h3>
+                <p class="text-xs text-[#808080]">Creciendo cada día</p>
+            </div>
+
+            <div
+                class="p-6 rounded-2xl bg-white/[0.02] bg-none border border-white/10 hover:bg-white/[0.04] transition-all hover:-translate-y-1 group"
+            >
+                <div
+                    class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-500 text-2xl mb-4 group-hover:scale-110 transition-transform"
+                >
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3 class="text-white font-bold mb-1">Sorteos</h3>
+                <p class="text-xs text-[#808080]">Premios exclusivos</p>
             </div>
         </div>
-        <div class="flex gap-4 justify-center flex-wrap">
-            <Button href="https://discord.gg/JKPUVf9aeU" target="_blank">
-                <i class="fab fa-discord"></i> Unirse al Server Principal
+
+        <div
+            class="flex gap-4 justify-center flex-wrap animate-[fadeInUp_1s_ease-out_0.8s_both]"
+        >
+            <Button
+                href="https://discord.gg/JKPUVf9aeU"
+                target="_blank"
+                class="bg-[#5865F2] hover:bg-[#4752c4] shadow-lg shadow-[#5865F2]/20 border-none"
+                aria-label="Unirse al servidor principal de Discord"
+            >
+                <i class="fab fa-discord mr-2 text-xl"></i> Unirse Ahora
             </Button>
             <Button
                 variant="outline"
                 href="https://discord.gg/JKPUVf9aeU"
                 target="_blank"
+                class="backdrop-blur-sm"
+                aria-label="Ir al canal de ayuda en Discord"
             >
-                <i class="fas fa-headset"></i> Canal de Ayuda
+                <i class="fas fa-headset mr-2"></i> Canal de Ayuda
             </Button>
         </div>
     </div>

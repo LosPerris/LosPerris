@@ -1,8 +1,11 @@
+import realImg from '../assets/img/Real.png';
+import gamerImg from '../assets/img/gamer.png';
+
 export const helpBotData = {
     id: 'help-bot',
     botName: 'LosPerrisHelp',
     description: 'Bot especializado en moderación y utilidades para servidores de Discord',
-    imageSrc: '/img/Real.png',
+    imageSrc: realImg,
     tags: ['🛡️ Moderación Avanzada', '🔒 Seguridad Total', '⚡ Respuesta Rápida'],
     backgroundColor: 'bg-[#2d2d2d]',
     inviteLink: 'https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID_HELP&permissions=8&scope=bot',
@@ -41,7 +44,7 @@ export const gameBotData = {
     id: 'game-bot',
     botName: 'LosPerrisGame',
     description: 'Bot gaming con estadísticas y información de múltiples juegos populares',
-    imageSrc: '/img/gamer.png',
+    imageSrc: gamerImg,
     tags: ['🎮 Multi-Juego', '📊 Stats en Tiempo Real', '🔄 Actualizaciones Diarias'],
     backgroundColor: 'bg-[#1a1a1a]',
     inviteLink: 'https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID_GAME&permissions=8&scope=bot',

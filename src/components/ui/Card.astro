@@ -19,6 +19,20 @@ const animateStyles = animate
 const styles = `${baseStyles} ${hoverStyles} ${animateStyles} ${className || ""}`;
 ---
 
-<div class={styles}>
-    <slot />
+<div class={`${styles} group relative overflow-hidden`}>
+    <!-- Animated Border on Hover -->
+    <div
+        class="absolute inset-0 p-[2px] rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style="mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; -webkit-mask-composite: xor;"
+    >
+        <div
+            class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,#5865F2,#a855f7_40%,#ffffff_48%,#d946ef_52%,#5865F2)] animate-[spin_8s_linear_infinite]"
+        >
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 h-full">
+        <slot />
+    </div>
 </div>
