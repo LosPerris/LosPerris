@@ -17,6 +17,10 @@
             "destination": "https://followage-api.vercel.app/"
         },
         {
+            "source": "/followage/(.*)",
+            "destination": "https://followage-api.vercel.app/$1"
+        },
+        {
             "source": "/auth/(.*)",
             "destination": "/api/app/auth/$1"
         },
