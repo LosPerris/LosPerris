@@ -3,6 +3,13 @@
     "buildCommand": "npm run build",
     "installCommand": "npm install",
     "outputDirectory": "dist",
+    "redirects": [
+        {
+            "source": "/followage",
+            "destination": "/followage/",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
             "source": "/valorantapi",
