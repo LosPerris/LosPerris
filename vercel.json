@@ -54,6 +54,14 @@
         {
             "source": "/health",
             "destination": "https://followage-api.vercel.app/api/app/health"
+        },
+        {
+            "source": "/imgs/(.*)",
+            "destination": "https://followage-api.vercel.app/imgs/$1"
+        },
+        {
+            "source": "/img/(.*)",
+            "destination": "https://followage-api.vercel.app/imgs/$1"
         }
     ]
 }
