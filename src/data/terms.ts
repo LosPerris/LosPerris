@@ -1,8 +1,8 @@
 export const termsSections = [
-    {
-        title: '1. Información General',
-        icon: 'fas fa-info-circle',
-        content: `
+  {
+    title: '1. Información General',
+    icon: 'fas fa-info-circle',
+    content: `
       Los Perris Bots es un servicio que proporciona dos bots especializados para Discord:
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2"><strong class="text-white">LosPerrisHelp:</strong> Bot de moderación y utilidades</li>
@@ -10,11 +10,11 @@ export const termsSections = [
       </ul>
       Estos servicios son proporcionados de forma gratuita y están sujetos a los términos descritos en este documento.
     `
-    },
-    {
-        title: '2. Aceptación de Términos',
-        icon: 'fas fa-user-check',
-        content: `
+  },
+  {
+    title: '2. Aceptación de Términos',
+    icon: 'fas fa-user-check',
+    content: `
       Al invitar cualquiera de nuestros bots a tu servidor de Discord, automáticamente aceptas:
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Cumplir con todos los términos y condiciones establecidos</li>
@@ -23,11 +23,11 @@ export const termsSections = [
           <li class="mb-2">No intentar explotar, hackear o dañar los servicios</li>
       </ul>
     `
-    },
-    {
-        title: '3. Uso del Servicio',
-        icon: 'fas fa-cogs',
-        content: `
+  },
+  {
+    title: '3. Uso del Servicio',
+    icon: 'fas fa-cogs',
+    content: `
       <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Uso Permitido:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Utilizar los comandos según su propósito diseñado</li>
@@ -44,11 +44,11 @@ export const termsSections = [
           <li class="mb-2">Ingeniería inversa del código</li>
       </ul>
     `
-    },
-    {
-        title: '4. Privacidad y Datos',
-        icon: 'fas fa-shield-alt',
-        content: `
+  },
+  {
+    title: '4. Privacidad y Datos',
+    icon: 'fas fa-shield-alt',
+    content: `
       <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Datos Recopilados:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">IDs de usuario y servidor de Discord</li>
@@ -65,11 +65,11 @@ export const termsSections = [
       </ul>
       <p class="mb-4"><strong class="text-white">Compromiso:</strong> No vendemos, compartimos o distribuimos tus datos personales a terceros.</p>
     `
-    },
-    {
-        title: '5. Limitaciones y Responsabilidades',
-        icon: 'fas fa-exclamation-triangle',
-        content: `
+  },
+  {
+    title: '5. Limitaciones y Responsabilidades',
+    icon: 'fas fa-exclamation-triangle',
+    content: `
       <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Disponibilidad del Servicio:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Los bots pueden experimentar tiempo de inactividad por mantenimiento</li>
@@ -83,11 +83,11 @@ export const termsSections = [
           <li class="mb-2">Los usuarios son responsables del uso apropiado en sus servidores</li>
       </ul>
     `
-    },
-    {
-        title: '6. Suspensión y Terminación',
-        icon: 'fas fa-ban',
-        content: `
+  },
+  {
+    title: '6. Suspensión y Terminación',
+    icon: 'fas fa-ban',
+    content: `
       <p class="mb-4">Nos reservamos el derecho de suspender o terminar el acceso a nuestros servicios en caso de:</p>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Violación de estos términos y condiciones</li>
@@ -97,20 +97,20 @@ export const termsSections = [
       </ul>
       <p class="mb-4">La suspensión puede ser temporal o permanente según la gravedad de la infracción.</p>
     `
-    },
-    {
-        title: '7. Modificaciones',
-        icon: 'fas fa-edit',
-        content: `
+  },
+  {
+    title: '7. Modificaciones',
+    icon: 'fas fa-edit',
+    content: `
       <p class="mb-4">Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación.</p>
       <p class="mb-4">Es responsabilidad del usuario revisar periódicamente estos términos para mantenerse informado de cualquier cambio.</p>
       <p class="mb-4">El uso continuado del servicio después de las modificaciones constituye la aceptación de los nuevos términos.</p>
     `
-    },
-    {
-        title: '8. Contacto',
-        icon: 'fas fa-envelope',
-        content: `
+  },
+  {
+    title: '8. Contacto',
+    icon: 'fas fa-envelope',
+    content: `
       <p class="mb-4">Para preguntas, dudas o reportes relacionados con estos términos y condiciones, puedes contactarnos a través de:</p>
       <div class="mt-4">
           <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
@@ -123,13 +123,25 @@ export const termsSections = [
           </div>
       </div>
     `
-    },
-    {
-        title: '9. Ley Aplicable',
-        icon: 'fas fa-gavel',
-        content: `
+  },
+  {
+    title: '9. Ley Aplicable',
+    icon: 'fas fa-gavel',
+    content: `
       <p class="mb-4">Estos términos y condiciones se rigen por las leyes aplicables y están sujetos a la jurisdicción correspondiente.</p>
       <p class="mb-4">Cualquier disputa será resuelta de manera amistosa a través de nuestros canales de comunicación oficiales.</p>
     `
-    }
+  },
+  {
+    title: '10. Uso de APIs',
+    icon: 'fas fa-code',
+    content: `
+      <p class="mb-4">Nuestros servicios interactúan con la API de Discord y cumplen con sus términos de servicio para desarrolladores.</p>
+      <ul class="ml-8 mb-4 list-disc marker:text-white">
+          <li class="mb-2">No almacenamos datos más allá del tiempo necesario para el funcionamiento del bot.</li>
+          <li class="mb-2">Respetamos los límites de la API (Rate Limits) establecidos por Discord.</li>
+          <li class="mb-2">El uso de nuestros bots implica la aceptación de los <a href="https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service" target="_blank" class="text-white font-semibold no-underline hover:underline">Términos de Servicio para Desarrolladores de Discord</a>.</li>
+      </ul>
+    `
+  }
 ];

@@ -1,5 +1,5 @@
-import realImg from '../assets/img/Real.png';
-import gamerImg from '../assets/img/gamer.png';
+import realImg from '../assets/img/Real.webp';
+import gamerImg from '../assets/img/gamer.webp';
 
 export const helpBotData = {
     id: 'help-bot',
