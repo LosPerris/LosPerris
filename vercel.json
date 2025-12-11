@@ -13,32 +13,36 @@
             "destination": "https://los-perris-valorant-api.vercel.app/$1"
         },
         {
+            "source": "/followage",
+            "destination": "https://followage-api.vercel.app/"
+        },
+        {
             "source": "/auth/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/auth/$1"
+            "destination": "/api/app/auth/$1"
         },
         {
             "source": "/api/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/api/$1"
+            "destination": "/api/app/api/$1"
         },
         {
             "source": "/twitch/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/twitch/$1"
+            "destination": "/api/app/twitch/$1"
         },
         {
             "source": "/channel/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/channel/$1"
+            "destination": "/api/app/channel/$1"
         },
         {
             "source": "/me",
-            "destination": "https://followage-api.vercel.app/api/app/me"
+            "destination": "/api/app/me"
         },
         {
             "source": "/channel/me",
-            "destination": "https://followage-api.vercel.app/api/app/channel/me"
+            "destination": "/api/app/channel/me"
         },
         {
             "source": "/health",
-            "destination": "https://followage-api.vercel.app/api/app/health"
+            "destination": "/api/app/health"
         }
     ]
 }
