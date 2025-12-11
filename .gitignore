@@ -24,4 +24,9 @@ pnpm-debug.log*
 .idea/
 
 # backup
-legacy_backup/
+
+# vercel
+.vercel
+
+backup
+legacy_backup

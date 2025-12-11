@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { apis } from "../../data/apis";
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async () => {
     return new Response(JSON.stringify({
         status: "ok",
         message: "Los Perris API Gateway",

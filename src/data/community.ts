@@ -13,9 +13,9 @@ export const communityFeatures = [
         color: 'text-blue-400'
     },
     {
-        title: 'Eventos Semanales',
-        description: 'Participa en torneos de gaming, noches de cine, karaoke y sorteos exclusivos.',
-        icon: 'fas fa-calendar-alt',
+        title: 'Eventos de Minecraft',
+        description: 'De vez en cuando organizamos eventos de Minecraft y torneos para la comunidad.',
+        icon: 'fas fa-cubes',
         color: 'text-purple-400'
     },
     {
@@ -25,9 +25,9 @@ export const communityFeatures = [
         color: 'text-green-400'
     },
     {
-        title: 'Economía Global',
-        description: 'Sistema de economía integrado con tienda, roles y recompensas por actividad.',
-        icon: 'fas fa-coins',
+        title: 'Sistema de Tickets',
+        description: 'Soporte privado y rápido. Abre un ticket para resolver dudas, reportar usuarios o pedir ayuda.',
+        icon: 'fas fa-ticket-alt',
         color: 'text-yellow-400'
     }
 ];

@@ -27,11 +27,11 @@ import Modal from "../components/ui/Modal.astro";
 </Layout>
 
 <script is:inline>
-	function closeModal() {
+	window.closeModal = function () {
 		const modal = document.getElementById("commands-modal");
 		if (modal) {
 			modal.classList.add("hidden");
 			document.body.style.overflow = "auto";
 		}
-	}
+	};
 </script>

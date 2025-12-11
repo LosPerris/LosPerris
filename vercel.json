@@ -1,0 +1,44 @@
+{
+    "version": 2,
+    "buildCommand": "npm run build",
+    "installCommand": "npm install",
+    "outputDirectory": "dist",
+    "rewrites": [
+        {
+            "source": "/valorantapi",
+            "destination": "https://los-perris-valorant-api.vercel.app/"
+        },
+        {
+            "source": "/valorantapi/(.*)",
+            "destination": "https://los-perris-valorant-api.vercel.app/$1"
+        },
+        {
+            "source": "/auth/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/auth/$1"
+        },
+        {
+            "source": "/api/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/api/$1"
+        },
+        {
+            "source": "/twitch/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/twitch/$1"
+        },
+        {
+            "source": "/channel/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/channel/$1"
+        },
+        {
+            "source": "/me",
+            "destination": "https://followage-api.vercel.app/api/app/me"
+        },
+        {
+            "source": "/channel/me",
+            "destination": "https://followage-api.vercel.app/api/app/channel/me"
+        },
+        {
+            "source": "/health",
+            "destination": "https://followage-api.vercel.app/api/app/health"
+        }
+    ]
+}

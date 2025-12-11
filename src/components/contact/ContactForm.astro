@@ -87,11 +87,9 @@ import Button from "../ui/Button.astro";
     </form>
 </div>
 
-<script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
 ></script>
-<script type="text/javascript" is:inline>
+<script is:inline>
     (function () {
         if (window.emailjs) {
             emailjs.init("GMUaeNqA-ftlkGhwm");
@@ -105,12 +103,10 @@ import Button from "../ui/Button.astro";
             event.preventDefault();
 
             const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "Enviando...";
-            btn.disabled = true;
-
-            const serviceID = "default_service";
-            const templateID = "template_contact";
+            if (btn instanceof HTMLButtonElement) {
+                btn.innerHTML = "Enviando...";
+                btn.disabled = true;
+            }
 
             if (window.emailjs) {
                 emailjs.sendForm("service_xg25pip", "template_56k4k9o", this);

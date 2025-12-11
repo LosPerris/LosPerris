@@ -34,7 +34,7 @@ const { id, title } = Astro.props;
     </div>
 </div>
 
-<script define:vars={{ id }}>
+<script define:vars={{ id }} is:inline>
     const modal = document.getElementById(id);
     const closeButtons = modal?.querySelectorAll(".close-modal");
 

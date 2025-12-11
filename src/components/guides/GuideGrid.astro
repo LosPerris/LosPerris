@@ -10,14 +10,7 @@ import { guides } from "../../data/guides";
     {guides.map((guide) => <GuideCard guide={guide} />)}
 </div>
 
-<script>
-    import { guides } from "../../data/guides";
-
-    const guideContentMap = {};
-    window.guideContent = guideContentMap;
-</script>
-
-<script define:vars={{ guides }}>
+<script define:vars={{ guides }} is:inline>
     if (!window.guideContent) {
         window.guideContent = {};
     }
