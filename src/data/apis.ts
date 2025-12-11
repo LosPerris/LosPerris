@@ -4,7 +4,7 @@ export const apis = [
         description: 'API gratuita para consultar el tiempo de seguimiento (followage) entre un usuario y un canal. Ideal para comandos de bots (!followage).',
         icon: 'fab fa-twitch',
         color: 'text-[#9146FF]',
-        link: 'https://www.losperris.site/',
+        link: 'https://www.losperris.site/followage',
         linkText: 'Visitar Demo',
         endpoints: [
             {
