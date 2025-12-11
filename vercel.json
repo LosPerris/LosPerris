@@ -37,6 +37,14 @@
             "destination": "https://followage-api.vercel.app/api/app/channel/me"
         },
         {
+            "source": "/apis/followage",
+            "destination": "https://followage-api.vercel.app/"
+        },
+        {
+            "source": "/apis/followage/(.*)",
+            "destination": "https://followage-api.vercel.app/$1"
+        },
+        {
             "source": "/health",
             "destination": "https://followage-api.vercel.app/api/app/health"
         }
