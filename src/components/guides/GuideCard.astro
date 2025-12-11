@@ -10,29 +10,55 @@ const { guide } = Astro.props;
 ---
 
 <Card
-    class="guide-card p-4 sm:p-6 bg-[#2d2d2d] rounded-xl border border-[#404040] hover:-translate-y-1 hover:shadow-lg transition-all cursor-pointer h-full flex flex-col items-center text-center group relative overflow-hidden"
+    class="guide-card group relative p-6 h-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-[#5865F2]/50 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl backdrop-blur-sm cursor-pointer overflow-hidden flex flex-col"
     data-category={guide.category}
     data-title={guide.title.toLowerCase()}
     data-description={guide.description.toLowerCase()}
     onclick={`openGuide('${guide.id}')`}
 >
     <div
-        class="w-12 h-12 bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#404040]"
+        class="absolute -right-10 -top-10 w-32 h-32 bg-[#5865F2]/10 rounded-full blur-[50px] group-hover:bg-[#5865F2]/20 transition-colors"
     >
-        <i class={`${guide.icon} text-xl text-white`}></i>
     </div>
-    <h3 class="text-lg font-bold text-white mb-2">{guide.title}</h3>
-    <p class="text-[#b0b0b0] text-sm mb-4 line-clamp-2">{guide.description}</p>
-    <div class="flex flex-wrap justify-center gap-2 mt-auto">
+
+    <div class="relative z-10 flex items-start justify-between mb-6">
+        <div
+            class="w-14 h-14 rounded-2xl bg-[#5865F2]/10 flex items-center justify-center border border-[#5865F2]/20 group-hover:scale-110 group-hover:border-[#5865F2]/50 transition-all duration-300 shadow-lg shadow-[#5865F2]/5"
+        >
+            <i class={`${guide.icon} text-2xl text-[#5865F2]`}></i>
+        </div>
+
         <span
-            class={`${guide.difficultyColor} ${guide.difficultyTextColor} px-2 py-1 rounded text-xs font-bold`}
+            class={`${guide.difficultyColor} ${guide.difficultyTextColor} px-3 py-1 rounded-full text-xs font-bold border border-white/5 shadow-sm uppercase tracking-wide`}
         >
             {guide.difficulty}
         </span>
-        <span
-            class="bg-[#404040] text-white px-2 py-1 rounded text-xs font-bold"
+    </div>
+
+    <div class="relative z-10 flex-grow flex flex-col">
+        <h3
+            class="text-xl font-bold text-white mb-3 group-hover:text-[#5865F2] transition-colors line-clamp-1"
         >
-            <i class="far fa-clock mr-1"></i>{guide.time}
-        </span>
+            {guide.title}
+        </h3>
+        <p
+            class="text-[#b0b0b0] text-sm leading-relaxed line-clamp-2 mb-6 flex-grow"
+        >
+            {guide.description}
+        </p>
+
+        <div
+            class="flex items-center justify-between pt-4 border-t border-white/5 mt-auto"
+        >
+            <span class="flex items-center text-xs font-medium text-[#808080]">
+                <i class="far fa-clock mr-2 text-[#5865F2]"></i>
+                {guide.time}
+            </span>
+            <span
+                class="text-xs font-bold text-white group-hover:translate-x-1 transition-transform flex items-center"
+            >
+                Leer guía <i class="fas fa-arrow-right ml-2 text-[#5865F2]"></i>
+            </span>
+        </div>
     </div>
 </Card>
