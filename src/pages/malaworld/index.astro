@@ -1,5 +1,17 @@
 ---
 import "./style.css";
+import serverIcon from "./malaimg/icono del server.png";
+
+const mods = [
+    { name: "JEI", icon: "fa-book" },
+    { name: "Xaero's Map", icon: "fa-map" },
+    { name: "Create", icon: "fa-cogs" },
+    { name: "Farmers Delight", icon: "fa-leaf" },
+    { name: "Alex's Mobs", icon: "fa-paw" },
+    { name: "Iron Chests", icon: "fa-box" },
+    { name: "Sophisticated Backpacks", icon: "fa-hiking" },
+    { name: "Ars Nouveau", icon: "fa-hat-wizard" },
+];
 ---
 
 <!doctype html>
@@ -7,85 +19,132 @@ import "./style.css";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mala World - Minecraft Server</title>
+        <title>Mala World - Official Server</title>
         <meta
             name="description"
             content="Servidor de Minecraft Survival Mala World"
         />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
             rel="stylesheet"
         />
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <link rel="preconnect" href="https://mc-heads.net" />
     </head>
     <body>
         <div class="background-overlay"></div>
 
         <nav class="navbar">
-            <div class="logo">MALA WORLD</div>
+            <div class="logo">
+                <img src={serverIcon.src} alt="Mala World Icon" />
+                MALA WORLD
+            </div>
             <div class="nav-links">
                 <a href="#home">Inicio</a>
-                <a href="#about">Información</a>
-                <a href="#rules">Reglas</a>
+                <a href="#players">Jugadores</a>
+                <a href="#mods">Mods</a>
+                <a href="#features">Características</a>
                 <a href="#store" class="store-link">Tienda</a>
             </div>
         </nav>
 
         <header id="home" class="hero">
+            <img
+                src={serverIcon.src}
+                alt="Mala World Logo"
+                class="server-icon-large"
+            />
+
             <div class="hero-content">
                 <h1 class="glitch" data-text="MALA WORLD">MALA WORLD</h1>
                 <p class="subtitle">
-                    La mejor experiencia de Minecraft Survival
+                    La experiencia Survival definitiva con mods y amigos
                 </p>
 
                 <div class="server-status-container">
                     <div id="status-dot" class="status-indicator"></div>
-                    <span id="player-count">Cargando...</span> players online
+                    <span id="player-count">Cargando...</span>
                 </div>
 
                 <div class="ip-container" onclick="copyIp()">
+                    <div class="tooltip">¡Click para copiar!</div>
                     <span id="server-ip">23.230.3.241:25721</span>
                     <i class="fas fa-copy"></i>
-                    <div class="tooltip">¡Click para copiar!</div>
+                </div>
+
+                <div
+                    id="server-meta"
+                    style="margin-top: 1rem; color: #888; font-size: 0.9rem;"
+                >
+                    <span id="server-version">...</span>
                 </div>
             </div>
         </header>
 
-        <section id="about" class="features">
-            <h2>¿Por qué Mala World?</h2>
+        <section id="players" class="player-list-section">
+            <h2>Jugadores en Línea</h2>
+            <div id="player-grid" class="player-grid">
+                <p style="color: #666; font-style: italic;">
+                    Cargando jugadores...
+                </p>
+            </div>
+        </section>
+
+        <section id="mods">
+            <h2>Mods Principales</h2>
+            <div class="mods-grid">
+                {
+                    mods.map((mod) => (
+                        <div class="mod-item">
+                            <i class={`fas ${mod.icon}`} />
+                            <div class="mod-name">{mod.name}</div>
+                        </div>
+                    ))
+                }
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #666;">
+                y muchos más...
+            </p>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Características</h2>
             <div class="grid">
                 <div class="card">
                     <i class="fas fa-hammer"></i>
-                    <h3>Survival Custom</h3>
+                    <h3>Survival Modded</h3>
                     <p>
-                        Items únicos, encantamientos especiales y una economía
-                        balanceada por jugadores.
+                        Una selección curada de los mejores mods para mejorar tu
+                        experiencia sin perder la esencia.
                     </p>
                 </div>
                 <div class="card">
                     <i class="fas fa-shield-alt"></i>
-                    <h3>Protección 24/7</h3>
+                    <h3>Seguridad</h3>
                     <p>
-                        Tus construcciones están seguras con nuestro sistema de
-                        claims avanzado.
+                        Tus construcciones están protegidas. Juega tranquilo con
+                        tus amigos.
                     </p>
                 </div>
                 <div class="card">
-                    <i class="fas fa-users"></i>
-                    <h3>Comunidad Activa</h3>
+                    <i class="fas fa-server"></i>
+                    <h3>Rendimiento</h3>
                     <p>
-                        Eventos semanales, staff activo y una comunidad amigable
-                        te esperan.
+                        Hosteado en servidores de alta gama para garantizar 0
+                        lag.
                     </p>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2025 Mala World. No afiliado con Mojang AB.</p>
+            <p>&copy; 2025 Mala World.</p>
+            <p style="font-size: 0.8rem; opacity: 0.5;">
+                No afiliado con Mojang AB.
+            </p>
         </footer>
 
         <script is:inline>
@@ -100,7 +159,6 @@ import "./style.css";
                         const tooltip = document.querySelector(".tooltip");
                         tooltip.innerText = "¡IP Copiada!";
                         tooltip.style.opacity = "1";
-
                         setTimeout(() => {
                             tooltip.style.opacity = "0";
                             setTimeout(() => {
@@ -108,14 +166,15 @@ import "./style.css";
                             }, 300);
                         }, 2000);
                     })
-                    .catch((err) => {
-                        console.error("Error not copying: ", err);
-                    });
+                    .catch((err) => console.error("Error copying:", err));
             }
 
             async function fetchServerStatus() {
                 const countElement = document.getElementById("player-count");
                 const statusDot = document.getElementById("status-dot");
+                const playerGrid = document.getElementById("player-grid");
+                const versionElement =
+                    document.getElementById("server-version");
 
                 try {
                     const response = await fetch(
@@ -124,20 +183,42 @@ import "./style.css";
                     const data = await response.json();
 
                     if (data.online) {
-                        countElement.innerText =
-                            data.players.online + " / " + data.players.max;
+                        countElement.innerText = `${data.players.online} / ${data.players.max} Jugadores`;
                         statusDot.classList.add("online");
                         statusDot.classList.remove("offline");
+                        versionElement.innerText = `${data.version} • ${data.software || "Vanilla"}`;
+
+                        if (data.players.list && data.players.list.length > 0) {
+                            playerGrid.innerHTML = data.players.list
+                                .map(
+                                    (player) => `
+                            <div class="player-item">
+                                <img src="https://mc-heads.net/avatar/${player.name}" alt="${player.name}" class="player-head">
+                                <span class="player-name">${player.name}</span>
+                            </div>
+                        `,
+                                )
+                                .join("");
+                        } else {
+                            if (data.players.online > 0) {
+                                playerGrid.innerHTML =
+                                    '<p style="color: #888;">Jugadores conectados (lista oculta)</p>';
+                            } else {
+                                playerGrid.innerHTML =
+                                    '<p style="color: #666;">No hay nadie jugando ahora :(</p>';
+                            }
+                        }
                     } else {
-                        countElement.innerText = "Offline";
+                        statusElement.innerText = "Offline";
                         statusDot.classList.remove("online");
                         statusDot.classList.add("offline");
+                        playerGrid.innerHTML =
+                            '<p style="color: #aa5555;">El servidor está apagado.</p>';
                     }
                 } catch (error) {
-                    console.error("Error fetching status:", error);
-                    countElement.innerText = "Error";
+                    console.error("fetch error:", error);
                     statusDot.classList.remove("online");
-                    statusDot.classList.add("offline");
+                    countElement.innerText = "Error API";
                 }
             }
 
@@ -146,27 +227,24 @@ import "./style.css";
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
                         }
                     });
                 },
                 { threshold: 0.1 },
             );
 
-            document.querySelectorAll(".card").forEach((card) => {
-                card.style.opacity = "0";
-                card.style.transform = "translateY(20px)";
-                card.style.transition =
-                    "opacity 0.6s ease, transform 0.6s ease";
-                observer.observe(card);
-            });
+            document
+                .querySelectorAll(".card, .mod-item, .player-item")
+                .forEach((el) => {
+                    el.style.opacity = "0";
+                    el.style.transform = "translateY(20px)";
+                    el.style.transition = "all 0.6s ease";
+                    observer.observe(el);
+                });
 
             const style = document.createElement("style");
-            style.innerHTML = `
-            .visible {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-            }
-        `;
+            style.innerHTML = `.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
             document.head.appendChild(style);
 
             fetchServerStatus();
