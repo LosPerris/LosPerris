@@ -6,7 +6,7 @@ export const helpBotData = {
     botName: 'LosPerrisHelp',
     description: 'Bot especializado en moderación y utilidades para servidores de Discord',
     imageSrc: realImg,
-    tags: ['🛡️ Moderación Avanzada', '🔒 Seguridad Total', '⚡ Respuesta Rápida'],
+    tags: ['🛡️ Moderación Avanzada', '🔒 Seguridad Total', '💾 Base de Datos'],
     backgroundColor: 'bg-[#2d2d2d]',
     inviteLink: 'https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID_HELP&permissions=8&scope=bot',
     commandsFunction: 'showHelpCommands()',
@@ -16,8 +16,8 @@ export const helpBotData = {
         {
             icon: 'fas fa-shield-alt',
             title: 'Moderación',
-            description: 'Sistema completo de moderación con ban, kick, warn y más. Incluye sistema automático de advertencias y gestión de usuarios problemáticos.',
-            list: ['Ban/Unban automático', 'Sistema de advertencias', 'Purga de mensajes', 'Reportes de usuarios']
+            description: 'Sistema completo de moderación con ban, kick, warn y más. Incluye sistema automático de advertencias y gestión de usuarios problemáticos con historial persistente.',
+            list: ['Ban/Unban automático', 'Sistema de advertencias persistente', 'Purga de mensajes', 'Reportes de usuarios']
         },
         {
             icon: 'fas fa-info-circle',
@@ -45,7 +45,7 @@ export const gameBotData = {
     botName: 'LosPerrisGame',
     description: 'Bot gaming con estadísticas y información de múltiples juegos populares',
     imageSrc: gamerImg,
-    tags: ['🎮 Multi-Juego', '📊 Stats en Tiempo Real', '🔄 Actualizaciones Diarias'],
+    tags: ['🎮 Multi-Juego', '📊 Stats Persistentes', '🔄 Actualizaciones Diarias'],
     backgroundColor: 'bg-[#1a1a1a]',
     inviteLink: 'https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID_GAME&permissions=8&scope=bot',
     commandsFunction: 'showGameCommands()',

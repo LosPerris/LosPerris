@@ -61,6 +61,7 @@ export const termsSections = [
           <li class="mb-2">Proporcionar funcionalidad del bot</li>
           <li class="mb-2">Mejorar el rendimiento y características</li>
           <li class="mb-2">Resolver problemas técnicos</li>
+          <li class="mb-2">Almacenamiento persistente de configuraciones y estadísticas en base de datos segura</li>
           <li class="mb-2">Cumplir con los términos de Discord</li>
       </ul>
       <p class="mb-4"><strong class="text-white">Compromiso:</strong> No vendemos, compartimos o distribuimos tus datos personales a terceros.</p>
@@ -138,7 +139,7 @@ export const termsSections = [
     content: `
       <p class="mb-4">Nuestros servicios interactúan con la API de Discord y cumplen con sus términos de servicio para desarrolladores.</p>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
-          <li class="mb-2">No almacenamos datos más allá del tiempo necesario para el funcionamiento del bot.</li>
+          <li class="mb-2">Almacenamos los datos necesarios en nuestra base de datos segura para el funcionamiento persistente de los servicios.</li>
           <li class="mb-2">Respetamos los límites de la API (Rate Limits) establecidos por Discord.</li>
           <li class="mb-2">El uso de nuestros bots implica la aceptación de los <a href="https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service" target="_blank" class="text-white font-semibold no-underline hover:underline">Términos de Servicio para Desarrolladores de Discord</a>.</li>
       </ul>
