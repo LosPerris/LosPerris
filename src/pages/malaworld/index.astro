@@ -1,7 +1,6 @@
 ---
 import serverIcon from "./malaimg/icono del server.png";
 
-// Selected top mods from the user's list
 const mods = [
     {
         name: "Ice and Fire",
@@ -49,7 +48,6 @@ const mods = [
     <body
         class="bg-[#08080a] text-white font-['Outfit'] overflow-x-hidden antialiased selection:bg-[#55ff55] selection:text-black"
     >
-        <!-- Background overlay -->
         <div class="fixed inset-0 z-[-1] pointer-events-none">
             <div
                 class="absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,_rgba(85,255,85,0.05)_0%,_transparent_40%),_radial-gradient(circle_at_90%_90%,_rgba(157,0,255,0.05)_0%,_transparent_40%)]"
@@ -62,7 +60,6 @@ const mods = [
             </div>
         </div>
 
-        <!-- Navbar -->
         <nav
             class="fixed top-0 w-full z-50 flex justify-between items-center px-[5%] py-4 bg-[#08080a]/85 backdrop-blur-xl border-b border-white/5"
         >
@@ -100,7 +97,6 @@ const mods = [
             </div>
         </nav>
 
-        <!-- Hero -->
         <header
             id="home"
             class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative pt-20"
@@ -161,7 +157,6 @@ const mods = [
             </div>
         </header>
 
-        <!-- Players -->
         <section
             id="players"
             class="py-24 px-[5%] max-w-7xl mx-auto border-y border-white/5 bg-black/20"
@@ -176,7 +171,6 @@ const mods = [
             </div>
         </section>
 
-        <!-- Features -->
         <section id="features" class="py-24 px-[5%] max-w-7xl mx-auto">
             <h2
                 class="text-4xl font-bold text-center mb-16 relative after:content-[''] after:block after:w-10 after:h-1 after:bg-[#55ff55] after:mx-auto after:mt-4 after:rounded after:shadow-[0_0_15px_#55ff55]"
@@ -259,7 +253,6 @@ const mods = [
             </div>
         </section>
 
-        <!-- Mods -->
         <section id="mods" class="py-24 px-[5%] max-w-7xl mx-auto">
             <h2
                 class="text-4xl font-bold text-center mb-16 relative after:content-[''] after:block after:w-10 after:h-1 after:bg-[#55ff55] after:mx-auto after:mt-4 after:rounded after:shadow-[0_0_15px_#55ff55]"
@@ -294,8 +287,9 @@ const mods = [
             </p>
         </footer>
 
-        <!-- Styles for JS Animations -->
         <style is:global>
+            @import "tailwindcss";
+
             @keyframes float {
                 0%,
                 100% {
@@ -309,11 +303,19 @@ const mods = [
                 opacity: 1 !important;
                 transform: translateY(0) !important;
             }
+
             .player-head {
-                @apply w-16 h-16 rounded-xl border-2 border-white/10 shadow-lg transition-all duration-300;
+                width: 4rem;
+                height: 4rem;
+                border-radius: 0.75rem;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                transition: all 300ms;
             }
             .player-item:hover .player-head {
-                @apply scale-110 border-[#55ff55] shadow-[#55ff55]/30;
+                transform: scale(1.1);
+                border-color: #55ff55;
+                box-shadow: 0 0 15px rgba(85, 255, 85, 0.3);
             }
         </style>
 
@@ -400,7 +402,6 @@ const mods = [
                 }
             }
 
-            // Observer for fade-in animations
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
@@ -430,7 +431,6 @@ const mods = [
                 observer.observe(el);
             });
 
-            // Initialize
             fetchServerStatus();
             setInterval(fetchServerStatus, 300000);
             window.copyIp = copyIp;
