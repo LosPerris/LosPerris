@@ -37,6 +37,7 @@ export const modList = [
     { name: "Additional Structures", category: "world", icon: "fa-home" },
     { name: "Ancient Obelisks", category: "world", icon: "fa-monument" },
     { name: "Formations Overworld", category: "world", icon: "fa-shapes" },
+    { name: "Let's Do Camping", category: "world", icon: "fa-campground" },
 
     // Mobs & Animals
     { name: "Alex's Mobs", category: "mobs", icon: "fa-paw", rank: "epic" },
@@ -67,9 +68,12 @@ export const modList = [
     { name: "Inventory HUD+", category: "utility", icon: "fa-th" },
     { name: "Lightman's Currency", category: "utility", icon: "fa-coins" },
     { name: "Chunky", category: "utility", icon: "fa-layer-group" },
+    { name: "Inventory Profiles Next", category: "utility", icon: "fa-boxes" },
+    { name: "TrashSlot", category: "utility", icon: "fa-trash" },
 
     // Performance
     { name: "ModernFix", category: "performance", icon: "fa-tachometer-alt" },
     { name: "FerriteCore", category: "performance", icon: "fa-memory" },
     { name: "ImmediatelyFast", category: "performance", icon: "fa-bolt" },
+    { name: "Kotlin for Forge", category: "performance", icon: "fa-code" },
 ];

@@ -179,10 +179,20 @@ import { modList, categories } from "./mods";
         >
             <div class="max-w-6xl mx-auto px-4">
                 <h2
-                    class="font-['Cinzel'] text-4xl text-[#7df9ff] mb-12 tracking-[0.3em] font-bold drop-shadow-lg inline-block bg-black/80 px-8 py-2 rounded-full border border-[#7df9ff]/20"
+                    class="font-['Cinzel'] text-4xl text-[#7df9ff] mb-4 tracking-[0.3em] font-bold drop-shadow-lg inline-block bg-black/80 px-8 py-2 rounded-full border border-[#7df9ff]/20"
                 >
                     SEÑALES DETECTADAS
                 </h2>
+                <div class="mb-12">
+                    <p
+                        class="text-xs text-zinc-500 font-mono tracking-widest uppercase"
+                    >
+                        Próximo escaneo en: <span
+                            id="scan-timer"
+                            class="text-[#7df9ff]">120s</span
+                        >
+                    </p>
+                </div>
 
                 <div
                     id="player-grid"
@@ -452,7 +462,7 @@ import { modList, categories } from "./mods";
         </section>
 
         <footer
-            class="bg-black py-12 text-center border-t border-[#222] relative z-10"
+            class="bg-black py-12 text-center border-t border-[#222] relative z-10 w-full mt-auto"
         >
             <p
                 class="text-zinc-600 text-xs uppercase tracking-[0.4em] font-bold"
@@ -647,7 +657,20 @@ import { modList, categories } from "./mods";
             }
 
             fetchStatus();
-            setInterval(fetchStatus, 30000);
+
+            let scanTimeLeft = 119;
+            function updateScanTimer() {
+                const timerEl = document.getElementById("scan-timer");
+                if (timerEl) timerEl.innerText = scanTimeLeft + "s";
+
+                if (scanTimeLeft <= 0) {
+                    fetchStatus();
+                    scanTimeLeft = 120;
+                } else {
+                    scanTimeLeft--;
+                }
+            }
+            setInterval(updateScanTimer, 1000);
 
             updateCountdowns();
             setInterval(updateCountdowns, 1000);
