@@ -183,13 +183,13 @@ import { modList, categories } from "./mods";
                 >
                     SEÑALES DETECTADAS
                 </h2>
-                <div class="mb-12">
+                <div class="mb-12 flex justify-center">
                     <p
-                        class="text-xs text-zinc-500 font-mono tracking-widest uppercase"
+                        class="text-xs md:text-sm text-zinc-400 font-mono tracking-widest uppercase bg-black/60 px-6 py-2 rounded-full border border-zinc-800 backdrop-blur-sm"
                     >
                         Próximo escaneo en: <span
                             id="scan-timer"
-                            class="text-[#7df9ff]">120s</span
+                            class="text-[#7df9ff] font-bold ml-2">02:00</span
                         >
                     </p>
                 </div>
@@ -622,8 +622,6 @@ import { modList, categories } from "./mods";
             function updateCountdowns() {
                 const now = new Date().getTime();
 
-                // Fechas objetivo (nether: +7 días, end: +14 días desde el lanzamiento aprox)
-                // Ajustado a aprox 18 Diciembre y 25 Diciembre 2025 o relativo
                 const netherDate = new Date("2025-12-18T18:00:00").getTime();
                 const endDate = new Date("2025-12-25T18:00:00").getTime();
 
@@ -658,19 +656,25 @@ import { modList, categories } from "./mods";
 
             fetchStatus();
 
-            let scanTimeLeft = 119;
             function updateScanTimer() {
                 const timerEl = document.getElementById("scan-timer");
-                if (timerEl) timerEl.innerText = scanTimeLeft + "s";
+                if (!timerEl) return;
 
-                if (scanTimeLeft <= 0) {
+                const period = 120;
+                const now = Math.floor(Date.now() / 1000);
+                const timeLeft = period - (now % period);
+
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+
+                timerEl.innerText = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+                if (timeLeft === 120) {
                     fetchStatus();
-                    scanTimeLeft = 120;
-                } else {
-                    scanTimeLeft--;
                 }
             }
             setInterval(updateScanTimer, 1000);
+            updateScanTimer();
 
             updateCountdowns();
             setInterval(updateCountdowns, 1000);
