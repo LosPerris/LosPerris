@@ -275,65 +275,80 @@ import bgImage from "./malaimg/botw-bg.png";
                     </div>
                 </div>
             </section>
+
+            <!-- Tip de RAM -->
+            <section
+                class="bg-black/80 border border-[#333] rounded-xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#FACC15]/50 transition-all"
+            >
+                <div
+                    class="absolute -right-10 -top-10 text-9xl text-yellow-500/5 font-['Cinzel'] select-none"
+                >
+                    <i class="fas fa-memory"></i>
+                </div>
+
+                <h2
+                    class="text-2xl md:text-3xl font-['Cinzel'] text-yellow-500 mb-6 flex items-center gap-4"
+                >
+                    <i class="fas fa-memory"></i> IMPORTANTE: MEMORIA RAM
+                </h2>
+
+                <p class="text-zinc-300 text-lg mb-6">
+                    Por defecto, Minecraft usa poca memoria RAM. Para evitar
+                    lag, te recomendamos asignar más memoria al perfil:
+                </p>
+
+                <div class="bg-black/50 border border-zinc-800 p-6 rounded-lg">
+                    <ol
+                        class="list-decimal list-inside text-zinc-300 space-y-3 font-light text-lg"
+                    >
+                        <li>
+                            En CurseForge, ve a la configuración (⚙️) abajo a la
+                            izquierda.
+                        </li>
+                        <li>
+                            Selecciona la pestaña <strong class="text-white"
+                                >Minecraft</strong
+                            >.
+                        </li>
+                        <li>
+                            Baja hasta <strong class="text-white"
+                                >Allocated Memory</strong
+                            > y mueve la barra hasta <strong
+                                class="text-yellow-400 font-bold"
+                                >4096MB (4GB)</strong
+                            > o más.
+                        </li>
+                    </ol>
+                </div>
+            </section>
         </main>
 
-        <!-- Tip de RAM -->
-        <section
-            class="bg-[#1a1a1a] border-l-4 border-yellow-500 rounded-r-xl p-6 shadow-xl"
+        <footer
+            class="bg-black py-8 text-center border-t border-[#222] mt-auto relative z-10 w-full"
         >
-            <h3
-                class="font-['Cinzel'] text-yellow-500 text-xl mb-3 font-bold flex items-center gap-3"
+            <p
+                class="text-zinc-600 text-xs uppercase tracking-[0.4em] font-bold"
             >
-                <i class="fas fa-memory"></i> IMPORTANTE: MEMORIA RAM
-            </h3>
-            <p class="text-zinc-400 text-sm leading-relaxed mb-4">
-                Por defecto, Minecraft usa poca memoria RAM. Para evitar lag, te
-                recomendamos asignar más memoria al perfil:
+                Mala World // Ponss
             </p>
-            <ol
-                class="list-decimal list-inside text-zinc-300 text-sm space-y-2 font-light"
-            >
-                <li>
-                    En CurseForge, ve a la configuración (⚙️) abajo a la
-                    izquierda.
-                </li>
-                <li>
-                    Selecciona la pestaña <strong class="text-white"
-                        >Minecraft</strong
-                    >.
-                </li>
-                <li>
-                    Baja hasta <strong class="text-white"
-                        >Allocated Memory</strong
-                    > y mueve la barra hasta <strong
-                        class="text-yellow-400 font-bold">4096MB (4GB)</strong
-                    > o más.
-                </li>
-            </ol>
-        </section>
+        </footer>
+
+        <style is:global>
+            @import "tailwindcss";
+
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #000;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #333;
+                border-radius: 4px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #7df9ff;
+            }
+        </style>
     </body>
-
-    <footer class="bg-black py-8 text-center border-t border-[#222] mt-auto">
-        <p class="text-zinc-600 text-xs uppercase tracking-[0.4em] font-bold">
-            Mala World // Ponss
-        </p>
-    </footer>
-
-    <style is:global>
-        @import "tailwindcss";
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #7df9ff;
-        }
-    </style>
 </html>
