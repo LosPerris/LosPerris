@@ -1,86 +1,19 @@
 ---
 import serverIcon from "./malaimg/icono del server.png";
-import bgImage from "./malaimg/pixel-bg.png";
+import bgImage from "./malaimg/ruins-bg.png";
+import { modList, categories } from "./mods";
 
-const modList = [
-    { name: "Ice and Fire", category: "rpg", icon: "fa-dragon" },
-    { name: "L_Enders Cataclysm", category: "rpg", icon: "fa-skull" },
-    { name: "Twilight Forest", category: "rpg", icon: "fa-tree" },
-    { name: "Apotheosis", category: "rpg", icon: "fa-khanda" },
-    { name: "Mine and Slash", category: "rpg", icon: "fa-sword" },
-    { name: "Simply Swords", category: "rpg", icon: "fa-gavel" },
-    { name: "Iter RPG", category: "rpg", icon: "fa-dungeon" },
-    { name: "The Graveyard", category: "rpg", icon: "fa-ghost" },
-    { name: "The Hordes", category: "rpg", icon: "fa-users" },
-    { name: "Bosses Rise", category: "rpg", icon: "fa-crown" },
-    { name: "Dungeon Realm", category: "rpg", icon: "fa-fort-awesome" },
-    { name: "Valarian Conquest", category: "rpg", icon: "fa-shield-alt" },
-    { name: "Realmrpg Quests", category: "rpg", icon: "fa-scroll" },
-    { name: "Realmrpg Skeletons", category: "rpg", icon: "fa-bone" },
-    { name: "Human Companions", category: "rpg", icon: "fa-user-friends" },
-    { name: "Player Revive", category: "rpg", icon: "fa-heart-pulse" },
-
-    {
-        name: "Oh The Biomes We've Gone",
-        category: "world",
-        icon: "fa-mountain",
-    },
-    { name: "Amplified Nether", category: "world", icon: "fa-fire" },
-    {
-        name: "Yung's Better Nether Fortresses",
-        category: "world",
-        icon: "fa-archway",
-    },
-    { name: "Yung's Better End Island", category: "world", icon: "fa-cubes" },
-    {
-        name: "Moog's Nether Structures",
-        category: "world",
-        icon: "fa-building",
-    },
-    { name: "Lukis Grand Capitals", category: "world", icon: "fa-city" },
-    { name: "Additional Structures", category: "world", icon: "fa-home" },
-    { name: "Ancient Obelisks", category: "world", icon: "fa-monument" },
-    { name: "Formations Overworld", category: "world", icon: "fa-shapes" },
-
-    { name: "Alex's Mobs", category: "mobs", icon: "fa-paw" },
-    { name: "Legendary Creatures", category: "mobs", icon: "fa-spider" },
-    { name: "End of Herobrine", category: "mobs", icon: "fa-eye" },
-    { name: "More Mob Variants", category: "mobs", icon: "fa-frog" },
-    { name: "The Obsessed", category: "mobs", icon: "fa-mask" },
-    { name: "Myths and Legends", category: "mobs", icon: "fa-book-dead" },
-
-    { name: "Artifacts", category: "magic", icon: "fa-hat-wizard" },
-    { name: "Relics/Curios", category: "magic", icon: "fa-ring" },
-    { name: "Waystones", category: "magic", icon: "fa-map-marker-alt" },
-    { name: "Tombstone", category: "magic", icon: "fa-cross" },
-    { name: "Paraglider", category: "magic", icon: "fa-parachute-box" },
-
-    { name: "JEI", category: "utility", icon: "fa-book" },
-    { name: "Jade", category: "utility", icon: "fa-info-circle" },
-    { name: "Xaero's Minimap", category: "utility", icon: "fa-map" },
-    { name: "Xaero's World Map", category: "utility", icon: "fa-globe" },
-    { name: "Sophisticated Backpacks", category: "utility", icon: "fa-hiking" },
-    { name: "Mouse Tweaks", category: "utility", icon: "fa-mouse-pointer" },
-    { name: "AppleSkin", category: "utility", icon: "fa-apple-alt" },
-    { name: "TreeChop", category: "utility", icon: "fa-axe" },
-    { name: "Voice Chat", category: "utility", icon: "fa-microphone" },
-    { name: "Lootr", category: "utility", icon: "fa-box-open" },
-    { name: "Inventory HUD+", category: "utility", icon: "fa-th" },
-    { name: "Lightman's Currency", category: "utility", icon: "fa-coins" },
-    { name: "Chunky", category: "utility", icon: "fa-layer-group" },
-
-    { name: "ModernFix", category: "performance", icon: "fa-tachometer-alt" },
-    { name: "FerriteCore", category: "performance", icon: "fa-memory" },
-    { name: "ImmediatelyFast", category: "performance", icon: "fa-bolt" },
+// Mock Data for "Hall of Legends" (Stats)
+const topKillers = [
+    { name: "Pons", count: 1245, title: "El Carnicero" },
+    { name: "Gordi", count: 982, title: "Cazador Sombrío" },
+    { name: "Alex", count: 876, title: "Espada Rota" },
 ];
 
-const categories = [
-    { id: "all", label: "Todos" },
-    { id: "rpg", label: "RPG & Combate" },
-    { id: "world", label: "Mundo" },
-    { id: "mobs", label: "Mobs" },
-    { id: "utility", label: "Utilidad" },
-    { id: "performance", label: "Optimización" },
+const topDeaths = [
+    { name: "Steve", count: 420, title: "Sacrificio Eterno" },
+    { name: "NoobMaster", count: 69, title: "Carne de Cañón" },
+    { name: "Alex", count: 55, title: "Mala Suerte" },
 ];
 ---
 
@@ -89,13 +22,15 @@ const categories = [
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mala World - Adventure Server</title>
+        <title>Mala World - Lands Between</title>
         <meta
             name="description"
-            content="Servidor de Minecraft Survival Mala World"
+            content="Servidor de Minecraft Survival Mala World - Dark Fantasy RPG"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
             rel="stylesheet"
         />
         <link
@@ -105,246 +40,405 @@ const categories = [
         <link rel="preconnect" href="https://mc-heads.net" />
     </head>
     <body
-        class="bg-[#1a1a1a] text-white font-['VT323'] text-xl overflow-x-hidden antialiased selection:bg-[#ffd700] selection:text-black"
+        class="bg-[#0c0c0c] text-[#e0e0e0] font-['Cormorant_Garamond'] text-lg overflow-x-hidden antialiased selection:bg-[#C8A97E] selection:text-black"
     >
-        <div class="fixed inset-0 z-[-1]">
+        <!-- Background & Overlay -->
+        <div class="fixed inset-0 z-[-1] bg-black">
             <img
                 src={bgImage.src}
                 alt="Background"
-                class="w-full h-full object-cover pixelated opacity-80"
+                class="w-full h-full object-cover opacity-60 fixed-bg-anim"
             />
-            <div class="absolute inset-0 bg-black/30"></div>
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-[#0c0c0c]/80"
+            >
+            </div>
+            <!-- Fog overlay effect could go here -->
         </div>
 
+        <!-- Navigation (Runic Style) -->
         <nav
-            class="fixed top-0 w-full z-10 flex justify-between items-center px-4 md:px-8 py-3 bg-[#2b2b2b] border-b-4 border-[#111] shadow-xl"
+            class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-[#0c0c0c]/90 backdrop-blur-md border-b border-[#C8A97E]/30"
         >
             <div
-                class="flex items-center gap-3 text-3xl font-normal tracking-wide text-[#ffd700] drop-shadow-[2px_2px_0_#000]"
+                class="flex items-center gap-3 text-2xl font-['Cinzel'] font-bold text-[#C8A97E] tracking-widest uppercase"
             >
                 <img
                     src={serverIcon.src}
                     alt="Icon"
-                    class="h-10 w-10 pixelated border-2 border-white/20"
+                    class="h-10 w-10 rounded-full border border-[#C8A97E]/50 shadow-[0_0_15px_rgba(200,169,126,0.2)]"
                 />
-                MALA WORLD
+                Mala World
             </div>
-            <div class="hidden md:flex gap-6">
+            <div
+                class="hidden md:flex gap-8 font-['Cinzel'] text-sm tracking-widest text-[#a0a0a0]"
+            >
                 <a
                     href="#home"
-                    class="text-gray-300 hover:text-white hover:underline decoration-2 underline-offset-4 transition-all text-2xl"
-                    >Inicio</a
+                    class="hover:text-[#C8A97E] transition-colors relative group"
                 >
+                    Inicio
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C8A97E] transition-all group-hover:w-full"
+                    ></span>
+                </a>
+                <a
+                    href="#legends"
+                    class="hover:text-[#C8A97E] transition-colors relative group"
+                >
+                    Leyendas
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C8A97E] transition-all group-hover:w-full"
+                    ></span>
+                </a>
                 <a
                     href="#players"
-                    class="text-gray-300 hover:text-white hover:underline decoration-2 underline-offset-4 transition-all text-2xl"
-                    >Jugadores</a
+                    class="hover:text-[#C8A97E] transition-colors relative group"
                 >
+                    Jugadores
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C8A97E] transition-all group-hover:w-full"
+                    ></span>
+                </a>
                 <a
                     href="#mods"
-                    class="text-gray-300 hover:text-white hover:underline decoration-2 underline-offset-4 transition-all text-2xl"
-                    >Mods</a
+                    class="hover:text-[#C8A97E] transition-colors relative group"
                 >
+                    Grimorio
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C8A97E] transition-all group-hover:w-full"
+                    ></span>
+                </a>
             </div>
         </nav>
 
+        <!-- Hero Section -->
         <header
             id="home"
-            class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20"
+            class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative pt-20"
         >
-            <div class="animate-[float_6s_ease-in-out_infinite]">
+            <div class="mb-6 relative">
                 <h1
-                    class="text-8xl md:text-9xl mb-4 text-[#ffd700] drop-shadow-[4px_4px_0_#3f3f3f] stroke-black"
-                    style="-webkit-text-stroke: 2px #000;"
+                    class="text-6xl md:text-8xl font-['Cinzel'] font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-[#f3e5ab] to-[#8b7355] drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] animate-fade-in-up"
                 >
-                    MALA WORLD
+                    Mala World
                 </h1>
+                <div
+                    class="h-[2px] w-32 bg-gradient-to-r from-transparent via-[#C8A97E] to-transparent mx-auto mt-4"
+                >
+                </div>
             </div>
 
             <p
-                class="text-3xl text-white mb-10 drop-shadow-[2px_2px_0_#000] bg-black/50 px-4 py-1 rounded"
+                class="text-2xl text-[#a0a0a0] mb-12 italic tracking-wide max-w-2xl font-light"
             >
-                Survival Técnico & RPG entre Amigos
+                "Donde las leyendas se forjan y el destino se rompe."
             </p>
 
+            <!-- Status Rune -->
             <div
-                class="mc-button pointer-events-none mb-8 px-6 py-2 flex items-center gap-3"
+                class="flex items-center gap-4 mb-12 bg-black/40 border border-[#C8A97E]/30 px-6 py-2 rounded-full backdrop-blur-sm"
             >
-                <div
-                    id="status-dot"
-                    class="w-4 h-4 bg-gray-500 border-2 border-black"
-                >
+                <div id="status-icon" class="text-[#C8A97E] text-xs">
+                    <i class="fas fa-circle animate-pulse"></i>
                 </div>
                 <span
                     id="player-count"
-                    class="text-[#55ff55] drop-shadow-[1px_1px_0_#000] text-2xl"
-                    >Conectando...</span
+                    class="font-['Cinzel'] text-[#dcdcdc] tracking-widest"
+                    >Invocando Estado...</span
                 >
             </div>
 
             <button
                 onclick="copyIp()"
-                class="mc-button group relative px-8 py-4 text-3xl text-white active:translate-y-1 active:border-b-4 cursor-pointer"
+                class="group relative px-12 py-4 bg-transparent border border-[#C8A97E] text-[#C8A97E] font-['Cinzel'] tracking-[0.2em] uppercase transition-all duration-500 hover:bg-[#C8A97E]/10 overflow-hidden"
             >
+                <span class="relative z-10 flex items-center gap-3">
+                    <span id="server-ip">23.230.3.241:25721</span>
+                    <i
+                        class="fas fa-copy text-sm opacity-50 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                </span>
+                <div
+                    class="absolute inset-0 bg-[#C8A97E] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 opacity-10"
+                >
+                </div>
                 <span
-                    class="tooltip-text absolute -top-12 left-1/2 -translate-x-1/2 bg-[#111] text-white text-xl px-3 py-1 border-2 border-white opacity-0 transition-opacity pointer-events-none"
-                    >¡Click para copiar!</span
+                    class="tooltip-text absolute -top-10 left-1/2 -translate-x-1/2 font-['Cormorant_Garamond'] italic text-[#e0e0e0] text-sm opacity-0 transition-opacity pointer-events-none"
+                    >Copiar Runa de Viaje</span
                 >
-                <span id="server-ip" class="mr-3 drop-shadow-[1px_1px_0_#000]"
-                    >23.230.3.241:25721</span
-                >
-                <i class="fas fa-copy text-gray-400 group-hover:text-white"></i>
             </button>
 
             <div
-                class="mt-8 text-xl text-gray-300 bg-black/50 px-4 py-2 rounded border border-white/10"
+                class="mt-8 flex items-center gap-4 text-sm text-[#777] font-['Cinzel'] tracking-widest"
             >
-                <span id="server-version">1.20.1 • Forge</span>
+                <span>Ver. 1.20.1</span>
+                <span class="w-[1px] h-3 bg-[#444]"></span>
+                <span>Forge</span>
             </div>
         </header>
 
+        <!-- Hall of Legends (Stats) -->
         <section
-            id="players"
-            class="py-20 px-4 md:px-[10%] bg-black/60 border-y-4 border-[#111]"
+            id="legends"
+            class="py-24 px-6 md:px-[10%] relative overflow-hidden"
         >
-            <h2
-                class="text-5xl text-center mb-12 text-[#ffd700] drop-shadow-[3px_3px_0_#000]"
+            <div
+                class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')] opacity-20"
             >
-                Jugadores Conectados
+            </div>
+
+            <h2
+                class="text-4xl md:text-5xl font-['Cinzel'] text-center mb-16 text-[#C8A97E] tracking-widest uppercase relative z-10"
+            >
+                <span
+                    class="block text-sm text-[#777] mb-2 tracking-[0.5em] font-light"
+                    >Estadísticas</span
+                >
+                Hall de Leyendas
             </h2>
 
             <div
-                class="bg-[#00000080] p-4 max-w-4xl mx-auto rounded-none border-2 border-white/10"
+                class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto relative z-10"
             >
-                <div class="text-center text-[#AAAAAA] mb-4 text-2xl">
-                    - TAB LIST -
+                <!-- Top Killers -->
+                <div
+                    class="bg-black/40 border border-[#C8A97E]/20 p-8 relative group hover:border-[#C8A97E]/50 transition-colors"
+                >
+                    <h3
+                        class="text-2xl font-['Cinzel'] text-[#a03030] mb-8 text-center border-b border-[#a03030]/30 pb-4 tracking-widest"
+                    >
+                        <i class="fas fa-skull mr-2"></i> Ejecutores
+                    </h3>
+                    <ul class="space-y-6">
+                        {
+                            topKillers.map((p, i) => (
+                                <li class="flex justify-between items-center text-[#c0c0c0]">
+                                    <div class="flex items-center gap-4">
+                                        <span class="font-['Cinzel'] text-[#666] text-xl w-6">
+                                            #{i + 1}
+                                        </span>
+                                        <div>
+                                            <span class="block text-xl">
+                                                {p.name}
+                                            </span>
+                                            <span class="text-xs text-[#a03030] uppercase tracking-widest">
+                                                {p.title}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="font-['Cinzel'] text-[#C8A97E] text-xl">
+                                        {p.count}{" "}
+                                        <small class="text-xs text-[#666]">
+                                            Kills
+                                        </small>
+                                    </span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                    <div
+                        class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#C8A97E]"
+                    >
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#C8A97E]"
+                    >
+                    </div>
                 </div>
+
+                <!-- Top Deaths -->
+                <div
+                    class="bg-black/40 border border-[#C8A97E]/20 p-8 relative group hover:border-[#C8A97E]/50 transition-colors"
+                >
+                    <h3
+                        class="text-2xl font-['Cinzel'] text-[#555] mb-8 text-center border-b border-[#555]/30 pb-4 tracking-widest"
+                    >
+                        <i class="fas fa-tombstone mr-2"></i> Caídos
+                    </h3>
+                    <ul class="space-y-6">
+                        {
+                            topDeaths.map((p, i) => (
+                                <li class="flex justify-between items-center text-[#c0c0c0]">
+                                    <div class="flex items-center gap-4">
+                                        <span class="font-['Cinzel'] text-[#666] text-xl w-6">
+                                            #{i + 1}
+                                        </span>
+                                        <div>
+                                            <span class="block text-xl">
+                                                {p.name}
+                                            </span>
+                                            <span class="text-xs text-[#555] uppercase tracking-widest">
+                                                {p.title}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="font-['Cinzel'] text-[#777] text-xl">
+                                        {p.count}{" "}
+                                        <small class="text-xs text-[#444]">
+                                            Muertes
+                                        </small>
+                                    </span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                    <div
+                        class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#C8A97E]"
+                    >
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#C8A97E]"
+                    >
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-[#555] mt-8 italic text-sm">
+                * Datos de los antiguos pergaminos (Ejemplo Visual)
+            </p>
+        </section>
+
+        <!-- Active Players (Tab List Style) -->
+        <section
+            id="players"
+            class="py-24 px-6 bg-[#0a0a0a] border-y border-[#1a1a1a]"
+        >
+            <h2
+                class="text-4xl font-['Cinzel'] text-center mb-16 text-[#C8A97E] tracking-widest uppercase"
+            >
+                Almas Presentes
+            </h2>
+            <div
+                class="max-w-4xl mx-auto min-h-[200px] flex items-center justify-center"
+            >
                 <div
                     id="player-grid"
-                    class="flex flex-wrap justify-center gap-4"
+                    class="flex flex-wrap justify-center gap-6 w-full"
                 >
-                    <p class="text-gray-500 italic">Buscando jugadores...</p>
-                </div>
-                <div class="text-center text-[#AAAAAA] mt-4 text-2xl">
-                    Mala World Network
+                    <p class="text-[#555] italic animate-pulse">
+                        Sintiendo presencias...
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section id="mods" class="py-20 px-4 md:px-[5%] max-w-7xl mx-auto">
+        <!-- Mods Grimoire -->
+        <section id="mods" class="py-24 px-6 md:px-[5%] max-w-7xl mx-auto">
             <h2
-                class="text-5xl text-center mb-8 text-[#ffd700] drop-shadow-[3px_3px_0_#000]"
+                class="text-4xl font-['Cinzel'] text-center mb-8 text-[#C8A97E] tracking-widest uppercase"
             >
-                Lista de Mods
+                Grimorio de Conocimiento
             </h2>
 
+            <!-- Runic Filters -->
             <div
-                class="flex flex-wrap justify-center gap-4 mb-12 sticky top-20 z-40 py-4 bg-black/40 backdrop-blur-sm rounded-xl border border-white/10"
+                class="flex flex-wrap justify-center gap-6 mb-16 font-['Cinzel']"
             >
                 {
                     categories.map((cat) => (
                         <button
                             onclick={`filterMods('${cat.id}')`}
-                            class="mc-button-sm text-xl px-4 py-1 hover:text-[#ffd700] transition-colors cursor-pointer"
+                            class="filter-btn text-[#777] hover:text-[#C8A97E] tracking-widest uppercase text-sm transition-colors relative py-2"
                             data-category={cat.id}
                         >
                             {cat.label}
+                            <span class="active-indicator absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#C8A97E] rounded-full opacity-0 transition-opacity" />
                         </button>
                     ))
                 }
             </div>
 
-            <div
-                id="mods-container"
-                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-            >
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {
                     modList.map((mod) => (
                         <div
-                            class="mod-card bg-[#333] border-2 border-black p-3 flex items-center gap-3 hover:bg-[#444] transition-colors"
+                            class="mod-card border border-[#222] bg-[#0f0f0f] p-4 flex items-center gap-4 hover:border-[#C8A97E]/40 hover:bg-[#141414] transition-all duration-300 group"
                             data-category={mod.category}
                         >
-                            <div class="w-10 h-10 bg-[#222] border-2 border-[#111] flex items-center justify-center shrink-0">
+                            <div class="w-12 h-12 flex items-center justify-center border border-[#333] rotate-45 group-hover:border-[#C8A97E]/50 group-hover:rotate-0 transition-all duration-500 bg-[#050505]">
                                 <i
-                                    class={`fas ${mod.icon} text-[#ffd700] text-xl`}
+                                    class={`fas ${mod.icon} text-[#777] group-hover:text-[#C8A97E] -rotate-45 group-hover:rotate-0 transition-all duration-500`}
                                 />
                             </div>
-                            <div class="leading-none">
-                                <div class="text-white text-xl drop-shadow-[1px_1px_0_#000]">
+                            <div>
+                                <h4 class="font-['Cinzel'] text-[#dcdcdc] tracking-wide group-hover:text-[#fff]">
                                     {mod.name}
-                                </div>
-                                <div class="text-gray-400 text-base uppercase">
+                                </h4>
+                                <span class="text-xs text-[#555] uppercase tracking-widest">
                                     {
                                         categories.find(
                                             (c) => c.id === mod.category,
                                         )?.label
                                     }
-                                </div>
+                                </span>
                             </div>
                         </div>
                     ))
                 }
             </div>
-
-            <p class="text-center text-gray-400 mt-8 text-xl">
-                y {100 - modList.length > 0 ? 100 - modList.length : "muchos"} librerías
-                más...
-            </p>
         </section>
 
-        <footer class="py-12 bg-[#111] text-center border-t-4 border-[#333]">
-            <div
-                class="w-full h-4 bg-[#5d3e1d] mb-8 opacity-50 pixelated"
-                style="background-image: url('https://assets.codepen.io/13471/dirt-texture.png'); background-size: 64px;"
-            >
+        <footer
+            class="py-16 bg-[#050505] text-center border-t border-[#1a1a1a] font-['Cinzel']"
+        >
+            <div class="mb-6 opacity-30">
+                <i class="fas fa-gem text-xl mb-2"></i>
+                <div class="text-xs tracking-[0.5em] uppercase">Mala World</div>
             </div>
-
-            <p class="text-gray-400 text-2xl">&copy; 2025 Mala World</p>
-            <p class="text-gray-600">Hosteado con ❤️ para los panas.</p>
+            <p class="text-[#444] text-sm tracking-widest">
+                &copy; 2025 Tierras Intermedias.
+            </p>
         </footer>
 
         <style is:global>
             @import "tailwindcss";
 
-            .mc-button {
-                background-color: #7d7d7d;
-                border-top: 4px solid #c6c6c6;
-                border-left: 4px solid #c6c6c6;
-                border-bottom: 4px solid #3f3f3f;
-                border-right: 4px solid #3f3f3f;
-                box-shadow: 4px 4px 0 #000;
-                transition: all 0.1s;
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
-            .mc-button:active {
-                border-top: 4px solid #3f3f3f;
-                border-left: 4px solid #3f3f3f;
-                border-bottom: 4px solid #c6c6c6;
-                border-right: 4px solid #c6c6c6;
-                transform: translateY(4px);
-                box-shadow: 0 0 0 #000;
+            .animate-fade-in-up {
+                animation: fadeInUp 1.5s ease-out forwards;
             }
 
-            .mc-button-sm {
-                background-color: #555;
-                border: 2px solid #000;
-                box-shadow: 2px 2px 0 #000;
+            /* Custom Scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
             }
-            .mc-button-sm:active,
-            .mc-button-sm.active {
-                background-color: #777;
-                transform: translateY(2px);
-                box-shadow: none;
-                color: #ffd700;
+            ::-webkit-scrollbar-track {
+                bg: #0c0c0c;
             }
-
-            .mc-button-sm.active {
-                background-color: #777;
-                color: #ffd700;
-                box-shadow: inset 2px 2px 0 #000;
+            ::-webkit-scrollbar-thumb {
+                background: #333;
+                border-radius: 4px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #c8a97e;
             }
 
-            .pixelated {
-                image-rendering: pixelated;
+            .filter-btn.active {
+                color: #c8a97e;
+            }
+            .filter-btn.active .active-indicator {
+                opacity: 1;
+            }
+
+            .fixed-bg-anim {
+                animation: subtleZoom 60s infinite alternate;
+            }
+            @keyframes subtleZoom {
+                from {
+                    transform: scale(1);
+                }
+                to {
+                    transform: scale(1.1);
+                }
             }
         </style>
 
@@ -354,7 +448,7 @@ const categories = [
 
             window.filterMods = (category) => {
                 const cards = document.querySelectorAll(".mod-card");
-                const buttons = document.querySelectorAll(".mc-button-sm");
+                const buttons = document.querySelectorAll(".filter-btn");
 
                 buttons.forEach((btn) => {
                     if (btn.dataset.category === category)
@@ -363,17 +457,22 @@ const categories = [
                 });
 
                 cards.forEach((card) => {
-                    if (
+                    const matches =
                         category === "all" ||
-                        card.dataset.category === category
-                    ) {
-                        card.style.display = "flex";
-                    } else {
-                        card.style.display = "none";
+                        card.dataset.category === category;
+                    card.style.display = matches ? "flex" : "none";
+                    if (matches) {
+                        // Simple fade in reset
+                        card.style.opacity = "0";
+                        requestAnimationFrame(() => {
+                            card.style.transition = "opacity 0.5s ease";
+                            card.style.opacity = "1";
+                        });
                     }
                 });
             };
 
+            // Select 'all' by default
             document.addEventListener("DOMContentLoaded", () =>
                 window.filterMods("all"),
             );
@@ -382,20 +481,14 @@ const categories = [
                 const ipText = document.getElementById("server-ip").innerText;
                 navigator.clipboard.writeText(ipText).then(() => {
                     const tooltip = document.querySelector(".tooltip-text");
-                    tooltip.innerText = "¡Copiado!";
                     tooltip.classList.remove("opacity-0");
-                    setTimeout(() => {
-                        tooltip.classList.add("opacity-0");
-                        setTimeout(() => {
-                            tooltip.innerText = "¡Click para copiar!";
-                        }, 300);
-                    }, 2000);
+                    setTimeout(() => tooltip.classList.add("opacity-0"), 2000);
                 });
             }
 
             async function fetchServerStatus() {
                 const countElement = document.getElementById("player-count");
-                const statusDot = document.getElementById("status-dot");
+                const statusIcon = document.getElementById("status-icon");
                 const playerGrid = document.getElementById("player-grid");
 
                 try {
@@ -405,20 +498,20 @@ const categories = [
                     const data = await response.json();
 
                     if (data.online) {
-                        countElement.innerText = `${data.players.online} / ${data.players.max}`;
-                        statusDot.classList.replace(
-                            "bg-gray-500",
-                            "bg-[#55ff55]",
-                        );
+                        countElement.innerText = `${data.players.online} Almas Errantes`;
+                        statusIcon.innerHTML =
+                            '<i class="fas fa-circle text-[#55ff55] shadow-[0_0_10px_#55ff55]"></i>';
 
                         if (data.players.list && data.players.list.length > 0) {
                             playerGrid.innerHTML = data.players.list
                                 .map(
                                     (player) => `
-                            <div class="flex items-center gap-2 bg-[#ffffff10] px-3 py-1 rounded-sm w-48">
-                                <img src="https://mc-heads.net/avatar/${player.name}" class="w-6 h-6 rounded-sm pixelated">
-                                <span class="text-white text-xl">${player.name}</span>
-                                <span class="ml-auto text-[#55ff55] text-sm">Build 12ms</span> 
+                            <div class="flex flex-col items-center gap-3 w-24 group">
+                                <div class="relative">
+                                    <img src="https://mc-heads.net/avatar/${player.name}" class="w-16 h-16 rounded-md border border-[#C8A97E]/30 grayscale group-hover:grayscale-0 transition-all duration-500 shadow-lg">
+                                    <div class="absolute inset-0 border border-[#C8A97E] scale-110 opacity-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500 rounded-md"></div>
+                                </div>
+                                <span class="font-['Cinzel'] text-[#C8A97E] text-sm tracking-wide group-hover:text-white transition-colors">${player.name}</span>
                             </div>
                         `,
                                 )
@@ -426,23 +519,19 @@ const categories = [
                         } else {
                             if (data.players.online > 0)
                                 playerGrid.innerHTML =
-                                    '<span class="text-[#AAAAAA]">Jugadores ocultos</span>';
+                                    "<span class=\"text-[#444] italic font-['Cormorant_Garamond']\">Almas ocultas en la niebla...</span>";
                             else
                                 playerGrid.innerHTML =
-                                    '<span class="text-[#AAAAAA] text-xl">Nadie conectado :(</span>';
+                                    "<span class=\"text-[#444] italic font-['Cormorant_Garamond']\">El mundo yace en silencio...</span>";
                         }
                     } else {
-                        countElement.innerText = "Offline";
-                        statusDot.classList.replace(
-                            "bg-gray-500",
-                            "bg-red-500",
-                        );
-                        playerGrid.innerHTML =
-                            '<span class="text-red-500 text-xl">SERVIDOR APAGADO</span>';
+                        countElement.innerText = "Mundo Desconectado";
+                        statusIcon.innerHTML =
+                            '<i class="fas fa-circle text-red-900"></i>';
                     }
                 } catch (error) {
                     console.error("fetch error:", error);
-                    countElement.innerText = "Error";
+                    countElement.innerText = "Niebla densa...";
                 }
             }
 
