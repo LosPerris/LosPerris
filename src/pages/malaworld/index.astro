@@ -46,18 +46,18 @@ const topWarriors = [
         <div class="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-[#7df9ff]/50 rounded-br-xl"></div>
     </div>
     
-    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-5">
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-5 bg-gradient-to-b from-black/90 to-transparent">
         <div class="flex items-center gap-4 group cursor-pointer">
             <div class="relative w-12 h-12">
                 <div class="absolute inset-0 rounded-full border-2 border-[#7df9ff] animate-spin-slow opacity-70"></div>
                 <img src={serverIcon.src} class="w-full h-full rounded-full p-1" alt="Icon">
             </div>
-            <span class="font-['Cinzel'] text-2xl tracking-[0.15em] text-[#e3dac9] drop-shadow-[0_0_10px_#e3dac9]">MALA WORLD</span>
+            <span class="font-['Cinzel'] text-2xl tracking-[0.15em] text-[#e3dac9] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">MALA WORLD</span>
         </div>
         
-        <div class="hidden md:flex gap-10 text-[#7df9ff] tracking-widest uppercase text-sm font-semibold">
+        <div class="hidden md:flex gap-10 text-[#7df9ff] tracking-widest uppercase text-sm font-semibold relative z-10">
             {['Inicio', 'Héroes', 'Jugadores', 'Inventario'].map((item, i) => (
-                <a href={`#${item.toLowerCase()}`} class="relative group py-2 px-4 hover:bg-[#7df9ff]/10 transition-all clip-path-sheikah">
+                <a href={`#${item.toLowerCase()}`} class="relative group py-2 px-4 hover:bg-black/50 hover:text-[#e3dac9] transition-all clip-path-sheikah backdrop-blur-sm rounded">
                     <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#7df9ff] opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#7df9ff] opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {item}
@@ -68,16 +68,18 @@ const topWarriors = [
 
     <header id="inicio" class="min-h-screen flex flex-col justify-center items-center text-center relative z-10 px-4">
         <div class="animate-fade-in-up">
-            <h1 class="font-['Cinzel'] text-7xl md:text-9xl text-[#e3dac9] drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] mb-2">
+            <h1 class="font-['Cinzel'] text-7xl md:text-9xl text-[#e3dac9] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] mb-4 filter drop-shadow-[0_0_15px_rgba(227,218,201,0.2)]">
                 MALA WORLD
             </h1>
-            <p class="text-[#7df9ff] tracking-[0.5em] uppercase text-sm md:text-lg mb-12 drop-shadow-md">
-                La Aventura Continúa...
-            </p>
+            <div class="inline-block bg-black/60 backdrop-blur-md px-6 py-2 rounded-full border border-[#7df9ff]/30 mb-12">
+                <p class="text-[#7df9ff] tracking-[0.3em] uppercase text-sm md:text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] font-bold">
+                    La Aventura Continúa...
+                </p>
+            </div>
             
-            <button onclick="copyIp()" class="group relative px-10 py-4 overflow-hidden backdrop-blur-md bg-black/60 border border-[#7df9ff]/50 rounded-lg hover:border-[#7df9ff] transition-all duration-300">
+            <button onclick="copyIp()" class="group relative px-10 py-5 overflow-hidden backdrop-blur-xl bg-[#0a0a0a]/80 border border-[#7df9ff] rounded-lg hover:border-[#e3dac9] hover:bg-black transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
                 <div class="absolute inset-0 bg-[#7df9ff]/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <span id="server-ip" class="font-['Cinzel'] text-xl text-[#e3dac9] group-hover:text-white transition-colors relative z-10">
+                <span id="server-ip" class="font-['Cinzel'] text-2xl text-[#e3dac9] group-hover:text-white transition-colors relative z-10 font-bold tracking-wider">
                     23.230.3.241:25721
                 </span>
                 <div class="absolute top-2 right-2 w-2 h-2 bg-[#7df9ff] rounded-full animate-pulse shadow-[0_0_10px_#7df9ff]"></div>
@@ -87,46 +89,50 @@ const topWarriors = [
                 </span>
             </button>
             
-            <div id="status-indicator" class="mt-8 flex items-center justify-center gap-3 bg-black/40 px-6 py-2 rounded-full border border-white/10 w-fit mx-auto backdrop-blur-sm">
-                <div class="w-2 h-2 rounded-full bg-gray-500" id="status-dot"></div>
-                <span id="player-count" class="text-sm tracking-widest text-gray-300">Conectando...</span>
+            <div id="status-indicator" class="mt-8 flex items-center justify-center gap-3 bg-[#0a0a0a]/90 px-8 py-3 rounded-full border border-[#7df9ff]/20 w-fit mx-auto backdrop-blur-md shadow-lg">
+                <div class="w-2.5 h-2.5 rounded-full bg-gray-500 shadow-[0_0_8px_rgba(255,255,255,0.2)]" id="status-dot"></div>
+                <span id="player-count" class="text-sm tracking-[0.2em] text-gray-300 font-bold">CONECTANDO...</span>
             </div>
         </div>
     </header>
 
     <section id="héroes" class="py-20 px-4 relative z-10">
-        <div class="max-w-6xl mx-auto bg-black/80 backdrop-blur-xl border-y-2 border-[#e3dac9]/30 p-8 md:p-16 relative">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-black px-6 py-2 border border-[#7df9ff] rounded-full">
-                <h2 class="font-['Cinzel'] text-2xl text-[#7df9ff] tracking-widest">REGISTRO DE HÉROES</h2>
+        <div class="max-w-6xl mx-auto bg-[#050505]/95 backdrop-blur-2xl border-y border-[#e3dac9]/40 p-8 md:p-16 relative shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-[#0a0a0a] px-8 py-3 border border-[#7df9ff] rounded-full shadow-[0_0_20px_rgba(125,249,255,0.1)]">
+                <h2 class="font-['Cinzel'] text-2xl text-[#7df9ff] tracking-widest font-bold">REGISTRO DE HÉROES</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 mt-8">
+            <div class="grid md:grid-cols-2 gap-16 mt-8">
                 <div class="space-y-6">
-                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest">MISIONES ACTIVAS</h3>
+                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest font-bold flex items-center gap-3">
+                        <i class="fas fa-scroll text-[#7df9ff]"></i> MISIONES ACTIVAS
+                    </h3>
                     {activeQuests.map(quest => (
-                        <div class="flex justify-between items-center group hover:bg-[#7df9ff]/5 p-2 rounded transition-colors">
+                        <div class="flex justify-between items-center group hover:bg-[#7df9ff]/5 p-3 rounded-lg border border-transparent hover:border-[#7df9ff]/20 transition-all bg-white/5">
                             <div>
-                                <h4 class="text-[#f0f0f0]">{quest.title}</h4>
-                                <span class="text-xs text-[#7df9ff]/60 uppercase tracking-wider">{quest.location}</span>
+                                <h4 class="text-[#f0f0f0] font-semibold">{quest.title}</h4>
+                                <span class="text-xs text-[#7df9ff] uppercase tracking-wider font-bold">{quest.location}</span>
                             </div>
-                            <span class={`text-xs px-2 py-1 border rounded ${
-                                quest.status === 'Completed' ? 'border-green-400 text-green-400' : 
-                                quest.status === 'Active' ? 'border-[#7df9ff] text-[#7df9ff]' : 'border-gray-500 text-gray-500'
+                            <span class={`text-[10px] uppercase font-bold px-2 py-1 border rounded ${
+                                quest.status === 'Completed' ? 'border-green-400 text-green-400 bg-green-400/10' : 
+                                quest.status === 'Active' ? 'border-[#7df9ff] text-[#7df9ff] bg-[#7df9ff]/10' : 'border-gray-500 text-gray-500 bg-gray-500/10'
                             }`}>{quest.status}</span>
                         </div>
                     ))}
                 </div>
 
                 <div class="space-y-6">
-                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest">CAMPEONES</h3>
+                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest font-bold flex items-center gap-3">
+                        <i class="fas fa-trophy text-[#7df9ff]"></i> CAMPEONES
+                    </h3>
                     {topWarriors.map((warrior, i) => (
-                        <div class="flex items-center gap-4 group">
-                            <span class="font-['Cinzel'] text-2xl text-[#7df9ff]/40 group-hover:text-[#7df9ff] transition-colors">{i+1}</span>
+                        <div class="flex items-center gap-4 group hover:translate-x-2 transition-transform duration-300">
+                            <span class="font-['Cinzel'] text-2xl text-[#7df9ff]/40 group-hover:text-[#7df9ff] transition-colors font-bold">#{i+1}</span>
                             <div class="flex-1 border-b border-dashed border-gray-800 pb-2 flex justify-between items-end">
-                                <span class="text-lg">{warrior.name}</span>
+                                <span class="text-lg font-bold text-gray-200 group-hover:text-white">{warrior.name}</span>
                                 <div class="flex gap-4 text-sm text-gray-400">
-                                    <span><i class="fas fa-skull text-[#e3dac9] mr-1"></i>{warrior.kills}</span>
-                                    <span><i class="fas fa-heart text-red-500 mr-1"></i>{warrior.hearts}</span>
+                                    <span class="flex items-center gap-1"><i class="fas fa-skull text-[#e3dac9] text-xs"></i>{warrior.kills}</span>
+                                    <span class="flex items-center gap-1"><i class="fas fa-heart text-red-500 text-xs"></i>{warrior.hearts}</span>
                                 </div>
                             </div>
                         </div>
@@ -134,33 +140,36 @@ const topWarriors = [
                 </div>
             </div>
             
-            <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-[#7df9ff]/30 to-transparent"></div>
-            <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-[#7df9ff]/30 to-transparent"></div>
+            <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-[#7df9ff]/50 to-transparent"></div>
+            <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-[#7df9ff]/50 to-transparent"></div>
         </div>
     </section>
 
-    <section id="inventario" class="py-20 px-4 relative z-10">
-        <h2 class="text-center font-['Cinzel'] text-4xl text-[#e3dac9] mb-4 drop-shadow-md">INVENTARIO DE MODS</h2>
-        <div class="flex justify-center mb-12 gap-2 flex-wrap">
+    <section id="inventario" class="py-24 px-4 relative z-10">
+        <h2 class="text-center font-['Cinzel'] text-4xl text-[#e3dac9] mb-12 drop-shadow-[0_4px_4px_rgba(0,0,0,1)] bg-black/60 inline-block px-8 py-2 rounded-full border border-[#7df9ff]/20 mx-auto block w-fit backdrop-blur-md">
+            INVENTARIO DE MODS
+        </h2>
+        
+        <div class="flex justify-center mb-16 gap-3 flex-wrap max-w-5xl mx-auto">
             {categories.map(cat => (
                 <button 
                     onclick={`filterMods('${cat.id}')`}
                     data-category={cat.id}
-                    class="filter-btn px-4 py-1 text-sm border border-[#7df9ff]/30 text-[#7df9ff]/70 hover:bg-[#7df9ff] hover:text-black hover:border-[#7df9ff] transition-all uppercase tracking-widest rounded-sm"
+                    class="filter-btn px-6 py-2 text-sm border-2 border-[#7df9ff]/20 bg-[#0a0a0a]/90 text-gray-400 hover:bg-[#7df9ff] hover:text-black hover:border-[#7df9ff] transition-all uppercase tracking-widest font-bold shadow-lg"
                 >
                     {cat.label}
                 </button>
             ))}
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-7xl mx-auto px-2">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-7xl mx-auto px-2">
             {modList.map(mod => (
-                <div class="mod-card aspect-square bg-black/60 border border-[#444] hover:border-[#7df9ff] hover:shadow-[0_0_15px_#7df9ff/30] transition-all duration-300 flex flex-col items-center justify-center p-4 group relative overflow-hidden" data-category={mod.category}>
+                <div class="mod-card aspect-square bg-[#0a0a0a]/95 border border-[#333] hover:border-[#7df9ff] hover:shadow-[0_0_20px_#7df9ff/20] transition-all duration-300 flex flex-col items-center justify-center p-4 group relative overflow-hidden backdrop-blur-sm" data-category={mod.category}>
                     <!-- Corner accent -->
-                    <div class="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-r-[20px] border-t-transparent border-r-[#7df9ff]/0 group-hover:border-r-[#7df9ff] transition-all"></div>
+                    <div class="absolute top-0 right-0 w-0 h-0 border-t-[30px] border-r-[30px] border-t-transparent border-r-[#7df9ff]/10 group-hover:border-r-[#7df9ff] transition-all"></div>
                     
-                    <i class={`fas ${mod.icon} text-3xl mb-3 text-[#777] group-hover:text-[#e3dac9] group-hover:scale-110 transition-transform duration-300`}></i>
-                    <span class="text-xs text-center font-bold text-gray-400 group-hover:text-white leading-tight">{mod.name}</span>
+                    <i class={`fas ${mod.icon} text-4xl mb-4 text-[#555] group-hover:text-[#e3dac9] group-hover:scale-110 transition-transform duration-300 drop-shadow-md`}></i>
+                    <span class="text-[10px] md:text-xs text-center font-bold text-gray-500 group-hover:text-[#7df9ff] leading-tight tracking-wider uppercase transition-colors">{mod.name}</span>
                 </div>
             ))}
         </div>
