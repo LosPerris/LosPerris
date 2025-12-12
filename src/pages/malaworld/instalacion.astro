@@ -82,6 +82,35 @@ import bgImage from "./malaimg/botw-bg.png";
             >
             </div>
 
+            <!-- Paso 0: Prerrequisito -->
+            <div
+                class="mb-12 bg-[#7df9ff]/5 border border-[#7df9ff]/20 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 text-center md:text-left"
+            >
+                <div class="bg-[#7df9ff]/10 p-4 rounded-full">
+                    <i class="fas fa-exclamation-circle text-3xl text-[#7df9ff]"
+                    ></i>
+                </div>
+                <div>
+                    <h3
+                        class="font-['Cinzel'] text-xl text-[#7df9ff] mb-2 font-bold"
+                    >
+                        ¿NO TIENES CURSEFORGE?
+                    </h3>
+                    <p class="text-zinc-400 text-sm mb-3">
+                        Necesitas tener instalado el cliente de CurseForge para
+                        poder jugar nuestro ModPack.
+                    </p>
+                    <a
+                        href="https://download.curseforge.com/"
+                        target="_blank"
+                        class="text-white hover:text-[#7df9ff] underline font-bold tracking-wider text-sm transition-colors"
+                    >
+                        DESCARGAR CURSEFORGE AQUÍ <i
+                            class="fas fa-external-link-alt ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
             <!-- Paso 1 -->
             <section
                 class="bg-black/80 border border-[#333] rounded-xl p-8 mb-12 shadow-2xl relative overflow-hidden group hover:border-[#7df9ff]/50 transition-all"
@@ -248,32 +277,63 @@ import bgImage from "./malaimg/botw-bg.png";
             </section>
         </main>
 
-        <footer
-            class="bg-black py-8 text-center border-t border-[#222] mt-auto"
+        <!-- Tip de RAM -->
+        <section
+            class="bg-[#1a1a1a] border-l-4 border-yellow-500 rounded-r-xl p-6 shadow-xl"
         >
-            <p
-                class="text-zinc-600 text-xs uppercase tracking-[0.4em] font-bold"
+            <h3
+                class="font-['Cinzel'] text-yellow-500 text-xl mb-3 font-bold flex items-center gap-3"
             >
-                Mala World // Ponss
+                <i class="fas fa-memory"></i> IMPORTANTE: MEMORIA RAM
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                Por defecto, Minecraft usa poca memoria RAM. Para evitar lag, te
+                recomendamos asignar más memoria al perfil:
             </p>
-        </footer>
-
-        <style is:global>
-            @import "tailwindcss";
-
-            ::-webkit-scrollbar {
-                width: 8px;
-            }
-            ::-webkit-scrollbar-track {
-                background: #000;
-            }
-            ::-webkit-scrollbar-thumb {
-                background: #333;
-                border-radius: 4px;
-            }
-            ::-webkit-scrollbar-thumb:hover {
-                background: #7df9ff;
-            }
-        </style>
+            <ol
+                class="list-decimal list-inside text-zinc-300 text-sm space-y-2 font-light"
+            >
+                <li>
+                    En CurseForge, ve a la configuración (⚙️) abajo a la
+                    izquierda.
+                </li>
+                <li>
+                    Selecciona la pestaña <strong class="text-white"
+                        >Minecraft</strong
+                    >.
+                </li>
+                <li>
+                    Baja hasta <strong class="text-white"
+                        >Allocated Memory</strong
+                    > y mueve la barra hasta <strong
+                        class="text-yellow-400 font-bold">4096MB (4GB)</strong
+                    > o más.
+                </li>
+            </ol>
+        </section>
     </body>
+
+    <footer class="bg-black py-8 text-center border-t border-[#222] mt-auto">
+        <p class="text-zinc-600 text-xs uppercase tracking-[0.4em] font-bold">
+            Mala World // Ponss
+        </p>
+    </footer>
+
+    <style is:global>
+        @import "tailwindcss";
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7df9ff;
+        }
+    </style>
 </html>
