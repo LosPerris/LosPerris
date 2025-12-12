@@ -45,7 +45,7 @@ const topWarriors = [
         <div class="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#7df9ff]/50 rounded-bl-xl"></div>
         <div class="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-[#7df9ff]/50 rounded-br-xl"></div>
     </div>
-
+    
     <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-5">
         <div class="flex items-center gap-4 group cursor-pointer">
             <div class="relative w-12 h-12">
@@ -56,7 +56,7 @@ const topWarriors = [
         </div>
         
         <div class="hidden md:flex gap-10 text-[#7df9ff] tracking-widest uppercase text-sm font-semibold">
-            {['Inicio', 'Héroes', 'Jugadores', 'Grimorio'].map((item, i) => (
+            {['Inicio', 'Héroes', 'Jugadores', 'Inventario'].map((item, i) => (
                 <a href={`#${item.toLowerCase()}`} class="relative group py-2 px-4 hover:bg-[#7df9ff]/10 transition-all clip-path-sheikah">
                     <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#7df9ff] opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#7df9ff] opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -72,7 +72,7 @@ const topWarriors = [
                 MALA WORLD
             </h1>
             <p class="text-[#7df9ff] tracking-[0.5em] uppercase text-sm md:text-lg mb-12 drop-shadow-md">
-                The Legend Continues...
+                La Aventura Continúa...
             </p>
             
             <button onclick="copyIp()" class="group relative px-10 py-4 overflow-hidden backdrop-blur-md bg-black/60 border border-[#7df9ff]/50 rounded-lg hover:border-[#7df9ff] transition-all duration-300">
@@ -83,13 +83,13 @@ const topWarriors = [
                 <div class="absolute top-2 right-2 w-2 h-2 bg-[#7df9ff] rounded-full animate-pulse shadow-[0_0_10px_#7df9ff]"></div>
                 
                 <span class="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-[#7df9ff] opacity-0 transition-opacity">
-                    Copy Coordinates
+                    Copiar IP
                 </span>
             </button>
             
             <div id="status-indicator" class="mt-8 flex items-center justify-center gap-3 bg-black/40 px-6 py-2 rounded-full border border-white/10 w-fit mx-auto backdrop-blur-sm">
                 <div class="w-2 h-2 rounded-full bg-gray-500" id="status-dot"></div>
-                <span id="player-count" class="text-sm tracking-widest text-gray-300">Scanning Sheikah Network...</span>
+                <span id="player-count" class="text-sm tracking-widest text-gray-300">Conectando...</span>
             </div>
         </div>
     </header>
@@ -102,7 +102,7 @@ const topWarriors = [
 
             <div class="grid md:grid-cols-2 gap-12 mt-8">
                 <div class="space-y-6">
-                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest">QUEST LOG</h3>
+                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest">MISIONES ACTIVAS</h3>
                     {activeQuests.map(quest => (
                         <div class="flex justify-between items-center group hover:bg-[#7df9ff]/5 p-2 rounded transition-colors">
                             <div>
@@ -118,7 +118,7 @@ const topWarriors = [
                 </div>
 
                 <div class="space-y-6">
-                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest">CHAMPIONS</h3>
+                    <h3 class="text-[#e3dac9] text-xl border-b border-[#e3dac9]/20 pb-2 mb-4 tracking-widest">CAMPEONES</h3>
                     {topWarriors.map((warrior, i) => (
                         <div class="flex items-center gap-4 group">
                             <span class="font-['Cinzel'] text-2xl text-[#7df9ff]/40 group-hover:text-[#7df9ff] transition-colors">{i+1}</span>
@@ -139,8 +139,8 @@ const topWarriors = [
         </div>
     </section>
 
-    <section id="grimorio" class="py-20 px-4 relative z-10">
-        <h2 class="text-center font-['Cinzel'] text-4xl text-[#e3dac9] mb-4 drop-shadow-md">SHEIKAH INVENTORY</h2>
+    <section id="inventario" class="py-20 px-4 relative z-10">
+        <h2 class="text-center font-['Cinzel'] text-4xl text-[#e3dac9] mb-4 drop-shadow-md">INVENTARIO DE MODS</h2>
         <div class="flex justify-center mb-12 gap-2 flex-wrap">
             {categories.map(cat => (
                 <button 
@@ -168,15 +168,15 @@ const topWarriors = [
 
     <section id="jugadores" class="py-20 text-center relative z-10">
         <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-[#7df9ff]/50 to-transparent mb-12"></div>
-        <h2 class="font-['Cinzel'] text-3xl text-[#7df9ff] mb-8 tracking-[0.2em]">DETECTED SIGNALS</h2>
+        <h2 class="font-['Cinzel'] text-3xl text-[#7df9ff] mb-8 tracking-[0.2em]">SEÑALES DETECTADAS</h2>
         
         <div id="player-grid" class="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto min-h-[100px]">
-            <span class="animate-pulse text-gray-500">Scanning Realm...</span>
+            <span class="animate-pulse text-gray-500">Escaneando Mundo...</span>
         </div>
     </section>
 
     <footer class="bg-black/90 py-8 text-center border-t border-[#333] relative z-10">
-        <p class="text-[#555] text-xs uppercase tracking-[0.3em]">Sheikah Slate v5.0 // Mala World</p>
+        <p class="text-[#555] text-xs uppercase tracking-[0.3em] font-['Josefin_Sans']">System v5.0 // Mala World</p>
     </footer>
 
     <style is:global>
@@ -234,7 +234,7 @@ const topWarriors = [
 
                 if(data.online) {
                     dot.className = "w-2 h-2 rounded-full bg-[#7df9ff] shadow-[0_0_10px_#7df9ff]";
-                    txt.innerText = `LINK ESTABLISHED: ${data.players.online} HEROES`;
+                    txt.innerText = `ENLACE ESTABLECIDO: ${data.players.online} HÉROES`;
                     txt.classList.add('text-[#7df9ff]');
                     
                     if(data.players.list?.length) {
@@ -248,11 +248,11 @@ const topWarriors = [
                             </div>
                         `).join('');
                     } else {
-                        grid.innerHTML = '<span class="text-gray-500 italic">No signals detected...</span>';
+                        grid.innerHTML = '<span class="text-gray-500 italic">No hay señales de vida...</span>';
                     }
                 } else {
                     dot.className = "w-2 h-2 rounded-full bg-red-500";
-                    txt.innerText = "LINK SEVERED";
+                    txt.innerText = "ENLACE PERDIDO";
                     txt.classList.remove('text-[#7df9ff]');
                 }
             } catch(e) { console.log(e); }
