@@ -40,33 +40,6 @@ import { modList, categories } from "./mods";
             </div>
         </div>
 
-        <div class="fixed inset-0 pointer-events-none z-0">
-            <div
-                class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black to-transparent"
-            >
-            </div>
-            <div
-                class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"
-            >
-            </div>
-            <div
-                class="absolute top-6 left-6 w-16 h-16 border-t-2 border-l-2 border-[#7df9ff] rounded-tl-2xl opacity-50"
-            >
-            </div>
-            <div
-                class="absolute top-6 right-6 w-16 h-16 border-t-2 border-r-2 border-[#7df9ff] rounded-tr-2xl opacity-50"
-            >
-            </div>
-            <div
-                class="absolute bottom-6 left-6 w-16 h-16 border-b-2 border-l-2 border-[#7df9ff] rounded-bl-2xl opacity-50"
-            >
-            </div>
-            <div
-                class="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-[#7df9ff] rounded-br-2xl opacity-50"
-            >
-            </div>
-        </div>
-
         <nav
             class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-gradient-to-b from-black/90 to-transparent backdrop-blur-[2px]"
         >
@@ -92,17 +65,21 @@ import { modList, categories } from "./mods";
                 class="hidden md:flex gap-12 text-[#7df9ff] tracking-[0.2em] uppercase text-sm font-bold"
             >
                 {
-                    ["Inicio", "Estado", "Jugadores", "Inventario"].map(
-                        (item) => (
-                            <a
-                                href={`#${item.toLowerCase()}`}
-                                class="relative group py-2 hover:text-[#e3dac9] transition-colors"
-                            >
-                                {item}
-                                <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#e3dac9] group-hover:w-full transition-all duration-300" />
-                            </a>
-                        ),
-                    )
+                    [
+                        "Inicio",
+                        "Jugadores",
+                        "Eventos",
+                        "Estado",
+                        "Inventario",
+                    ].map((item) => (
+                        <a
+                            href={`#${item.toLowerCase()}`}
+                            class="relative group py-2 hover:text-[#e3dac9] transition-colors"
+                        >
+                            {item}
+                            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#e3dac9] group-hover:w-full transition-all duration-300" />
+                        </a>
+                    ))
                 }
             </div>
         </nav>
@@ -166,6 +143,107 @@ import { modList, categories } from "./mods";
                 </div>
             </div>
         </header>
+
+        <section
+            id="jugadores"
+            class="py-20 text-center relative z-10 bg-gradient-to-b from-transparent via-[#7df9ff]/5 to-transparent"
+        >
+            <div class="max-w-6xl mx-auto px-4">
+                <h2
+                    class="font-['Cinzel'] text-4xl text-[#7df9ff] mb-12 tracking-[0.3em] font-bold drop-shadow-lg inline-block bg-black/80 px-8 py-2 rounded-full border border-[#7df9ff]/20"
+                >
+                    SEÑALES DETECTADAS
+                </h2>
+
+                <div
+                    id="player-grid"
+                    class="flex flex-wrap justify-center gap-8 min-h-[100px]"
+                >
+                    <span
+                        class="animate-pulse text-zinc-300 tracking-widest font-bold bg-black/50 px-4 py-2 rounded"
+                        >ESCANEANDO EL MUNDO...</span
+                    >
+                </div>
+            </div>
+        </section>
+
+        <section id="eventos" class="py-24 px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <h2
+                    class="text-center font-['Cinzel'] text-4xl text-[#e3dac9] mb-16 tracking-widest font-bold drop-shadow-lg"
+                >
+                    PRÓXIMOS EVENTOS
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div
+                        class="relative group overflow-hidden rounded-xl border-2 border-red-900/50 bg-black/80 hover:border-red-500/50 transition-all duration-500 shadow-[0_0_30px_rgba(220,38,38,0.1)]"
+                    >
+                        <div
+                            class="absolute inset-0 bg-red-900/10 group-hover:bg-red-900/20 transition-colors"
+                        >
+                        </div>
+                        <div
+                            class="p-10 relative z-10 flex flex-col items-center text-center"
+                        >
+                            <i
+                                class="fas fa-fire text-5xl text-red-500 mb-6 drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] animate-pulse"
+                            ></i>
+                            <h3
+                                class="font-['Cinzel'] text-3xl text-red-100 mb-4 font-bold"
+                            >
+                                APERTURA DEL NETHER
+                            </h3>
+                            <div
+                                class="w-full h-[1px] bg-gradient-to-r from-transparent via-red-500 to-transparent mb-6"
+                            >
+                            </div>
+                            <p
+                                class="text-zinc-300 tracking-widest mb-2 font-bold uppercase"
+                            >
+                                Disponibilidad
+                            </p>
+                            <p class="text-red-400 text-xl font-bold">
+                                En 1 Semana
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="relative group overflow-hidden rounded-xl border-2 border-purple-900/50 bg-black/80 hover:border-purple-500/50 transition-all duration-500 shadow-[0_0_30px_rgba(147,51,234,0.1)]"
+                    >
+                        <div
+                            class="absolute inset-0 bg-purple-900/10 group-hover:bg-purple-900/20 transition-colors"
+                        >
+                        </div>
+                        <div
+                            class="p-10 relative z-10 flex flex-col items-center text-center"
+                        >
+                            <i
+                                class="fas fa-dragon text-5xl text-purple-500 mb-6 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-pulse"
+                            ></i>
+                            <h3
+                                class="font-['Cinzel'] text-3xl text-purple-100 mb-4 font-bold"
+                            >
+                                APERTURA DEL END
+                            </h3>
+                            <div
+                                class="w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent mb-6"
+                            >
+                            </div>
+                            <p
+                                class="text-zinc-300 tracking-widest mb-2 font-bold uppercase"
+                            >
+                                Disponibilidad
+                            </p>
+                            <p class="text-purple-400 text-xl font-bold">
+                                1 Semana después del Nether
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="estado" class="py-24 px-4 relative z-10">
             <div
@@ -243,7 +321,7 @@ import { modList, categories } from "./mods";
 
         <section
             id="inventario"
-            class="py-24 px-4 relative z-10 bg-black/80 backdrop-blur-sm"
+            class="py-24 px-4 relative z-10 bg-black/90 backdrop-blur-md"
         >
             <div class="text-center mb-16">
                 <h2
@@ -252,7 +330,7 @@ import { modList, categories } from "./mods";
                     INVENTARIO DE MODS
                 </h2>
                 <div
-                    class="w-24 h-1 bg-[#7df9ff] mx-auto rounded-full shadow-[0_0_10px_#7df9ff]"
+                    class="w-32 h-1 bg-[#7df9ff] mx-auto rounded-full shadow-[0_0_15px_#7df9ff]"
                 >
                 </div>
             </div>
@@ -265,7 +343,7 @@ import { modList, categories } from "./mods";
                         <button
                             onclick={`filterMods('${cat.id}')`}
                             data-category={cat.id}
-                            class="filter-btn px-6 py-3 text-xs md:text-sm bg-[#111] text-zinc-400 border border-[#333] hover:border-[#7df9ff] hover:text-[#7df9ff] hover:bg-[#1a1a1a] transition-all uppercase tracking-[0.2em] font-bold rounded-sm cursor-pointer"
+                            class="filter-btn px-6 py-3 text-xs md:text-sm bg-[#111] text-zinc-300 border border-[#333] hover:border-[#7df9ff] hover:text-[#7df9ff] hover:bg-[#1a1a1a] transition-all uppercase tracking-[0.2em] font-bold rounded-sm cursor-pointer"
                         >
                             {cat.label}
                         </button>
@@ -279,7 +357,7 @@ import { modList, categories } from "./mods";
                 {
                     modList.map((mod) => (
                         <div
-                            class="mod-card aspect-square bg-[#0a0a0a] border border-[#222] hover:border-[#7df9ff] hover:shadow-[0_0_20px_#7df9ff/20] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center p-6 group relative overflow-hidden"
+                            class="mod-card aspect-square bg-[#0a0a0a] border border-[#222] hover:border-[#7df9ff] hover:shadow-[0_0_20px_#7df9ff/30] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center p-6 group relative overflow-hidden"
                             data-category={mod.category}
                         >
                             <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#7df9ff]/0 group-hover:border-[#7df9ff] transition-all duration-300" />
@@ -294,26 +372,6 @@ import { modList, categories } from "./mods";
                         </div>
                     ))
                 }
-            </div>
-        </section>
-
-        <section id="jugadores" class="py-32 text-center relative z-10">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2
-                    class="font-['Cinzel'] text-3xl text-[#7df9ff] mb-12 tracking-[0.3em] font-bold drop-shadow-lg"
-                >
-                    SEÑALES DETECTADAS
-                </h2>
-
-                <div
-                    id="player-grid"
-                    class="flex flex-wrap justify-center gap-8 min-h-[100px]"
-                >
-                    <span
-                        class="animate-pulse text-zinc-500 tracking-widest font-bold"
-                        >ESCANEANDO EL MUNDO...</span
-                    >
-                </div>
             </div>
         </section>
 
@@ -442,18 +500,18 @@ import { modList, categories } from "./mods";
                                 .map(
                                     (p) => `
                             <div class="flex flex-col items-center gap-3 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
-                                <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-zinc-700 group-hover:border-[#7df9ff] shadow-lg transition-colors">
+                                <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-zinc-700 bg-[#0a0a0a] group-hover:border-[#7df9ff] shadow-lg transition-colors">
                                     <img src="https://mc-heads.net/avatar/${p.name}" class="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500">
                                     <div class="absolute inset-0 bg-[#7df9ff]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 </div>
-                                <span class="text-xs text-zinc-500 group-hover:text-[#7df9ff] font-bold tracking-widest bg-black/50 px-2 py-1 rounded transition-colors">${p.name}</span>
+                                <span class="text-xs text-[#7df9ff] font-bold tracking-widest bg-black/80 px-3 py-1 rounded border border-[#7df9ff]/30 shadow-lg">${p.name}</span>
                             </div>
                         `,
                                 )
                                 .join("");
                         } else {
                             grid.innerHTML =
-                                '<span class="text-zinc-500 italic border border-zinc-800 px-6 py-2 rounded-full">No hay héroes en este momento...</span>';
+                                '<span class="text-zinc-500 italic border border-zinc-800 bg-black/50 px-6 py-2 rounded-full">No hay héroes en este momento...</span>';
                         }
                     } else {
                         dot.className =
