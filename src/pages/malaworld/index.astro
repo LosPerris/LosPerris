@@ -521,13 +521,26 @@ import { modList, categories } from "./mods";
                 window.filterMods("all"),
             );
 
-            window.copyIp = () => {
-                navigator.clipboard.writeText(
-                    document.getElementById("server-ip").innerText.trim(),
-                );
-                const tip = document.querySelector(".tooltip");
-                tip.classList.remove("opacity-0");
-                setTimeout(() => tip.classList.add("opacity-0"), 2000);
+            window.copyIp = async () => {
+                try {
+                    const ipText = document
+                        .getElementById("server-ip")
+                        .innerText.trim();
+                    await navigator.clipboard.writeText(ipText);
+
+                    const tip = document.querySelector(".tooltip");
+                    void tip.offsetWidth;
+
+                    tip.classList.remove("opacity-0");
+                    tip.classList.add("opacity-100");
+
+                    setTimeout(() => {
+                        tip.classList.remove("opacity-100");
+                        tip.classList.add("opacity-0");
+                    }, 2000);
+                } catch (err) {
+                    console.error("Error al copiar:", err);
+                }
             };
 
             async function fetchStatus() {
