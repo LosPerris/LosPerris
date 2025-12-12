@@ -1,0 +1,67 @@
+<section
+    class="min-h-screen relative flex items-center justify-center p-4 overflow-hidden"
+>
+    <div class="relative z-10 text-center space-y-8 max-w-4xl mx-auto">
+        <h1
+            class="font-['Cinzel'] text-6xl md:text-8xl lg:text-9xl text-[#e3dac9] drop-shadow-[0_0_15px_rgba(227,218,201,0.3)] tracking-wide animate-breathe"
+        >
+            MALA WORLD
+        </h1>
+
+        <div
+            class="h-px w-32 md:w-64 bg-gradient-to-r from-transparent via-[#7df9ff] to-transparent mx-auto"
+        >
+        </div>
+
+        <p
+            class="text-xl md:text-2xl text-zinc-300 font-light tracking-[0.2em] uppercase"
+        >
+            La aventura continúa...
+        </p>
+
+        <div class="flex flex-col items-center gap-6 mt-12">
+            <button
+                onclick="copyIp()"
+                class="group relative px-12 py-6 bg-[#0a0a0a] border-2 border-[#333] hover:border-[#7df9ff] rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.5)] cursor-pointer"
+            >
+                <!-- Efecto de fondo contenido -->
+                <div class="absolute inset-0 rounded-xl overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-[#7df9ff]/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                    >
+                    </div>
+                </div>
+
+                <span
+                    id="server-ip"
+                    class="font-['Cinzel'] text-2xl md:text-3xl text-[#e3dac9] group-hover:text-white transition-colors relative z-10 font-bold tracking-wider"
+                >
+                    23.230.3.241:25721
+                </span>
+
+                <span
+                    class="tooltip absolute -bottom-10 left-1/2 -translate-x-1/2 text-sm text-[#7df9ff] font-bold opacity-0 transition-opacity whitespace-nowrap bg-black px-2 py-1 rounded z-20 border border-[#7df9ff]/30"
+                >
+                    IP Copiada
+                </span>
+            </button>
+
+            <a
+                href="/malaworld/instalacion"
+                class="px-8 py-3 bg-transparent border border-[#7df9ff]/30 text-[#7df9ff] hover:bg-[#7df9ff]/10 hover:border-[#7df9ff] rounded-lg transition-all duration-300 flex items-center gap-2 font-bold tracking-widest text-sm uppercase"
+            >
+                <i class="fas fa-download"></i> Descargar Mods
+            </a>
+
+            <div
+                class="flex items-center gap-3 text-sm text-zinc-500 font-mono"
+            >
+                <div id="status-dot" class="w-2 h-2 rounded-full bg-zinc-700">
+                </div>
+                <span id="status-text" class="tracking-widest"
+                    >CONECTANDO...</span
+                >
+            </div>
+        </div>
+    </div>
+</section>
