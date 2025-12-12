@@ -232,8 +232,11 @@ import { modList, categories } from "./mods";
                             >
                                 Disponibilidad
                             </p>
-                            <p class="text-red-400 text-xl font-bold">
-                                En 1 Semana.
+                            <p
+                                class="text-red-400 text-xl font-bold"
+                                id="countdown-nether"
+                            >
+                                Calculando...
                             </p>
                         </div>
                     </div>
@@ -265,8 +268,11 @@ import { modList, categories } from "./mods";
                             >
                                 Disponibilidad
                             </p>
-                            <p class="text-purple-400 text-xl font-bold">
-                                En 2 Semanas.
+                            <p
+                                class="text-purple-400 text-xl font-bold"
+                                id="countdown-end"
+                            >
+                                Calculando...
                             </p>
                         </div>
                     </div>
@@ -603,8 +609,49 @@ import { modList, categories } from "./mods";
                 }
             }
 
+            function updateCountdowns() {
+                const now = new Date().getTime();
+
+                // Fechas objetivo (nether: +7 días, end: +14 días desde el lanzamiento aprox)
+                // Ajustado a aprox 18 Diciembre y 25 Diciembre 2025 o relativo
+                const netherDate = new Date("2025-12-18T18:00:00").getTime();
+                const endDate = new Date("2025-12-25T18:00:00").getTime();
+
+                const updateElement = (id, target) => {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+
+                    const distance = target - now;
+
+                    if (distance < 0) {
+                        el.innerText = "¡YA DISPONIBLE!";
+                        el.classList.add("text-green-500", "animate-pulse");
+                        el.classList.remove("text-red-400", "text-purple-400");
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor(
+                        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                    );
+                    const minutes = Math.floor(
+                        (distance % (1000 * 60 * 60)) / (1000 * 60),
+                    );
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    el.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                };
+
+                updateElement("countdown-nether", netherDate);
+                updateElement("countdown-end", endDate);
+            }
+
             fetchStatus();
             setInterval(fetchStatus, 30000);
+
+            updateCountdowns();
+            setInterval(updateCountdowns, 1000);
         </script>
     </body>
 </html>
+```
