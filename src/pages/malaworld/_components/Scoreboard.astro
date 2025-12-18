@@ -1,5 +1,5 @@
 <section id="scoreboard" class="py-20 relative px-6 md:px-12">
-    <div class="max-w-7xl mx-auto z-10 relative">
+    <div class="max-w-5xl mx-auto z-10 relative">
         <h2
             class="text-4xl md:text-5xl font-['Cinzel'] text-center mb-12 text-[#e3dac9] drop-shadow-[0_2px_4px_black]"
         >
@@ -14,13 +14,13 @@
                 data-stat="mob_kills"
                 class="stat-btn active px-6 py-2 bg-black/50 border border-[#7df9ff]/30 text-[#7df9ff] rounded-full uppercase tracking-widest text-sm font-bold hover:bg-[#7df9ff]/10 transition-all duration-300"
             >
-                Mobs Asesinados
+                Mobs
             </button>
             <button
                 data-stat="player_kills"
                 class="stat-btn px-6 py-2 bg-black/50 border border-zinc-700 text-zinc-400 rounded-full uppercase tracking-widest text-sm font-bold hover:text-white transition-all duration-300"
             >
-                Asesinatos
+                Kills
             </button>
             <button
                 data-stat="deaths"
@@ -32,21 +32,39 @@
                 data-stat="hours_played"
                 class="stat-btn px-6 py-2 bg-black/50 border border-zinc-700 text-zinc-400 rounded-full uppercase tracking-widest text-sm font-bold hover:text-white transition-all duration-300"
             >
-                Tiempo Jugado
+                Tiempo
             </button>
         </div>
 
         <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            id="scoreboard-grid"
+            class="overflow-x-auto rounded-xl border border-zinc-800 bg-[#0a0a0a]/80 backdrop-blur-sm shadow-2xl"
         >
-            <!-- Renderizado por JS -->
-            <div class="col-span-full text-center py-10">
-                <div
-                    class="inline-block w-8 h-8 border-2 border-[#7df9ff] border-t-transparent rounded-full animate-spin"
-                >
-                </div>
-            </div>
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr
+                        class="bg-black/60 text-[#7df9ff] text-xs uppercase tracking-widest border-b border-zinc-800"
+                    >
+                        <th class="p-4 text-center w-20">#</th>
+                        <th class="p-4 w-20">Skin</th>
+                        <th class="p-4">Jugador</th>
+                        <th class="p-4 text-right" id="stat-header">Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="scoreboard-body" class="divide-y divide-zinc-800/50">
+                    <tr>
+                        <td colspan="4" class="p-10 text-center">
+                            <div
+                                class="inline-block w-8 h-8 border-2 border-[#7df9ff] border-t-transparent rounded-full animate-spin"
+                            >
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-right mt-4 text-xs text-zinc-600 font-mono">
+            Actualización automática: <span id="next-update">02:00</span>
         </div>
     </div>
 </section>
@@ -57,6 +75,10 @@
         border-color: #7df9ff;
         color: #7df9ff;
         box-shadow: 0 0 15px rgba(125, 249, 255, 0.2);
+    }
+
+    tr:hover td {
+        background-color: rgba(255, 255, 255, 0.02);
     }
 </style>
 
@@ -73,37 +95,58 @@
     }
 
     let allStats: Record<string, PlayerData> = {};
+    let currentCriteria = "mob_kills";
+    const REFRESH_RATE = 120; // 120 segundos
+    let timerInterval: any;
 
     async function loadStats() {
-        const grid = document.getElementById("scoreboard-grid");
-        if (!grid) return;
+        const tbody = document.getElementById("scoreboard-body");
+        if (!tbody) return;
 
         try {
+            if (Object.keys(allStats).length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="p-10 text-center">
+                            <div class="inline-block w-8 h-8 border-2 border-[#7df9ff] border-t-transparent rounded-full animate-spin"></div>
+                        </td>
+                    </tr>
+                `;
+            }
+
             const res = await fetch("/malaworld/api/scoreboard");
             if (!res.ok) throw new Error("Error al cargar stats");
             allStats = await res.json();
-            renderScoreboard("mob_kills");
+            renderScoreboard(currentCriteria);
+            startTimer();
         } catch (e) {
             console.error(e);
-            grid.innerHTML = `
-                <div class="col-span-full text-center text-red-400 border border-red-900/30 bg-black/50 p-4 rounded-xl">
-                    Error al cargar los datos del ranking.
-                </div>
-            `;
+            if (Object.keys(allStats).length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="p-8 text-center text-red-500">
+                            Error al cargar los datos. Reintentando...
+                        </td>
+                    </tr>
+                `;
+            }
         }
     }
 
     function renderScoreboard(criteria: string) {
-        const grid = document.getElementById("scoreboard-grid");
-        if (!grid) return;
+        currentCriteria = criteria;
+        const tbody = document.getElementById("scoreboard-body");
+        const header = document.getElementById("stat-header");
+        if (!tbody || !header) return;
+
+        header.innerText = formatLabel(criteria).toUpperCase();
 
         const players = Object.values(allStats) as PlayerData[];
-
         const sorted = players
             .sort((a, b) => b[criteria] - a[criteria])
-            .slice(0, 9);
+            .slice(0, 10);
 
-        grid.innerHTML = sorted
+        tbody.innerHTML = sorted
             .map((player, index) => {
                 let val = player[criteria];
                 if (criteria === "hours_played") {
@@ -119,30 +162,26 @@
                             ? "text-amber-600"
                             : "text-[#7df9ff]";
 
-                const borderClass =
-                    index === 0
-                        ? "border-yellow-500/50 shadow-[0_0_20px_rgba(234,179,8,0.2)]"
-                        : "border-zinc-800 hover:border-[#7df9ff]/50";
+                const fontClass = index < 3 ? "font-bold" : "font-normal";
+                const rowClass = index < 3 ? "bg-[#7df9ff]/5" : "";
 
                 return `
-                <div class="flex items-center gap-4 bg-[#0a0a0a]/80 backdrop-blur-sm border ${borderClass} p-4 rounded-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="font-['Cinzel'] text-2xl font-bold w-8 text-center ${rankColor}">#${index + 1}</div>
-                    
-                    <div class="relative w-12 h-12 rounded-lg overflow-hidden border border-zinc-700">
-                        <img src="${player.skin}" alt="${player.name}" class="w-full h-full object-cover">
-                    </div>
-                    
-                    <div class="flex-grow">
-                        <h3 class="font-bold text-[#e3dac9] tracking-wider">${player.name}</h3>
-                        <p class="text-xs text-zinc-500 uppercase tracking-widest">
-                             ${formatLabel(criteria)}
-                        </p>
-                    </div>
-
-                    <div class="text-xl font-bold text-[#7df9ff] font-mono">
+                <tr class="transition-colors duration-200 ${rowClass}">
+                    <td class="p-4 text-center font-['Cinzel'] text-xl ${rankColor} ${fontClass}">
+                        #${index + 1}
+                    </td>
+                    <td class="p-4">
+                        <div class="w-10 h-10 rounded overflow-hidden border border-zinc-700 bg-black">
+                            <img src="${player.skin}" alt="${player.name}" class="w-full h-full object-cover">
+                        </div>
+                    </td>
+                    <td class="p-4">
+                        <span class="text-[#e3dac9] font-['Josefin_Sans'] tracking-wider ${fontClass}">${player.name}</span>
+                    </td>
+                    <td class="p-4 text-right font-mono text-[#7df9ff] text-lg">
                         ${val}
-                    </div>
-                </div>
+                    </td>
+                </tr>
             `;
             })
             .join("");
@@ -151,16 +190,44 @@
     function formatLabel(key: string) {
         switch (key) {
             case "mob_kills":
-                return "Mobs";
+                return "Mobs Asesinados";
             case "player_kills":
-                return "Kilis";
+                return "Asesinatos";
             case "deaths":
                 return "Muertes";
             case "hours_played":
-                return "Tiempo";
+                return "Tiempo Jugado";
             default:
                 return "";
         }
+    }
+
+    function startTimer() {
+        const timerEl = document.getElementById("next-update");
+        if (!timerEl) return;
+
+        clearInterval(timerInterval);
+
+        let secondsLeft = REFRESH_RATE;
+
+        const updateDisplay = () => {
+            const m = Math.floor(secondsLeft / 60)
+                .toString()
+                .padStart(2, "0");
+            const s = (secondsLeft % 60).toString().padStart(2, "0");
+            timerEl.innerText = `${m}:${s}`;
+        };
+
+        updateDisplay();
+
+        timerInterval = setInterval(() => {
+            secondsLeft--;
+            if (secondsLeft <= 0) {
+                loadStats();
+                secondsLeft = REFRESH_RATE;
+            }
+            updateDisplay();
+        }, 1000);
     }
 
     document.querySelectorAll(".stat-btn").forEach((btn) => {
