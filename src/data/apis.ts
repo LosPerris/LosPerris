@@ -36,5 +36,21 @@ export const apis = [
                 example: 'https://api.henrikdev.xyz/valorant/v1/account/user/tag'
             }
         ]
+    },
+    {
+        title: 'Generador de Códigos QR',
+        description: 'Herramienta visual profesional para crear códigos QR personalizados. Soporta estilos, logotipos, WiFi, VCard y descargas en alta resolución.',
+        icon: 'fas fa-qrcode',
+        color: 'text-[#FACC15]',
+        link: '/qr',
+        linkText: 'Crear QR',
+        endpoints: [
+            {
+                method: 'WEB',
+                path: '/qr',
+                description: 'Interfaz gráfica para generación de QR.',
+                example: 'https://www.losperris.site/qr'
+            }
+        ]
     }
 ];
