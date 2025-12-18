@@ -12,6 +12,22 @@
     ],
     "rewrites": [
         {
+            "source": "/js/(.*)",
+            "destination": "https://followage-api.vercel.app/js/$1"
+        },
+        {
+            "source": "/css/(.*)",
+            "destination": "https://followage-api.vercel.app/css/$1"
+        },
+        {
+            "source": "/twitch/clips",
+            "destination": "https://followage-api.vercel.app/twitch/clips"
+        },
+        {
+            "source": "/twitch/clips/(.*)",
+            "destination": "https://followage-api.vercel.app/twitch/clips/$1"
+        },
+        {
             "source": "/valorantapi",
             "destination": "https://los-perris-valorant-api.vercel.app/"
         },
