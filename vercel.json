@@ -56,20 +56,24 @@
             "destination": "https://followage-api.vercel.app/api/app/twitch/$1"
         },
         {
+            "source": "/clips/(.*)",
+            "destination": "https://followage-api.vercel.app/clips/$1"
+        },
+        {
             "source": "/channel/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/channel/$1"
+            "destination": "https://followage-api.vercel.app/channel/$1"
         },
         {
             "source": "/me",
-            "destination": "https://followage-api.vercel.app/api/app/me"
+            "destination": "https://followage-api.vercel.app/me"
         },
         {
             "source": "/channel/me",
-            "destination": "https://followage-api.vercel.app/api/app/channel/me"
+            "destination": "https://followage-api.vercel.app/channel/me"
         },
         {
             "source": "/health",
-            "destination": "https://followage-api.vercel.app/api/app/health"
+            "destination": "https://followage-api.vercel.app/health"
         },
         {
             "source": "/imgs/(.*)",
