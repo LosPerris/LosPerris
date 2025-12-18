@@ -186,7 +186,7 @@
         const players = Object.values(allStats) as PlayerData[];
         const sorted = players
             .sort((a, b) => b[criteria] - a[criteria])
-            .slice(0, 10);
+            .slice(0, 20);
 
         tbody.innerHTML = sorted
             .map((player, index) => {
