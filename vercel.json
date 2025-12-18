@@ -20,20 +20,12 @@
             "destination": "https://followage-api.vercel.app/css/$1"
         },
         {
-            "source": "/twitch/clips",
-            "destination": "https://followage-api.vercel.app/twitch/clips"
+            "source": "/imgs/(.*)",
+            "destination": "https://followage-api.vercel.app/imgs/$1"
         },
         {
-            "source": "/twitch/clips/(.*)",
-            "destination": "https://followage-api.vercel.app/twitch/clips/$1"
-        },
-        {
-            "source": "/valorantapi",
-            "destination": "https://los-perris-valorant-api.vercel.app/"
-        },
-        {
-            "source": "/valorantapi/(.*)",
-            "destination": "https://los-perris-valorant-api.vercel.app/$1"
+            "source": "/img/(.*)",
+            "destination": "https://followage-api.vercel.app/imgs/$1"
         },
         {
             "source": "/followage",
@@ -44,16 +36,12 @@
             "destination": "https://followage-api.vercel.app/$1"
         },
         {
-            "source": "/auth/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/auth/$1"
+            "source": "/twitch/clips",
+            "destination": "https://followage-api.vercel.app/twitch/clips"
         },
         {
-            "source": "/api/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/api/$1"
-        },
-        {
-            "source": "/twitch/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/twitch/$1"
+            "source": "/twitch/clips/(.*)",
+            "destination": "https://followage-api.vercel.app/twitch/clips/$1"
         },
         {
             "source": "/clips/(.*)",
@@ -76,12 +64,24 @@
             "destination": "https://followage-api.vercel.app/health"
         },
         {
-            "source": "/imgs/(.*)",
-            "destination": "https://followage-api.vercel.app/imgs/$1"
+            "source": "/auth/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/auth/$1"
         },
         {
-            "source": "/img/(.*)",
-            "destination": "https://followage-api.vercel.app/imgs/$1"
+            "source": "/api/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/api/$1"
+        },
+        {
+            "source": "/twitch/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/twitch/$1"
+        },
+        {
+            "source": "/valorantapi",
+            "destination": "https://los-perris-valorant-api.vercel.app/"
+        },
+        {
+            "source": "/valorantapi/(.*)",
+            "destination": "https://los-perris-valorant-api.vercel.app/$1"
         },
         {
             "source": "/qr",
@@ -90,6 +90,10 @@
         {
             "source": "/qr/(.*)",
             "destination": "https://codigo-qr.vercel.app/$1"
+        },
+        {
+            "source": "/_qr_assets/(.*)",
+            "destination": "https://codigo-qr.vercel.app/_qr_assets/$1"
         }
     ]
 }
