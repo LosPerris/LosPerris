@@ -82,6 +82,14 @@
         {
             "source": "/img/(.*)",
             "destination": "https://followage-api.vercel.app/imgs/$1"
+        },
+        {
+            "source": "/qr",
+            "destination": "https://codigo-qr.vercel.app/"
+        },
+        {
+            "source": "/qr/(.*)",
+            "destination": "https://codigo-qr.vercel.app/$1"
         }
     ]
 }
