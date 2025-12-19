@@ -214,7 +214,7 @@ import Footer from "./_components/Footer.astro";
                     }
 
                     if (data) {
-                        renderPlayerGridFromStats(data);
+                        // renderPlayerGridFromStats(data); // Removed: PlayerGrid handled by renderStatus
                         const event = new CustomEvent(
                             "malaworld-stats-update",
                             {
@@ -288,12 +288,40 @@ import Footer from "./_components/Footer.astro";
                         onlineTxt.innerText = `${data.players.online}/${data.players.max}`;
                     if (verTxt) verTxt.innerText = data.version;
                     if (softTxt) softTxt.innerText = data.software || "Vanilla";
+
+                    const grid = document.getElementById("player-grid");
+                    if (grid) {
+                        if (data.players.list?.length) {
+                            grid.innerHTML = data.players.list
+                                .map(
+                                    (p) => `
+                            <div class="flex flex-col items-center gap-3 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
+                                <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-zinc-700 bg-[#0a0a0a] group-hover:border-[#7df9ff] shadow-lg transition-colors">
+                                    <img src="https://mc-heads.net/avatar/${p.name}" class="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                                    <div class="absolute inset-0 bg-[#7df9ff]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                </div>
+                                <span class="text-xs text-[#7df9ff] font-bold tracking-widest bg-black/80 px-3 py-1 rounded border border-[#7df9ff]/30 shadow-lg">${p.name}</span>
+                            </div>
+                        `,
+                                )
+                                .join("");
+                        } else {
+                            grid.innerHTML =
+                                '<span class="text-zinc-500 italic border border-zinc-800 bg-black/50 px-6 py-2 rounded-full">No hay héroes en este momento...</span>';
+                        }
+                    }
                 } else {
                     dot.className =
                         "w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_red]";
                     txt.innerText = "DESCONECTADO";
                     txt.className =
                         "text-xs md:text-sm tracking-[0.2em] text-red-500 font-bold uppercase";
+
+                    const grid = document.getElementById("player-grid");
+                    if (grid) {
+                        grid.innerHTML =
+                            '<span class="text-red-900 border border-red-900/30 px-6 py-2 rounded-full">Señal Perdida</span>';
+                    }
                 }
             }
 
@@ -307,6 +335,7 @@ import Footer from "./_components/Footer.astro";
                 } catch (e) {
                     console.log(e);
                 }
+                setTimeout(fetchStatus, SCAN_PERIOD * 1000);
             }
 
             DataManager.init();
