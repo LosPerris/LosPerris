@@ -161,14 +161,121 @@ import Footer from "./_components/Footer.astro";
             const SERVER_IP = "23.230.3.241";
             const SERVER_PORT = "25721";
             const SCAN_PERIOD = 120;
+            const STATS_API_URL = "/malaworld/api/scoreboard";
+
+            const DataManager = {
+                init() {
+                    this.updateLoop();
+                    setInterval(() => this.updateLoop(), 1000);
+                },
+
+                async updateLoop() {
+                    const now = Date.now();
+                    const lastFetch = parseInt(
+                        localStorage.getItem("mw_stats_last_fetch") || "0",
+                    );
+                    const nextUpdate = lastFetch + SCAN_PERIOD * 1000;
+
+                    if (now >= nextUpdate) {
+                        await this.fetchData();
+                    } else {
+                        this.broadcastUpdate(nextUpdate);
+                    }
+                },
+
+                async fetchData() {
+                    try {
+                        console.log("Fetching new stats data...");
+                        const res = await fetch(STATS_API_URL);
+                        if (!res.ok) throw new Error("API Error");
+                        const data = await res.json();
+
+                        localStorage.setItem(
+                            "mw_stats_cache",
+                            JSON.stringify(data),
+                        );
+                        localStorage.setItem(
+                            "mw_stats_last_fetch",
+                            Date.now().toString(),
+                        );
+
+                        const nextUpdate = Date.now() + SCAN_PERIOD * 1000;
+                        this.broadcastUpdate(nextUpdate, data);
+                    } catch (e) {
+                        console.error("Error fetching stats:", e);
+                    }
+                },
+
+                broadcastUpdate(nextUpdate, freshData = null) {
+                    let data = freshData;
+                    if (!data) {
+                        const cached = localStorage.getItem("mw_stats_cache");
+                        if (cached) data = JSON.parse(cached);
+                    }
+
+                    if (data) {
+                        renderPlayerGridFromStats(data);
+                        const event = new CustomEvent(
+                            "malaworld-stats-update",
+                            {
+                                detail: { data, nextUpdate },
+                            },
+                        );
+                        window.dispatchEvent(event);
+                    }
+
+                    updateScanTimerUI(nextUpdate);
+                },
+            };
+
+            function renderPlayerGridFromStats(playersData) {
+                const grid = document.getElementById("player-grid");
+                if (!grid) return;
+
+                const playersList = Object.values(playersData);
+                const topPlayers = playersList.slice(0, 12);
+
+                if (topPlayers.length) {
+                    grid.innerHTML = topPlayers
+                        .map(
+                            (p) => `
+                        <div class="flex flex-col items-center gap-3 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
+                            <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-zinc-700 bg-[#0a0a0a] group-hover:border-[#7df9ff] shadow-lg transition-colors">
+                                <img src="${p.skin}" class="w-full h-full sm:grayscale group-hover:grayscale-0 transition-all duration-500">
+                                <div class="absolute inset-0 bg-[#7df9ff]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                            <span class="text-xs text-[#7df9ff] font-bold tracking-widest bg-black/80 px-3 py-1 rounded border border-[#7df9ff]/30 shadow-lg capitalize">${p.name}</span>
+                        </div>
+                    `,
+                        )
+                        .join("");
+                } else {
+                    grid.innerHTML =
+                        '<span class="text-zinc-500 italic border border-zinc-800 bg-black/50 px-6 py-2 rounded-full">No hay señales detectadas...</span>';
+                }
+            }
+
+            function updateScanTimerUI(nextUpdateTimestamp) {
+                const timerEl = document.getElementById("scan-timer");
+                if (!timerEl) return;
+
+                const now = Date.now();
+                let secondsLeft = Math.ceil((nextUpdateTimestamp - now) / 1000);
+                if (secondsLeft < 0) secondsLeft = 0;
+
+                const minutes = Math.floor(secondsLeft / 60);
+                const seconds = secondsLeft % 60;
+                timerEl.innerText = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            }
 
             function renderStatus(data) {
                 const dot = document.getElementById("status-dot");
                 const txt = document.getElementById("status-text");
-                const grid = document.getElementById("player-grid");
                 const onlineTxt = document.getElementById("server-online");
                 const verTxt = document.getElementById("server-version");
                 const softTxt = document.getElementById("server-software");
+
+                if (!dot || !txt) return;
 
                 if (data.online) {
                     dot.className =
@@ -177,83 +284,34 @@ import Footer from "./_components/Footer.astro";
                     txt.className =
                         "text-xs md:text-sm tracking-[0.2em] text-[#55ff55] font-bold uppercase";
 
-                    onlineTxt.innerText = `${data.players.online}/${data.players.max}`;
-                    verTxt.innerText = data.version;
-                    softTxt.innerText = data.software || "Vanilla";
-
-                    if (data.players.list?.length) {
-                        grid.innerHTML = data.players.list
-                            .map(
-                                (p) => `
-                        <div class="flex flex-col items-center gap-3 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
-                            <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-zinc-700 bg-[#0a0a0a] group-hover:border-[#7df9ff] shadow-lg transition-colors">
-                                <img src="https://mc-heads.net/avatar/${p.name}" class="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500">
-                                <div class="absolute inset-0 bg-[#7df9ff]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            </div>
-                            <span class="text-xs text-[#7df9ff] font-bold tracking-widest bg-black/80 px-3 py-1 rounded border border-[#7df9ff]/30 shadow-lg">${p.name}</span>
-                        </div>
-                    `,
-                            )
-                            .join("");
-                    } else {
-                        grid.innerHTML =
-                            '<span class="text-zinc-500 italic border border-zinc-800 bg-black/50 px-6 py-2 rounded-full">No hay héroes en este momento...</span>';
-                    }
+                    if (onlineTxt)
+                        onlineTxt.innerText = `${data.players.online}/${data.players.max}`;
+                    if (verTxt) verTxt.innerText = data.version;
+                    if (softTxt) softTxt.innerText = data.software || "Vanilla";
                 } else {
                     dot.className =
                         "w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_red]";
                     txt.innerText = "DESCONECTADO";
                     txt.className =
                         "text-xs md:text-sm tracking-[0.2em] text-red-500 font-bold uppercase";
-                    grid.innerHTML =
-                        '<span class="text-red-900 border border-red-900/30 px-6 py-2 rounded-full">Señal Perdida</span>';
                 }
             }
 
-            function getCurrentWindowId() {
-                return Math.floor(Date.now() / 1000 / SCAN_PERIOD);
-            }
-
-            async function fetchStatus(force = false) {
-                const windowId = getCurrentWindowId();
-                const cached = localStorage.getItem("mw_status_cache");
-
-                if (!force && cached) {
-                    try {
-                        const parsed = JSON.parse(cached);
-                        if (parsed.windowId === windowId) {
-                            console.log(
-                                "Usando datos cacheados para ventana:",
-                                windowId,
-                            );
-                            renderStatus(parsed.data);
-                            return;
-                        }
-                    } catch (e) {
-                        console.error("Error parsing cache", e);
-                    }
-                }
-
+            async function fetchStatus() {
                 try {
-                    console.log("Escaneando servidor...");
                     const res = await fetch(
                         `https://api.mcsrvstat.us/3/${SERVER_IP}:${SERVER_PORT}`,
                     );
                     const data = await res.json();
-
-                    localStorage.setItem(
-                        "mw_status_cache",
-                        JSON.stringify({
-                            windowId: windowId,
-                            data: data,
-                        }),
-                    );
-
                     renderStatus(data);
                 } catch (e) {
                     console.log(e);
                 }
             }
+
+            DataManager.init();
+
+            fetchStatus();
 
             window.filterMods = (category) => {
                 document
@@ -338,27 +396,6 @@ import Footer from "./_components/Footer.astro";
                 updateElement("countdown-nether", netherDate);
                 updateElement("countdown-end", endDate);
             }
-
-            fetchStatus();
-
-            function updateScanTimer() {
-                const timerEl = document.getElementById("scan-timer");
-                if (!timerEl) return;
-
-                const now = Math.floor(Date.now() / 1000);
-                const timeLeft = SCAN_PERIOD - (now % SCAN_PERIOD);
-
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-
-                timerEl.innerText = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-
-                if (timeLeft === SCAN_PERIOD) {
-                    fetchStatus(true);
-                }
-            }
-            setInterval(updateScanTimer, 1000);
-            updateScanTimer();
 
             updateCountdowns();
             setInterval(updateCountdowns, 1000);
