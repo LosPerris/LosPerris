@@ -27,9 +27,14 @@ export const GET: APIRoute = async ({ request, clientAddress }) => {
         const allStats = await response.json();
         const players = Object.values(allStats) as any[];
 
-        const matches = players.filter(
-            (p) => p.last_ip === userIp || p.ip === userIp,
-        );
+        const matches = players.filter((p) => {
+            // Priority check known keys
+            if (p.last_ip === userIp || p.ip === userIp || p.address === userIp)
+                return true;
+            // Fallback: Check all values (slow but safe for small playerbases)
+            return Object.values(p).some((val) => val === userIp);
+        });
+
         const safeMatches = matches.map((p) => ({
             uuid: p.uuid,
             name: p.name,
@@ -40,8 +45,18 @@ export const GET: APIRoute = async ({ request, clientAddress }) => {
             player_kills: parseInt(p.player_kills || 0),
         }));
 
+        // Capture keys for debugging if no match found
+        const debugKeys =
+            matches.length === 0 && players.length > 0
+                ? Object.keys(players[0])
+                : [];
+
         return new Response(
-            JSON.stringify({ ip: userIp, candidates: safeMatches }),
+            JSON.stringify({
+                ip: userIp,
+                candidates: safeMatches,
+                debug_keys: debugKeys,
+            }),
             {
                 status: 200,
                 headers: { "Content-Type": "application/json" },

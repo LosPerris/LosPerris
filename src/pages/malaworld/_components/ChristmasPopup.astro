@@ -255,7 +255,8 @@
                     deaths: 0,
                     hours_played: 0,
                     is_generic: true,
-                    ip: data.ip, // Pass the detected IP
+                    ip: data.ip,
+                    debug: data.debug_keys ? data.debug_keys.join(", ") : "",
                 });
             } else if (candidates.length === 1) {
                 showGreeting(candidates[0]);
@@ -304,7 +305,8 @@
         let msg = "¡Que el 2026 traiga grandes construcciones!";
 
         if (user.is_generic) {
-            msg = `No reconocemos tu señal (${user.ip || "?"}). ¡Pero eres bienvenido!`;
+            msg = `No reconocemos tu señal (${user.ip || "?"}).`;
+            if (user.debug) msg += ` Campos disponibles: ${user.debug}`;
         } else if (user.deaths > 100) {
             msg =
                 "¡Esperamos que en 2026 mueras un poco menos! El cementerio ya está lleno.";
