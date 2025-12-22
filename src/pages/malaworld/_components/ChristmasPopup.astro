@@ -87,107 +87,126 @@
                 </div>
 
                 <div
-                    class="slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none pb-20"
+                    class="slide absolute inset-0 flex flex-col items-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none p-4"
                     data-index="1"
                 >
-                    <div class="text-red-500 text-6xl mb-6 animate-bounce">
-                        <i class="fas fa-skull"></i>
-                    </div>
-                    <h2 class="font-['Cinzel'] text-3xl text-red-100 mb-2">
-                        EL GUERRERO
-                    </h2>
-                    <div class="w-16 h-1 bg-red-600 mb-8 rounded-full"></div>
-
-                    <div class="space-y-6 w-full max-w-xs">
-                        <div
-                            class="bg-black/40 border border-red-900/50 p-4 rounded-xl backdrop-blur-sm"
-                        >
-                            <p
-                                class="text-xs text-red-400 uppercase tracking-widest mb-1"
-                            >
-                                Enemigos Eliminados
-                            </p>
-                            <p
-                                id="stat-pvp"
-                                class="text-4xl font-bold text-white"
-                            >
-                                0
-                            </p>
-                        </div>
-                        <div
-                            class="bg-black/40 border border-red-900/50 p-4 rounded-xl backdrop-blur-sm"
-                        >
-                            <p
-                                class="text-xs text-red-400 uppercase tracking-widest mb-1"
-                            >
-                                Veces que caíste
-                            </p>
-                            <p
-                                id="stat-deaths"
-                                class="text-4xl font-bold text-white"
-                            >
-                                0
-                            </p>
-                        </div>
-                    </div>
                     <div
-                        id="msg-combat"
-                        class="absolute bottom-24 left-0 right-0 w-full max-w-[90%] mx-auto text-center min-h-[3em] max-h-[6em] overflow-y-auto bg-red-950/40 px-4 py-2 rounded-lg border border-red-500/30 shadow-[0_0_15px_rgba(255,0,0,0.1)] text-balance z-10 custom-scrollbar"
-                        style="overflow-wrap: break-word;"
+                        class="grow flex flex-col items-center justify-center w-full"
                     >
+                        <div class="text-red-500 text-6xl mb-6 animate-bounce">
+                            <i class="fas fa-skull"></i>
+                        </div>
+                        <h2 class="font-['Cinzel'] text-3xl text-red-100 mb-2">
+                            EL GUERRERO
+                        </h2>
+                        <div class="w-16 h-1 bg-red-600 mb-8 rounded-full">
+                        </div>
+
+                        <div class="space-y-6 w-full max-w-xs">
+                            <div
+                                class="bg-black/40 border border-red-900/50 p-4 rounded-xl backdrop-blur-sm"
+                            >
+                                <p
+                                    class="text-xs text-red-400 uppercase tracking-widest mb-1"
+                                >
+                                    Enemigos Eliminados
+                                </p>
+                                <p
+                                    id="stat-pvp"
+                                    class="text-4xl font-bold text-white"
+                                >
+                                    0
+                                </p>
+                            </div>
+                            <div
+                                class="bg-black/40 border border-red-900/50 p-4 rounded-xl backdrop-blur-sm"
+                            >
+                                <p
+                                    class="text-xs text-red-400 uppercase tracking-widest mb-1"
+                                >
+                                    Veces que caíste
+                                </p>
+                                <p
+                                    id="stat-deaths"
+                                    class="text-4xl font-bold text-white"
+                                >
+                                    0
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-center pb-20 shrink-0">
+                        <div
+                            id="msg-combat"
+                            class="w-full max-w-[90%] text-center min-h-[3em] max-h-[6em] overflow-y-auto bg-red-950/40 px-4 py-2 rounded-lg border border-red-500/30 shadow-[0_0_15px_rgba(255,0,0,0.1)] text-balance z-10 custom-scrollbar"
+                            style="overflow-wrap: break-word;"
+                        >
+                        </div>
                     </div>
                 </div>
 
                 <div
-                    class="slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none pb-20"
+                    class="slide absolute inset-0 flex flex-col items-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none p-4"
                     data-index="2"
                 >
-                    <div class="text-emerald-400 text-6xl mb-6 animate-pulse">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h2 class="font-['Cinzel'] text-3xl text-emerald-100 mb-2">
-                        LA DEDICACIÓN
-                    </h2>
-                    <div class="w-16 h-1 bg-emerald-500 mb-8 rounded-full">
+                    <div
+                        class="grow flex flex-col items-center justify-center w-full"
+                    >
+                        <div
+                            class="text-emerald-400 text-6xl mb-6 animate-pulse"
+                        >
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h2
+                            class="font-['Cinzel'] text-3xl text-emerald-100 mb-2"
+                        >
+                            LA DEDICACIÓN
+                        </h2>
+                        <div class="w-16 h-1 bg-emerald-500 mb-8 rounded-full">
+                        </div>
+
+                        <div class="space-y-6 w-full max-w-xs">
+                            <div
+                                class="bg-black/40 border border-emerald-900/50 p-4 rounded-xl backdrop-blur-sm"
+                            >
+                                <p
+                                    class="text-xs text-emerald-400 uppercase tracking-widest mb-1"
+                                >
+                                    Tiempo en el reino
+                                </p>
+                                <p
+                                    id="stat-hours"
+                                    class="text-4xl font-bold text-white"
+                                >
+                                    0h
+                                </p>
+                            </div>
+                            <div
+                                class="bg-black/40 border border-emerald-900/50 p-4 rounded-xl backdrop-blur-sm"
+                            >
+                                <p
+                                    class="text-xs text-emerald-400 uppercase tracking-widest mb-1"
+                                >
+                                    Mobs Aniquilados
+                                </p>
+                                <p
+                                    id="stat-mobs"
+                                    class="text-4xl font-bold text-white"
+                                >
+                                    0
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="space-y-6 w-full max-w-xs">
+                    <div class="w-full flex justify-center pb-20 shrink-0">
                         <div
-                            class="bg-black/40 border border-emerald-900/50 p-4 rounded-xl backdrop-blur-sm"
+                            id="msg-grind"
+                            class="w-full max-w-[90%] text-center min-h-[3em] max-h-[6em] overflow-y-auto bg-emerald-950/40 px-4 py-2 rounded-lg border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)] text-balance z-10 custom-scrollbar"
+                            style="overflow-wrap: break-word;"
                         >
-                            <p
-                                class="text-xs text-emerald-400 uppercase tracking-widest mb-1"
-                            >
-                                Tiempo en el reino
-                            </p>
-                            <p
-                                id="stat-hours"
-                                class="text-4xl font-bold text-white"
-                            >
-                                0h
-                            </p>
                         </div>
-                        <div
-                            class="bg-black/40 border border-emerald-900/50 p-4 rounded-xl backdrop-blur-sm"
-                        >
-                            <p
-                                class="text-xs text-emerald-400 uppercase tracking-widest mb-1"
-                            >
-                                Mobs Aniquilados
-                            </p>
-                            <p
-                                id="stat-mobs"
-                                class="text-4xl font-bold text-white"
-                            >
-                                0
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        id="msg-grind"
-                        class="absolute bottom-24 left-0 right-0 w-full max-w-[90%] mx-auto text-center min-h-[3em] max-h-[6em] overflow-y-auto bg-emerald-950/40 px-4 py-2 rounded-lg border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)] text-balance z-10 custom-scrollbar"
-                        style="overflow-wrap: break-word;"
-                    >
                     </div>
                 </div>
 
