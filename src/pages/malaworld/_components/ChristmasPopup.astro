@@ -202,6 +202,19 @@
                         "El Viajero Legendario"
                     </p>
 
+                    <div class="w-full max-w-sm text-center mb-6 px-4">
+                        <p
+                            id="rewind-personal-msg"
+                            class="text-zinc-300 text-sm italic mb-4 leading-relaxed"
+                        >
+                        </p>
+                        <p
+                            id="rewind-ponss-msg"
+                            class="text-xs text-zinc-500 font-serif border-t border-zinc-800 pt-4"
+                        >
+                        </p>
+                    </div>
+
                     <div class="grid grid-cols-2 gap-3 w-full max-w-xs mb-8">
                         <div
                             class="p-2 bg-white/5 rounded border border-white/10 text-center"
@@ -437,7 +450,34 @@
 
         if (user.is_generic) role = "Visitante Desconocido";
 
+        let personalMsg = "Tu presencia en MalaWorld ha dejado huella...";
+        if (user.player_kills > 50) {
+            personalMsg =
+                "Tu espada ha cantado la canción de la victoria más veces de las que podemos contar. Eres el terror de los que osan cruzarse en tu camino.";
+        } else if (user.mob_kills > 5000) {
+            personalMsg =
+                "Los ecos de miles de monstruos derrotados resuenan en tu historia. Eres el guardián que mantiene la oscuridad a raya.";
+        } else if (user.hours_played > 100) {
+            personalMsg =
+                "Has hecho de este mundo tu verdadero hogar. Cada bloque, cada bioma, conoce el peso de tus pasos y tu dedicación inquebrantable.";
+        } else if (user.deaths > 100) {
+            personalMsg =
+                "La muerte no es el final, sino una lección. Tu determinación para levantarte una y otra vez es lo que te hace verdaderamente inmortal.";
+        } else {
+            personalMsg =
+                "Tu aventura apenas comienza, pero el destino te aguarda con grandes hazañas. ¡El 2026 será tu año para conquistar!";
+        }
+
+        if (user.is_generic)
+            personalMsg =
+                "Aunque viajaste entre las sombras, tu visita nos honra. ¡Esperamos ver tu verdadero rostro en el nuevo año!";
+
         document.getElementById("rewind-role").innerText = `"${role}"`;
+        document.getElementById("rewind-personal-msg").innerText = personalMsg;
+        document.getElementById("rewind-ponss-msg").innerHTML = `
+            <span class="block text-[#7df9ff] mb-1">✨ De parte de Ponss:</span>
+            "¡Gracias por ser parte de esta locura un año más! Que esta Navidad esté llena de bloques de diamante y el 2026 traiga las construcciones más épicas de tu vida."
+        `;
     }
 
     function updateSlideUI() {
