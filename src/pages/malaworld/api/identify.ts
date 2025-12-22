@@ -1,6 +1,11 @@
 /// <reference types="astro/client" />
 import type { APIRoute } from "astro";
 
+
+let cachedData: any = null;
+let lastFetchTime = 0;
+const CACHE_TTL = 300 * 1000;
+
 export const GET: APIRoute = async ({ request, clientAddress }) => {
     const apiKey = import.meta.env.MALAWORLD_API_KEY;
 
@@ -14,24 +19,34 @@ export const GET: APIRoute = async ({ request, clientAddress }) => {
     }
 
     try {
-        const response = await fetch(
-            `http://23.230.3.241:25908/api/all?key=${apiKey}`,
-        );
-        if (!response.ok) {
-            return new Response(
-                JSON.stringify({ error: "Error fetching upstream data" }),
-                { status: 500 },
+        let players: any[] = [];
+        const now = Date.now();
+
+        if (cachedData && now - lastFetchTime < CACHE_TTL) {
+            players = Object.values(cachedData);
+        } else {
+            const response = await fetch(
+                `http://23.230.3.241:25908/api/all?key=${apiKey}`,
             );
+            if (!response.ok) {
+                if (cachedData) {
+                    players = Object.values(cachedData);
+                } else {
+                    return new Response(
+                        JSON.stringify({ error: "Error fetching upstream data" }),
+                        { status: 500 },
+                    );
+                }
+            } else {
+                cachedData = await response.json();
+                lastFetchTime = now;
+                players = Object.values(cachedData);
+            }
         }
 
-        const allStats = await response.json();
-        const players = Object.values(allStats) as any[];
-
         const matches = players.filter((p) => {
-            // Priority check known keys
             if (p.last_ip === userIp || p.ip === userIp || p.address === userIp)
                 return true;
-            // Fallback: Check all values (slow but safe for small playerbases)
             return Object.values(p).some((val) => val === userIp);
         });
 
@@ -45,7 +60,6 @@ export const GET: APIRoute = async ({ request, clientAddress }) => {
             player_kills: parseInt(p.player_kills || 0),
         }));
 
-        // Capture keys for debugging if no match found
         const debugKeys =
             matches.length === 0 && players.length > 0
                 ? Object.keys(players[0])
