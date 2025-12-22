@@ -1,0 +1,337 @@
+<div
+    id="christmas-popup-overlay"
+    class="fixed inset-0 z-100 flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-1000"
+>
+    <div
+        id="christmas-card"
+        class="relative w-full max-w-lg mx-4 bg-[#0a0a0a] border-2 border-red-900/50 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.3)] transform scale-90 transition-transform duration-500"
+    >
+        <div
+            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/snow.png')] opacity-20"
+        >
+        </div>
+        <div
+            class="absolute inset-0 bg-linear-to-b from-red-900/20 via-transparent to-green-900/10 pointer-events-none"
+        >
+        </div>
+
+        <div class="snowflakes" aria-hidden="true">
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+        </div>
+
+        <div class="relative z-10 p-8 flex flex-col items-center text-center">
+            <h2
+                class="font-['Cinzel'] text-4xl text-[#e3dac9] mb-2 drop-shadow-[0_2px_4px_black] animate-pulse"
+            >
+                ¡FELI<span class="text-red-500">Z</span> NAVID<span
+                    class="text-green-500">A</span
+                >D!
+            </h2>
+            <div
+                class="w-32 h-1 bg-linear-to-r from-red-500 via-[#ffd700] to-green-500 rounded-full mb-8"
+            >
+            </div>
+
+            <div id="christmas-selection" class="hidden w-full">
+                <p class="text-zinc-300 mb-6">
+                    Hemos detectado varias señales... ¿Quién eres?
+                </p>
+                <div
+                    id="christmas-candidates"
+                    class="flex flex-wrap justify-center gap-4"
+                >
+                </div>
+            </div>
+
+            <div
+                id="christmas-greeting"
+                class="hidden flex-col items-center w-full"
+            >
+                <div class="relative w-32 h-32 mb-6 group">
+                    <div
+                        class="absolute inset-0 bg-linear-to-tr from-red-500 to-green-500 rounded-xl blur opacity-50 group-hover:opacity-100 transition-opacity"
+                    >
+                    </div>
+                    <img
+                        id="xmas-avatar"
+                        src=""
+                        class="relative w-full h-full object-cover rounded-xl border-2 border-[#e3dac9] shadow-2xl"
+                    />
+                    <div
+                        class="absolute -top-4 -right-4 text-4xl rotate-12 drop-shadow-lg"
+                    >
+                        🎅
+                    </div>
+                </div>
+
+                <h3
+                    id="xmas-name"
+                    class="font-['Cinzel'] text-2xl text-[#7df9ff] mb-4 tracking-widest font-bold"
+                >
+                </h3>
+
+                <p
+                    id="xmas-message"
+                    class="text-zinc-300 text-sm md:text-base italic mb-8 max-w-xs leading-relaxed"
+                >
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 w-full mb-8">
+                    <div
+                        class="bg-black/40 p-3 rounded border border-red-900/30"
+                    >
+                        <div
+                            class="text-xs text-zinc-500 uppercase tracking-widest"
+                        >
+                            Muertes
+                        </div>
+                        <div
+                            id="xmas-deaths"
+                            class="text-red-400 font-bold text-lg"
+                        >
+                            0
+                        </div>
+                    </div>
+                    <div
+                        class="bg-black/40 p-3 rounded border border-green-900/30"
+                    >
+                        <div
+                            class="text-xs text-zinc-500 uppercase tracking-widest"
+                        >
+                            Mobs
+                        </div>
+                        <div
+                            id="xmas-mobs"
+                            class="text-green-400 font-bold text-lg"
+                        >
+                            0
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    onclick="closeChristmasPopup()"
+                    class="px-8 py-2 bg-linear-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-500 text-white font-bold tracking-widest uppercase rounded shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-all transform hover:scale-105"
+                >
+                    Continuar Aventura
+                </button>
+            </div>
+
+            <div id="christmas-loading" class="flex flex-col items-center">
+                <div
+                    class="w-8 h-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin mb-4"
+                >
+                </div>
+                <p class="text-xs text-zinc-500 uppercase tracking-widest">
+                    Identificando señal...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .snowflake {
+        color: #fff;
+        font-size: 1em;
+        font-family: Arial;
+        text-shadow: 0 0 1px #000;
+        position: absolute;
+        top: -10%;
+        z-index: 9999;
+        user-select: none;
+        cursor: default;
+        animation-name: snowflakes-fall, snowflakes-shake;
+        animation-duration: 10s, 3s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: infinite, infinite;
+        animation-play-state: running, running;
+    }
+    .snowflake:nth-of-type(0) {
+        left: 1%;
+        animation-delay: 0s, 0s;
+    }
+    .snowflake:nth-of-type(1) {
+        left: 10%;
+        animation-delay: 1s, 1s;
+    }
+    .snowflake:nth-of-type(2) {
+        left: 20%;
+        animation-delay: 6s, 0.5s;
+    }
+    .snowflake:nth-of-type(3) {
+        left: 30%;
+        animation-delay: 4s, 2s;
+    }
+    .snowflake:nth-of-type(4) {
+        left: 40%;
+        animation-delay: 2s, 2s;
+    }
+    .snowflake:nth-of-type(5) {
+        left: 50%;
+        animation-delay: 8s, 3s;
+    }
+    .snowflake:nth-of-type(6) {
+        left: 60%;
+        animation-delay: 6s, 2s;
+    }
+    .snowflake:nth-of-type(7) {
+        left: 70%;
+        animation-delay: 2.5s, 1s;
+    }
+    .snowflake:nth-of-type(8) {
+        left: 80%;
+        animation-delay: 1s, 0s;
+    }
+    .snowflake:nth-of-type(9) {
+        left: 90%;
+        animation-delay: 3s, 1.5s;
+    }
+
+    @keyframes snowflakes-fall {
+        0% {
+            top: -10%;
+        }
+        100% {
+            top: 100%;
+        }
+    }
+    @keyframes snowflakes-shake {
+        0% {
+            transform: translateX(0px);
+        }
+        50% {
+            transform: translateX(40px);
+        }
+        100% {
+            transform: translateX(0px);
+        }
+    }
+</style>
+
+<script is:inline>
+    async function initChristmas() {
+        const lastSeen = localStorage.getItem("mw_xmas_seen");
+        const now = new Date().getTime();
+        if (lastSeen && now - parseInt(lastSeen) < 3600000 * 2) {
+            console.log("Christmas popup already seen recently.");
+            return;
+        }
+
+        const overlay = document.getElementById("christmas-popup-overlay");
+        const card = document.getElementById("christmas-card");
+        const loading = document.getElementById("christmas-loading");
+        const selection = document.getElementById("christmas-selection");
+        const greeting = document.getElementById("christmas-greeting");
+        const candidatesDiv = document.getElementById("christmas-candidates");
+
+        try {
+            overlay.classList.remove("opacity-0", "pointer-events-none");
+            card.classList.remove("scale-90");
+            card.classList.add("scale-100");
+
+            const res = await fetch("/malaworld/api/identify");
+            if (!res.ok) throw new Error("API Error");
+
+            const data = await res.json();
+            const candidates = data.candidates || [];
+
+            loading.classList.add("hidden");
+
+            if (candidates.length === 0) {
+                showGreeting({
+                    name: "Viajero",
+                    skin: "MHF_Steve",
+                    mob_kills: 0,
+                    deaths: 0,
+                    hours_played: 0,
+                    is_generic: true,
+                });
+            } else if (candidates.length === 1) {
+                showGreeting(candidates[0]);
+            } else {
+                selection.classList.remove("hidden");
+                selection.classList.add("flex", "flex-col");
+
+                candidatesDiv.innerHTML = candidates
+                    .map(
+                        (p, idx) => `
+                    <div onclick="selectUser(${idx})" class="cursor-pointer flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
+                        <img src="${p.skin}" class="w-16 h-16 rounded-lg border border-zinc-700 group-hover:border-[#7df9ff] transition-colors" />
+                        <span class="text-xs text-zinc-400 group-hover:text-white font-bold">${p.name}</span>
+                    </div>
+                `,
+                    )
+                    .join("");
+
+                window.msgCandidates = candidates;
+            }
+        } catch (e) {
+            console.error(e);
+            closeChristmasPopup();
+        }
+    }
+
+    window.selectUser = (idx) => {
+        const user = window.msgCandidates[idx];
+        document.getElementById("christmas-selection").classList.add("hidden");
+        showGreeting(user);
+    };
+
+    function showGreeting(user) {
+        const greeting = document.getElementById("christmas-greeting");
+        greeting.classList.remove("hidden");
+        greeting.classList.add("flex");
+
+        document.getElementById("xmas-avatar").src = user.is_generic
+            ? `https://mc-heads.net/avatar/${user.skin}`
+            : user.skin;
+
+        document.getElementById("xmas-name").innerText = user.name;
+        document.getElementById("xmas-deaths").innerText = user.deaths;
+        document.getElementById("xmas-mobs").innerText = user.mob_kills;
+
+        let msg = "¡Que el 2026 traiga grandes construcciones!";
+
+        if (user.is_generic) {
+            msg =
+                "Aunque no reconocemos tu aura, ¡eres bienvenido a celebrar con nosotros!";
+        } else if (user.deaths > 100) {
+            msg =
+                "¡Esperamos que en 2026 mueras un poco menos! El cementerio ya está lleno.";
+        } else if (user.mob_kills > 5000) {
+            msg =
+                "¡Eres una máquina de matar! Los mobs temblarán al verte el próximo año.";
+        } else if (user.hours_played > 100) {
+            msg =
+                "¡Has vivido en el servidor este año! Gracias por tu dedicación, leyenda.";
+        } else if (user.hours_played < 5) {
+            msg =
+                "¡Un nuevo aventurero! Esperamos verte crecer y conquistar estas tierras.";
+        }
+
+        document.getElementById("xmas-message").innerText = `"${msg}"`;
+
+        localStorage.setItem("mw_xmas_seen", new Date().getTime().toString());
+    }
+
+    window.closeChristmasPopup = () => {
+        const overlay = document.getElementById("christmas-popup-overlay");
+        const card = document.getElementById("christmas-card");
+
+        overlay.classList.add("opacity-0", "pointer-events-none");
+        card.classList.remove("scale-100");
+        card.classList.add("scale-90");
+    };
+
+    setTimeout(initChristmas, 1500);
+</script>
