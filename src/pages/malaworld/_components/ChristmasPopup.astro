@@ -87,31 +87,61 @@
 
                 <div class="grid grid-cols-2 gap-4 w-full mb-8">
                     <div
-                        class="bg-black/40 p-3 rounded border border-red-900/30"
+                        class="bg-[#111]/80 p-3 rounded-lg border border-red-900/30 flex flex-col items-center hover:border-red-500/50 transition-colors"
                     >
                         <div
-                            class="text-xs text-zinc-500 uppercase tracking-widest"
+                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
                         >
                             Muertes
                         </div>
                         <div
                             id="xmas-deaths"
-                            class="text-red-400 font-bold text-lg"
+                            class="text-red-400 font-bold text-lg drop-shadow-md"
                         >
                             0
                         </div>
                     </div>
                     <div
-                        class="bg-black/40 p-3 rounded border border-green-900/30"
+                        class="bg-[#111]/80 p-3 rounded-lg border border-green-900/30 flex flex-col items-center hover:border-green-500/50 transition-colors"
                     >
                         <div
-                            class="text-xs text-zinc-500 uppercase tracking-widest"
+                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
                         >
                             Mobs
                         </div>
                         <div
                             id="xmas-mobs"
-                            class="text-green-400 font-bold text-lg"
+                            class="text-green-400 font-bold text-lg drop-shadow-md"
+                        >
+                            0
+                        </div>
+                    </div>
+                    <div
+                        class="bg-[#111]/80 p-3 rounded-lg border border-blue-900/30 flex flex-col items-center hover:border-blue-500/50 transition-colors"
+                    >
+                        <div
+                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
+                        >
+                            Horas
+                        </div>
+                        <div
+                            id="xmas-hours"
+                            class="text-blue-400 font-bold text-lg drop-shadow-md"
+                        >
+                            0h
+                        </div>
+                    </div>
+                    <div
+                        class="bg-[#111]/80 p-3 rounded-lg border border-purple-900/30 flex flex-col items-center hover:border-purple-500/50 transition-colors"
+                    >
+                        <div
+                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
+                        >
+                            IPvE Kills
+                        </div>
+                        <div
+                            id="xmas-pvp"
+                            class="text-purple-400 font-bold text-lg drop-shadow-md"
                         >
                             0
                         </div>
@@ -120,7 +150,7 @@
 
                 <button
                     onclick="closeChristmasPopup()"
-                    class="px-8 py-2 bg-linear-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-500 text-white font-bold tracking-widest uppercase rounded shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-all transform hover:scale-105"
+                    class="px-10 py-3 bg-linear-to-r from-red-900 via-red-700 to-red-900 bg-size-[200%_100%] hover:bg-[100%_0] text-white font-bold tracking-widest uppercase rounded shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-500 transform hover:scale-105 border border-red-500/30"
                 >
                     Continuar Aventura
                 </button>
@@ -131,7 +161,9 @@
                     class="w-8 h-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin mb-4"
                 >
                 </div>
-                <p class="text-xs text-zinc-500 uppercase tracking-widest">
+                <p
+                    class="text-xs text-zinc-500 uppercase tracking-widest animate-pulse"
+                >
                     Identificando señal...
                 </p>
             </div>
@@ -254,9 +286,8 @@
                     mob_kills: 0,
                     deaths: 0,
                     hours_played: 0,
+                    player_kills: 0,
                     is_generic: true,
-                    ip: data.ip,
-                    debug: data.debug_keys ? data.debug_keys.join(", ") : "",
                 });
             } else if (candidates.length === 1) {
                 showGreeting(candidates[0]);
@@ -299,20 +330,27 @@
             : user.skin;
 
         document.getElementById("xmas-name").innerText = user.name;
+
         document.getElementById("xmas-deaths").innerText = user.deaths;
         document.getElementById("xmas-mobs").innerText = user.mob_kills;
+        document.getElementById("xmas-hours").innerText =
+            Math.floor(user.hours_played || 0) + "h";
+        document.getElementById("xmas-pvp").innerText = user.player_kills || 0;
 
         let msg = "¡Que el 2026 traiga grandes construcciones!";
 
         if (user.is_generic) {
-            msg = `No reconocemos tu señal (${user.ip || "?"}).`;
-            if (user.debug) msg += ` Campos disponibles: ${user.debug}`;
+            msg =
+                "Aunque no reconocemos tu aura, ¡eres bienvenido a celebrar con nosotros!";
+        } else if (user.player_kills > 50) {
+            msg =
+                "¡Un guerrero formidable! Que tus espadas sigan afiladas en 2026.";
+        } else if (user.mob_kills > 10000) {
+            msg =
+                "¡El terror de los mobs! Gracias por mantener el mundo a salvo.";
         } else if (user.deaths > 100) {
             msg =
                 "¡Esperamos que en 2026 mueras un poco menos! El cementerio ya está lleno.";
-        } else if (user.mob_kills > 5000) {
-            msg =
-                "¡Eres una máquina de matar! Los mobs temblarán al verte el próximo año.";
         } else if (user.hours_played > 100) {
             msg =
                 "¡Has vivido en el servidor este año! Gracias por tu dedicación, leyenda.";
