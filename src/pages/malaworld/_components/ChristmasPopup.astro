@@ -554,7 +554,7 @@
                 personalMsg;
             document.getElementById("rewind-ponss-msg").innerHTML = `
             <span class="block text-[#7df9ff] mb-1">✨ De parte de Ponss:</span>
-            "¡Gracias por ser parte de esta locura un año más! Que esta Navidad esté llena de bloques de diamante y el 2026 traiga las construcciones más épicas de tu vida."
+            "Gracias por dedicarle tiempo al server este año, de verdad. Espero que pases unas felices fiestas y ojalá nos veamos en 2026 para seguir con esto. ¡Un abrazo!"
         `;
         }
 
@@ -591,19 +591,16 @@
                     "absolute inset-0 transition-colors duration-700 bg-linear-to-b from-[#111] via-[#222100] to-black";
 
             const arrows = document.getElementById("rewind-arrows");
-            // const dots already declared at top of function
 
             if (currentSlideIdx === 0) {
                 arrows.style.opacity = "0";
                 dots.style.opacity = "0";
-                // Disable button clicks
                 arrows
                     .querySelectorAll("button")
                     .forEach((b) => (b.style.pointerEvents = "none"));
             } else {
                 arrows.style.opacity = "1";
                 dots.style.opacity = "1";
-                // Enable button clicks
                 arrows
                     .querySelectorAll("button")
                     .forEach((b) => (b.style.pointerEvents = "auto"));
