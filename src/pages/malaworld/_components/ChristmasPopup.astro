@@ -1,270 +1,348 @@
 <div
-    id="christmas-popup-overlay"
-    class="fixed inset-0 z-100 flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-1000"
+    id="rewind-overlay"
+    class="fixed inset-0 z-100 flex items-center justify-center bg-black/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-1000"
 >
     <div
-        id="christmas-card"
-        class="relative w-full max-w-lg mx-4 bg-[#0a0a0a] border-2 border-red-900/50 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.3)] transform scale-90 transition-transform duration-500"
+        id="rewind-card"
+        class="relative w-full max-w-lg mx-4 bg-[#0a0a0a] border border-zinc-800 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] transform scale-90 transition-transform duration-500 min-h-[500px] flex flex-col"
     >
         <div
-            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/snow.png')] opacity-20"
+            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"
         >
         </div>
         <div
-            class="absolute inset-0 bg-linear-to-b from-red-900/20 via-transparent to-green-900/10 pointer-events-none"
+            id="slide-bg"
+            class="absolute inset-0 transition-colors duration-700 bg-linear-to-b from-black via-transparent to-black"
         >
         </div>
 
-        <div class="snowflakes" aria-hidden="true">
+        <div class="snowflakes opacity-30" aria-hidden="true">
             <div class="snowflake">❅</div>
-            <div class="snowflake">❆</div>
+            <div class="snowflake">•</div>
+            <div class="snowflake">.</div>
+            <div class="snowflake">✦</div>
             <div class="snowflake">❅</div>
-            <div class="snowflake">❆</div>
-            <div class="snowflake">❅</div>
-            <div class="snowflake">❆</div>
-            <div class="snowflake">❅</div>
-            <div class="snowflake">❆</div>
-            <div class="snowflake">❅</div>
-            <div class="snowflake">❆</div>
+            <div class="snowflake">•</div>
+            <div class="snowflake">.</div>
+            <div class="snowflake">✦</div>
         </div>
 
-        <div class="relative z-10 p-8 flex flex-col items-center text-center">
-            <h2
-                class="font-['Cinzel'] text-4xl text-[#e3dac9] mb-2 drop-shadow-[0_2px_4px_black] animate-pulse"
-            >
-                ¡FELI<span class="text-red-500">Z</span> NAVID<span
-                    class="text-green-500">A</span
-                >D!
-            </h2>
-            <div
-                class="w-32 h-1 bg-linear-to-r from-red-500 via-[#ffd700] to-green-500 rounded-full mb-8"
-            >
-            </div>
-
-            <div id="christmas-selection" class="hidden w-full">
-                <p class="text-zinc-300 mb-6">
-                    Hemos detectado varias señales... ¿Quién eres?
-                </p>
+        <div
+            class="relative z-10 grow flex flex-col p-8 items-center justify-center text-center h-full"
+        >
+            <div id="rewind-loading" class="flex flex-col items-center">
                 <div
-                    id="christmas-candidates"
-                    class="flex flex-wrap justify-center gap-4"
+                    class="w-12 h-12 border-4 border-[#7df9ff] border-t-transparent rounded-full animate-spin mb-6 shadow-[0_0_15px_#7df9ff]"
+                >
+                </div>
+                <p
+                    class="font-['Cinzel'] text-[#7df9ff] tracking-widest animate-pulse"
+                >
+                    Sincronizando Archivos...
+                </p>
+            </div>
+
+            <div
+                id="rewind-selection"
+                class="hidden w-full h-full flex-col justify-center"
+            >
+                <h2 class="font-['Cinzel'] text-2xl text-zinc-300 mb-8">
+                    ¿Quién eres, viajero?
+                </h2>
+                <div
+                    id="rewind-candidates"
+                    class="flex flex-wrap justify-center gap-6"
                 >
                 </div>
             </div>
 
+            <div id="rewind-slides" class="hidden w-full h-full relative">
+                <div
+                    class="slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none"
+                    data-index="0"
+                >
+                    <h1
+                        class="font-['Cinzel'] text-5xl md:text-6xl text-white mb-6 drop-shadow-[0_0_10px_white]"
+                    >
+                        REWIND<br /><span class="text-[#7df9ff]">2025</span>
+                    </h1>
+                    <p
+                        class="text-zinc-400 tracking-widest uppercase mb-12 text-sm"
+                    >
+                        MalaWorld Server
+                    </p>
+                    <button
+                        onclick="nextSlide()"
+                        class="px-8 py-3 bg-white text-black font-bold uppercase tracking-widest hover:bg-[#7df9ff] hover:scale-105 transition-all rounded-full shadow-lg"
+                    >
+                        Ver mi año
+                    </button>
+                </div>
+
+                <div
+                    class="slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none"
+                    data-index="1"
+                >
+                    <div class="text-red-500 text-6xl mb-6 animate-bounce">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <h2 class="font-['Cinzel'] text-3xl text-red-100 mb-2">
+                        EL GUERRERO
+                    </h2>
+                    <div class="w-16 h-1 bg-red-600 mb-8 rounded-full"></div>
+
+                    <div class="space-y-6 w-full max-w-xs">
+                        <div
+                            class="bg-black/40 border border-red-900/50 p-4 rounded-xl backdrop-blur-sm"
+                        >
+                            <p
+                                class="text-xs text-red-400 uppercase tracking-widest mb-1"
+                            >
+                                Enemigos Eliminados
+                            </p>
+                            <p
+                                id="stat-pvp"
+                                class="text-4xl font-bold text-white"
+                            >
+                                0
+                            </p>
+                        </div>
+                        <div
+                            class="bg-black/40 border border-red-900/50 p-4 rounded-xl backdrop-blur-sm"
+                        >
+                            <p
+                                class="text-xs text-red-400 uppercase tracking-widest mb-1"
+                            >
+                                Veces que caíste
+                            </p>
+                            <p
+                                id="stat-deaths"
+                                class="text-4xl font-bold text-white"
+                            >
+                                0
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none"
+                    data-index="2"
+                >
+                    <div class="text-emerald-400 text-6xl mb-6 animate-pulse">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h2 class="font-['Cinzel'] text-3xl text-emerald-100 mb-2">
+                        LA DEDICACIÓN
+                    </h2>
+                    <div class="w-16 h-1 bg-emerald-500 mb-8 rounded-full">
+                    </div>
+
+                    <div class="space-y-6 w-full max-w-xs">
+                        <div
+                            class="bg-black/40 border border-emerald-900/50 p-4 rounded-xl backdrop-blur-sm"
+                        >
+                            <p
+                                class="text-xs text-emerald-400 uppercase tracking-widest mb-1"
+                            >
+                                Tiempo en el reino
+                            </p>
+                            <p
+                                id="stat-hours"
+                                class="text-4xl font-bold text-white"
+                            >
+                                0h
+                            </p>
+                        </div>
+                        <div
+                            class="bg-black/40 border border-emerald-900/50 p-4 rounded-xl backdrop-blur-sm"
+                        >
+                            <p
+                                class="text-xs text-emerald-400 uppercase tracking-widest mb-1"
+                            >
+                                Mobs Aniquilados
+                            </p>
+                            <p
+                                id="stat-mobs"
+                                class="text-4xl font-bold text-white"
+                            >
+                                0
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 opacity-0 translate-x-10 pointer-events-none"
+                    data-index="3"
+                >
+                    <div class="relative w-24 h-24 mb-6">
+                        <img
+                            id="rewind-avatar"
+                            src=""
+                            class="w-full h-full rounded-xl border-2 border-[#ffd700] shadow-[0_0_20px_#ffd700]"
+                        />
+                        <div
+                            class="absolute -bottom-3 -right-3 bg-black border border-[#ffd700] text-[#ffd700] text-xs px-2 py-1 rounded font-bold"
+                        >
+                            2025
+                        </div>
+                    </div>
+
+                    <h2
+                        id="rewind-name"
+                        class="font-['Cinzel'] text-3xl text-[#ffd700] mb-2 drop-shadow-md"
+                    >
+                        Jugador
+                    </h2>
+                    <p
+                        id="rewind-role"
+                        class="text-zinc-400 italic text-sm mb-6"
+                    >
+                        "El Viajero Legendario"
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3 w-full max-w-xs mb-8">
+                        <div
+                            class="p-2 bg-white/5 rounded border border-white/10 text-center"
+                        >
+                            <span
+                                class="block text-[10px] text-zinc-500 uppercase"
+                                >Kills</span
+                            >
+                            <span id="sum-pvp" class="text-white font-bold"
+                                >0</span
+                            >
+                        </div>
+                        <div
+                            class="p-2 bg-white/5 rounded border border-white/10 text-center"
+                        >
+                            <span
+                                class="block text-[10px] text-zinc-500 uppercase"
+                                >Muertes</span
+                            >
+                            <span id="sum-deaths" class="text-white font-bold"
+                                >0</span
+                            >
+                        </div>
+                        <div
+                            class="p-2 bg-white/5 rounded border border-white/10 text-center"
+                        >
+                            <span
+                                class="block text-[10px] text-zinc-500 uppercase"
+                                >Mobs</span
+                            >
+                            <span id="sum-mobs" class="text-white font-bold"
+                                >0</span
+                            >
+                        </div>
+                        <div
+                            class="p-2 bg-white/5 rounded border border-white/10 text-center"
+                        >
+                            <span
+                                class="block text-[10px] text-zinc-500 uppercase"
+                                >Horas</span
+                            >
+                            <span id="sum-hours" class="text-white font-bold"
+                                >0h</span
+                            >
+                        </div>
+                    </div>
+
+                    <button
+                        onclick="closeRewind()"
+                        class="px-8 py-2 bg-[#ffd700] text-black font-bold uppercase tracking-widest hover:bg-white transition-colors rounded-sm shadow-lg"
+                    >
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+
             <div
-                id="christmas-greeting"
-                class="hidden flex-col items-center w-full"
+                id="rewind-controls"
+                class="hidden absolute bottom-6 w-full px-8 justify-between items-center z-20"
             >
-                <div class="relative w-32 h-32 mb-6 group">
-                    <div
-                        class="absolute inset-0 bg-linear-to-tr from-red-500 to-green-500 rounded-xl blur opacity-50 group-hover:opacity-100 transition-opacity"
-                    >
-                    </div>
-                    <img
-                        id="xmas-avatar"
-                        src=""
-                        class="relative w-full h-full object-cover rounded-xl border-2 border-[#e3dac9] shadow-2xl"
-                    />
-                    <div
-                        class="absolute -top-4 -right-4 text-4xl rotate-12 drop-shadow-lg"
-                    >
-                        🎅
-                    </div>
-                </div>
-
-                <h3
-                    id="xmas-name"
-                    class="font-['Cinzel'] text-2xl text-[#7df9ff] mb-4 tracking-widest font-bold"
-                >
-                </h3>
-
-                <p
-                    id="xmas-message"
-                    class="text-zinc-300 text-sm md:text-base italic mb-8 max-w-xs leading-relaxed"
-                >
-                </p>
-
-                <div class="grid grid-cols-2 gap-4 w-full mb-8">
-                    <div
-                        class="bg-[#111]/80 p-3 rounded-lg border border-red-900/30 flex flex-col items-center hover:border-red-500/50 transition-colors"
-                    >
-                        <div
-                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
-                        >
-                            Muertes
-                        </div>
-                        <div
-                            id="xmas-deaths"
-                            class="text-red-400 font-bold text-lg drop-shadow-md"
-                        >
-                            0
-                        </div>
-                    </div>
-                    <div
-                        class="bg-[#111]/80 p-3 rounded-lg border border-green-900/30 flex flex-col items-center hover:border-green-500/50 transition-colors"
-                    >
-                        <div
-                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
-                        >
-                            Mobs
-                        </div>
-                        <div
-                            id="xmas-mobs"
-                            class="text-green-400 font-bold text-lg drop-shadow-md"
-                        >
-                            0
-                        </div>
-                    </div>
-                    <div
-                        class="bg-[#111]/80 p-3 rounded-lg border border-blue-900/30 flex flex-col items-center hover:border-blue-500/50 transition-colors"
-                    >
-                        <div
-                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
-                        >
-                            Horas
-                        </div>
-                        <div
-                            id="xmas-hours"
-                            class="text-blue-400 font-bold text-lg drop-shadow-md"
-                        >
-                            0h
-                        </div>
-                    </div>
-                    <div
-                        class="bg-[#111]/80 p-3 rounded-lg border border-purple-900/30 flex flex-col items-center hover:border-purple-500/50 transition-colors"
-                    >
-                        <div
-                            class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1"
-                        >
-                            IPvE Kills
-                        </div>
-                        <div
-                            id="xmas-pvp"
-                            class="text-purple-400 font-bold text-lg drop-shadow-md"
-                        >
-                            0
-                        </div>
-                    </div>
-                </div>
-
                 <button
-                    onclick="closeChristmasPopup()"
-                    class="px-10 py-3 bg-linear-to-r from-red-900 via-red-700 to-red-900 bg-size-[200%_100%] hover:bg-[100%_0] text-white font-bold tracking-widest uppercase rounded shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-500 transform hover:scale-105 border border-red-500/30"
+                    onclick="prevSlide()"
+                    class="text-zinc-500 hover:text-white transition-colors"
+                    ><i class="fas fa-chevron-left"></i></button
                 >
-                    Continuar Aventura
-                </button>
-            </div>
-
-            <div id="christmas-loading" class="flex flex-col items-center">
-                <div
-                    class="w-8 h-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin mb-4"
+                <div class="flex gap-2" id="rewind-dots"></div>
+                <button
+                    onclick="nextSlide()"
+                    class="text-zinc-500 hover:text-white transition-colors"
+                    ><i class="fas fa-chevron-right"></i></button
                 >
-                </div>
-                <p
-                    class="text-xs text-zinc-500 uppercase tracking-widest animate-pulse"
-                >
-                    Identificando señal...
-                </p>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    .snowflake {
-        color: #fff;
-        font-size: 1em;
-        font-family: Arial;
-        text-shadow: 0 0 1px #000;
-        position: absolute;
-        top: -10%;
-        z-index: 9999;
-        user-select: none;
-        cursor: default;
-        animation-name: snowflakes-fall, snowflakes-shake;
-        animation-duration: 10s, 3s;
-        animation-timing-function: linear, ease-in-out;
-        animation-iteration-count: infinite, infinite;
-        animation-play-state: running, running;
+    .slide.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
     }
-    .snowflake:nth-of-type(0) {
-        left: 1%;
-        animation-delay: 0s, 0s;
+    .slide.prev {
+        opacity: 0;
+        transform: translateX(-50px);
+        pointer-events: none;
     }
-    .snowflake:nth-of-type(1) {
-        left: 10%;
-        animation-delay: 1s, 1s;
-    }
-    .snowflake:nth-of-type(2) {
-        left: 20%;
-        animation-delay: 6s, 0.5s;
-    }
-    .snowflake:nth-of-type(3) {
-        left: 30%;
-        animation-delay: 4s, 2s;
-    }
-    .snowflake:nth-of-type(4) {
-        left: 40%;
-        animation-delay: 2s, 2s;
-    }
-    .snowflake:nth-of-type(5) {
-        left: 50%;
-        animation-delay: 8s, 3s;
-    }
-    .snowflake:nth-of-type(6) {
-        left: 60%;
-        animation-delay: 6s, 2s;
-    }
-    .snowflake:nth-of-type(7) {
-        left: 70%;
-        animation-delay: 2.5s, 1s;
-    }
-    .snowflake:nth-of-type(8) {
-        left: 80%;
-        animation-delay: 1s, 0s;
-    }
-    .snowflake:nth-of-type(9) {
-        left: 90%;
-        animation-delay: 3s, 1.5s;
+    .slide.next {
+        opacity: 0;
+        transform: translateX(50px);
+        pointer-events: none;
     }
 
-    @keyframes snowflakes-fall {
-        0% {
-            top: -10%;
-        }
+    .snowflake {
+        position: absolute;
+        top: -10%;
+        z-index: 10;
+        color: white;
+        user-select: none;
+        animation-name: fall;
+        animation-duration: 10s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    @keyframes fall {
         100% {
             top: 100%;
         }
     }
-    @keyframes snowflakes-shake {
-        0% {
-            transform: translateX(0px);
-        }
-        50% {
-            transform: translateX(40px);
-        }
-        100% {
-            transform: translateX(0px);
-        }
+    .snowflake:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        font-size: 1em;
+        opacity: 0.5;
+    }
+    .snowflake:nth-child(2) {
+        left: 30%;
+        animation-delay: 2s;
+        font-size: 0.5em;
+        opacity: 0.3;
+    }
+    .snowflake:nth-child(3) {
+        left: 70%;
+        animation-delay: 4s;
+        font-size: 0.8em;
+        opacity: 0.6;
     }
 </style>
 
 <script is:inline>
-    async function initChristmas() {
-        const lastSeen = localStorage.getItem("mw_xmas_seen");
-        const now = new Date().getTime();
-        if (lastSeen && now - parseInt(lastSeen) < 3600000 * 2) {
-            console.log("Christmas popup already seen recently.");
-            return;
-        }
+    const TOTAL_SLIDES = 4;
+    let currentSlideIdx = 0;
+    let rewindData = null;
 
-        const overlay = document.getElementById("christmas-popup-overlay");
-        const card = document.getElementById("christmas-card");
-        const loading = document.getElementById("christmas-loading");
-        const selection = document.getElementById("christmas-selection");
-        const greeting = document.getElementById("christmas-greeting");
-        const candidatesDiv = document.getElementById("christmas-candidates");
+    async function initRewind() {
+        const lastSeen = localStorage.getItem("mw_rewind_seen_v2");
+        if (lastSeen && Date.now() - parseInt(lastSeen) < 3600000 * 2) return;
+
+        const overlay = document.getElementById("rewind-overlay");
+        const card = document.getElementById("rewind-card");
+        const loading = document.getElementById("rewind-loading");
 
         try {
             overlay.classList.remove("opacity-0", "pointer-events-none");
@@ -273,14 +351,17 @@
 
             const res = await fetch("/malaworld/api/identify");
             if (!res.ok) throw new Error("API Error");
-
             const data = await res.json();
             const candidates = data.candidates || [];
 
             loading.classList.add("hidden");
 
-            if (candidates.length === 0) {
-                showGreeting({
+            if (candidates.length > 1) {
+                showSelection(candidates);
+            } else if (candidates.length === 1) {
+                startExperience(candidates[0]);
+            } else {
+                startExperience({
                     name: "Viajero",
                     skin: "MHF_Steve",
                     mob_kills: 0,
@@ -288,90 +369,145 @@
                     hours_played: 0,
                     player_kills: 0,
                     is_generic: true,
+                    ip: data.ip,
                 });
-            } else if (candidates.length === 1) {
-                showGreeting(candidates[0]);
-            } else {
-                selection.classList.remove("hidden");
-                selection.classList.add("flex", "flex-col");
-
-                candidatesDiv.innerHTML = candidates
-                    .map(
-                        (p, idx) => `
-                    <div onclick="selectUser(${idx})" class="cursor-pointer flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
-                        <img src="${p.skin}" class="w-16 h-16 rounded-lg border border-zinc-700 group-hover:border-[#7df9ff] transition-colors" />
-                        <span class="text-xs text-zinc-400 group-hover:text-white font-bold">${p.name}</span>
-                    </div>
-                `,
-                    )
-                    .join("");
-
-                window.msgCandidates = candidates;
             }
         } catch (e) {
             console.error(e);
-            closeChristmasPopup();
+            closeRewind();
         }
     }
 
-    window.selectUser = (idx) => {
-        const user = window.msgCandidates[idx];
-        document.getElementById("christmas-selection").classList.add("hidden");
-        showGreeting(user);
+    function showSelection(candidates) {
+        const selDiv = document.getElementById("rewind-selection");
+        const cont = document.getElementById("rewind-candidates");
+        selDiv.classList.remove("hidden");
+        selDiv.classList.add("flex");
+
+        cont.innerHTML = candidates
+            .map(
+                (p, i) => `
+            <div onclick="selectRewindUser(${i})" class="cursor-pointer group flex flex-col items-center gap-3">
+                <img src="${p.skin}" class="w-20 h-20 rounded-full border-2 border-zinc-700 group-hover:border-[#7df9ff] transition-all shadow-lg" />
+                 <span class="text-zinc-400 font-bold group-hover:text-white transition-colors">${p.name}</span>
+            </div>
+        `,
+            )
+            .join("");
+
+        window.tempCandidates = candidates;
+    }
+
+    window.selectRewindUser = (i) => {
+        document.getElementById("rewind-selection").classList.add("hidden");
+        startExperience(window.tempCandidates[i]);
     };
 
-    function showGreeting(user) {
-        const greeting = document.getElementById("christmas-greeting");
-        greeting.classList.remove("hidden");
-        greeting.classList.add("flex");
+    function startExperience(user) {
+        rewindData = user;
+        document.getElementById("rewind-slides").classList.remove("hidden");
+        document.getElementById("rewind-controls").classList.remove("hidden");
+        document.getElementById("rewind-controls").classList.add("flex");
 
-        document.getElementById("xmas-avatar").src = user.is_generic
-            ? `https://mc-heads.net/avatar/${user.skin}`
-            : user.skin;
-
-        document.getElementById("xmas-name").innerText = user.name;
-
-        document.getElementById("xmas-deaths").innerText = user.deaths;
-        document.getElementById("xmas-mobs").innerText = user.mob_kills;
-        document.getElementById("xmas-hours").innerText =
-            Math.floor(user.hours_played || 0) + "h";
-        document.getElementById("xmas-pvp").innerText = user.player_kills || 0;
-
-        let msg = "¡Que el 2026 traiga grandes construcciones!";
-
-        if (user.is_generic) {
-            msg =
-                "Aunque no reconocemos tu aura, ¡eres bienvenido a celebrar con nosotros!";
-        } else if (user.player_kills > 50) {
-            msg =
-                "¡Un guerrero formidable! Que tus espadas sigan afiladas en 2026.";
-        } else if (user.mob_kills > 10000) {
-            msg =
-                "¡El terror de los mobs! Gracias por mantener el mundo a salvo.";
-        } else if (user.deaths > 100) {
-            msg =
-                "¡Esperamos que en 2026 mueras un poco menos! El cementerio ya está lleno.";
-        } else if (user.hours_played > 100) {
-            msg =
-                "¡Has vivido en el servidor este año! Gracias por tu dedicación, leyenda.";
-        } else if (user.hours_played < 5) {
-            msg =
-                "¡Un nuevo aventurero! Esperamos verte crecer y conquistar estas tierras.";
-        }
-
-        document.getElementById("xmas-message").innerText = `"${msg}"`;
-
-        localStorage.setItem("mw_xmas_seen", new Date().getTime().toString());
+        populateData(user);
+        updateSlideUI();
     }
 
-    window.closeChristmasPopup = () => {
-        const overlay = document.getElementById("christmas-popup-overlay");
-        const card = document.getElementById("christmas-card");
+    function populateData(user) {
+        document.getElementById("stat-pvp").innerText = user.player_kills || 0;
+        document.getElementById("stat-deaths").innerText = user.deaths || 0;
+        document.getElementById("stat-mobs").innerText = user.mob_kills || 0;
+        document.getElementById("stat-hours").innerText =
+            Math.floor(user.hours_played || 0) + "h";
+        document.getElementById("rewind-avatar").src = user.is_generic
+            ? `https://mc-heads.net/avatar/${user.skin}`
+            : user.skin;
+        document.getElementById("rewind-name").innerText = user.name;
+        document.getElementById("sum-pvp").innerText = user.player_kills || 0;
+        document.getElementById("sum-deaths").innerText = user.deaths || 0;
+        document.getElementById("sum-mobs").innerText = user.mob_kills || 0;
+        document.getElementById("sum-hours").innerText =
+            Math.floor(user.hours_played || 0) + "h";
 
+        let role = "El Viajero Silencioso";
+        if (user.player_kills > 50) role = "El Señor de la Guerra";
+        else if (user.mob_kills > 5000) role = "El Cazador Supremo";
+        else if (user.hours_played > 100) role = "El Guardián Eterno";
+        else if (user.deaths > 100) role = "El Renacido";
+
+        if (user.is_generic) role = "Visitante Desconocido";
+
+        document.getElementById("rewind-role").innerText = `"${role}"`;
+    }
+
+    function updateSlideUI() {
+        const slides = document.querySelectorAll(".slide");
+        const bg = document.getElementById("slide-bg");
+        const dots = document.getElementById("rewind-dots");
+
+        slides.forEach((s) => {
+            const idx = parseInt(s.dataset.index);
+            s.className =
+                "slide absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 pointer-events-none opacity-0";
+
+            if (idx === currentSlideIdx) {
+                s.classList.add("active");
+            } else if (idx < currentSlideIdx) {
+                s.classList.add("prev");
+            } else {
+                s.classList.add("next");
+            }
+        });
+
+        if (currentSlideIdx === 0)
+            bg.className =
+                "absolute inset-0 transition-colors duration-700 bg-linear-to-b from-black via-[#0a0a0a] to-black";
+        if (currentSlideIdx === 1)
+            bg.className =
+                "absolute inset-0 transition-colors duration-700 bg-linear-to-b from-[#220000] via-[#110000] to-black";
+        if (currentSlideIdx === 2)
+            bg.className =
+                "absolute inset-0 transition-colors duration-700 bg-linear-to-b from-[#001100] via-[#002211] to-black";
+        if (currentSlideIdx === 3)
+            bg.className =
+                "absolute inset-0 transition-colors duration-700 bg-linear-to-b from-[#111] via-[#222100] to-black";
+
+        const nav = document.getElementById("rewind-controls");
+        if (currentSlideIdx === 0) nav.style.opacity = "0";
+        else nav.style.opacity = "1";
+
+        dots.innerHTML = Array(TOTAL_SLIDES)
+            .fill(0)
+            .map(
+                (_, i) => `
+            <div class="w-2 h-2 rounded-full transition-all ${i === currentSlideIdx ? "bg-white scale-125" : "bg-zinc-700"}"></div>
+        `,
+            )
+            .join("");
+    }
+
+    window.nextSlide = () => {
+        if (currentSlideIdx < TOTAL_SLIDES - 1) {
+            currentSlideIdx++;
+            updateSlideUI();
+        }
+    };
+
+    window.prevSlide = () => {
+        if (currentSlideIdx > 0) {
+            currentSlideIdx--;
+            updateSlideUI();
+        }
+    };
+
+    window.closeRewind = () => {
+        const overlay = document.getElementById("rewind-overlay");
+        const card = document.getElementById("rewind-card");
         overlay.classList.add("opacity-0", "pointer-events-none");
         card.classList.remove("scale-100");
         card.classList.add("scale-90");
+        localStorage.setItem("mw_rewind_seen_v2", Date.now().toString());
     };
 
-    setTimeout(initChristmas, 1500);
+    setTimeout(initRewind, 1500);
 </script>
