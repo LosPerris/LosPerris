@@ -3,8 +3,24 @@
     class="fixed inset-0 z-100 flex items-center justify-center bg-black/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-1000"
 >
     <div
+        id="rewind-arrows"
+        class="hidden absolute w-full max-w-4xl px-4 justify-between items-center z-50 pointer-events-none"
+    >
+        <button
+            onclick="prevSlide()"
+            class="pointer-events-auto text-zinc-500 hover:text-white hover:scale-110 transition-all p-4 bg-black/50 hover:bg-black/80 rounded-full backdrop-blur-sm border border-zinc-800"
+            ><i class="fas fa-chevron-left text-2xl"></i></button
+        >
+        <button
+            onclick="nextSlide()"
+            class="pointer-events-auto text-zinc-500 hover:text-white hover:scale-110 transition-all p-4 bg-black/50 hover:bg-black/80 rounded-full backdrop-blur-sm border border-zinc-800"
+            ><i class="fas fa-chevron-right text-2xl"></i></button
+        >
+    </div>
+
+    <div
         id="rewind-card"
-        class="relative w-full max-w-lg mx-4 bg-[#0a0a0a] border border-zinc-800 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] transform scale-90 transition-transform duration-500 min-h-[500px] flex flex-col"
+        class="relative w-full max-w-lg mx-4 bg-[#0a0a0a] border border-zinc-800 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] transform scale-90 transition-transform duration-500 min-h-[500px] flex flex-col"
     >
         <div
             class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"
@@ -316,29 +332,9 @@
         </div>
 
         <div
-            id="rewind-controls"
-            class="hidden absolute top-1/2 -translate-y-1/2 w-full px-4 justify-between items-center z-110 pointer-events-none"
+            id="rewind-dots"
+            class="hidden absolute bottom-6 left-1/2 -translate-x-1/2 gap-2 z-50 pointer-events-auto"
         >
-            <button
-                onclick="prevSlide()"
-                class="pointer-events-auto text-white/50 hover:text-white hover:scale-110 transition-all p-4 absolute -left-16"
-                ><i
-                    class="fas fa-chevron-left text-4xl shadow-xl drop-shadow-lg"
-                ></i></button
-            >
-            <div
-                class="flex gap-2 absolute bottom-4 left-1/2 -translate-x-1/2"
-                id="rewind-dots"
-            >
-            </div>
-
-            <button
-                onclick="nextSlide()"
-                class="pointer-events-auto text-white/50 hover:text-white hover:scale-110 transition-all p-4 absolute -right-16"
-                ><i
-                    class="fas fa-chevron-right text-4xl shadow-xl drop-shadow-lg"
-                ></i></button
-            >
         </div>
     </div>
 
@@ -471,10 +467,10 @@
         function startExperience(user) {
             rewindData = user;
             document.getElementById("rewind-slides").classList.remove("hidden");
-            document
-                .getElementById("rewind-controls")
-                .classList.remove("hidden");
-            document.getElementById("rewind-controls").classList.add("flex");
+            document.getElementById("rewind-arrows").classList.remove("hidden");
+            document.getElementById("rewind-dots").classList.remove("hidden");
+            document.getElementById("rewind-arrows").classList.add("flex");
+            document.getElementById("rewind-dots").classList.add("flex");
 
             populateData(user);
             updateSlideUI();
@@ -602,9 +598,24 @@
                 bg.className =
                     "absolute inset-0 transition-colors duration-700 bg-linear-to-b from-[#111] via-[#222100] to-black";
 
-            const nav = document.getElementById("rewind-controls");
-            if (currentSlideIdx === 0) nav.style.opacity = "0";
-            else nav.style.opacity = "1";
+            const arrows = document.getElementById("rewind-arrows");
+            // const dots already declared at top of function
+
+            if (currentSlideIdx === 0) {
+                arrows.style.opacity = "0";
+                dots.style.opacity = "0";
+                // Disable button clicks
+                arrows
+                    .querySelectorAll("button")
+                    .forEach((b) => (b.style.pointerEvents = "none"));
+            } else {
+                arrows.style.opacity = "1";
+                dots.style.opacity = "1";
+                // Enable button clicks
+                arrows
+                    .querySelectorAll("button")
+                    .forEach((b) => (b.style.pointerEvents = "auto"));
+            }
 
             dots.innerHTML = Array(TOTAL_SLIDES)
                 .fill(0)
