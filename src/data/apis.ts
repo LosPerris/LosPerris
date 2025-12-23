@@ -4,7 +4,7 @@ export const apis = [
         description: 'API gratuita para consultar el tiempo de seguimiento (followage) entre un usuario y un canal. Ideal para comandos de bots (!followage).',
         icon: 'fab fa-twitch',
         color: 'text-[#9146FF]',
-        link: 'https://www.losperris.site/followage',
+        link: '/twitch/followage/',
         linkText: 'Visitar Demo',
         endpoints: [
             {
@@ -12,6 +12,22 @@ export const apis = [
                 path: '/api/followage/:user/:channel',
                 description: 'Devuelve textualmente el tiempo que lleva siguiendo el usuario al canal.',
                 example: 'https://www.losperris.site/api/followage/usuario/canal'
+            }
+        ]
+    },
+    {
+        title: 'Twitch Clips Tool',
+        description: 'Herramienta para buscar, descargar y gestionar clips de Twitch. Crea y comparte clips fácilmente.',
+        icon: 'fas fa-film',
+        color: 'text-[#9146FF]',
+        link: '/twitch/clips/',
+        linkText: 'Visitar Tool',
+        endpoints: [
+            {
+                method: 'WEB',
+                path: '/twitch/clips',
+                description: 'Interfaz gráfica para gestión de clips.',
+                example: 'https://www.losperris.site/twitch/clips'
             }
         ]
     },

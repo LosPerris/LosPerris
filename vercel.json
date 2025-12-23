@@ -29,11 +29,11 @@
         },
         {
             "source": "/followage",
-            "destination": "https://followage-api.vercel.app/"
+            "destination": "https://followage-api.vercel.app/twitch/followage/"
         },
         {
             "source": "/followage/(.*)",
-            "destination": "https://followage-api.vercel.app/$1"
+            "destination": "https://followage-api.vercel.app/twitch/followage/$1"
         },
         {
             "source": "/twitch/clips",
@@ -45,7 +45,7 @@
         },
         {
             "source": "/clips/(.*)",
-            "destination": "https://followage-api.vercel.app/clips/$1"
+            "destination": "https://followage-api.vercel.app/twitch/clips/$1"
         },
         {
             "source": "/channel/(.*)",
@@ -73,7 +73,7 @@
         },
         {
             "source": "/twitch/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/twitch/$1"
+            "destination": "https://followage-api.vercel.app/twitch/$1"
         },
         {
             "source": "/valorantapi",
