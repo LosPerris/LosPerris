@@ -76,6 +76,10 @@
             "destination": "https://followage-api.vercel.app/twitch/$1"
         },
         {
+            "source": "/twitch",
+            "destination": "https://followage-api.vercel.app/"
+        },
+        {
             "source": "/valorantapi",
             "destination": "https://los-perris-valorant-api.vercel.app/"
         },
