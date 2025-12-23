@@ -45,7 +45,7 @@
         },
         {
             "source": "/clips/(.*)",
-            "destination": "https://followage-api.vercel.app/twitch/clips/$1"
+            "destination": "https://followage-api.vercel.app/clips/$1"
         },
         {
             "source": "/channel/(.*)",
