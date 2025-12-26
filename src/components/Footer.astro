@@ -11,96 +11,94 @@ const getLink = (hash: string) => {
 };
 ---
 
-<footer
-    class="bg-gradient-to-br from-[#0f0f0f] via-primary to-[#0f0f0f] backdrop-blur-md py-10 mt-auto relative z-10"
->
-    <div class="container mx-auto px-5">
-        <div class="flex flex-wrap justify-between gap-10 mb-10">
-            <div class="flex-1 min-w-[250px] space-y-4">
-                <h3 class="text-xl font-bold text-white mb-2 tracking-wide">
-                    LosPerris - Real
-                </h3>
-                <p class="text-[#b0b0b0] leading-relaxed text-[0.95rem]">
-                    Empezamos en 2025 con una idea simple: hacer más fácil y
-                    útil tu experiencia en Discord.
-                </p>
-            </div>
-            <div class="flex-1 min-w-[200px] space-y-4">
-                <h3 class="text-lg font-bold text-white mb-2 tracking-wide">
-                    Enlaces Rápidos
-                </h3>
-                <ul class="space-y-2.5">
-                    <li>
-                        <a
-                            href={getLink("#help-bot")}
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >LosPerrisHelp</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href={getLink("#game-bot")}
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >LosPerrisGame</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href={getLink("#stats")}
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Estadísticas</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://discord.gg/JKPUVf9aeU"
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Discord</a
-                        >
-                    </li>
-                </ul>
-            </div>
-            <div class="flex-1 min-w-[200px] space-y-4">
-                <h3 class="text-lg font-bold text-white mb-2 tracking-wide">
-                    Soporte
-                </h3>
-                <ul class="space-y-2.5">
-                    <li>
-                        <a
-                            href="/terminos"
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Terminos y condiciones</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/guias"
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Guías de Uso</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/contacto"
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Reportar Bug</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/contacto"
-                            class="text-[#b0b0b0] hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Sugerir Función</a
-                        >
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="pt-6 border-t border-[#404040] text-center">
-            <p class="text-[#808080] text-sm">
-                &copy; 2025 losperris.site. Todos los derechos reservados. |
-                Hecho con ❤️ para la comunidad de Discord
+class="bg-linear-to-br from-[#0f0f0f] via-primary to-[#0f0f0f] backdrop-blur-md
+py-10 mt-auto relative z-10" >
+<div class="container mx-auto px-5">
+    <div class="flex flex-wrap justify-between gap-10 mb-10">
+        <div class="flex-1 min-w-[250px] space-y-4">
+            <h3 class="text-xl font-bold text-white mb-2 tracking-wide">
+                LosPerris
+            </h3>
+            <p class="text-text-secondary leading-relaxed text-[0.95rem]">
+                Empezamos en 2025 con una idea simple: hacer más fácil y útil tu
+                experiencia en Discord.
             </p>
         </div>
+        <div class="flex-1 min-w-[200px] space-y-4">
+            <h3 class="text-lg font-bold text-white mb-2 tracking-wide">
+                Enlaces Rápidos
+            </h3>
+            <ul class="space-y-2.5">
+                <li>
+                    <a
+                        href={getLink("#help-bot")}
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >LosPerrisHelp</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href={getLink("#game-bot")}
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >LosPerrisGame</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href={getLink("#stats")}
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >Estadísticas</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://discord.gg/JKPUVf9aeU"
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >Discord</a
+                    >
+                </li>
+            </ul>
+        </div>
+        <div class="flex-1 min-w-[200px] space-y-4">
+            <h3 class="text-lg font-bold text-white mb-2 tracking-wide">
+                Soporte
+            </h3>
+            <ul class="space-y-2.5">
+                <li>
+                    <a
+                        href="/terminos"
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >Términos y condiciones</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/guias"
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >Guías de Uso</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/contacto"
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >Reportar Bug</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/contacto"
+                        class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+                        >Sugerir Función</a
+                    >
+                </li>
+            </ul>
+        </div>
     </div>
-</footer>
+    <div class="pt-6 border-t border-[#404040] text-center">
+        <p class="text-text-muted text-sm">
+            &copy; 2025 losperris.site. Todos los derechos reservados. | Hecho
+            con ❤️ para la comunidad de Discord
+        </p>
+    </div>
+</div>
