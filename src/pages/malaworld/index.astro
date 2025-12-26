@@ -17,9 +17,26 @@ import Footer from "./_components/Footer.astro";
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Mala World</title>
-        <meta name="description" content="Servidor de Minecraft" />
+        <meta
+            name="description"
+            content="Únete a Mala World, el mejor servidor Survival Technical SMP. Eventos semanales, comunidad activa y una experiencia de juego única."
+        />
         <link rel="icon" type="image/png" href={serverIcon.src} />
+
+        <meta
+            property="og:title"
+            content="Mala World - Servidor de Minecraft Survival SMP"
+        />
+        <meta
+            property="og:description"
+            content="Descubre Mala World: Comunidad activa, eventos épicos y un mundo técnico listo para explorar. ¡Únete ahora!"
+        />
         <meta property="og:image" content={serverIcon.src} />
+        <meta
+            property="og:url"
+            content="https://www.losperris.site/malaworld/"
+        />
+        <meta property="og:type" content="website" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -62,7 +79,9 @@ import Footer from "./_components/Footer.astro";
                     <img
                         src={serverIcon.src}
                         class="w-full h-full rounded-full p-1"
-                        alt="Icon"
+                        alt="Mala World Icon"
+                        width="56"
+                        height="56"
                     />
                 </div>
                 <span
@@ -104,9 +123,9 @@ import Footer from "./_components/Footer.astro";
         </nav>
 
         <main class="grow w-full relative z-10">
-            <div id="inicio">
+            <section id="inicio">
                 <Hero />
-            </div>
+            </section>
 
             <PlayerGrid />
 
@@ -243,7 +262,7 @@ import Footer from "./_components/Footer.astro";
                             (p) => `
                         <div class="flex flex-col items-center gap-3 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                             <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-zinc-700 bg-[#0a0a0a] group-hover:border-[#7df9ff] shadow-lg transition-colors">
-                                <img src="${p.skin}" class="w-full h-full sm:grayscale group-hover:grayscale-0 transition-all duration-500">
+                                <img src="${p.skin}" alt="${p.name} Skin" loading="lazy" width="80" height="80" class="w-full h-full sm:grayscale group-hover:grayscale-0 transition-all duration-500">
                                 <div class="absolute inset-0 bg-[#7df9ff]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
                             <span class="text-xs text-[#7df9ff] font-bold tracking-widest bg-black/80 px-3 py-1 rounded border border-[#7df9ff]/30 shadow-lg capitalize">${p.name}</span>
@@ -299,7 +318,7 @@ import Footer from "./_components/Footer.astro";
                                     (p) => `
                             <div class="flex flex-col items-center gap-3 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
                                 <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-zinc-700 bg-[#0a0a0a] group-hover:border-[#7df9ff] shadow-lg transition-colors">
-                                    <img src="https://mc-heads.net/avatar/${p.name}" class="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                                    <img src="https://mc-heads.net/avatar/${p.name}" alt="${p.name} Avatar" loading="lazy" width="80" height="80" class="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500">
                                     <div class="absolute inset-0 bg-[#7df9ff]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 </div>
                                 <span class="text-xs text-[#7df9ff] font-bold tracking-widest bg-black/80 px-3 py-1 rounded border border-[#7df9ff]/30 shadow-lg">${p.name}</span>
