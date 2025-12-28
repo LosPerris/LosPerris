@@ -68,10 +68,6 @@
             "destination": "https://followage-api.vercel.app/api/app/auth/$1"
         },
         {
-            "source": "/api/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/api/$1"
-        },
-        {
             "source": "/twitch/(.*)",
             "destination": "https://followage-api.vercel.app/twitch/$1"
         },
@@ -102,6 +98,14 @@
         {
             "source": "/LosPerris-gamer.ico",
             "destination": "https://codigo-qr.vercel.app/LosPerris-gamer.ico"
+        },
+        {
+            "source": "/api/generate-qr",
+            "destination": "https://codigo-qr.vercel.app/api/generate-qr"
+        },
+        {
+            "source": "/api/(.*)",
+            "destination": "https://followage-api.vercel.app/api/app/api/$1"
         }
     ]
 }
