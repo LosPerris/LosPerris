@@ -98,6 +98,10 @@
         {
             "source": "/LosPerris-gamer.ico",
             "destination": "https://codigo-qr.vercel.app/LosPerris-gamer.ico"
+        },
+        {
+            "source": "/api/generate-qr",
+            "destination": "https://codigo-qr.vercel.app/api/generate-qr"
         }
     ]
 }
