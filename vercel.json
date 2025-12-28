@@ -92,16 +92,8 @@
             "destination": "https://codigo-qr.vercel.app/$1"
         },
         {
-            "source": "/_qr_assets/(.*)",
-            "destination": "https://codigo-qr.vercel.app/_qr_assets/$1"
-        },
-        {
             "source": "/LosPerris-gamer.ico",
             "destination": "https://codigo-qr.vercel.app/LosPerris-gamer.ico"
-        },
-        {
-            "source": "/api/generate-qr",
-            "destination": "https://codigo-qr.vercel.app/api/generate-qr"
         }
     ]
 }
