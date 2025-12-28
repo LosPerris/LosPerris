@@ -85,23 +85,15 @@
         },
         {
             "source": "/qr",
-            "destination": "https://codigo-qr.vercel.app/"
+            "destination": "https://generador-qr-lyart.vercel.app/"
         },
         {
             "source": "/qr/(.*)",
-            "destination": "https://codigo-qr.vercel.app/$1"
-        },
-        {
-            "source": "/_astro/(.*)",
-            "destination": "https://codigo-qr.vercel.app/_astro/$1"
-        },
-        {
-            "source": "/_qr_assets/(.*)",
-            "destination": "https://codigo-qr.vercel.app/_qr_assets/$1"
+            "destination": "https://generador-qr-lyart.vercel.app/$1"
         },
         {
             "source": "/LosPerris-gamer.ico",
-            "destination": "https://codigo-qr.vercel.app/LosPerris-gamer.ico"
+            "destination": "https://generador-qr-lyart.vercel.app/LosPerris-gamer.ico"
         }
     ]
 }
