@@ -40,6 +40,26 @@
             "permanent": true
         },
         {
+            "source": "/twitch/followage",
+            "destination": "/api/followage",
+            "permanent": true
+        },
+        {
+            "source": "/twitch/followage/(.*)",
+            "destination": "/api/followage/$1",
+            "permanent": true
+        },
+        {
+            "source": "/twitch/followage",
+            "destination": "/api/followage",
+            "permanent": true
+        },
+        {
+            "source": "/twitch/followage/(.*)",
+            "destination": "/api/followage/$1",
+            "permanent": true
+        },
+        {
             "source": "/twitch/clips",
             "destination": "/api/clips",
             "permanent": true
