@@ -135,19 +135,93 @@ import realImg from "../assets/img/Real.webp";
                 </li>
             </ul>
             <button
-                class="flex flex-col cursor-pointer p-2.5 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all md:hidden"
+                class="hamburger flex flex-col cursor-pointer p-2.5 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all md:hidden z-50 relative"
                 aria-label="Abrir menú"
+                type="button"
             >
                 <span
-                    class="w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                    class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
                 ></span>
                 <span
-                    class="w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                    class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
                 ></span>
                 <span
-                    class="w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                    class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
                 ></span>
             </button>
+            <div
+                class="nav-menu fixed inset-0 bg-[#0f0f0f]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-300 md:hidden z-40"
+            >
+                <ul class="flex flex-col items-center gap-6">
+                    <li>
+                        <a
+                            href={isHome ? "#home" : "/"}
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors"
+                            >Inicio</a
+                        >
+                    </li>
+                    <li
+                        class="dropdown relative group flex flex-col items-center"
+                    >
+                        <span
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors cursor-pointer flex items-center gap-2"
+                        >
+                            Herramientas <i class="fas fa-chevron-down text-sm"
+                            ></i>
+                        </span>
+                        <div
+                            class="dropdown-content hidden flex-col items-center gap-4 mt-4 bg-white/5 p-4 rounded-xl w-64"
+                        >
+                            <a
+                                href={getLink("#bots")}
+                                class="dropdown-item text-xl text-white/80 hover:text-white"
+                                >Bots</a
+                            >
+                            <a
+                                href={getLink("#apis")}
+                                class="dropdown-item text-xl text-white/80 hover:text-white"
+                                >APIs</a
+                            >
+                        </div>
+                    </li>
+                    <li
+                        class="dropdown relative group flex flex-col items-center"
+                    >
+                        <span
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors cursor-pointer flex items-center gap-2"
+                        >
+                            Comunidad <i class="fas fa-chevron-down text-sm"
+                            ></i>
+                        </span>
+                        <div
+                            class="dropdown-content hidden flex-col items-center gap-4 mt-4 bg-white/5 p-4 rounded-xl w-64"
+                        >
+                            <a
+                                href="https://discord.gg/JKPUVf9aeU"
+                                class="dropdown-item text-xl text-white/80 hover:text-white"
+                                >Discord</a
+                            >
+                            <a
+                                href={getLink("#support")}
+                                class="dropdown-item text-xl text-white/80 hover:text-white"
+                                >Soporte</a
+                            >
+                            <a
+                                href={getLink("#updates")}
+                                class="dropdown-item text-xl text-white/80 hover:text-white"
+                                >Actualizaciones</a
+                            >
+                        </div>
+                    </li>
+                    <li>
+                        <a
+                            href="/contacto"
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors"
+                            >Contacto</a
+                        >
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>

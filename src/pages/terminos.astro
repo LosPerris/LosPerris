@@ -14,7 +14,7 @@ import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
     showFooter={false}
 >
     <header
-        class="sticky top-0 z-[100] backdrop-blur-md bg-[#1a1a1a]/95 border-b-2 border-[#404040] py-4"
+        class="sticky top-0 z-100 backdrop-blur-md bg-primary/95 border-b-2 border-[#404040] py-4"
     >
         <nav class="w-full">
             <div
@@ -48,23 +48,25 @@ import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
         <div class="max-w-4xl mx-auto px-8 relative z-10">
             <div class="text-center mb-16">
                 <h1
-                    class="text-4xl md:text-6xl font-black mb-6 text-white flex items-center justify-center gap-4 tracking-tight uppercase"
+                    class="text-4xl md:text-6xl font-black mb-6 text-white flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 tracking-tight uppercase"
                 >
-                    <i class="fas fa-file-contract text-[#5865F2]"></i> Términos
+                    <span class="flex items-center gap-3">
+                        <i class="fas fa-file-contract text-[#5865F2]"></i> Términos
+                    </span>
                     <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-[#5865F2] to-purple-500"
+                        class="text-transparent bg-clip-text bg-linear-to-r from-[#5865F2] to-purple-500"
                         >y Condiciones</span
                     >
                 </h1>
                 <p
-                    class="text-[#808080] mb-4 text-sm font-mono border border-white/10 inline-block px-4 py-1 rounded-full bg-white/5"
+                    class="text-text-muted mb-4 text-sm font-mono border border-white/10 inline-block px-4 py-1 rounded-full bg-white/5"
                 >
                     Última actualización: <strong class="text-white"
                         >15 de Enero de 2024</strong
                     >
                 </p>
                 <p
-                    class="text-xl text-[#b0b0b0] max-w-2xl mx-auto font-light mt-6"
+                    class="text-xl text-text-secondary max-w-2xl mx-auto font-light mt-6"
                 >
                     Al utilizar los bots LosPerrisHelp y LosPerrisGame, aceptas
                     los siguientes términos y condiciones.
@@ -88,10 +90,10 @@ import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
 
             <div class="mt-12">
                 <div
-                    class="bg-gradient-to-r from-[#5865F2]/10 to-purple-500/10 border border-[#5865F2]/20 p-8 rounded-2xl mb-12 flex items-center gap-6 shadow-lg backdrop-blur-md"
+                    class="bg-linear-to-r from-[#5865F2]/10 to-purple-500/10 border border-[#5865F2]/20 p-8 rounded-2xl mb-12 flex items-center gap-6 shadow-lg backdrop-blur-md"
                 >
                     <div
-                        class="w-12 h-12 flex-shrink-0 rounded-full bg-[#5865F2]/20 flex items-center justify-center text-[#5865F2] text-2xl"
+                        class="w-12 h-12 shrink-0 rounded-full bg-[#5865F2]/20 flex items-center justify-center text-[#5865F2] text-2xl"
                     >
                         <i class="fas fa-check-circle"></i>
                     </div>
@@ -112,28 +114,28 @@ import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
         </div>
     </main>
 
-    <footer class="bg-[#1a1a1a]/95 py-8 border-t-2 border-[#404040] mt-auto">
+    <footer class="bg-primary/95 py-8 border-t-2 border-[#404040] mt-auto">
         <div class="max-w-4xl mx-auto px-8">
             <div
                 class="flex justify-between items-center flex-wrap gap-4 text-center"
             >
-                <p class="text-[#808080]">
+                <p class="text-text-muted">
                     &copy; 2025 losperris.site. Todos los derechos reservados.
                 </p>
                 <div class="flex gap-8">
                     <a
                         href="/"
-                        class="text-[#808080] no-underline transition-all hover:text-white"
+                        class="text-text-muted no-underline transition-all hover:text-white"
                         >Inicio</a
                     >
                     <a
                         href="/terminos"
-                        class="text-[#808080] no-underline transition-all hover:text-white"
+                        class="text-text-muted no-underline transition-all hover:text-white"
                         >Términos y Condiciones</a
                     >
                     <a
                         href="https://discord.gg/JKPUVf9aeU"
-                        class="text-[#808080] no-underline transition-all hover:text-white"
+                        class="text-text-muted no-underline transition-all hover:text-white"
                         >Discord</a
                     >
                 </div>
