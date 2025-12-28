@@ -11,7 +11,7 @@
         },
         {
             "source": "/qr",
-            "destination": "/api/qr",
+            "destination": "/api/qr/",
             "permanent": true
         },
         {
@@ -21,7 +21,7 @@
         },
         {
             "source": "/valorantapi",
-            "destination": "/api/valorant",
+            "destination": "/api/valorant/",
             "permanent": true
         },
         {
@@ -31,7 +31,7 @@
         },
         {
             "source": "/followage",
-            "destination": "/api/followage",
+            "destination": "/api/followage/",
             "permanent": true
         },
         {
@@ -41,17 +41,7 @@
         },
         {
             "source": "/twitch/followage",
-            "destination": "/api/followage",
-            "permanent": true
-        },
-        {
-            "source": "/twitch/followage/(.*)",
-            "destination": "/api/followage/$1",
-            "permanent": true
-        },
-        {
-            "source": "/twitch/followage",
-            "destination": "/api/followage",
+            "destination": "/api/followage/",
             "permanent": true
         },
         {
@@ -61,12 +51,32 @@
         },
         {
             "source": "/twitch/clips",
-            "destination": "/api/clips",
+            "destination": "/api/clips/",
             "permanent": true
         },
         {
             "source": "/twitch/clips/(.*)",
             "destination": "/api/clips/$1",
+            "permanent": true
+        },
+        {
+            "source": "/api/followage",
+            "destination": "/api/followage/",
+            "permanent": true
+        },
+        {
+            "source": "/api/clips",
+            "destination": "/api/clips/",
+            "permanent": true
+        },
+        {
+            "source": "/api/qr",
+            "destination": "/api/qr/",
+            "permanent": true
+        },
+        {
+            "source": "/api/valorant",
+            "destination": "/api/valorant/",
             "permanent": true
         }
     ],
@@ -88,7 +98,7 @@
             "destination": "https://followage-api.vercel.app/imgs/$1"
         },
         {
-            "source": "/api/followage",
+            "source": "/api/followage/",
             "destination": "https://followage-api.vercel.app/api/followage/"
         },
         {
@@ -96,7 +106,7 @@
             "destination": "https://followage-api.vercel.app/api/followage/$1"
         },
         {
-            "source": "/api/clips",
+            "source": "/api/clips/",
             "destination": "https://followage-api.vercel.app/api/clips/"
         },
         {
@@ -125,7 +135,7 @@
         },
         {
             "source": "/auth/(.*)",
-            "destination": "https://followage-api.vercel.app/api/app/auth/$1"
+            "destination": "https://followage-api.vercel.app/auth/$1"
         },
         {
             "source": "/twitch/(.*)",
@@ -136,8 +146,8 @@
             "destination": "https://followage-api.vercel.app/"
         },
         {
-            "source": "/api/valorant",
-            "destination": "https://los-perris-valorant-api.vercel.app/api/valorant"
+            "source": "/api/valorant/",
+            "destination": "https://los-perris-valorant-api.vercel.app/api/valorant/"
         },
         {
             "source": "/api/valorant/(.*)",
@@ -148,7 +158,7 @@
             "destination": "https://generador-qr-lyart.vercel.app/api/qr/generate"
         },
         {
-            "source": "/api/qr",
+            "source": "/api/qr/",
             "destination": "https://generador-qr-lyart.vercel.app/"
         },
         {
