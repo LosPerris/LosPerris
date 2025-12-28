@@ -4,7 +4,7 @@ export const apis = [
         description: 'API gratuita para consultar el tiempo de seguimiento (followage) entre un usuario y un canal. Ideal para comandos de bots (!followage).',
         icon: 'fab fa-twitch',
         color: 'text-[#9146FF]',
-        link: '/twitch/followage/',
+        link: '/api/followage/',
         linkText: 'Visitar Demo',
         endpoints: [
             {
@@ -20,14 +20,14 @@ export const apis = [
         description: 'Herramienta para buscar, descargar y gestionar clips de Twitch. Crea y comparte clips fácilmente.',
         icon: 'fas fa-film',
         color: 'text-[#9146FF]',
-        link: '/twitch/clips/',
+        link: '/api/clips/',
         linkText: 'Visitar Tool',
         endpoints: [
             {
                 method: 'WEB',
-                path: '/twitch/clips',
+                path: '/api/clips',
                 description: 'Interfaz gráfica para gestión de clips.',
-                example: 'https://www.losperris.site/twitch/clips'
+                example: 'https://www.losperris.site/api/clips'
             }
         ]
     },
@@ -36,7 +36,7 @@ export const apis = [
         description: 'Obtén datos en tiempo real de Valorant: Rango, MMR, Historial de partidas y más. Respuestas en texto plano para fácil integración.',
         icon: 'fas fa-crosshairs',
         color: 'text-[#FF4655]',
-        link: 'https://www.losperris.site/valorantapi',
+        link: 'https://www.losperris.site/api/valorant',
         linkText: 'Visitar Web',
         endpoints: [
             {
@@ -58,14 +58,14 @@ export const apis = [
         description: 'Herramienta visual profesional para crear códigos QR personalizados. Soporta estilos, logotipos, WiFi, VCard y descargas en alta resolución.',
         icon: 'fas fa-qrcode',
         color: 'text-[#FACC15]',
-        link: '/qr',
+        link: '/api/qr',
         linkText: 'Crear QR',
         endpoints: [
             {
                 method: 'WEB',
-                path: '/qr',
+                path: '/api/qr',
                 description: 'Interfaz gráfica para generación de QR.',
-                example: 'https://www.losperris.site/qr'
+                example: 'https://www.losperris.site/api/qr'
             }
         ]
     }

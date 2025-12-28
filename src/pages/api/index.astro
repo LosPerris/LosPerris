@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Button from "../components/ui/Button.astro";
-import Card from "../components/ui/Card.astro";
-import { apis } from "../data/apis";
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/ui/Button.astro";
+import Card from "../../components/ui/Card.astro";
+import { apis } from "../../data/apis";
 ---
 
 <Layout title="APIs | Los Perris" showWallpaper={false}>
@@ -20,12 +20,12 @@ import { apis } from "../data/apis";
                     class="text-5xl md:text-7xl font-black text-white uppercase tracking-tight relative inline-block opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.3s_forwards]"
                 >
                     PRO <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-[#5865F2] to-purple-500"
+                        class="text-transparent bg-clip-text bg-linear-to-r from-[#5865F2] to-purple-500"
                         >APIs</span
                     >
                 </h1>
                 <p
-                    class="text-xl text-[#b0b0b0] max-w-2xl mx-auto opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
+                    class="text-xl text-text-secondary max-w-2xl mx-auto opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
                 >
                     Integra la potencia de Los Perris en tus propias
                     aplicaciones. Escalable, rápido y fácil de usar.
@@ -37,14 +37,14 @@ import { apis } from "../data/apis";
             >
                 {
                     apis.map((api, index) => (
-                        <Card class="p-8 bg-white/[0.02] bg-none border border-white/10 hover:border-[#5865F2]/50 hover:bg-white/[0.04] transition-all duration-300 group hover:-translate-y-1 shadow-lg backdrop-blur-sm">
+                        <Card class="p-8 bg-white/2 bg-none border border-white/10 hover:border-[#5865F2]/50 hover:bg-white/4 transition-all duration-300 group hover:-translate-y-1 shadow-lg backdrop-blur-sm">
                             <div class="flex items-start justify-between mb-6">
                                 <div
                                     class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform ${api.color || "text-white"}`}
                                 >
                                     <i class={api.icon || "fas fa-code"} />
                                 </div>
-                                <span class="bg-[#2d2d2d] px-3 py-1 rounded-full text-xs text-[#b0b0b0] font-mono border border-[#404040]">
+                                <span class="bg-secondary px-3 py-1 rounded-full text-xs text-text-secondary font-mono border border-[#404040]">
                                     TESTED
                                 </span>
                             </div>
@@ -52,7 +52,7 @@ import { apis } from "../data/apis";
                             <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#5865F2] transition-colors">
                                 {api.title}
                             </h3>
-                            <p class="text-[rgb(176,176,176)] leading-relaxed mb-6 flex-grow min-h-[60px]">
+                            <p class="text-[rgb(176,176,176)] leading-relaxed mb-6 grow min-h-[60px]">
                                 {api.description}
                             </p>
 
@@ -66,7 +66,7 @@ import { apis } from "../data/apis";
                                             {api.endpoints?.map((endpoint) => (
                                                 <div>
                                                     <div class="flex items-center gap-2 mb-1">
-                                                        <span class="text-xs font-bold bg-[#2d2d2d] text-green-400 px-2 py-0.5 rounded uppercase">
+                                                        <span class="text-xs font-bold bg-secondary text-green-400 px-2 py-0.5 rounded uppercase">
                                                             {endpoint.method}
                                                         </span>
                                                         <code class="text-xs md:text-sm text-gray-300 font-mono break-all">
@@ -77,8 +77,8 @@ import { apis } from "../data/apis";
                                                         {endpoint.description}
                                                     </p>
                                                     {endpoint.example && (
-                                                        <div class="bg-[#1a1a1a] p-2 rounded border border-[#2d2d2d]">
-                                                            <code class="text-xs text-[#808080] block font-mono break-all">
+                                                        <div class="bg-primary p-2 rounded border border-secondary">
+                                                            <code class="text-xs text-text-muted block font-mono break-all">
                                                                 {
                                                                     endpoint.example
                                                                 }
@@ -94,7 +94,7 @@ import { apis } from "../data/apis";
                                 <div class="flex flex-col md:flex-row gap-3">
                                     <button
                                         onclick={`document.getElementById('docs-${index}').classList.toggle('hidden')`}
-                                        class="flex-1 py-3 px-4 rounded-xl font-semibold border border-[#404040] text-white hover:bg-[#2d2d2d] transition-colors text-sm cursor-pointer"
+                                        class="flex-1 py-3 px-4 rounded-xl font-semibold border border-[#404040] text-white hover:bg-secondary transition-colors text-sm cursor-pointer"
                                     >
                                         <i class="fas fa-book mr-2" />{" "}
                                         Documentación
