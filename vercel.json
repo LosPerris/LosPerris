@@ -63,6 +63,11 @@
             "source": "/api/valorant",
             "destination": "/api/valorant/",
             "permanent": true
+        },
+        {
+            "source": "/twitch",
+            "destination": "/twitch/",
+            "permanent": true
         }
     ],
     "rewrites": [
@@ -125,10 +130,6 @@
         {
             "source": "/twitch/(.*)",
             "destination": "https://twitch-api-smoky.vercel.app/$1"
-        },
-        {
-            "source": "/twitch",
-            "destination": "https://twitch-api-smoky.vercel.app/"
         },
         {
             "source": "/api/valorant/",
