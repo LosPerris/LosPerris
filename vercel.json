@@ -17,20 +17,32 @@
     ],
     "rewrites": [
         {
-            "source": "/api/twitch/:path*",
-            "destination": "https://twitch-api-smoky.vercel.app/:path*"
+            "source": "/api/twitch",
+            "destination": "https://twitch-api-smoky.vercel.app/"
         },
         {
-            "source": "/api/qr/:path*",
-            "destination": "https://generador-qr-lyart.vercel.app/:path*"
+            "source": "/api/twitch/(.*)",
+            "destination": "https://twitch-api-smoky.vercel.app/$1"
         },
         {
-            "source": "/api/valorant/:path*",
-            "destination": "https://los-perris-valorant-api.vercel.app/:path*"
+            "source": "/api/qr",
+            "destination": "https://generador-qr-lyart.vercel.app/"
         },
         {
-            "source": "/malaworld/api/:path*",
-            "destination": "http://23.230.3.241:25908/api/:path*"
+            "source": "/api/qr/(.*)",
+            "destination": "https://generador-qr-lyart.vercel.app/$1"
+        },
+        {
+            "source": "/api/valorant",
+            "destination": "https://los-perris-valorant-api.vercel.app/"
+        },
+        {
+            "source": "/api/valorant/(.*)",
+            "destination": "https://los-perris-valorant-api.vercel.app/$1"
+        },
+        {
+            "source": "/malaworld/api/(.*)",
+            "destination": "http://23.230.3.241:25908/api/$1"
         }
     ]
 }
