@@ -4,7 +4,7 @@ export const apis = [
         description: 'Suite completa para streamers: API de Followage y gestor de Clips. Todo en un solo lugar.',
         icon: 'fab fa-twitch',
         color: 'text-[#9146FF]',
-        link: '/twitch/',
+        link: '/api/twitch/',
         linkText: 'Ir al Panel',
         endpoints: [
             {

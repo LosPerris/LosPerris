@@ -10,150 +10,27 @@
             "permanent": true
         },
         {
-            "source": "/qr",
-            "destination": "/api/qr/",
-            "permanent": true
-        },
-        {
-            "source": "/qr/(.*)",
-            "destination": "/api/qr/$1",
-            "permanent": true
-        },
-        {
-            "source": "/valorantapi",
-            "destination": "/api/valorant/",
-            "permanent": true
-        },
-        {
-            "source": "/valorantapi/(.*)",
-            "destination": "/api/valorant/$1",
-            "permanent": true
-        },
-        {
-            "source": "/followage",
-            "destination": "/api/followage/",
-            "permanent": true
-        },
-        {
-            "source": "/followage/(.*)",
-            "destination": "/api/followage/$1",
-            "permanent": true
-        },
-        {
-            "source": "/twitch/followage",
-            "destination": "/api/followage/",
-            "permanent": true
-        },
-        {
-            "source": "/twitch/followage/(.*)",
-            "destination": "/api/followage/$1",
-            "permanent": true
-        },
-        {
-            "source": "/api/followage",
-            "destination": "/api/followage/",
-            "permanent": true
-        },
-        {
-            "source": "/api/qr",
-            "destination": "/api/qr/",
-            "permanent": true
-        },
-        {
-            "source": "/api/valorant",
-            "destination": "/api/valorant/",
-            "permanent": true
-        },
-        {
             "source": "/twitch",
-            "destination": "/twitch/",
+            "destination": "/api/twitch/",
             "permanent": true
         }
     ],
     "rewrites": [
         {
-            "source": "/js/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/js/$1"
+            "source": "/api/twitch/:path*",
+            "destination": "https://twitch-api-smoky.vercel.app/:path*"
         },
         {
-            "source": "/css/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/css/$1"
+            "source": "/api/qr/:path*",
+            "destination": "https://generador-qr-lyart.vercel.app/:path*"
         },
         {
-            "source": "/imgs/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/imgs/$1"
+            "source": "/api/valorant/:path*",
+            "destination": "https://los-perris-valorant-api.vercel.app/:path*"
         },
         {
-            "source": "/img/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/imgs/$1"
-        },
-        {
-            "source": "/api/followage/",
-            "destination": "https://twitch-api-smoky.vercel.app/api/followage/"
-        },
-        {
-            "source": "/api/followage/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/api/followage/$1"
-        },
-        {
-            "source": "/api/create-clip",
-            "destination": "https://twitch-api-smoky.vercel.app/api/create-clip"
-        },
-        {
-            "source": "/api/create-clip(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/api/create-clip$1"
-        },
-        {
-            "source": "/api/get-clips",
-            "destination": "https://twitch-api-smoky.vercel.app/api/get-clips"
-        },
-        {
-            "source": "/channel/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/channel/$1"
-        },
-        {
-            "source": "/me",
-            "destination": "https://twitch-api-smoky.vercel.app/me"
-        },
-        {
-            "source": "/channel/me",
-            "destination": "https://twitch-api-smoky.vercel.app/channel/me"
-        },
-        {
-            "source": "/health",
-            "destination": "https://twitch-api-smoky.vercel.app/health"
-        },
-        {
-            "source": "/auth/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/auth/$1"
-        },
-        {
-            "source": "/twitch/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/$1"
-        },
-        {
-            "source": "/api/valorant/",
-            "destination": "https://los-perris-valorant-api.vercel.app/api/valorant/"
-        },
-        {
-            "source": "/api/valorant/(.*)",
-            "destination": "https://los-perris-valorant-api.vercel.app/api/valorant/$1"
-        },
-        {
-            "source": "/api/qr/generate",
-            "destination": "https://generador-qr-lyart.vercel.app/api/qr/generate"
-        },
-        {
-            "source": "/api/qr/",
-            "destination": "https://generador-qr-lyart.vercel.app/"
-        },
-        {
-            "source": "/api/qr/(.*)",
-            "destination": "https://generador-qr-lyart.vercel.app/$1"
-        },
-        {
-            "source": "/LosPerris-gamer.ico",
-            "destination": "https://generador-qr-lyart.vercel.app/LosPerris-gamer.ico"
+            "source": "/malaworld/api/:path*",
+            "destination": "http://23.230.3.241:25908/api/:path*"
         }
     ]
 }
