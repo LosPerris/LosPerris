@@ -1,33 +1,23 @@
 export const apis = [
     {
-        title: 'Twitch Followage API',
-        description: 'API gratuita para consultar el tiempo de seguimiento (followage) entre un usuario y un canal. Ideal para comandos de bots (!followage).',
+        title: 'Herramientas de Twitch',
+        description: 'Suite completa para streamers: API de Followage y gestor de Clips. Todo en un solo lugar.',
         icon: 'fab fa-twitch',
         color: 'text-[#9146FF]',
-        link: '/api/followage/',
-        linkText: 'Visitar Demo',
+        link: '/twitch/',
+        linkText: 'Ir al Panel',
         endpoints: [
             {
                 method: 'GET',
                 path: '/api/followage/:user/:channel',
-                description: 'Devuelve textualmente el tiempo que lleva siguiendo el usuario al canal.',
+                description: 'API de tiempo de seguimiento (Followage).',
                 example: 'https://www.losperris.site/api/followage/usuario/canal'
-            }
-        ]
-    },
-    {
-        title: 'Twitch Clips Tool',
-        description: 'Herramienta para buscar, descargar y gestionar clips de Twitch. Crea y comparte clips fácilmente.',
-        icon: 'fas fa-film',
-        color: 'text-[#9146FF]',
-        link: '/api/clips/',
-        linkText: 'Visitar Tool',
-        endpoints: [
+            },
             {
                 method: 'WEB',
                 path: '/api/clips',
-                description: 'Interfaz gráfica para gestión de clips.',
-                example: 'https://www.losperris.site/api/clips'
+                description: 'Gestor y descargador de Clips.',
+                example: 'https://www.losperris.site/twitch/clips'
             }
         ]
     },
@@ -36,7 +26,7 @@ export const apis = [
         description: 'Obtén datos en tiempo real de Valorant: Rango, MMR, Historial de partidas y más. Respuestas en texto plano para fácil integración.',
         icon: 'fas fa-crosshairs',
         color: 'text-[#FF4655]',
-        link: 'https://www.losperris.site/api/valorant',
+        link: '/api/valorant',
         linkText: 'Visitar Web',
         endpoints: [
             {
