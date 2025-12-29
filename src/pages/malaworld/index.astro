@@ -182,7 +182,7 @@ import Footer from "./_components/Footer.astro";
             const SERVER_IP = "23.230.3.241";
             const SERVER_PORT = "25721";
             const SCAN_PERIOD = 120;
-            const STATS_API_URL = "/malaworld/api/scoreboard";
+            const STATS_API_URL = "/malaworld/api/all";
 
             const DataManager = {
                 init() {
@@ -235,7 +235,6 @@ import Footer from "./_components/Footer.astro";
                     }
 
                     if (data) {
-                        // renderPlayerGridFromStats(data); // Removed: PlayerGrid handled by renderStatus
                         const event = new CustomEvent(
                             "malaworld-stats-update",
                             {
