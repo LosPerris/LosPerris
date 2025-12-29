@@ -13,6 +13,21 @@
             "source": "/twitch",
             "destination": "/api/twitch/",
             "permanent": true
+        },
+        {
+            "source": "/api/twitch",
+            "destination": "/api/twitch/",
+            "permanent": true
+        },
+        {
+            "source": "/api/qr",
+            "destination": "/api/qr/",
+            "permanent": true
+        },
+        {
+            "source": "/api/valorant",
+            "destination": "/api/valorant/",
+            "permanent": true
         }
     ],
     "rewrites": [
@@ -37,6 +52,14 @@
             "destination": "https://twitch-api-smoky.vercel.app/$1"
         },
         {
+            "source": "/auth/(.*)",
+            "destination": "https://twitch-api-smoky.vercel.app/auth/$1"
+        },
+        {
+            "source": "/api/qr",
+            "destination": "https://generador-qr-lyart.vercel.app/"
+        },
+        {
             "source": "/api/qr/styles/(.*)",
             "destination": "https://generador-qr-lyart.vercel.app/styles/$1"
         },
@@ -53,6 +76,14 @@
             "destination": "https://generador-qr-lyart.vercel.app/$1"
         },
         {
+            "source": "/qr/(.*)",
+            "destination": "https://generador-qr-lyart.vercel.app/$1"
+        },
+        {
+            "source": "/api/valorant",
+            "destination": "https://los-perris-valorant-api.vercel.app/"
+        },
+        {
             "source": "/api/valorant/style.css",
             "destination": "https://los-perris-valorant-api.vercel.app/style.css"
         },
@@ -66,6 +97,10 @@
         },
         {
             "source": "/api/valorant/(.*)",
+            "destination": "https://los-perris-valorant-api.vercel.app/$1"
+        },
+        {
+            "source": "/valorantapi/(.*)",
             "destination": "https://los-perris-valorant-api.vercel.app/$1"
         },
         {
