@@ -124,7 +124,7 @@
         },
         {
             "source": "/twitch/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/twitch/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/$1"
         },
         {
             "source": "/twitch",
