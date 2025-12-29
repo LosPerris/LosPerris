@@ -50,23 +50,8 @@
             "permanent": true
         },
         {
-            "source": "/twitch/clips",
-            "destination": "/api/clips/",
-            "permanent": true
-        },
-        {
-            "source": "/twitch/clips/(.*)",
-            "destination": "/api/clips/$1",
-            "permanent": true
-        },
-        {
             "source": "/api/followage",
             "destination": "/api/followage/",
-            "permanent": true
-        },
-        {
-            "source": "/api/clips",
-            "destination": "/api/clips/",
             "permanent": true
         },
         {
@@ -106,16 +91,16 @@
             "destination": "https://twitch-api-smoky.vercel.app/api/followage/$1"
         },
         {
-            "source": "/api/clips/",
-            "destination": "https://twitch-api-smoky.vercel.app/api/clips/"
+            "source": "/api/create-clip",
+            "destination": "https://twitch-api-smoky.vercel.app/api/create-clip"
         },
         {
-            "source": "/api/clips/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/api/clips/$1"
+            "source": "/api/create-clip(.*)",
+            "destination": "https://twitch-api-smoky.vercel.app/api/create-clip$1"
         },
         {
-            "source": "/clips/(.*)",
-            "destination": "https://twitch-api-smoky.vercel.app/clips/$1"
+            "source": "/api/get-clips",
+            "destination": "https://twitch-api-smoky.vercel.app/api/get-clips"
         },
         {
             "source": "/channel/(.*)",
