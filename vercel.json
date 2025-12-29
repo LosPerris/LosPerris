@@ -83,67 +83,67 @@
     "rewrites": [
         {
             "source": "/js/(.*)",
-            "destination": "https://followage-api.vercel.app/js/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/js/$1"
         },
         {
             "source": "/css/(.*)",
-            "destination": "https://followage-api.vercel.app/css/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/css/$1"
         },
         {
             "source": "/imgs/(.*)",
-            "destination": "https://followage-api.vercel.app/imgs/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/imgs/$1"
         },
         {
             "source": "/img/(.*)",
-            "destination": "https://followage-api.vercel.app/imgs/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/imgs/$1"
         },
         {
             "source": "/api/followage/",
-            "destination": "https://followage-api.vercel.app/api/followage/"
+            "destination": "https://twitch-api-smoky.vercel.app/api/followage/"
         },
         {
             "source": "/api/followage/(.*)",
-            "destination": "https://followage-api.vercel.app/api/followage/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/api/followage/$1"
         },
         {
             "source": "/api/clips/",
-            "destination": "https://followage-api.vercel.app/api/clips/"
+            "destination": "https://twitch-api-smoky.vercel.app/api/clips/"
         },
         {
             "source": "/api/clips/(.*)",
-            "destination": "https://followage-api.vercel.app/api/clips/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/api/clips/$1"
         },
         {
             "source": "/clips/(.*)",
-            "destination": "https://followage-api.vercel.app/clips/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/clips/$1"
         },
         {
             "source": "/channel/(.*)",
-            "destination": "https://followage-api.vercel.app/channel/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/channel/$1"
         },
         {
             "source": "/me",
-            "destination": "https://followage-api.vercel.app/me"
+            "destination": "https://twitch-api-smoky.vercel.app/me"
         },
         {
             "source": "/channel/me",
-            "destination": "https://followage-api.vercel.app/channel/me"
+            "destination": "https://twitch-api-smoky.vercel.app/channel/me"
         },
         {
             "source": "/health",
-            "destination": "https://followage-api.vercel.app/health"
+            "destination": "https://twitch-api-smoky.vercel.app/health"
         },
         {
             "source": "/auth/(.*)",
-            "destination": "https://followage-api.vercel.app/auth/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/auth/$1"
         },
         {
             "source": "/twitch/(.*)",
-            "destination": "https://followage-api.vercel.app/twitch/$1"
+            "destination": "https://twitch-api-smoky.vercel.app/twitch/$1"
         },
         {
             "source": "/twitch",
-            "destination": "https://followage-api.vercel.app/"
+            "destination": "https://twitch-api-smoky.vercel.app/"
         },
         {
             "source": "/api/valorant/",
