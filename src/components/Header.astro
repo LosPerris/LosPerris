@@ -13,7 +13,11 @@ const getLink = (hash: string) => {
 
 import { Image } from "astro:assets";
 import realImg from "../assets/img/Real.webp";
-import { discordLink } from "../data/community";
+import {
+    discordLink,
+    discordTicketLink,
+    discordUpdatesLink,
+} from "../data/community";
 ---
 
 <header
@@ -103,7 +107,8 @@ import { discordLink } from "../data/community";
                             Discord
                         </a>
                         <a
-                            href={getLink("#support")}
+                            href={discordTicketLink}
+                            target="_blank"
                             class="text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
                             aria-label="Ir a soporte"
                         >
@@ -113,7 +118,8 @@ import { discordLink } from "../data/community";
                             Soporte
                         </a>
                         <a
-                            href={getLink("#updates")}
+                            href={discordUpdatesLink}
+                            target="_blank"
                             class="text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
                             aria-label="Ver actualizaciones"
                         >
@@ -203,12 +209,14 @@ import { discordLink } from "../data/community";
                                 >Discord</a
                             >
                             <a
-                                href={getLink("#support")}
+                                href={discordTicketLink}
+                                target="_blank"
                                 class="dropdown-item text-xl text-white/80 hover:text-white"
                                 >Soporte</a
                             >
                             <a
-                                href={getLink("#updates")}
+                                href={discordUpdatesLink}
+                                target="_blank"
                                 class="dropdown-item text-xl text-white/80 hover:text-white"
                                 >Actualizaciones</a
                             >
