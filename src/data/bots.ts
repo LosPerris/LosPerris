@@ -9,9 +9,6 @@ export const helpBotData = {
     tags: ['🛡️ Moderación Avanzada', '🔒 Seguridad Total', '💾 Base de Datos'],
     backgroundColor: 'bg-[#2d2d2d]',
     inviteLink: 'https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID_HELP&permissions=8&scope=bot',
-    commandsFunction: 'showHelpCommands()',
-    demoFunction: 'startHelpChat()',
-    demoId: 'help-chat',
     features: [
         {
             icon: 'fas fa-shield-alt',
@@ -48,9 +45,6 @@ export const gameBotData = {
     tags: ['🎮 Multi-Juego', '📊 Stats Persistentes', '🔄 Actualizaciones Diarias'],
     backgroundColor: 'bg-[#1a1a1a]',
     inviteLink: 'https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID_GAME&permissions=8&scope=bot',
-    commandsFunction: 'showGameCommands()',
-    demoFunction: 'startGameChat()',
-    demoId: 'game-chat',
     features: [
         {
             icon: 'fas fa-gamepad',
