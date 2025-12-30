@@ -16,14 +16,14 @@ import SectionHeader from "../ui/SectionHeader.astro";
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-6">
         {
             apis.map((api, index) => (
-                <Card class="p-8 bg-white/[0.02] bg-none border border-white/10 hover:border-[#5865F2]/50 hover:bg-white/[0.04] transition-all duration-300 group hover:-translate-y-1 shadow-lg backdrop-blur-sm">
+                <Card class="p-8 bg-white/2 bg-none border border-white/10 hover:border-[#5865F2]/50 hover:bg-white/4 transition-all duration-300 group hover:-translate-y-1 shadow-lg backdrop-blur-sm">
                     <div class="flex items-start justify-between mb-6">
                         <div
                             class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform ${api.color}`}
                         >
                             <i class={api.icon} />
                         </div>
-                        <div class="bg-[#2d2d2d] px-3 py-1 rounded-full text-xs text-[#b0b0b0] font-mono border border-[#404040]">
+                        <div class="bg-secondary px-3 py-1 rounded-full text-xs text-text-secondary font-mono border border-[#404040]">
                             TESTED
                         </div>
                     </div>
@@ -31,7 +31,7 @@ import SectionHeader from "../ui/SectionHeader.astro";
                     <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#5865F2] transition-colors">
                         {api.title}
                     </h3>
-                    <p class="text-[rgb(176,176,176)] leading-relaxed mb-6 flex-grow">
+                    <p class="text-[rgb(176,176,176)] leading-relaxed mb-6 grow">
                         {api.description}
                     </p>
 
@@ -45,7 +45,7 @@ import SectionHeader from "../ui/SectionHeader.astro";
                                     {api.endpoints?.map((endpoint) => (
                                         <div>
                                             <div class="flex items-center gap-2 mb-1">
-                                                <span class="text-xs font-bold bg-[#2d2d2d] text-green-400 px-2 py-0.5 rounded uppercase">
+                                                <span class="text-xs font-bold bg-secondary text-green-400 px-2 py-0.5 rounded uppercase">
                                                     {endpoint.method}
                                                 </span>
                                                 <code class="text-xs md:text-sm text-gray-300 font-mono break-all">
@@ -55,8 +55,8 @@ import SectionHeader from "../ui/SectionHeader.astro";
                                             <p class="text-xs text-[#666] mb-2">
                                                 {endpoint.description}
                                             </p>
-                                            <div class="bg-[#1a1a1a] p-2 rounded border border-[#2d2d2d]">
-                                                <code class="text-xs text-[#808080] block font-mono break-all">
+                                            <div class="bg-primary p-2 rounded border border-secondary">
+                                                <code class="text-xs text-text-muted block font-mono break-all">
                                                     {endpoint.example}
                                                 </code>
                                             </div>
@@ -69,7 +69,7 @@ import SectionHeader from "../ui/SectionHeader.astro";
                         <div class="flex flex-col md:flex-row gap-3">
                             <button
                                 onclick={`document.getElementById('docs-${index}').classList.toggle('hidden')`}
-                                class="flex-1 py-3 px-4 rounded-xl font-semibold border border-[#404040] text-white hover:bg-[#2d2d2d] transition-colors text-sm cursor-pointer"
+                                class="flex-1 py-3 px-4 rounded-xl font-semibold border border-[#404040] text-white hover:bg-secondary transition-colors text-sm cursor-pointer"
                                 aria-label={`Ver documentación para ${api.title}`}
                             >
                                 <i class="fas fa-book mr-2" /> Documentación

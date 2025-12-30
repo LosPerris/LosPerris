@@ -11,7 +11,7 @@ const delay = `${index * 0.1}s`;
 ---
 
 <section
-    class="bg-[#2d2d2d] mb-8 p-8 rounded-xl border border-[#404040] transition-all shadow-md hover:-translate-y-1 hover:shadow-xl animate-[fadeInUp_0.6s_ease_forwards] opacity-0"
+    class="bg-secondary mb-8 p-8 rounded-xl border border-[#404040] transition-all shadow-md hover:-translate-y-1 hover:shadow-xl animate-[fadeInUp_0.6s_ease_forwards] opacity-0"
     style={{ animationDelay: delay }}
 >
     <h2
@@ -20,5 +20,5 @@ const delay = `${index * 0.1}s`;
         <i class={icon}></i>
         {title}
     </h2>
-    <div class="text-[#b0b0b0] leading-relaxed" set:html={content} />
+    <div class="text-text-secondary leading-relaxed" set:html={content} />
 </section>

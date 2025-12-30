@@ -28,14 +28,14 @@ export const termsSections = [
     title: '3. Uso del Servicio',
     icon: 'fas fa-cogs',
     content: `
-      <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Uso Permitido:</h3>
+      <h3 class="text-text-secondary my-4 text-xl font-semibold">Uso Permitido:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Utilizar los comandos según su propósito diseñado</li>
           <li class="mb-2">Moderar tu servidor con LosPerrisHelp</li>
           <li class="mb-2">Consultar estadísticas de juegos con LosPerrisGame</li>
           <li class="mb-2">Reportar bugs o problemas técnicos</li>
       </ul>
-      <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Uso Prohibido:</h3>
+      <h3 class="text-text-secondary my-4 text-xl font-semibold">Uso Prohibido:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Spam o abuso de comandos</li>
           <li class="mb-2">Intentos de bypass de limitaciones</li>
@@ -49,14 +49,14 @@ export const termsSections = [
     title: '4. Privacidad y Datos',
     icon: 'fas fa-shield-alt',
     content: `
-      <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Datos Recopilados:</h3>
+      <h3 class="text-text-secondary my-4 text-xl font-semibold">Datos Recopilados:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">IDs de usuario y servidor de Discord</li>
           <li class="mb-2">Mensajes procesados por comandos</li>
           <li class="mb-2">Estadísticas de uso básicas</li>
           <li class="mb-2">Logs de errores para mejoras técnicas</li>
       </ul>
-      <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Uso de Datos:</h3>
+      <h3 class="text-text-secondary my-4 text-xl font-semibold">Uso de Datos:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Proporcionar funcionalidad del bot</li>
           <li class="mb-2">Mejorar el rendimiento y características</li>
@@ -71,13 +71,13 @@ export const termsSections = [
     title: '5. Limitaciones y Responsabilidades',
     icon: 'fas fa-exclamation-triangle',
     content: `
-      <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Disponibilidad del Servicio:</h3>
+      <h3 class="text-text-secondary my-4 text-xl font-semibold">Disponibilidad del Servicio:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Los bots pueden experimentar tiempo de inactividad por mantenimiento</li>
           <li class="mb-2">No garantizamos disponibilidad 100% del tiempo</li>
           <li class="mb-2">Nos reservamos el derecho de suspender el servicio temporalmente</li>
       </ul>
-      <h3 class="text-[#b0b0b0] my-4 text-xl font-semibold">Limitación de Responsabilidad:</h3>
+      <h3 class="text-text-secondary my-4 text-xl font-semibold">Limitación de Responsabilidad:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">No somos responsables por daños indirectos o consecuenciales</li>
           <li class="mb-2">El servicio se proporciona "tal como está"</li>

@@ -50,7 +50,7 @@ const {
             />
             <div class="bot-info">
                 <h2 class="text-4xl font-bold mb-2 text-white">{botName}</h2>
-                <p class="text-xl text-[#b0b0b0]">
+                <p class="text-xl text-text-secondary">
                     {description}
                 </p>
                 <div class="flex gap-4 mt-4 flex-wrap">
@@ -75,10 +75,10 @@ const {
                         <h3 class="text-xl font-semibold mb-3 text-white">
                             {feature.title}
                         </h3>
-                        <p class="text-[#b0b0b0] text-sm mb-4">
+                        <p class="text-text-secondary text-sm mb-4">
                             {feature.description}
                         </p>
-                        <ul class="text-left mt-4 text-[#b0b0b0] text-sm space-y-2">
+                        <ul class="text-left mt-4 text-text-secondary text-sm space-y-2">
                             {feature.list.map((item) => (
                                 <li class="relative pl-5 before:content-['✓'] before:absolute before:left-0 before:text-green-500 before:font-bold">
                                     {item}
@@ -103,7 +103,7 @@ const {
         </div>
 
         <div
-            class="max-w-2xl mx-auto bg-[#2d2d2d] rounded-xl overflow-hidden border border-[#404040] hidden"
+            class="max-w-2xl mx-auto bg-secondary rounded-xl overflow-hidden border border-[#404040] hidden"
             id={demoId}
         >
             <div class="bg-[#404040] p-4 flex items-center gap-2">

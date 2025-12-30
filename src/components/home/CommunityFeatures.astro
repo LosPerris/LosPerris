@@ -18,10 +18,10 @@ import SectionHeader from "../ui/SectionHeader.astro";
     >
         {
             communityFeatures.map((feature) => (
-                <Card class="bg-white/[0.02] bg-none border border-white/10 hover:border-[#5865F2]/50 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-300 shadow-lg backdrop-blur-sm">
+                <Card class="bg-white/2 bg-none border border-white/10 hover:border-[#5865F2]/50 hover:bg-white/4 hover:-translate-y-2 transition-all duration-300 shadow-lg backdrop-blur-sm">
                     <div class="flex flex-col items-center text-center p-6">
                         <div
-                            class={`w-20 h-20 rounded-2xl bg-[#2d2d2d]/50 flex items-center justify-center mb-6 border border-white/5 group-hover:scale-110 transition-transform ${feature.color}`}
+                            class={`w-20 h-20 rounded-2xl bg-secondary/50 flex items-center justify-center mb-6 border border-white/5 group-hover:scale-110 transition-transform ${feature.color}`}
                         >
                             <i class={`${feature.icon} text-4xl`} />
                         </div>
