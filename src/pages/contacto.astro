@@ -6,6 +6,7 @@ import ContactInfo from "../components/contact/ContactInfo.astro";
 import FAQSection from "../components/contact/FAQSection.astro";
 import Modal from "../components/ui/Modal.astro";
 import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
+import { discordLink } from "../data/community";
 ---
 
 <Layout title="Contacto - LosPerris Real" showWallpaper={false}>
@@ -49,7 +50,7 @@ import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
             <ul class="list-none p-0">
                 <li class="py-2 border-b border-[#404040]">
                     Unirte a nuestro <a
-                        href="https://discord.gg/JKPUVf9aeU"
+                        href={discordLink}
                         target="_blank"
                         class="text-text-secondary no-underline hover:text-white hover:underline"
                         >servidor de Discord</a

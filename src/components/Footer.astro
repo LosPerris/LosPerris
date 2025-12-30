@@ -1,4 +1,9 @@
 ---
+import {
+    discordLink,
+    discordHelpBotsLink,
+    discordHelpApisLink,
+} from "../data/community";
 const pathname = new URL(Astro.request.url).pathname;
 const isHome =
     pathname === "/" || pathname === "/index.html" || pathname === "/index";
@@ -32,14 +37,16 @@ const getLink = (hash: string) => {
                 <ul class="space-y-2.5">
                     <li>
                         <a
-                            href={getLink("#help-bot")}
+                            href={discordHelpBotsLink}
+                            target="_blank"
                             class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
                             >LosPerrisHelp</a
                         >
                     </li>
                     <li>
                         <a
-                            href={getLink("#game-bot")}
+                            href={discordHelpApisLink}
+                            target="_blank"
                             class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
                             >LosPerrisGame</a
                         >
@@ -53,7 +60,7 @@ const getLink = (hash: string) => {
                     </li>
                     <li>
                         <a
-                            href="https://discord.gg/JKPUVf9aeU"
+                            href={discordLink}
                             class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
                             >Discord</a
                         >
