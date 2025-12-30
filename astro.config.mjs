@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   adapter: vercel(),
   output: 'server',
+  image: {
+    domains: ["mc-heads.net", "media.valorant-api.com", "cdn.discordapp.com", "img.youtube.com"],
+  },
   vite: {
     plugins: [tailwindcss()]
   }
