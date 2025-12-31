@@ -37,7 +37,6 @@ const categories = Object.keys(groupedGuides);
 <aside
     class="w-full lg:w-72 shrink-0 lg:border-r border-[#2A2A2A] bg-[#050505] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto custom-scrollbar"
 >
-    <!-- Mobile Toggle -->
     <div class="p-6 lg:p-0">
         <div class="mb-6 lg:hidden">
             <button
@@ -142,7 +141,6 @@ const categories = Object.keys(groupedGuides);
 </aside>
 
 <script>
-    // Accordion Logic
     const triggers = document.querySelectorAll(".accordion-trigger");
 
     triggers.forEach((trigger) => {
@@ -153,16 +151,13 @@ const categories = Object.keys(groupedGuides);
                 trigger.querySelector(".fa-chevron-right")?.parentElement;
             const isExpanded = trigger.getAttribute("aria-expanded") === "true";
 
-            // Toggle logic
             if (isExpanded) {
-                // Close
                 content!.style.maxHeight = "0";
                 content!.style.opacity = "0";
                 chevron?.classList.remove("rotate-90");
                 trigger.setAttribute("aria-expanded", "false");
             } else {
-                // Open
-                content!.style.maxHeight = "500px"; // Arbitrary large height
+                content!.style.maxHeight = "500px";
                 content!.style.opacity = "100";
                 chevron?.classList.add("rotate-90");
                 trigger.setAttribute("aria-expanded", "true");
@@ -170,7 +165,6 @@ const categories = Object.keys(groupedGuides);
         });
     });
 
-    // Mobile Sidebar Toggle
     const toggleBtn = document.getElementById("toggle-sidebar");
     const nav = document.getElementById("sidebar-nav");
 
