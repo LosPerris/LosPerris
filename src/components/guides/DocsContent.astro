@@ -1,0 +1,37 @@
+---
+import { guides } from "../../data/guides";
+
+const initialGuide = guides[0];
+---
+
+<div class="flex-1 p-6 lg:p-12 min-h-[50vh]">
+    <div id="content-area" class="max-w-4xl mx-auto">
+        <div class="mb-10 pb-6 border-b border-white/10">
+            <div class="flex items-center gap-3 mb-4">
+                <span
+                    id="guide-badge"
+                    class={`${initialGuide.difficultyColor} ${initialGuide.difficultyTextColor} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide`}
+                >
+                    {initialGuide.difficulty}
+                </span>
+                <span class="text-text-muted text-sm flex items-center gap-2">
+                    <i class="far fa-clock"></i>
+                    <span id="guide-time">{initialGuide.time}</span>
+                </span>
+            </div>
+            <h1
+                id="guide-title"
+                class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight"
+            >
+                {initialGuide.contentTitle}
+            </h1>
+            <p id="guide-desc" class="text-xl text-text-secondary font-light">
+                {initialGuide.description}
+            </p>
+        </div>
+
+        <div id="guide-body" class="prose prose-invert prose-lg max-w-none">
+            <Fragment set:html={initialGuide.content} />
+        </div>
+    </div>
+</div>

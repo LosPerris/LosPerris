@@ -12,5 +12,9 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()]
+  },
+  redirects: {
+    '/guias': '/bots/documentacion',
+    '/bots/guias': '/bots/documentacion',
   }
 });

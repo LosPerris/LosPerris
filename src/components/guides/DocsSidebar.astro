@@ -1,0 +1,106 @@
+---
+import { guides } from "../../data/guides";
+
+const groupedGuides = guides.reduce(
+    (acc, guide) => {
+        const categoryName =
+            guide.category === "bot-ayuda"
+                ? "Bot Ayuda"
+                : guide.category === "bot-gaming"
+                  ? "Bot Gaming"
+                  : "Configuración";
+
+        if (!acc[categoryName]) {
+            acc[categoryName] = [];
+        }
+        acc[categoryName].push(guide);
+        return acc;
+    },
+    {} as Record<string, typeof guides>,
+);
+
+interface Props {
+    activeId?: string;
+}
+
+const { activeId } = Astro.props;
+const categories = Object.keys(groupedGuides);
+---
+
+<aside
+    class="w-full lg:w-72 shrink-0 lg:border-r border-white/10 bg-[#0f0f0f]/50 backdrop-blur-md lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto custom-scrollbar"
+>
+    <div class="p-6">
+        <div class="mb-6 lg:hidden">
+            <button
+                id="toggle-sidebar"
+                class="w-full py-3 bg-[#5865F2]/20 text-[#5865F2] rounded-lg font-bold border border-[#5865F2]/30 flex items-center justify-center gap-2"
+            >
+                <i class="fas fa-bars"></i> Menú de Guías
+            </button>
+        </div>
+
+        <nav id="sidebar-nav" class="hidden lg:block space-y-8">
+            {
+                categories.map((category) => (
+                    <div class="category-group">
+                        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest mb-4 pl-3 border-l-2 border-[#5865F2]">
+                            {category}
+                        </h3>
+                        <ul class="space-y-1">
+                            {groupedGuides[category].map((guide) => (
+                                <li>
+                                    <button
+                                        class={`guide-btn w-full text-left px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center gap-3 group ${guide.id === activeId ? "active" : ""}`}
+                                        data-id={guide.id}
+                                        onclick={`switchGuide('${guide.id}')`}
+                                    >
+                                        <span class="w-6 h-6 rounded bg-white/5 flex items-center justify-center text-xs group-hover:bg-[#5865F2] group-hover:text-white transition-colors text-text-muted">
+                                            <i class={guide.icon} />
+                                        </span>
+                                        {guide.title}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </nav>
+    </div>
+</aside>
+
+<script>
+    const toggleBtn = document.getElementById("toggle-sidebar");
+    const nav = document.getElementById("sidebar-nav");
+
+    toggleBtn?.addEventListener("click", () => {
+        nav?.classList.toggle("hidden");
+    });
+</script>
+
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .guide-btn.active {
+        background: rgba(88, 101, 242, 0.1);
+        color: white;
+        font-weight: 500;
+    }
+    .guide-btn.active span {
+        background: #5865f2;
+        color: white;
+    }
+</style>
