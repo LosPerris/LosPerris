@@ -37,64 +37,131 @@ const categories = Object.keys(groupedGuides);
 <aside
     class="w-full lg:w-72 shrink-0 lg:border-r border-[#2A2A2A] bg-[#050505] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto custom-scrollbar"
 >
-    <div class="p-6">
+    <!-- Mobile Toggle -->
+    <div class="p-6 lg:p-0">
         <div class="mb-6 lg:hidden">
             <button
                 id="toggle-sidebar"
-                class="w-full py-3 bg-[#5865F2]/20 text-[#5865F2] rounded-lg font-bold border border-[#5865F2]/30 flex items-center justify-center gap-2"
+                class="w-full py-3 bg-[#151515] text-white rounded-lg font-bold border border-[#333] flex items-center justify-center gap-2 hover:bg-[#222] transition-colors"
             >
-                <i class="fas fa-bars"></i> Menú de Guías
+                <i class="fas fa-bars"></i> Índice de Documentación
             </button>
         </div>
 
-        <nav id="sidebar-nav" class="hidden lg:block space-y-8">
+        <nav id="sidebar-nav" class="hidden lg:block space-y-2 lg:p-4">
             {
-                categories.map((category) => (
-                    <div class="category-group">
-                        <div class="flex items-center gap-3 mb-4 pl-3 border-l-2 border-[#5865F2]">
-                            {categoryImages[
-                                category as keyof typeof categoryImages
-                            ] && (
-                                <Image
-                                    src={
-                                        categoryImages[
-                                            category as keyof typeof categoryImages
-                                        ]
-                                    }
-                                    alt={category}
-                                    class="w-6 h-6 rounded-full"
-                                    width={24}
-                                    height={24}
-                                />
-                            )}
-                            <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest">
-                                {category}
-                            </h3>
+                categories.map((category) => {
+                    const isGaming = category === "Bot Gaming";
+                    const isHelp = category === "Bot Ayuda";
+                    const hasActiveChild = groupedGuides[category].some(
+                        (g) => g.id === activeId,
+                    );
+
+                    return (
+                        <div class="category-group mb-4">
+                            <button
+                                class="w-full flex items-center gap-3 px-2 py-2 mb-1 text-left group hover:bg-white/5 rounded-lg transition-colors cursor-pointer accordion-trigger"
+                                data-category={category}
+                                aria-expanded={
+                                    hasActiveChild ? "true" : "false"
+                                }
+                            >
+                                <span
+                                    class={`transition-transform duration-200 text-xs text-text-muted group-hover:text-white ${hasActiveChild ? "rotate-90" : ""}`}
+                                >
+                                    <i class="fas fa-chevron-right" />
+                                </span>
+
+                                {categoryImages[
+                                    category as keyof typeof categoryImages
+                                ] && (
+                                    <Image
+                                        src={
+                                            categoryImages[
+                                                category as keyof typeof categoryImages
+                                            ]
+                                        }
+                                        alt={category}
+                                        class="w-5 h-5 rounded-full"
+                                        width={20}
+                                        height={20}
+                                    />
+                                )}
+
+                                <h3 class="text-sm font-bold text-gray-200 uppercase tracking-wider group-hover:text-white">
+                                    {category}
+                                </h3>
+                            </button>
+
+                            <div
+                                class={`overflow-hidden transition-all duration-300 ease-in-out pl-6 ${hasActiveChild ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
+                                id={`content-${category}`}
+                            >
+                                <ul class="space-y-[2px] border-l border-[#2A2A2A] content-list">
+                                    {groupedGuides[category].map((guide) => {
+                                        const isActive = guide.id === activeId;
+                                        return (
+                                            <li>
+                                                <button
+                                                    class={`w-full text-left px-4 py-2 text-sm transition-all duration-200 flex items-center justify-between group relative
+                                                    ${
+                                                        isActive
+                                                            ? "text-[#5865F2] font-medium bg-[#5865F2]/5"
+                                                            : "text-text-muted hover:text-white hover:bg-white/5"
+                                                    }`}
+                                                    data-id={guide.id}
+                                                    onclick={`switchGuide('${guide.id}')`}
+                                                >
+                                                    <span class="truncate">
+                                                        {guide.title}
+                                                    </span>
+                                                    {isActive && (
+                                                        <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#5865F2] rounded-r-full" />
+                                                    )}
+                                                </button>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
                         </div>
-                        <ul class="space-y-1">
-                            {groupedGuides[category].map((guide) => (
-                                <li>
-                                    <button
-                                        class={`guide-btn w-full text-left px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center gap-3 group ${guide.id === activeId ? "active" : ""}`}
-                                        data-id={guide.id}
-                                        onclick={`switchGuide('${guide.id}')`}
-                                    >
-                                        <span class="w-6 h-6 rounded bg-white/5 flex items-center justify-center text-xs group-hover:bg-[#5865F2] group-hover:text-white transition-colors text-text-muted">
-                                            <i class={guide.icon} />
-                                        </span>
-                                        {guide.title}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))
+                    );
+                })
             }
         </nav>
     </div>
 </aside>
 
 <script>
+    // Accordion Logic
+    const triggers = document.querySelectorAll(".accordion-trigger");
+
+    triggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+            const category = trigger.getAttribute("data-category");
+            const content = document.getElementById(`content-${category}`);
+            const chevron =
+                trigger.querySelector(".fa-chevron-right")?.parentElement;
+            const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+            // Toggle logic
+            if (isExpanded) {
+                // Close
+                content!.style.maxHeight = "0";
+                content!.style.opacity = "0";
+                chevron?.classList.remove("rotate-90");
+                trigger.setAttribute("aria-expanded", "false");
+            } else {
+                // Open
+                content!.style.maxHeight = "500px"; // Arbitrary large height
+                content!.style.opacity = "100";
+                chevron?.classList.add("rotate-90");
+                trigger.setAttribute("aria-expanded", "true");
+            }
+        });
+    });
+
+    // Mobile Sidebar Toggle
     const toggleBtn = document.getElementById("toggle-sidebar");
     const nav = document.getElementById("sidebar-nav");
 
@@ -116,15 +183,5 @@ const categories = Object.keys(groupedGuides);
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #555;
-    }
-
-    .guide-btn.active {
-        background: rgba(88, 101, 242, 0.1);
-        color: white;
-        font-weight: 500;
-    }
-    .guide-btn.active span {
-        background: #5865f2;
-        color: white;
     }
 </style>
