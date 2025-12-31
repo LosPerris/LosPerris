@@ -5,33 +5,14 @@ import CommunityFeatures from "../components/home/CommunityFeatures.astro";
 import ToolsSection from "../components/home/ToolsSection.astro";
 import ApiSection from "../components/home/ApiSection.astro";
 import DiscordSection from "../components/home/DiscordSection.astro";
-import Modal from "../components/ui/Modal.astro";
 ---
 
 <Layout title="LosPerris">
 	<HeroSection />
-
 	<div id="features">
 		<CommunityFeatures />
 	</div>
-
 	<ToolsSection />
-
 	<ApiSection />
-
-	<Modal id="commands-modal" title="Comandos">
-		<div id="modal-body"></div>
-	</Modal>
-
 	<DiscordSection />
 </Layout>
-
-<script is:inline>
-	window.closeModal = function () {
-		const modal = document.getElementById("commands-modal");
-		if (modal) {
-			modal.classList.add("hidden");
-			document.body.style.overflow = "auto";
-		}
-	};
-</script>
