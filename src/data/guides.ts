@@ -17,9 +17,9 @@ export interface Guide {
 export const guides: Guide[] = [
     {
         id: 'comandos-basicos',
-        title: 'Comandos Básicos',
+        title: 'Básicos e Información',
         category: 'bot-ayuda',
-        description: 'Aprende los comandos esenciales del Bot Ayuda',
+        description: 'Diversión, saludos e información general',
         icon: 'fas fa-robot',
         difficulty: 'Fácil',
         difficultyColor: 'bg-green-400',
@@ -30,29 +30,29 @@ export const guides: Guide[] = [
     },
     {
         id: 'moderacion',
-        title: 'Moderación',
+        title: 'Moderación y Utilidad',
         category: 'bot-ayuda',
-        description: 'Configura y usa las funciones de moderación',
+        description: 'Gestión de usuarios, bans y herramientas útiles',
         icon: 'fas fa-shield-alt',
         difficulty: 'Intermedio',
         difficultyColor: 'bg-yellow-400',
         difficultyTextColor: 'text-black',
         time: '10 min',
-        contentTitle: 'Funciones de Moderación - LosPerrisHelp',
+        contentTitle: 'Moderación y Herramientas - LosPerrisHelp',
         sections: commandsData['moderacion']
     },
     {
-        id: 'configuracion-avanzada',
-        title: 'Configuración Avanzada',
+        id: 'seguridad',
+        title: 'Seguridad',
         category: 'bot-ayuda',
-        description: 'Personaliza el bot según tus necesidades',
-        icon: 'fas fa-cog',
+        description: 'Análisis de archivos y protección del servidor',
+        icon: 'fas fa-lock',
         difficulty: 'Avanzado',
         difficultyColor: 'bg-red-500',
         difficultyTextColor: 'text-white',
-        time: '15 min',
-        contentTitle: 'Configuración Avanzada del Sistema',
-        sections: commandsData['configuracion-avanzada']
+        time: '8 min',
+        contentTitle: 'Seguridad y Verificación - LosPerrisHelp',
+        sections: commandsData['seguridad']
     },
     {
         id: 'comandos-gaming',

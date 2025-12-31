@@ -1,5 +1,12 @@
 ---
 import { guides } from "../../data/guides";
+import { helpBotData, gameBotData } from "../../data/bots";
+import { Image } from "astro:assets";
+
+const categoryImages = {
+    "Bot Ayuda": helpBotData.imageSrc,
+    "Bot Gaming": gameBotData.imageSrc,
+};
 
 const groupedGuides = guides.reduce(
     (acc, guide) => {
@@ -44,9 +51,26 @@ const categories = Object.keys(groupedGuides);
             {
                 categories.map((category) => (
                     <div class="category-group">
-                        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest mb-4 pl-3 border-l-2 border-[#5865F2]">
-                            {category}
-                        </h3>
+                        <div class="flex items-center gap-3 mb-4 pl-3 border-l-2 border-[#5865F2]">
+                            {categoryImages[
+                                category as keyof typeof categoryImages
+                            ] && (
+                                <Image
+                                    src={
+                                        categoryImages[
+                                            category as keyof typeof categoryImages
+                                        ]
+                                    }
+                                    alt={category}
+                                    class="w-6 h-6 rounded-full"
+                                    width={24}
+                                    height={24}
+                                />
+                            )}
+                            <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest">
+                                {category}
+                            </h3>
+                        </div>
                         <ul class="space-y-1">
                             {groupedGuides[category].map((guide) => (
                                 <li>
