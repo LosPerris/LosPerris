@@ -48,7 +48,12 @@ const categories = Object.keys(groupedGuides);
             </button>
         </div>
 
-        <nav id="sidebar-nav" class="hidden lg:block space-y-2 lg:p-4">
+        <nav id="sidebar-nav" class="hidden lg:block space-y-2 lg:p-6 lg:pt-10">
+            <h2
+                class="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-6 pl-2 hidden lg:block"
+            >
+                Documentación
+            </h2>
             {
                 categories.map((category) => {
                     const isGaming = category === "Bot Gaming";
@@ -74,7 +79,7 @@ const categories = Object.keys(groupedGuides);
 
                                 {categoryImages[
                                     category as keyof typeof categoryImages
-                                ] && (
+                                ] ? (
                                     <Image
                                         src={
                                             categoryImages[
@@ -86,6 +91,10 @@ const categories = Object.keys(groupedGuides);
                                         width={20}
                                         height={20}
                                     />
+                                ) : (
+                                    <span class="w-5 h-5 rounded-full flex items-center justify-center bg-[#2A2A2A] text-[10px] text-white">
+                                        <i class="fas fa-cog" />
+                                    </span>
                                 )}
 
                                 <h3 class="text-sm font-bold text-gray-200 uppercase tracking-wider group-hover:text-white">

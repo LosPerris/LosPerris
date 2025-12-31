@@ -161,5 +161,52 @@ export const commandsData: Record<string, GuideSection[]> = {
                 </div>
             `
         }
+    ],
+    'configuracion-servidor': [
+        {
+            title: 'Configuración Inicial',
+            icon: '🔧',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-[#151515] rounded-lg p-5 border border-[#333]">
+                        <h4 class="text-lg font-bold text-white mb-3">Pasos para configurar</h4>
+                        <ol class="space-y-2 list-decimal ml-5 text-gray-400 text-sm">
+                            <li>Invita los bots a tu servidor</li>
+                            <li>Asigna los permisos necesarios</li>
+                            <li>Configura los canales de logs</li>
+                            <li>Establece roles de moderación</li>
+                            <li>Prueba los comandos básicos</li>
+                        </ol>
+                    </div>
+                </div>
+            `
+        }
+    ],
+    'permisos-roles': [
+        {
+            title: 'Sistema de Roles',
+            icon: '👑',
+            content: `
+                <div class="space-y-4">
+                    <div class="bg-[#151515] rounded-lg p-5 border border-[#333]">
+                        <h4 class="text-lg font-bold text-white mb-3">Roles Recomendados</h4>
+                        <ul class="space-y-2 list-none p-0 text-sm">
+                            <li class="text-gray-400 mb-2"><strong class="text-white">Administrador:</strong> Acceso completo a todos los comandos</li>
+                            <li class="text-gray-400 mb-2"><strong class="text-white">Moderador:</strong> Comandos de moderación básica</li>
+                            <li class="text-gray-400 mb-2"><strong class="text-white">Helper:</strong> Comandos de información y ayuda</li>
+                            <li class="text-gray-400 mb-2"><strong class="text-white">Miembro:</strong> Comandos básicos y de entretenimiento</li>
+                        </ul>
+                    </div>
+                     <div class="bg-[#151515] rounded-lg p-5 border border-[#333]">
+                        <h4 class="text-lg font-bold text-white mb-3">Configuración de Permisos</h4>
+                         <ul class="space-y-2 list-disc ml-5 text-gray-400 text-sm">
+                            <li>Los bots tengan rol superior a los usuarios</li>
+                            <li>Los permisos estén bien jerarquizados</li>
+                            <li>Existan roles de respaldo</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        }
     ]
 };
