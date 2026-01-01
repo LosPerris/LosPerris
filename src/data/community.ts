@@ -36,3 +36,9 @@ export const discordUpdatesLink = 'https://discord.com/channels/1158802490561667
 export const domain = 'losperris.site';
 export const siteUrl = 'https://www.losperris.site';
 export const contactEmail = 'contacto@losperris.site';
+
+export const twitchApiUrl = 'https://twitch-api-smoky.vercel.app';
+export const qrApiUrl = 'https://generador-qr-lyart.vercel.app';
+export const valorantApiUrl = 'https://los-perris-valorant-api.vercel.app';
+// API Server Minecraft (MalaWorld)
+export const malaworldApiUrl = 'http://23.230.3.241:25908/api';
