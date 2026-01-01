@@ -35,13 +35,13 @@ export const apis = [
                 method: 'GET',
                 path: '/valorant/v1/mmr/:region/:name/:tag',
                 description: 'Obtiene el rango y ELO actual de un jugador.',
-                example: 'https://api.henrikdev.xyz/valorant/v1/mmr/na/user/tag'
+                example: `${siteUrl}/valorant/v1/mmr/na/user/tag`
             },
             {
                 method: 'GET',
                 path: '/valorant/v1/account/:name/:tag',
                 description: 'Información general de la cuenta (Nivel, tarjeta, etc).',
-                example: '/api/valorant/match/last/:region/:name/:tag'
+                example: `${siteUrl}/api/valorant/v1/account/nombre/tag`
             }
         ]
     },

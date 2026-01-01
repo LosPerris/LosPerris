@@ -1,5 +1,6 @@
 ---
 import { discordLink } from "../../data/community";
+const inviteCode = discordLink.split("/").pop();
 ---
 
 ---
@@ -7,6 +8,7 @@ import { discordLink } from "../../data/community";
 <section
     id="home"
     class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+    data-invite-code={inviteCode}
 >
     <div class="relative z-10 max-w-5xl px-6 text-center">
         <span
@@ -86,7 +88,10 @@ import { discordLink } from "../../data/community";
     </div>
 
     <script is:inline>
-        fetch("https://discord.com/api/v9/invites/JKPUVf9aeU?with_counts=true")
+        const section = document.querySelector("section[data-invite-code]");
+        const code = section?.dataset.inviteCode || "JKPUVf9aeU";
+
+        fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.approximate_member_count) {

@@ -6,7 +6,7 @@ import Button from "../components/ui/Button.astro";
 import { Image } from "astro:assets";
 import realImg from "../assets/img/Real.webp";
 import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
-import { discordLink } from "../data/community";
+import { discordLink, domain } from "../data/community";
 ---
 
 <Layout
@@ -121,7 +121,7 @@ import { discordLink } from "../data/community";
                 class="flex justify-between items-center flex-wrap gap-4 text-center"
             >
                 <p class="text-text-muted">
-                    &copy; 2025 losperris.site. Todos los derechos reservados.
+                    &copy; 2025 {domain}. Todos los derechos reservados.
                 </p>
                 <div class="flex gap-8">
                     <a
