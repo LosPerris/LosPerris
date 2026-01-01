@@ -6,6 +6,7 @@ import Button from "../components/ui/Button.astro";
 import { Image } from "astro:assets";
 import realImg from "../assets/img/Real.webp";
 import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
+import { discordLink } from "../data/community";
 ---
 
 <Layout
@@ -134,7 +135,7 @@ import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
                         >Términos y Condiciones</a
                     >
                     <a
-                        href="https://discord.gg/JKPUVf9aeU"
+                        href={discordLink}
                         class="text-text-muted no-underline transition-all hover:text-white"
                         >Discord</a
                     >

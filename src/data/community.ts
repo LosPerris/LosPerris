@@ -1,9 +1,4 @@
-export const communityStats = {
-    members: '24k+',
-    online: '1.2k+',
-    voice: '200+',
-    messages: '1M+'
-};
+
 
 export const communityFeatures = [
     {
@@ -32,7 +27,7 @@ export const communityFeatures = [
     }
 ];
 
-export const discordLink = 'https://discord.gg/8uN3qY5E';
+export const discordLink = 'https://discord.gg/JKPUVf9aeU';
 export const discordTicketLink = 'https://discord.com/channels/1158802490561667103/1339032212712194069';
 export const discordHelpBotsLink = 'https://discord.com/channels/1158802490561667103/1447645561577799710';
 export const discordHelpApisLink = 'https://discord.com/channels/1158802490561667103/1447647406639288420';

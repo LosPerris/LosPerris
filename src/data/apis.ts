@@ -39,7 +39,7 @@ export const apis = [
                 method: 'GET',
                 path: '/valorant/v1/account/:name/:tag',
                 description: 'Información general de la cuenta (Nivel, tarjeta, etc).',
-                example: 'https://api.henrikdev.xyz/valorant/v1/account/user/tag'
+                example: '/api/valorant/match/last/:region/:name/:tag'
             }
         ]
     },
