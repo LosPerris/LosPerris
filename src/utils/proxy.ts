@@ -27,9 +27,11 @@ export const createProxy = (targetBaseUrl: string): APIRoute => {
                 headers: responseHeaders
             });
         } catch (error) {
-            return new Response(JSON.stringify({ error: 'Proxy Error', details: String(error) }), {
+
+            console.error('Proxy Error:', error);
+            return new Response(`Proxy Error: ${String(error)}`, {
                 status: 500,
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'text/plain' }
             });
         }
     };
