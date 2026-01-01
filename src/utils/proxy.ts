@@ -14,6 +14,7 @@ export const createProxy = (targetBaseUrl: string): APIRoute => {
                 method: request.method,
                 headers: request.headers,
                 body: request.body ? await request.arrayBuffer() : undefined,
+                redirect: 'manual'
             });
 
             const responseHeaders = new Headers(response.headers);
