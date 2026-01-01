@@ -40,5 +40,4 @@ export const contactEmail = 'contacto@losperris.site';
 export const twitchApiUrl = 'https://twitch-api-smoky.vercel.app';
 export const qrApiUrl = 'https://generador-qr-lyart.vercel.app';
 export const valorantApiUrl = 'https://los-perris-valorant-api.vercel.app';
-// API Server Minecraft (MalaWorld)
 export const malaworldApiUrl = 'http://23.230.3.241:25908/api';

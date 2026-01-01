@@ -6,7 +6,6 @@ export const createProxy = (targetBaseUrl: string): APIRoute => {
         const url = new URL(request.url);
         const searchParams = url.search;
 
-        // Remove leading slash if present in path to prevent double slash with base url
         const cleanPath = path.startsWith('/') ? path.slice(1) : path;
         const targetUrl = `${targetBaseUrl}${cleanPath ? `/${cleanPath}` : ''}${searchParams}`;
 
