@@ -3,6 +3,7 @@ import {
     discordLink,
     discordHelpBotsLink,
     discordHelpApisLink,
+    domain,
 } from "../data/community";
 const pathname = new URL(Astro.request.url).pathname;
 const isHome =
@@ -119,8 +120,9 @@ const getLink = (hash: string) => {
         </div>
         <div class="pt-6 border-t border-[#404040] text-center">
             <p class="text-text-muted text-sm">
-                &copy; {new Date().getFullYear()} losperris.site. Todos los derechos
-                reservados. | Hecho con ❤️ para la comunidad de Discord
+                &copy; {new Date().getFullYear()}
+                {domain}. Todos los derechos reservados. | Hecho con ❤️ para la
+                comunidad de Discord
             </p>
         </div>
     </div>

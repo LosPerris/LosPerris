@@ -10,6 +10,7 @@ import ServerInfo from "./_components/ServerInfo.astro";
 import ModInventory from "./_components/ModInventory.astro";
 import ChristmasPopup from "./_components/ChristmasPopup.astro";
 import Footer from "./_components/Footer.astro";
+import { siteUrl } from "../../data/community";
 ---
 
 <!doctype html>
@@ -33,10 +34,7 @@ import Footer from "./_components/Footer.astro";
             content="Descubre Mala World: Comunidad activa, eventos épicos y un mundo técnico listo para explorar. ¡Únete ahora!"
         />
         <meta property="og:image" content={serverIcon.src} />
-        <meta
-            property="og:url"
-            content="https://www.losperris.site/malaworld/"
-        />
+        <meta property="og:url" content={`${siteUrl}/malaworld/`} />
         <meta property="og:type" content="website" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -32,3 +32,7 @@ export const discordTicketLink = 'https://discord.com/channels/11588024905616671
 export const discordHelpBotsLink = 'https://discord.com/channels/1158802490561667103/1447645561577799710';
 export const discordHelpApisLink = 'https://discord.com/channels/1158802490561667103/1447647406639288420';
 export const discordUpdatesLink = 'https://discord.com/channels/1158802490561667103/1158802492612673542';
+
+export const domain = 'losperris.site';
+export const siteUrl = 'https://www.losperris.site';
+export const contactEmail = 'contacto@losperris.site';

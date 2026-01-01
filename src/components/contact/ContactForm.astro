@@ -1,10 +1,15 @@
 ---
 import Button from "../ui/Button.astro";
+import { contactEmail } from "../../data/community";
 ---
 
 <div class="h-full">
     <h2 class="text-3xl font-semibold mb-8 text-white">Envíanos un mensaje</h2>
-    <form class="flex flex-col gap-6" id="contactForm">
+    <form
+        class="flex flex-col gap-6"
+        id="contactForm"
+        data-to-email={contactEmail}
+    >
         <div class="flex flex-col">
             <label
                 for="nombre"
@@ -139,7 +144,7 @@ import Button from "../ui/Button.astro";
                 from_email: form.email.value.trim(),
                 subject: form.asunto.value.trim(),
                 message: form.mensaje.value.trim(),
-                to_email: "contacto@losperris.site",
+                to_email: form.dataset.toEmail,
                 sent_date: new Date().toLocaleString("es-ES"),
             };
 

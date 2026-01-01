@@ -1,3 +1,5 @@
+import { siteUrl } from './community';
+
 export const apis = [
     {
         title: 'Herramientas de Twitch',
@@ -11,13 +13,13 @@ export const apis = [
                 method: 'GET',
                 path: '/api/followage/:user/:channel',
                 description: 'API de tiempo de seguimiento (Followage).',
-                example: 'https://www.losperris.site/api/followage/usuario/canal'
+                example: `${siteUrl}/api/followage/usuario/canal`
             },
             {
                 method: 'WEB',
                 path: '/api/clips',
                 description: 'Gestor y descargador de Clips.',
-                example: 'https://www.losperris.site/twitch/clips'
+                example: `${siteUrl}/twitch/clips`
             }
         ]
     },
@@ -55,7 +57,7 @@ export const apis = [
                 method: 'WEB',
                 path: '/api/qr',
                 description: 'Interfaz gráfica para generación de QR.',
-                example: 'https://www.losperris.site/api/qr'
+                example: `${siteUrl}/api/qr`
             }
         ]
     }

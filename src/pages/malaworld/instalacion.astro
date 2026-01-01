@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import botwBg from "./malaimg/_botw-bg.png";
 import serverIcon from "./malaimg/_icono_del_server.png";
+import { siteUrl } from "../../data/community";
 ---
 
 <!doctype html>
@@ -25,10 +26,7 @@ import serverIcon from "./malaimg/_icono_del_server.png";
             content="Aprende a instalar y configurar el ModPack de Mala World para empezar tu aventura survival técnico."
         />
         <meta property="og:image" content={serverIcon.src} />
-        <meta
-            property="og:url"
-            content="https://www.losperris.site/malaworld/instalacion"
-        />
+        <meta property="og:url" content={`${siteUrl}/malaworld/instalacion`} />
         <meta property="og:type" content="article" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
