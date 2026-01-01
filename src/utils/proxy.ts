@@ -16,10 +16,14 @@ export const createProxy = (targetBaseUrl: string): APIRoute => {
                 body: request.body ? await request.arrayBuffer() : undefined,
             });
 
+            const responseHeaders = new Headers(response.headers);
+            responseHeaders.delete('content-encoding');
+            responseHeaders.delete('content-length');
+
             return new Response(response.body, {
                 status: response.status,
                 statusText: response.statusText,
-                headers: response.headers
+                headers: responseHeaders
             });
         } catch (error) {
             return new Response(JSON.stringify({ error: 'Proxy Error', details: String(error) }), {
