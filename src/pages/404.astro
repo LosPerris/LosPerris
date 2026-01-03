@@ -4,22 +4,38 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="404 - Página no encontrada">
     <section
-        class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+        class="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
     >
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 pointer-events-none">
             <div
-                class="absolute inset-0 bg-[url('/img/404.webp')] bg-cover bg-center opacity-40 mix-blend-overlay"
+                class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[128px]"
             >
             </div>
             <div
-                class="absolute inset-0 bg-linear-to-b from-[#151515] via-transparent to-[#151515]"
+                class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[128px]"
             >
             </div>
         </div>
 
-        <div class="relative z-10 max-w-5xl px-6 text-center">
+        <div
+            class="relative z-10 max-w-4xl px-6 flex flex-col items-center text-center"
+        >
+            <div
+                class="relative w-full max-w-md aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.1s_forwards]"
+            >
+                <div
+                    class="absolute inset-0 bg-linear-to-t from-[#151515] to-transparent opacity-60 z-10"
+                >
+                </div>
+                <img
+                    src="/img/404.webp"
+                    alt="Lost Detective Duck"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+
             <h1
-                class="text-8xl md:text-9xl font-black mb-6 text-transparent bg-clip-text bg-linear-to-r from-[#5865F2] to-purple-500 tracking-tight glitch-text opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.3s_forwards]"
+                class="text-8xl md:text-9xl font-black mb-4 text-transparent bg-clip-text bg-linear-to-r from-[#5865F2] to-purple-500 tracking-tight glitch-text opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.3s_forwards]"
                 data-text="404"
             >
                 404
@@ -32,13 +48,13 @@ import Layout from "../layouts/Layout.astro";
             </p>
 
             <p
-                class="text-xl md:text-2xl text-text-secondary mb-8 max-w-3xl mx-auto font-light opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.9s_forwards]"
+                class="text-xl md:text-2xl text-text-secondary mb-8 max-w-2xl font-light opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.9s_forwards]"
             >
                 La ruta que buscas no existe o ha sido movida a otra dimensión.
             </p>
 
             <div
-                class="flex flex-wrap justify-center gap-4 my-8 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_1.2s_forwards]"
+                class="opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_1.2s_forwards]"
             >
                 <a
                     href="/"
