@@ -3,6 +3,7 @@ import { siteUrl } from './community';
 export const apis = [
     {
         title: 'Herramientas de Twitch',
+        popular: true,
         description: 'Suite completa para streamers: API de Followage y gestor de Clips. Todo en un solo lugar.',
         icon: 'fab fa-twitch',
         color: 'text-[#9146FF]',
@@ -25,6 +26,7 @@ export const apis = [
     },
     {
         title: 'Valorant API',
+        popular: true,
         description: 'Obtén datos en tiempo real de Valorant: Rango, MMR, Historial de partidas y más. Respuestas en texto plano para fácil integración.',
         icon: 'fas fa-crosshairs',
         color: 'text-[#FF4655]',
@@ -47,6 +49,7 @@ export const apis = [
     },
     {
         title: 'Generador de Códigos QR',
+        popular: false,
         description: 'Herramienta visual profesional para crear códigos QR personalizados. Soporta estilos, logotipos, WiFi, VCard y descargas en alta resolución.',
         icon: 'fas fa-qrcode',
         color: 'text-[#FACC15]',
