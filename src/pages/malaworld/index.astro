@@ -8,7 +8,6 @@ import Events from "./_components/Events.astro";
 import Scoreboard from "./_components/Scoreboard.astro";
 import ServerInfo from "./_components/ServerInfo.astro";
 import ModInventory from "./_components/ModInventory.astro";
-import ChristmasPopup from "./_components/ChristmasPopup.astro";
 import Footer from "./_components/Footer.astro";
 import { siteUrl } from "../../data/community";
 ---
@@ -51,7 +50,6 @@ import { siteUrl } from "../../data/community";
     <body
         class="bg-[#050505] text-white font-['Josefin_Sans'] overflow-x-hidden relative selection:bg-[#7df9ff] selection:text-black flex flex-col min-h-screen"
     >
-        <ChristmasPopup />
         <div class="fixed inset-0 z-[-1]">
             <Image
                 src={botwBg}
