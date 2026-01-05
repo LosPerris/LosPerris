@@ -86,33 +86,4 @@ const inviteCode = discordLink.split("/").pop();
             </div>
         </div>
     </div>
-
-    <script is:inline>
-        const section = document.querySelector("section[data-invite-code]");
-        const code = section?.dataset.inviteCode || "JKPUVf9aeU";
-
-        fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.approximate_member_count) {
-                    const members = data.approximate_member_count;
-                    const formattedMembers =
-                        members > 1000
-                            ? (members / 1000).toFixed(1) + "k+"
-                            : members;
-                    document.getElementById("member-count").innerText =
-                        formattedMembers;
-                }
-                if (data.approximate_presence_count) {
-                    const online = data.approximate_presence_count;
-                    const formattedOnline =
-                        online > 1000
-                            ? (online / 1000).toFixed(1) + "k+"
-                            : online;
-                    document.getElementById("online-count").innerText =
-                        formattedOnline;
-                }
-            })
-            .catch((e) => console.error("Error fetching Discord stats:", e));
-    </script>
 </section>

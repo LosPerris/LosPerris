@@ -140,39 +140,6 @@ const categories = Object.keys(groupedGuides);
     </div>
 </aside>
 
-<script>
-    const triggers = document.querySelectorAll(".accordion-trigger");
-
-    triggers.forEach((trigger) => {
-        trigger.addEventListener("click", () => {
-            const category = trigger.getAttribute("data-category");
-            const content = document.getElementById(`content-${category}`);
-            const chevron =
-                trigger.querySelector(".fa-chevron-right")?.parentElement;
-            const isExpanded = trigger.getAttribute("aria-expanded") === "true";
-
-            if (isExpanded) {
-                content!.style.maxHeight = "0";
-                content!.style.opacity = "0";
-                chevron?.classList.remove("rotate-90");
-                trigger.setAttribute("aria-expanded", "false");
-            } else {
-                content!.style.maxHeight = "500px";
-                content!.style.opacity = "100";
-                chevron?.classList.add("rotate-90");
-                trigger.setAttribute("aria-expanded", "true");
-            }
-        });
-    });
-
-    const toggleBtn = document.getElementById("toggle-sidebar");
-    const nav = document.getElementById("sidebar-nav");
-
-    toggleBtn?.addEventListener("click", () => {
-        nav?.classList.toggle("hidden");
-    });
-</script>
-
 <style>
     .custom-scrollbar::-webkit-scrollbar {
         width: 4px;

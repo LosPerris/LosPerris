@@ -54,8 +54,15 @@ const {
         {showHeader && <Header />}
         <slot />
         {showFooter && <Footer />}
+        <script
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+            is:inline></script>
         <script src="/js/visuals.js" is:inline></script>
         <script src="/js/commands.js" is:inline></script>
         <script src="/js/chat.js" is:inline></script>
+        <script src="/js/menu.js" is:inline></script>
+        <script src="/js/contact.js" is:inline></script>
+        <script src="/js/discord-stats.js" is:inline></script>
+        <script src="/js/sidebar.js" is:inline></script>
     </body>
 </html>
