@@ -2,7 +2,6 @@ const setupMobileMenu = () => {
     const hamburger = document.getElementById("mobile-menu-btn");
     const navMenu = document.getElementById("mobile-menu");
     const body = document.querySelector("body");
-
     const hamburgerEl = hamburger || document.querySelector(".hamburger");
     const navMenuEl = navMenu || document.querySelector(".nav-menu");
 
@@ -11,23 +10,22 @@ const setupMobileMenu = () => {
         return;
     }
 
+    navMenuEl.style.visibility = "";
+
     if (hamburgerEl.hasAttribute("data-has-listener")) return;
     hamburgerEl.setAttribute("data-has-listener", "true");
 
     hamburgerEl.addEventListener("click", () => {
         hamburgerEl.classList.toggle("active");
-        navMenuEl.classList.toggle("translate-x-full");
-        navMenuEl.classList.toggle("translate-x-0");
+        const isClosed = navMenuEl.classList.contains("translate-x-full");
 
-        if (navMenuEl.classList.contains("translate-x-0")) {
-            navMenuEl.style.visibility = "visible";
+        if (isClosed) {
+            navMenuEl.classList.remove("translate-x-full");
+            navMenuEl.classList.add("translate-x-0");
             body.style.overflow = "hidden";
         } else {
-            setTimeout(() => {
-                if (navMenuEl.classList.contains("translate-x-full")) {
-                    navMenuEl.style.visibility = "hidden";
-                }
-            }, 300);
+            navMenuEl.classList.add("translate-x-full");
+            navMenuEl.classList.remove("translate-x-0");
             body.style.overflow = "";
         }
 
@@ -77,7 +75,6 @@ function closeMenu(hamburger, navMenu, body) {
     hamburger.classList.remove("active");
     navMenu.classList.add("translate-x-full");
     navMenu.classList.remove("translate-x-0");
-    navMenu.style.visibility = "hidden";
 
     const bars = hamburger.querySelectorAll(".bar");
     if (bars && bars.length === 3) {
