@@ -23,89 +23,215 @@ import {
 <header
     class="fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-linear-to-br from-[#0f0f0f] via-primary to-[#0f0f0f] border-b border-white/5 shadow-lg"
 >
-    ...
-    <span
-        class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
-    ></span>
-    <span
-        class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
-    ></span>
-    <span
-        class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
-    ></span>
-    <div
-        class="nav-menu fixed inset-0 bg-[#0f0f0f]/95 backdrop-blur-xl flex flex-col items-center justify-start pt-28 pb-10 gap-8 translate-x-full transition-transform duration-300 md:hidden z-40 overflow-y-auto"
-    >
-        <ul
-            class="flex flex-col items-center gap-6 w-full px-8 overflow-y-auto max-h-[calc(100vh-120px)]"
+    <nav class="relative py-4">
+        <div
+            class="container mx-auto px-5 flex justify-between items-center relative"
         >
-            <li>
-                <a
-                    href={isHome ? "#home" : "/"}
-                    class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors block py-2"
-                    >Inicio</a
+            <a
+                href="/"
+                class="flex items-center gap-3 px-4 py-2 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all hover:-translate-y-px hover:shadow-lg group cursor-pointer text-decoration-none"
+                aria-label="Volver al inicio"
+            >
+                <Image
+                    src={realImg}
+                    alt="Los Perris Logo"
+                    class="w-10 h-10 rounded-full border-2 border-white/15 transition-all group-hover:border-white/30 group-hover:rotate-360 brightness-110 contrast-110"
+                    width={40}
+                    height={40}
+                    loading="eager"
+                />
+                <span
+                    class="text-xl font-bold text-white tracking-wide shadow-sm"
+                    >LosPerris</span
                 >
-            </li>
-            <li class="dropdown flex flex-col items-center w-full">
-                <button
-                    class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors cursor-pointer flex items-center justify-center gap-3 w-full py-2 bg-transparent border-none"
-                >
-                    Herramientas <i
-                        class="fas fa-chevron-down text-sm transition-transform duration-300"
-                    ></i>
-                </button>
-                <div
-                    class="dropdown-content hidden flex-col items-center gap-4 mt-2 bg-white/5 p-4 rounded-xl w-full border border-white/5"
-                >
+            </a>
+
+            <ul
+                class="hidden md:flex gap-2 bg-white/5 p-2 rounded-full border border-white/10 backdrop-blur-md"
+            >
+                <li class="relative">
+                    <a
+                        href={isHome ? "#home" : "/"}
+                        class="block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md"
+                        aria-label="Ir al inicio">Inicio</a
+                    >
+                </li>
+                <li class="relative group">
                     <a
                         href={getLink("#bots")}
-                        class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
-                        >Bots</a
+                        class="block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md group-hover:bg-white/10 group-hover:text-white"
+                        aria-label="Ver herramientas">Herramientas</a
                     >
+                    <div
+                        class="absolute top-full left-1/2 -ml-32 w-64 bg-[#1e1e1e]/95 border border-white/10 rounded-xl backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 mt-4 py-4 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-ml-2 before:border-l-8 before:border-l-transparent before:border-r-8 before:border-r-transparent before:border-b-8 before:border-b-[#1e1e1e]/95"
+                    >
+                        <a
+                            href={getLink("#bots")}
+                            class="text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                            aria-label="Ver bots"
+                        >
+                            <i
+                                class="fas fa-robot w-6 mr-2 text-center"
+                                aria-hidden="true"></i>
+                            Bots
+                        </a>
+                        <a
+                            href={getLink("#apis")}
+                            class="text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                            aria-label="Ver APIs"
+                        >
+                            <i
+                                class="fas fa-code w-6 mr-2 text-center"
+                                aria-hidden="true"></i>
+                            APIs
+                        </a>
+                    </div>
+                </li>
+                <li class="relative group">
                     <a
-                        href={getLink("#apis")}
-                        class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
-                        >APIs</a
+                        href={getLink("#comunidad")}
+                        class="block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md group-hover:bg-white/10 group-hover:text-white"
+                        aria-label="Ver sección de comunidad">Comunidad</a
                     >
-                </div>
-            </li>
-            <li class="dropdown flex flex-col items-center w-full">
-                <button
-                    class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors cursor-pointer flex items-center justify-center gap-3 w-full py-2 bg-transparent border-none"
+                    <div
+                        class="absolute top-full left-1/2 -ml-32 w-64 bg-[#1e1e1e]/95 border border-white/10 rounded-xl backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 mt-4 py-4 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-ml-2 before:border-l-8 before:border-l-transparent before:border-r-8 before:border-r-transparent before:border-b-8 before:border-b-[#1e1e1e]/95"
+                    >
+                        <a
+                            href={discordLink}
+                            class="text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                            aria-label="Unirse al servidor de Discord"
+                        >
+                            <i
+                                class="fab fa-discord w-6 mr-2 text-center"
+                                aria-hidden="true"></i>
+                            Discord
+                        </a>
+                        <a
+                            href={discordTicketLink}
+                            target="_blank"
+                            class="text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                            aria-label="Ir a soporte"
+                        >
+                            <i
+                                class="fas fa-life-ring w-6 mr-2 text-center"
+                                aria-hidden="true"></i>
+                            Soporte
+                        </a>
+                        <a
+                            href={discordUpdatesLink}
+                            target="_blank"
+                            class="text-white/80 px-6 py-3 text-[0.95rem] font-medium transition-all hover:bg-white/10 hover:text-white hover:translate-x-1 mx-3 rounded-lg flex items-center"
+                            aria-label="Ver actualizaciones"
+                        >
+                            <i
+                                class="fas fa-bell w-6 mr-2 text-center"
+                                aria-hidden="true"></i>
+                            Actualizaciones
+                        </a>
+                    </div>
+                </li>
+                <li class="relative">
+                    <a
+                        href="/contacto"
+                        class:list={[
+                            "block text-white/80 no-underline px-5 py-2.5 font-medium text-[0.9rem] rounded-full transition-all hover:text-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-md",
+                            { "bg-white/10 text-white shadow-md": isContacto },
+                        ]}
+                        aria-label="Ir a contacto"
+                        data-astro-prefetch>Contacto</a
+                    >
+                </li>
+            </ul>
+            <button
+                class="hamburger flex flex-col cursor-pointer p-2.5 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all md:hidden z-50 relative"
+                aria-label="Abrir menú"
+                type="button"
+            >
+                <span
+                    class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                ></span>
+                <span
+                    class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                ></span>
+                <span
+                    class="bar w-5 h-0.5 bg-linear-to-r from-white to-gray-300 my-0.5 rounded transition-all"
+                ></span>
+            </button>
+            <div
+                class="nav-menu fixed inset-0 bg-[#0f0f0f]/95 backdrop-blur-xl flex flex-col items-center justify-start pt-28 pb-10 gap-8 translate-x-full transition-transform duration-300 md:hidden z-40 overflow-y-auto"
+            >
+                <ul
+                    class="flex flex-col items-center gap-6 w-full px-8 overflow-y-auto max-h-[calc(100vh-120px)]"
                 >
-                    Comunidad <i
-                        class="fas fa-chevron-down text-sm transition-transform duration-300"
-                    ></i>
-                </button>
-                <div
-                    class="dropdown-content hidden flex-col items-center gap-4 mt-2 bg-white/5 p-4 rounded-xl w-full border border-white/5"
-                >
-                    <a
-                        href={discordLink}
-                        class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
-                        >Discord</a
-                    >
-                    <a
-                        href={discordTicketLink}
-                        target="_blank"
-                        class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
-                        >Soporte</a
-                    >
-                    <a
-                        href={discordUpdatesLink}
-                        target="_blank"
-                        class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
-                        >Actualizaciones</a
-                    >
-                </div>
-            </li>
-            <li>
-                <a
-                    href="/contacto"
-                    class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors block py-2"
-                    >Contacto</a
-                >
-            </li>
-        </ul>
-    </div>
+                    <li>
+                        <a
+                            href={isHome ? "#home" : "/"}
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors block py-2"
+                            >Inicio</a
+                        >
+                    </li>
+                    <li class="dropdown flex flex-col items-center w-full">
+                        <button
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors cursor-pointer flex items-center justify-center gap-3 w-full py-2 bg-transparent border-none"
+                        >
+                            Herramientas <i
+                                class="fas fa-chevron-down text-sm transition-transform duration-300"
+                            ></i>
+                        </button>
+                        <div
+                            class="dropdown-content hidden flex-col items-center gap-4 mt-2 bg-white/5 p-4 rounded-xl w-full border border-white/5"
+                        >
+                            <a
+                                href={getLink("#bots")}
+                                class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
+                                >Bots</a
+                            >
+                            <a
+                                href={getLink("#apis")}
+                                class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
+                                >APIs</a
+                            >
+                        </div>
+                    </li>
+                    <li class="dropdown flex flex-col items-center w-full">
+                        <button
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors cursor-pointer flex items-center justify-center gap-3 w-full py-2 bg-transparent border-none"
+                        >
+                            Comunidad <i
+                                class="fas fa-chevron-down text-sm transition-transform duration-300"
+                            ></i>
+                        </button>
+                        <div
+                            class="dropdown-content hidden flex-col items-center gap-4 mt-2 bg-white/5 p-4 rounded-xl w-full border border-white/5"
+                        >
+                            <a
+                                href={discordLink}
+                                class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
+                                >Discord</a
+                            >
+                            <a
+                                href={discordTicketLink}
+                                target="_blank"
+                                class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
+                                >Soporte</a
+                            >
+                            <a
+                                href={discordUpdatesLink}
+                                target="_blank"
+                                class="dropdown-item text-lg text-white/90 hover:text-white w-full text-center py-2 active:scale-95 transition-all"
+                                >Actualizaciones</a
+                            >
+                        </div>
+                    </li>
+                    <li>
+                        <a
+                            href="/contacto"
+                            class="nav-link text-2xl font-bold text-white hover:text-[#5865F2] transition-colors block py-2"
+                            >Contacto</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>
