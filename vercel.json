@@ -30,7 +30,60 @@
             "permanent": true
         }
     ],
-    "rewrites": [],
+    "rewrites": [
+        {
+            "source": "/api/valorant/css/:match*",
+            "destination": "https://los-perris-valorant-api.vercel.app/css/:match*"
+        },
+        {
+            "source": "/api/valorant/js/:match*",
+            "destination": "https://los-perris-valorant-api.vercel.app/js/:match*"
+        },
+        {
+            "source": "/api/valorant/imgs/:match*",
+            "destination": "https://los-perris-valorant-api.vercel.app/imgs/:match*"
+        },
+        {
+            "source": "/api/valorant/:match*",
+            "destination": "https://los-perris-valorant-api.vercel.app/:match*"
+        },
+        {
+            "source": "/api/twitch/css/:match*",
+            "destination": "https://twitch-api-smoky.vercel.app/css/:match*"
+        },
+        {
+            "source": "/api/twitch/js/:match*",
+            "destination": "https://twitch-api-smoky.vercel.app/js/:match*"
+        },
+        {
+            "source": "/api/twitch/img/:match*",
+            "destination": "https://twitch-api-smoky.vercel.app/img/:match*"
+        },
+        {
+            "source": "/api/twitch/:match*",
+            "destination": "https://twitch-api-smoky.vercel.app/:match*"
+        },
+        {
+            "source": "/api/qr/styles/:match*",
+            "destination": "https://generador-qr-lyart.vercel.app/styles/:match*"
+        },
+        {
+            "source": "/api/qr/js/:match*",
+            "destination": "https://generador-qr-lyart.vercel.app/js/:match*"
+        },
+        {
+            "source": "/api/qr/scripts/:match*",
+            "destination": "https://generador-qr-lyart.vercel.app/scripts/:match*"
+        },
+        {
+            "source": "/api/qr/img/:match*",
+            "destination": "https://generador-qr-lyart.vercel.app/img/:match*"
+        },
+        {
+            "source": "/api/qr/:match*",
+            "destination": "https://generador-qr-lyart.vercel.app/:match*"
+        }
+    ],
     "headers": [
         {
             "source": "/(.*)",
