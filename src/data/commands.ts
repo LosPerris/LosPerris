@@ -8,8 +8,8 @@ export interface GuideSection {
     title: string;
     icon?: string;
     commands?: Command[];
-    content?: string; // For custom HTML paragraphs if needed
-    list?: string[]; // For bullet points
+    content?: string;
+    list?: string[];
 }
 
 export const commandsData: Record<string, GuideSection[]> = {
