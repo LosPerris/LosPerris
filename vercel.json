@@ -93,7 +93,7 @@
         },
         {
             "source": "/api/qr/:match*",
-            "destination": "https://generador-qr-lyart.vercel.app/:match*"
+            "destination": "https://generador-qr-lyart.vercel.app/api/qr/:match*"
         }
     ],
     "headers": [
