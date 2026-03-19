@@ -4,30 +4,30 @@ import { helpBotData, gameBotData } from "../../data/bots";
 import { Image } from "astro:assets";
 
 const categoryImages = {
-    "Bot Ayuda": helpBotData.imageSrc,
-    "Bot Gaming": gameBotData.imageSrc,
+  "Bot Ayuda": helpBotData.imageSrc,
+  "Bot Gaming": gameBotData.imageSrc,
 };
 
 const groupedGuides = guides.reduce(
-    (acc, guide) => {
-        const categoryName =
-            guide.category === "bot-ayuda"
-                ? "Bot Ayuda"
-                : guide.category === "bot-gaming"
-                  ? "Bot Gaming"
-                  : "Configuración";
+  (acc, guide) => {
+    const categoryName =
+      guide.category === "bot-ayuda"
+        ? "Bot Ayuda"
+        : guide.category === "bot-gaming"
+          ? "Bot Gaming"
+          : "Configuración";
 
-        if (!acc[categoryName]) {
-            acc[categoryName] = [];
-        }
-        acc[categoryName].push(guide);
-        return acc;
-    },
-    {} as Record<string, typeof guides>,
+    if (!acc[categoryName]) {
+      acc[categoryName] = [];
+    }
+    acc[categoryName].push(guide);
+    return acc;
+  },
+  {} as Record<string, typeof guides>,
 );
 
 interface Props {
-    activeId?: string;
+  activeId?: string;
 }
 
 const { activeId } = Astro.props;
@@ -35,123 +35,116 @@ const categories = Object.keys(groupedGuides);
 ---
 
 <aside
-    class="w-full lg:w-72 shrink-0 lg:border-r border-[#2A2A2A] bg-[#050505] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto custom-scrollbar"
+  class="w-full lg:w-72 shrink-0 lg:border-r border-[#2A2A2A] bg-[#050505] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto custom-scrollbar"
 >
-    <div class="p-6 lg:p-0">
-        <div class="mb-6 lg:hidden">
-            <button
-                id="toggle-sidebar"
-                class="w-full py-3 bg-[#151515] text-white rounded-lg font-bold border border-[#333] flex items-center justify-center gap-2 hover:bg-[#222] transition-colors"
-            >
-                <i class="fas fa-bars"></i> Índice de Documentación
-            </button>
-        </div>
-
-        <nav id="sidebar-nav" class="hidden lg:block space-y-2 lg:p-6 lg:pt-10">
-            <h2
-                class="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-6 pl-2 hidden lg:block"
-            >
-                Documentación
-            </h2>
-            {
-                categories.map((category) => {
-                    const isGaming = category === "Bot Gaming";
-                    const isHelp = category === "Bot Ayuda";
-                    const hasActiveChild = groupedGuides[category].some(
-                        (g) => g.id === activeId,
-                    );
-
-                    return (
-                        <div class="category-group mb-4">
-                            <button
-                                class="w-full flex items-center gap-3 px-2 py-2 mb-1 text-left group hover:bg-white/5 rounded-lg transition-colors cursor-pointer accordion-trigger"
-                                data-category={category}
-                                aria-expanded={
-                                    hasActiveChild ? "true" : "false"
-                                }
-                            >
-                                <span
-                                    class={`transition-transform duration-200 text-xs text-text-muted group-hover:text-white ${hasActiveChild ? "rotate-90" : ""}`}
-                                >
-                                    <i class="fas fa-chevron-right" />
-                                </span>
-
-                                {categoryImages[
-                                    category as keyof typeof categoryImages
-                                ] ? (
-                                    <Image
-                                        src={
-                                            categoryImages[
-                                                category as keyof typeof categoryImages
-                                            ]
-                                        }
-                                        alt={category}
-                                        class="w-5 h-5 rounded-full"
-                                        width={20}
-                                        height={20}
-                                    />
-                                ) : (
-                                    <span class="w-5 h-5 rounded-full flex items-center justify-center bg-[#2A2A2A] text-[10px] text-white">
-                                        <i class="fas fa-cog" />
-                                    </span>
-                                )}
-
-                                <h3 class="text-sm font-bold text-gray-200 uppercase tracking-wider group-hover:text-white">
-                                    {category}
-                                </h3>
-                            </button>
-
-                            <div
-                                class={`overflow-hidden transition-all duration-300 ease-in-out pl-6 ${hasActiveChild ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
-                                id={`content-${category}`}
-                            >
-                                <ul class="space-y-[2px] border-l border-[#2A2A2A] content-list">
-                                    {groupedGuides[category].map((guide) => {
-                                        const isActive = guide.id === activeId;
-                                        return (
-                                            <li>
-                                                <button
-                                                    class={`w-full text-left px-4 py-2 text-sm transition-all duration-200 flex items-center justify-between group relative
-                                                    ${
-                                                        isActive
-                                                            ? "text-[#5865F2] font-medium bg-[#5865F2]/5"
-                                                            : "text-text-muted hover:text-white hover:bg-white/5"
-                                                    }`}
-                                                    data-id={guide.id}
-                                                    onclick={`switchGuide('${guide.id}')`}
-                                                >
-                                                    <span class="truncate">
-                                                        {guide.title}
-                                                    </span>
-                                                    {isActive && (
-                                                        <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#5865F2] rounded-r-full" />
-                                                    )}
-                                                </button>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            </div>
-                        </div>
-                    );
-                })
-            }
-        </nav>
+  <div class="p-6 lg:p-0">
+    <div class="mb-6 lg:hidden">
+      <button
+        id="toggle-sidebar"
+        class="w-full py-3 bg-[#151515] text-white rounded-lg font-bold border border-[#333] flex items-center justify-center gap-2 hover:bg-[#222] transition-colors"
+      >
+        <i class="fas fa-bars"></i> Índice de Documentación
+      </button>
     </div>
+
+    <nav id="sidebar-nav" class="hidden lg:block space-y-2 lg:p-6 lg:pt-10">
+      <h2
+        class="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-6 pl-2 hidden lg:block"
+      >
+        Documentación
+      </h2>
+      {
+        categories.map((category) => {
+          const isGaming = category === "Bot Gaming";
+          const isHelp = category === "Bot Ayuda";
+          const hasActiveChild = groupedGuides[category].some(
+            (g) => g.id === activeId,
+          );
+
+          return (
+            <div class="category-group mb-4">
+              <button
+                class="w-full flex items-center gap-3 px-2 py-2 mb-1 text-left group hover:bg-white/5 rounded-lg transition-colors cursor-pointer accordion-trigger"
+                data-category={category}
+                aria-expanded={hasActiveChild ? "true" : "false"}
+              >
+                <span
+                  class={`transition-transform duration-200 text-xs text-text-muted group-hover:text-white ${hasActiveChild ? "rotate-90" : ""}`}
+                >
+                  <i class="fas fa-chevron-right" aria-hidden="true" />
+                </span>
+
+                {categoryImages[category as keyof typeof categoryImages] ? (
+                  <Image
+                    src={
+                      categoryImages[category as keyof typeof categoryImages]
+                    }
+                    alt=""
+                    class="w-5 h-5 rounded-full"
+                    width={20}
+                    height={20}
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <span class="w-5 h-5 rounded-full flex items-center justify-center bg-[#2A2A2A] text-[10px] text-white">
+                    <i class="fas fa-cog" aria-hidden="true" />
+                  </span>
+                )}
+
+                <span class="text-sm font-bold text-gray-200 uppercase tracking-wider group-hover:text-white">
+                  {category}
+                </span>
+              </button>
+
+              <div
+                class={`overflow-hidden transition-all duration-300 ease-in-out pl-6 ${hasActiveChild ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
+                id={`content-${category}`}
+              >
+                <ul class="space-y-[2px] border-l border-[#2A2A2A] content-list">
+                  {groupedGuides[category].map((guide) => {
+                    const isActive = guide.id === activeId;
+                    return (
+                      <li>
+                        <button
+                          class={`w-full text-left px-4 py-2 text-sm transition-all duration-200 flex items-center justify-between group relative
+                                                    ${
+                                                      isActive
+                                                        ? "text-[#5865F2] font-medium bg-[#5865F2]/5"
+                                                        : "text-text-muted hover:text-white hover:bg-white/5"
+                                                    }`}
+                          data-id={guide.id}
+                          onclick={`switchGuide('${guide.id}')`}
+                        >
+                          <span class="truncate">{guide.title}</span>
+                          {isActive && (
+                            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#5865F2] rounded-r-full" />
+                          )}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          );
+        })
+      }
+    </nav>
+  </div>
 </aside>
 
 <style>
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #333;
-        border-radius: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 </style>

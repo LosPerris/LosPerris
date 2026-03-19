@@ -2,158 +2,201 @@
 import { Image } from "astro:assets";
 import realImg from "../assets/img/Real.webp";
 import {
-    discordLink,
-    discordTicketLink,
-    discordUpdatesLink,
+  discordLink,
+  discordTicketLink,
+  discordUpdatesLink,
 } from "../data/community";
 
 const navItems = [
-    { name: "Inicio", href: "/" },
-    {
-        name: "Herramientas",
-        type: "dropdown",
-        items: [
-            { name: "Bots", href: "/#bots", icon: "fa-robot" },
-            { name: "APIs", href: "/#apis", icon: "fa-code" },
-        ],
-    },
-    {
-        name: "Comunidad",
-        type: "dropdown",
-        items: [
-            { name: "Discord", href: discordLink, icon: "fab fa-discord" },
-            { name: "Soporte", href: discordTicketLink, icon: "fa-life-ring" },
-            {
-                name: "Actualizaciones",
-                href: discordUpdatesLink,
-                icon: "fa-bell",
-            },
-        ],
-    },
-    { name: "Contacto", href: "/contacto" },
+  { name: "Inicio", href: "/" },
+  {
+    name: "Herramientas",
+    type: "dropdown",
+    items: [
+      {
+        name: "Bots",
+        href: "/#bots",
+        icon: "fa-robot",
+        color: "text-purple-400",
+        bg: "bg-purple-500/10",
+      },
+      {
+        name: "APIs",
+        href: "/#apis",
+        icon: "fa-code",
+        color: "text-emerald-400",
+        bg: "bg-emerald-500/10",
+      },
+    ],
+  },
+  {
+    name: "Comunidad",
+    type: "dropdown",
+    items: [
+      {
+        name: "Discord",
+        href: discordLink,
+        icon: "fab fa-discord",
+        color: "text-[#5865F2]",
+        bg: "bg-[#5865F2]/10",
+      },
+      {
+        name: "Soporte",
+        href: discordTicketLink,
+        icon: "fa-life-ring",
+        color: "text-red-400",
+        bg: "bg-red-500/10",
+      },
+      {
+        name: "Actualizaciones",
+        href: discordUpdatesLink,
+        icon: "fa-bell",
+        color: "text-amber-400",
+        bg: "bg-amber-500/10",
+      },
+    ],
+  },
+  { name: "Contacto", href: "/contacto" },
 ];
 ---
 
 <header
-    class="fixed top-0 inset-x-0 z-50 h-20 bg-[#0f0f0f]/80 backdrop-blur-md border-b border-white/5 transition-all duration-300"
+  class="fixed top-0 inset-x-0 z-50 h-20 bg-[#0f0f0f]/80 backdrop-blur-md border-b border-white/5 transition-all duration-300"
 >
-    <div
-        class="h-full container mx-auto px-4 flex items-center justify-between"
-    >
-        <a href="/" class="flex items-center gap-3 group">
-            <div class="relative">
-                <div
-                    class="absolute inset-0 bg-blue-500/20 rounded-full blur-md group-hover:bg-blue-500/30 transition-all"
-                >
-                </div>
-                <Image
-                    src={realImg}
-                    alt="Los Perris"
-                    class="relative w-10 h-10 rounded-full border border-white/10 group-hover:scale-105 transition-transform"
-                    width={40}
-                    height={40}
-                />
-            </div>
-            <span class="font-bold text-xl tracking-tight text-white"
-                >LosPerris</span
-            >
-        </a>
-
-        <nav class="hidden md:flex items-center gap-1">
-            {
-                navItems.map((item) =>
-                    item.type === "dropdown" ? (
-                        <div class="relative group">
-                            <button class="px-4 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-2 cursor-pointer">
-                                {item.name}
-                                <i class="fas fa-chevron-down text-xs opacity-50 group-hover:opacity-100 transition-opacity" />
-                            </button>
-                            <div class="absolute top-full right-0 mt-2 w-56 p-2 bg-primary border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transform translate-y-2 group-hover:translate-y-0 transition-all duration-200">
-                                {item.items.map((subItem) => (
-                                    <a
-                                        href={subItem.href}
-                                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-colors"
-                                    >
-                                        <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-blue-400">
-                                            <i class={`fas ${subItem.icon}`} />
-                                        </div>
-                                        <span class="text-sm font-medium">
-                                            {subItem.name}
-                                        </span>
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    ) : (
-                        <a
-                            href={item.href}
-                            class="px-4 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 rounded-full transition-all"
-                        >
-                            {item.name}
-                        </a>
-                    ),
-                )
-            }
-        </nav>
-
-        <button
-            id="menu-btn"
-            class="md:hidden p-2 text-white/80 hover:text-white transition-colors"
-            aria-label="Menu"
+  <div class="h-full container mx-auto px-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="relative">
+        <div
+          class="absolute inset-0 bg-[#5865F2]/20 rounded-full blur-md group-hover:bg-[#5865F2]/40 transition-all"
         >
-            <i class="fas fa-bars text-xl"></i>
-        </button>
-    </div>
+        </div>
+        <Image
+          src={realImg}
+          alt="Los Perris"
+          class="relative w-10 h-10 rounded-full border border-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
+          width={40}
+          height={40}
+        />
+      </div>
+      <span
+        class="font-bold text-xl tracking-tight text-white group-hover:text-[#5865F2] transition-colors"
+        >LosPerris</span
+      >
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1">
+      {
+        navItems.map((item) =>
+          item.type === "dropdown" ? (
+            <div class="relative group">
+              <button class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-2 cursor-pointer group/btn">
+                {item.name}
+                <i class="fas fa-chevron-down text-xs opacity-50 group-hover:opacity-100 group-hover:translate-y-0.5 transition-all" />
+              </button>
+              <div class="absolute top-full right-0 mt-2 w-56 p-2 bg-[#121212] border border-white/10 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 backdrop-blur-xl">
+                {item.items.map((subItem) => (
+                  <a
+                    href={subItem.href}
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 text-white/60 hover:text-white transition-all group/item"
+                  >
+                    <div
+                      class={`w-9 h-9 rounded-lg ${subItem.bg} flex items-center justify-center ${subItem.color} group-hover/item:scale-110 group-hover/item:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all`}
+                    >
+                      <i class={`fas ${subItem.icon}`} aria-hidden="true" />
+                    </div>
+                    <span class="text-sm font-medium">{subItem.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all"
+            >
+              {item.name}
+            </a>
+          ),
+        )
+      }
+    </nav>
+
+    <button
+      id="menu-btn"
+      class="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+      aria-label="Menú principal"
+    >
+      <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+    </button>
+  </div>
 </header>
 
 <div
-    id="mobile-menu"
-    class="fixed inset-0 z-100 bg-[#0f0f0f] translate-x-full transition-transform duration-300 md:hidden flex flex-col"
+  id="mobile-menu"
+  class="fixed inset-0 z-100 bg-[#0a0a0a] translate-x-full transition-transform duration-500 md:hidden flex flex-col"
 >
-    <div
-        class="h-20 px-4 flex items-center justify-between border-b border-white/5"
+  <div
+    class="h-20 px-6 flex items-center justify-between border-b border-white/5"
+  >
+    <div class="flex items-center gap-3">
+      <Image src={realImg} alt="" class="w-8 h-8 rounded-full" />
+      <span class="font-bold text-xl text-white">Navegación</span>
+    </div>
+    <button
+      id="close-menu"
+      class="p-2 w-10 h-10 rounded-full bg-white/5 text-white/60 hover:text-white transition-colors flex items-center justify-center"
+      aria-label="Cerrar menú"
     >
-        <span class="font-bold text-xl text-white">Menu</span>
-        <button
-            id="close-menu"
-            class="p-2 text-white/60 hover:text-white transition-colors"
-        >
-            <i class="fas fa-times text-xl"></i>
-        </button>
-    </div>
+      <i class="fas fa-times text-xl" aria-hidden="true"></i>
+    </button>
+  </div>
 
-    <div class="flex-1 overflow-y-auto p-4 space-y-2">
-        {
-            navItems.map((item) =>
-                item.type === "dropdown" ? (
-                    <div class="space-y-2">
-                        <button class="mobile-dropdown-btn w-full flex items-center justify-between p-4 rounded-xl bg-white/5 text-white font-medium">
-                            {item.name}
-                            <i class="fas fa-chevron-down text-sm transition-transform duration-300" />
-                        </button>
-                        <div class="hidden space-y-1 pl-2">
-                            {item.items.map((subItem) => (
-                                <a
-                                    href={subItem.href}
-                                    class="flex items-center gap-3 p-3 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-                                >
-                                    <i
-                                        class={`fas ${subItem.icon} w-5 text-center text-blue-400`}
-                                    />
-                                    {subItem.name}
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-                ) : (
-                    <a
-                        href={item.href}
-                        class="block p-4 rounded-xl bg-white/5 text-white font-medium hover:bg-white/10 transition-colors"
-                    >
-                        {item.name}
-                    </a>
-                ),
-            )
-        }
+  <div class="flex-1 overflow-y-auto p-6 space-y-4">
+    {
+      navItems.map((item) =>
+        item.type === "dropdown" ? (
+          <div class="space-y-2">
+            <div class="text-xs font-black text-white/30 uppercase tracking-[0.2em] mb-2 pl-2">
+              {item.name}
+            </div>
+            <div class="grid grid-cols-1 gap-2">
+              {item.items.map((subItem) => (
+                <a
+                  href={subItem.href}
+                  class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-white/80 hover:text-white hover:bg-white/[0.08] transition-all active:scale-[0.98]"
+                >
+                  <div
+                    class={`w-10 h-10 rounded-xl ${subItem.bg} flex items-center justify-center ${subItem.color} text-lg shadow-inner`}
+                  >
+                    <i class={`fas ${subItem.icon}`} aria-hidden="true" />
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-bold">{subItem.name}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            class="block p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-white font-bold hover:bg-white/[0.08] transition-all active:scale-[0.98]"
+          >
+            {item.name}
+          </a>
+        ),
+      )
+    }
+  </div>
+
+  <div class="p-6 border-t border-white/5 bg-white/[0.01]">
+    <div class="flex items-center justify-between text-white/40 text-xs">
+      <span>LosPerris © 2026</span>
+      <div class="flex gap-4">
+        <a href={discordLink} class="hover:text-white transition-colors">
+          <i class="fab fa-discord" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
+  </div>
 </div>

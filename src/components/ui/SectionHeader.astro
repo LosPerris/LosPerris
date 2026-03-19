@@ -1,57 +1,57 @@
 ---
 interface Props {
-    align?: "center" | "left";
-    badge?: string;
-    title: string;
-    highlight?: string;
-    description?: string;
-    class?: string;
+  align?: "center" | "left";
+  badge?: string;
+  title: string;
+  highlight?: string;
+  description?: string;
+  class?: string;
 }
 
 const {
-    align = "center",
-    badge,
-    title,
-    highlight,
-    description,
-    class: className = "",
+  align = "center",
+  badge,
+  title,
+  highlight,
+  description,
+  class: className = "",
 } = Astro.props;
 
 const alignClass =
-    align === "center" ? "text-center items-center" : "text-left items-start";
+  align === "center" ? "text-center items-center" : "text-left items-start";
 const mxClass = align === "center" ? "mx-auto" : "";
 ---
 
 <div class={`mb-16 relative z-10 ${alignClass} ${className}`}>
-    {
-        badge && (
-            <span class="text-[#5865F2] font-semibold tracking-widest uppercase text-sm mb-2 block animate-[fadeInUp_0.8s_ease-out]">
-                {badge}
-            </span>
-        )
-    }
-    <slot name="badge" />
+  {
+    badge && (
+      <span class="text-[#5865F2] font-semibold tracking-widest uppercase text-sm mb-2 block animate-[fadeInUp_0.8s_ease-out]">
+        {badge}
+      </span>
+    )
+  }
+  <slot name="badge" />
 
-    <h2
-        class="text-4xl md:text-6xl font-black text-white mb-4 animate-[fadeInUp_0.8s_ease-out]"
-    >
-        {title}
-        {
-            highlight && (
-                <span class="text-transparent bg-clip-text bg-linear-to-r from-[#5865F2] to-purple-500">
-                    {highlight}
-                </span>
-            )
-        }
-    </h2>
-
+  <h2
+    class="text-4xl md:text-6xl font-black text-white mb-4 animate-[fadeInUp_0.8s_ease-out]"
+  >
+    {title}
     {
-        description && (
-            <p
-                class={`text-text-secondary text-xl max-w-2xl font-light animate-[fadeInUp_0.8s_ease-out_0.2s_both] ${mxClass}`}
-            >
-                {description}
-            </p>
-        )
+      highlight && (
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-[#5865F2] to-purple-500">
+          {highlight}
+        </span>
+      )
     }
+  </h2>
+
+  {
+    description && (
+      <p
+        class={`text-text-secondary text-xl max-w-2xl font-light animate-[fadeInUp_0.8s_ease-out_0.2s_both] ${mxClass}`}
+      >
+        {description}
+      </p>
+    )
+  }
 </div>

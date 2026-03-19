@@ -1,126 +1,126 @@
 {
-    "version": 2,
-    "buildCommand": "npm run build",
-    "installCommand": "npm install",
-    "outputDirectory": "dist",
-    "redirects": [
+  "version": 2,
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/apis",
+      "destination": "/api",
+      "permanent": true
+    },
+    {
+      "source": "/twitch",
+      "destination": "/api/twitch/",
+      "permanent": true
+    },
+    {
+      "source": "/api/twitch",
+      "destination": "/api/twitch/",
+      "permanent": true
+    },
+    {
+      "source": "/api/qr",
+      "destination": "/api/qr/",
+      "permanent": true
+    },
+    {
+      "source": "/api/valorant",
+      "destination": "/api/valorant/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/valorant/",
+      "destination": "https://los-perris-valorant-api.vercel.app/"
+    },
+    {
+      "source": "/api/valorant/css/:match*",
+      "destination": "https://los-perris-valorant-api.vercel.app/css/:match*"
+    },
+    {
+      "source": "/api/valorant/js/:match*",
+      "destination": "https://los-perris-valorant-api.vercel.app/js/:match*"
+    },
+    {
+      "source": "/api/valorant/imgs/:match*",
+      "destination": "https://los-perris-valorant-api.vercel.app/imgs/:match*"
+    },
+    {
+      "source": "/api/valorant/:match*",
+      "destination": "https://los-perris-valorant-api.vercel.app/:match*"
+    },
+    {
+      "source": "/api/twitch/",
+      "destination": "https://twitch-api-smoky.vercel.app/"
+    },
+    {
+      "source": "/api/twitch/css/:match*",
+      "destination": "https://twitch-api-smoky.vercel.app/css/:match*"
+    },
+    {
+      "source": "/api/twitch/js/:match*",
+      "destination": "https://twitch-api-smoky.vercel.app/js/:match*"
+    },
+    {
+      "source": "/api/twitch/img/:match*",
+      "destination": "https://twitch-api-smoky.vercel.app/img/:match*"
+    },
+    {
+      "source": "/api/twitch/:match*",
+      "destination": "https://twitch-api-smoky.vercel.app/:match*"
+    },
+    {
+      "source": "/api/qr/",
+      "destination": "https://generador-qr-lyart.vercel.app/"
+    },
+    {
+      "source": "/api/qr/styles/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/styles/:match*"
+    },
+    {
+      "source": "/api/qr/js/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/js/:match*"
+    },
+    {
+      "source": "/api/qr/scripts/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/scripts/:match*"
+    },
+    {
+      "source": "/api/qr/img/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/img/:match*"
+    },
+    {
+      "source": "/api/qr/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/api/qr/:match*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
         {
-            "source": "/apis",
-            "destination": "/api",
-            "permanent": true
+          "key": "Content-Security-Policy",
+          "value": "upgrade-insecure-requests; frame-ancestors 'self'"
         },
         {
-            "source": "/twitch",
-            "destination": "/api/twitch/",
-            "permanent": true
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
         },
         {
-            "source": "/api/twitch",
-            "destination": "/api/twitch/",
-            "permanent": true
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         },
         {
-            "source": "/api/qr",
-            "destination": "/api/qr/",
-            "permanent": true
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         },
         {
-            "source": "/api/valorant",
-            "destination": "/api/valorant/",
-            "permanent": true
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
         }
-    ],
-    "rewrites": [
-        {
-            "source": "/api/valorant/",
-            "destination": "https://los-perris-valorant-api.vercel.app/"
-        },
-        {
-            "source": "/api/valorant/css/:match*",
-            "destination": "https://los-perris-valorant-api.vercel.app/css/:match*"
-        },
-        {
-            "source": "/api/valorant/js/:match*",
-            "destination": "https://los-perris-valorant-api.vercel.app/js/:match*"
-        },
-        {
-            "source": "/api/valorant/imgs/:match*",
-            "destination": "https://los-perris-valorant-api.vercel.app/imgs/:match*"
-        },
-        {
-            "source": "/api/valorant/:match*",
-            "destination": "https://los-perris-valorant-api.vercel.app/:match*"
-        },
-        {
-            "source": "/api/twitch/",
-            "destination": "https://twitch-api-smoky.vercel.app/"
-        },
-        {
-            "source": "/api/twitch/css/:match*",
-            "destination": "https://twitch-api-smoky.vercel.app/css/:match*"
-        },
-        {
-            "source": "/api/twitch/js/:match*",
-            "destination": "https://twitch-api-smoky.vercel.app/js/:match*"
-        },
-        {
-            "source": "/api/twitch/img/:match*",
-            "destination": "https://twitch-api-smoky.vercel.app/img/:match*"
-        },
-        {
-            "source": "/api/twitch/:match*",
-            "destination": "https://twitch-api-smoky.vercel.app/:match*"
-        },
-        {
-            "source": "/api/qr/",
-            "destination": "https://generador-qr-lyart.vercel.app/"
-        },
-        {
-            "source": "/api/qr/styles/:match*",
-            "destination": "https://generador-qr-lyart.vercel.app/styles/:match*"
-        },
-        {
-            "source": "/api/qr/js/:match*",
-            "destination": "https://generador-qr-lyart.vercel.app/js/:match*"
-        },
-        {
-            "source": "/api/qr/scripts/:match*",
-            "destination": "https://generador-qr-lyart.vercel.app/scripts/:match*"
-        },
-        {
-            "source": "/api/qr/img/:match*",
-            "destination": "https://generador-qr-lyart.vercel.app/img/:match*"
-        },
-        {
-            "source": "/api/qr/:match*",
-            "destination": "https://generador-qr-lyart.vercel.app/api/qr/:match*"
-        }
-    ],
-    "headers": [
-        {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "Content-Security-Policy",
-                    "value": "upgrade-insecure-requests; frame-ancestors 'self'"
-                },
-                {
-                    "key": "X-Frame-Options",
-                    "value": "SAMEORIGIN"
-                },
-                {
-                    "key": "X-Content-Type-Options",
-                    "value": "nosniff"
-                },
-                {
-                    "key": "Referrer-Policy",
-                    "value": "strict-origin-when-cross-origin"
-                },
-                {
-                    "key": "Strict-Transport-Security",
-                    "value": "max-age=63072000; includeSubDomains; preload"
-                }
-            ]
-        }
-    ]
+      ]
+    }
+  ]
 }

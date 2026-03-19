@@ -1,53 +1,47 @@
 ---
 interface Props {
-    href?: string;
-    variant?: "primary" | "secondary" | "outline" | "ghost";
-    class?: string;
-    onclick?: string;
-    target?: string;
-    type?: "button" | "submit" | "reset";
+  href?: string;
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  class?: string;
+  onclick?: string;
+  target?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const {
-    href,
-    variant = "primary",
-    class: className,
-    onclick,
-    target,
-    type = "button",
-    ...rest
+  href,
+  variant = "primary",
+  class: className,
+  onclick,
+  target,
+  type = "button",
+  ...rest
 } = Astro.props;
 
 const baseStyles =
-    "inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-semibold transition-all text-base cursor-pointer";
+  "inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-semibold transition-all text-base cursor-pointer";
 
 const variants = {
-    primary:
-        "bg-white/[0.05] text-white border border-white/10 hover:bg-white/10 hover:-translate-y-1 hover:shadow-lg transition-all",
-    secondary:
-        "bg-[#252525] text-white border border-white/5 hover:bg-[#303030] hover:-translate-y-1 hover:shadow-xl transition-all",
-    outline:
-        "bg-transparent text-[#b0b0b0] border border-white/10 hover:bg-white/5 hover:text-white hover:-translate-y-1 transition-all",
-    ghost: "bg-transparent text-[#b0b0b0] hover:text-white transition-all",
+  primary:
+    "bg-white/[0.05] text-white border border-white/10 hover:bg-white/10 hover:-translate-y-1 hover:shadow-lg transition-all",
+  secondary:
+    "bg-[#252525] text-white border border-white/5 hover:bg-[#303030] hover:-translate-y-1 hover:shadow-xl transition-all",
+  outline:
+    "bg-transparent text-[#b0b0b0] border border-white/10 hover:bg-white/5 hover:text-white hover:-translate-y-1 transition-all",
+  ghost: "bg-transparent text-[#b0b0b0] hover:text-white transition-all",
 };
 
 const styles = `${baseStyles} ${variants[variant]} ${className || ""}`;
 ---
 
 {
-    href ? (
-        <a
-            href={href}
-            class={styles}
-            onclick={onclick}
-            target={target}
-            {...rest}
-        >
-            <slot />
-        </a>
-    ) : (
-        <button type={type} class={styles} onclick={onclick} {...rest}>
-            <slot />
-        </button>
-    )
+  href ? (
+    <a href={href} class={styles} onclick={onclick} target={target} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={styles} onclick={onclick} {...rest}>
+      <slot />
+    </button>
+  )
 }

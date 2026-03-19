@@ -7,62 +7,92 @@ import Footer from "../components/Footer.astro";
 import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
 
 interface Props {
-    title: string;
-    showHeader?: boolean;
-    showFooter?: boolean;
-    showWallpaper?: boolean;
+  title: string;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  showWallpaper?: boolean;
 }
 
 const {
-    title,
-    showHeader = true,
-    showFooter = true,
-    showWallpaper = true,
+  title,
+  showHeader = true,
+  showFooter = true,
+  showWallpaper = true,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="description"
-            content="LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real."
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/webp" href="/icon.webp" />
-        <meta name="generator" content={Astro.generator} />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            rel="stylesheet"
-        />
-        <title>{title}</title>
-        <ClientRouter />
-    </head><body
-        class="bg-[#151515] min-h-screen relative text-white selection:bg-[#5865F2] selection:text-white overflow-x-hidden"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real."
+    />
+    <meta name="theme-color" content="#5865F2" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="canonical"
+      href={`https://losperris.site${Astro.url.pathname}`}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real."
+    />
+    <meta property="og:image" content="https://losperris.site/icon.webp" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta
+      property="twitter:description"
+      content="LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real."
+    />
+    <meta property="twitter:image" content="https://losperris.site/icon.webp" />
+
+    <link rel="icon" type="image/webp" href="/icon.webp" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <ClientRouter />
+  </head>
+  <body
+    class="bg-[#151515] min-h-screen relative text-white selection:bg-[#5865F2] selection:text-white overflow-x-hidden"
+  >
+    <div
+      class="absolute top-0 inset-x-0 h-[110vh] overflow-hidden -z-10 pointer-events-none"
+      style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);"
     >
-        <div
-            class="absolute top-0 inset-x-0 h-[110vh] overflow-hidden -z-10 pointer-events-none"
-            style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);"
-        >
-            <BackgroundEffects
-                withWallpaper={showWallpaper}
-                variant="hero"
-                showBlobs={true}
-            />
-        </div>
-        {showHeader && <Header />}
-        <slot />
-        {showFooter && <Footer />}
-        <script
-            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-            is:inline></script>
-        <script src="/js/visuals.js" is:inline></script>
-        <script src="/js/commands.js" is:inline></script>
-        <script src="/js/chat.js" is:inline></script>
-        <script src="/js/menu.js" is:inline></script>
-        <script src="/js/contact.js" is:inline></script>
-        <script src="/js/discord-stats.js" is:inline></script>
-        <script src="/js/sidebar.js" is:inline></script>
-    </body>
+      <BackgroundEffects
+        withWallpaper={showWallpaper}
+        variant="hero"
+        showBlobs={true}
+      />
+    </div>
+    {showHeader && <Header />}
+    <slot />
+    {showFooter && <Footer />}
+
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+
+    <script>
+      import "../scripts/visuals.js";
+      import "../scripts/commands.js";
+      import "../scripts/chat.js";
+      import "../scripts/menu.js";
+      import "../scripts/contact.js";
+      import "../scripts/discord-stats.js";
+      import "../scripts/sidebar.js";
+    </script>
+  </body>
 </html>

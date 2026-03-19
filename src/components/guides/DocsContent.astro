@@ -5,150 +5,141 @@ const initialGuide = guides[0];
 ---
 
 <div class="flex-1 p-6 lg:p-12 min-h-[50vh] bg-[#0A0A0A]">
-    <div id="content-area" class="max-w-4xl mx-auto">
-        <div class="mb-10 pb-6 border-b border-[#2A2A2A]">
-            <div class="flex items-center gap-3 mb-4">
-                <span
-                    id="guide-badge"
-                    class={`${initialGuide.difficultyColor} ${initialGuide.difficultyTextColor} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide`}
-                >
-                    {initialGuide.difficulty}
-                </span>
-                <span class="text-gray-400 text-sm flex items-center gap-2">
-                    <i class="far fa-clock"></i>
-                    <span id="guide-time">{initialGuide.time}</span>
-                </span>
-            </div>
-            <h1
-                id="guide-title"
-                class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight"
-            >
-                {initialGuide.contentTitle}
-            </h1>
-            <p id="guide-desc" class="text-xl text-gray-400 font-light">
-                {initialGuide.description}
-            </p>
-        </div>
-
-        <div id="guide-body" class="space-y-8">
-            {
-                initialGuide.sections?.map((section) => (
-                    <div class="section-block">
-                        <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3 border-b border-[#2A2A2A] pb-3">
-                            <span class="text-3xl">{section.icon}</span>{" "}
-                            {section.title}
-                        </h3>
-
-                        {section.content && (
-                            <div
-                                class="mb-6 text-gray-300 leading-relaxed"
-                                set:html={section.content}
-                            />
-                        )}
-
-                        {section.commands && (
-                            <div class="grid gap-4">
-                                {section.commands.map((cmd) => (
-                                    <div class="group bg-[#151515] hover:bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#404040] rounded-xl p-4 transition-all duration-300">
-                                        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-                                            <div class="shrink-0">
-                                                <code class="px-3 py-1.5 rounded-lg bg-[#202020] text-[#5865F2] font-mono text-sm font-bold border border-[#303030] shadow-sm group-hover:shadow-[0_0_10px_rgba(88,101,242,0.15)] transition-shadow">
-                                                    {cmd.name}
-                                                </code>
-                                            </div>
-                                            <div class="flex items-center gap-3 text-gray-400 group-hover:text-gray-200 transition-colors">
-                                                {cmd.emoji && (
-                                                    <span class="text-lg">
-                                                        {cmd.emoji}
-                                                    </span>
-                                                )}
-                                                <span class="text-sm sm:text-base font-medium">
-                                                    {cmd.description}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                ))
-            }
-        </div>
+  <div id="content-area" class="max-w-4xl mx-auto">
+    <div class="mb-10 pb-6 border-b border-[#2A2A2A]">
+      <div class="flex items-center gap-3 mb-4">
+        <span
+          id="guide-badge"
+          class={`${initialGuide.difficultyColor} ${initialGuide.difficultyTextColor} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide`}
+        >
+          {initialGuide.difficulty}
+        </span>
+        <span class="text-gray-400 text-sm flex items-center gap-2">
+          <i class="far fa-clock" aria-hidden="true"></i>
+          <span id="guide-time">{initialGuide.time}</span>
+        </span>
+      </div>
+      <h1
+        id="guide-title"
+        class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight"
+      >
+        {initialGuide.contentTitle}
+      </h1>
+      <p id="guide-desc" class="text-xl text-gray-400 font-light">
+        {initialGuide.description}
+      </p>
     </div>
+
+    <div id="guide-body" class="space-y-8">
+      {
+        initialGuide.sections?.map((section) => (
+          <div class="section-block">
+            <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3 border-b border-[#2A2A2A] pb-3">
+              <span class="text-3xl">{section.icon}</span> {section.title}
+            </h3>
+
+            {section.content && (
+              <div
+                class="mb-6 text-gray-300 leading-relaxed"
+                set:html={section.content}
+              />
+            )}
+
+            {section.commands && (
+              <div class="grid gap-4">
+                {section.commands.map((cmd) => (
+                  <div class="group bg-[#151515] hover:bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#404040] rounded-xl p-4 transition-all duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                      <div class="shrink-0">
+                        <code class="px-3 py-1.5 rounded-lg bg-[#202020] text-[#5865F2] font-mono text-sm font-bold border border-[#303030] shadow-sm group-hover:shadow-[0_0_10px_rgba(88,101,242,0.15)] transition-shadow">
+                          {cmd.name}
+                        </code>
+                      </div>
+                      <div class="flex items-center gap-3 text-gray-400 group-hover:text-gray-200 transition-colors">
+                        {cmd.emoji && <span class="text-lg">{cmd.emoji}</span>}
+                        <span class="text-sm sm:text-base font-medium">
+                          {cmd.description}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </div>
 
 <script>
-    import { guides } from "../../data/guides";
+  import { guides } from "../../data/guides";
 
-    declare global {
-        interface Window {
-            switchGuide: (id: string) => void;
-        }
+  declare global {
+    interface Window {
+      switchGuide: (id: string) => void;
     }
+  }
 
-    document.addEventListener("astro:page-load", () => {
-        const contentArea = document.getElementById("content-area");
+  document.addEventListener("astro:page-load", () => {
+    const contentArea = document.getElementById("content-area");
 
-        const elements = {
-            badge: document.getElementById("guide-badge"),
-            time: document.getElementById("guide-time"),
-            title: document.getElementById("guide-title"),
-            desc: document.getElementById("guide-desc"),
-            body: document.getElementById("guide-body"),
-        };
+    const elements = {
+      badge: document.getElementById("guide-badge"),
+      time: document.getElementById("guide-time"),
+      title: document.getElementById("guide-title"),
+      desc: document.getElementById("guide-desc"),
+      body: document.getElementById("guide-body"),
+    };
 
-        window.switchGuide = (id: string) => {
-            const guide = guides.find((g) => g.id === id);
-            if (!guide || !contentArea) return;
+    window.switchGuide = (id: string) => {
+      const guide = guides.find((g) => g.id === id);
+      if (!guide || !contentArea) return;
 
-            contentArea.style.opacity = "0";
-            contentArea.style.transform = "translateY(10px)";
-            contentArea.style.transition = "all 0.3s ease-out";
+      contentArea.style.opacity = "0";
+      contentArea.style.transform = "translateY(10px)";
+      contentArea.style.transition = "all 0.3s ease-out";
 
-            setTimeout(() => {
-                if (elements.badge) {
-                    elements.badge.className = `${guide.difficultyColor} ${guide.difficultyTextColor} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide`;
-                    elements.badge.textContent = guide.difficulty;
-                }
+      setTimeout(() => {
+        if (elements.badge) {
+          elements.badge.className = `${guide.difficultyColor} ${guide.difficultyTextColor} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide`;
+          elements.badge.textContent = guide.difficulty;
+        }
 
-                if (elements.time) elements.time.textContent = guide.time;
-                if (elements.title)
-                    elements.title.textContent = guide.contentTitle;
-                if (elements.desc)
-                    elements.desc.textContent = guide.description;
+        if (elements.time) elements.time.textContent = guide.time;
+        if (elements.title) elements.title.textContent = guide.contentTitle;
+        if (elements.desc) elements.desc.textContent = guide.description;
 
-                if (elements.body) {
-                    elements.body.innerHTML = renderGuideSections(
-                        guide.sections,
-                    );
-                }
+        if (elements.body) {
+          elements.body.innerHTML = renderGuideSections(guide.sections);
+        }
 
-                contentArea.style.opacity = "1";
-                contentArea.style.transform = "translateY(0)";
-            }, 300);
+        contentArea.style.opacity = "1";
+        contentArea.style.transform = "translateY(0)";
+      }, 300);
 
-            document.querySelectorAll(".guide-btn").forEach((btn) => {
-                const button = btn as HTMLElement;
-                if (button.dataset.id === id) {
-                    button.classList.add("active");
-                } else {
-                    button.classList.remove("active");
-                }
-            });
+      document.querySelectorAll(".guide-btn").forEach((btn) => {
+        const button = btn as HTMLElement;
+        if (button.dataset.id === id) {
+          button.classList.add("active");
+        } else {
+          button.classList.remove("active");
+        }
+      });
 
-            const sidebar = document.getElementById("sidebar-nav");
-            if (window.innerWidth < 1024 && sidebar) {
-                sidebar.classList.add("hidden");
-            }
-        };
-    });
+      const sidebar = document.getElementById("sidebar-nav");
+      if (window.innerWidth < 1024 && sidebar) {
+        sidebar.classList.add("hidden");
+      }
+    };
+  });
 
-    function renderGuideSections(sections: any[]) {
-        if (!sections) return "";
-        return sections
-            .map(
-                (section) => `
+  function renderGuideSections(sections: any[]) {
+    if (!sections) return "";
+    return sections
+      .map(
+        (section) => `
             <div class="section-block">
                 <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3 border-b border-[#2A2A2A] pb-3">
                     <span class="text-3xl">${section.icon || ""}</span> ${section.title}
@@ -157,12 +148,12 @@ const initialGuide = guides[0];
                 ${section.content ? `<div class="mb-6 text-gray-300 leading-relaxed">${section.content}</div>` : ""}
                 
                 ${
-                    section.commands
-                        ? `
+                  section.commands
+                    ? `
                     <div class="grid gap-4">
                         ${section.commands
-                            .map(
-                                (cmd: any) => `
+                          .map(
+                            (cmd: any) => `
                             <div class="group bg-[#151515] hover:bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#404040] rounded-xl p-4 transition-all duration-300">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                                     <div class="shrink-0">
@@ -177,15 +168,15 @@ const initialGuide = guides[0];
                                 </div>
                             </div>
                         `,
-                            )
-                            .join("")}
+                          )
+                          .join("")}
                     </div>
                 `
-                        : ""
+                    : ""
                 }
             </div>
         `,
-            )
-            .join("");
-    }
+      )
+      .join("");
+  }
 </script>

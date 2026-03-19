@@ -1,42 +1,47 @@
 ---
 interface Props {
-    class?: string;
-    hoverEffect?: boolean;
-    animate?: boolean;
-    [key: string]: any;
+  class?: string;
+  hoverEffect?: boolean;
+  animate?: boolean;
+  [key: string]: any;
 }
 
 const {
-    class: className,
-    hoverEffect = true,
-    animate = false,
-    ...rest
+  class: className,
+  hoverEffect = true,
+  animate = false,
+  ...rest
 } = Astro.props;
 
 const baseStyles =
-    "bg-gradient-to-br from-[#2d2d2d] to-[#404040] rounded-xl border border-[#404040]";
+  "bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-2xl border border-white/5 shadow-2xl transition-all duration-500";
 const hoverStyles = hoverEffect
-    ? "transition-all hover:-translate-y-1 hover:shadow-lg hover:border-[#404040]"
-    : "";
+  ? "hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+  : "";
 const animateStyles = animate
-    ? "opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards]"
-    : "";
+  ? "opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards]"
+  : "";
 
 const styles = `${baseStyles} ${hoverStyles} ${animateStyles} ${className || ""}`;
 ---
 
 <div class={`${styles} group relative overflow-hidden`} {...rest}>
+  <div
+    class="absolute inset-0 p-[1.5px] rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+    style="mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; -webkit-mask-composite: xor;"
+  >
     <div
-        class="absolute inset-0 p-[2px] rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style="mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; -webkit-mask-composite: xor;"
+      class="absolute -inset-full bg-[conic-gradient(from_0deg,#5865F2,#a855f7,#5865F2,#a855f7,#5865F2)] animate-[spin_4s_linear_infinite]"
     >
-        <div
-            class="absolute -inset-full bg-[conic-gradient(from_0deg,#5865F2,#a855f7_40%,#ffffff_48%,#d946ef_52%,#5865F2)] animate-[spin_8s_linear_infinite]"
-        >
-        </div>
     </div>
+  </div>
 
-    <div class="relative z-10 h-full">
-        <slot />
-    </div>
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+  >
+  </div>
+
+  <div class="relative z-10 h-full">
+    <slot />
+  </div>
 </div>

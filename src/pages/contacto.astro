@@ -10,37 +10,35 @@ import { discordLink } from "../data/community";
 ---
 
 <Layout title="Contacto - LosPerris Real" showWallpaper={false}>
-    <main class="min-h-screen relative overflow-hidden pt-20">
-        <BackgroundEffects />
+  <main class="min-h-screen relative overflow-hidden pt-20">
+    <BackgroundEffects />
 
-        <Section class="text-white text-center relative z-10">
-            <h1
-                class="text-5xl md:text-7xl font-black mb-6 animate-[fadeInUp_0.8s_ease-out] text-white tracking-tight"
-            >
-                CONTÁCTANOS
-            </h1>
-            <p
-                class="text-xl md:text-2xl text-text-secondary opacity-90 max-w-2xl mx-auto animate-[fadeInUp_0.8s_ease-out_0.2s_both] font-light"
-            >
-                ¿Tienes alguna pregunta o necesitas ayuda? Estamos aquí para ti
-            </p>
-        </Section>
+    <Section class="text-white text-center relative z-10">
+      <h1
+        class="text-5xl md:text-7xl font-black mb-6 animate-[fadeInUp_0.8s_ease-out] text-white tracking-tight"
+      >
+        CONTÁCTANOS
+      </h1>
+      <p
+        class="text-xl md:text-2xl text-text-secondary opacity-90 max-w-2xl mx-auto animate-[fadeInUp_0.8s_ease-out_0.2s_both] font-light"
+      >
+        ¿Tienes alguna pregunta o necesitas ayuda? Estamos aquí para ti
+      </p>
+    </Section>
 
-        <Section class="bg-transparent relative z-10">
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto"
-            >
-                <div
-                    class="bg-black/40 p-8 rounded-3xl border border-white/5 backdrop-blur-sm shadow-xl"
-                >
-                    <ContactForm />
-                </div>
-                <div class="space-y-8">
-                    <ContactInfo />
-                </div>
-            </div>
-        </Section>
+    <Section class="bg-transparent relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto">
+        <div
+          class="bg-black/40 p-8 rounded-3xl border border-white/5 backdrop-blur-sm shadow-xl"
+        >
+          <ContactForm />
+        </div>
+        <div class="space-y-8">
+          <ContactInfo />
+        </div>
+      </div>
+    </Section>
 
-        <FAQSection />
-    </main>
+    <FAQSection />
+  </main>
 </Layout>

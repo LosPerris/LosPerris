@@ -1,130 +1,281 @@
 export interface Command {
-    name: string;
-    description: string;
-    emoji: string;
+  name: string;
+  description: string;
+  emoji: string;
 }
 
 export interface GuideSection {
-    title: string;
-    icon?: string;
-    commands?: Command[];
-    content?: string;
-    list?: string[];
+  title: string;
+  icon?: string;
+  commands?: Command[];
+  content?: string;
+  list?: string[];
 }
 
 export const commandsData: Record<string, GuideSection[]> = {
-    'comandos-basicos': [
+  "comandos-basicos": [
+    {
+      title: "Diversión",
+      icon: "🎉",
+      commands: [
         {
-            title: 'Diversión',
-            icon: '🎉',
-            commands: [
-                { name: '/gato', emoji: '😺', description: 'Muestra una imagen aleatoria de un gato' },
-                { name: '/saludo', emoji: '👋', description: 'Saluda a alguien' }
-            ]
+          name: "/gato",
+          emoji: "😺",
+          description: "Muestra una imagen aleatoria de un gato",
+        },
+        { name: "/saludo", emoji: "👋", description: "Saluda a alguien" },
+      ],
+    },
+    {
+      title: "Información",
+      icon: "❓",
+      commands: [
+        {
+          name: "/avatar",
+          emoji: "📷",
+          description: "Muestra el avatar de un usuario",
         },
         {
-            title: 'Información',
-            icon: '❓',
-            commands: [
-                { name: '/avatar', emoji: '📷', description: 'Muestra el avatar de un usuario' },
-                { name: '/help', emoji: '📋', description: 'Muestra los comandos disponibles por categoría' },
-                { name: '/serverinfo', emoji: '📊', description: 'Muestra información del servidor' },
-                { name: '/usuarioinfo', emoji: '👤', description: 'Muestra información de un usuario' }
-            ]
-        }
-    ],
-    'moderacion': [
-        {
-            title: 'Moderación',
-            icon: '🛡️',
-            content: 'Herramientas esenciales para mantener el orden en tu comunidad.',
-            commands: [
-                { name: '/ban', emoji: '❌', description: 'Prohíbe a un usuario del servidor' },
-                { name: '/checkwarns', emoji: '📖', description: 'Muestra la cantidad de advertencias de un usuario' },
-                { name: '/kick', emoji: '❌', description: 'Expulsa a un usuario del servidor' },
-                { name: '/purge', emoji: '🚮', description: 'Elimina una cantidad de mensajes del canal' },
-                { name: '/unwarn', emoji: '✅', description: 'Quita advertencias a un usuario' },
-                { name: '/warn', emoji: '❌', description: 'Advierte a un usuario. A las 3 advertencias será baneado automáticamente.' }
-            ]
+          name: "/help",
+          emoji: "📋",
+          description: "Muestra los comandos disponibles por categoría",
         },
         {
-            title: 'Otros / Utilidad',
-            icon: '🛠️',
-            commands: [
-                { name: '/banlist', emoji: '📋', description: 'Muestra la lista de usuarios baneados' },
-                { name: '/unban', emoji: '✅', description: 'Desbanea a un usuario por ID' },
-                { name: '/encuesta', emoji: '📊', description: 'Crea una encuesta con botones.' },
-                { name: '/giveaway', emoji: '🎉', description: 'Sistema de Sorteos' },
-                { name: '/setup_tempvoice', emoji: '🔊', description: 'Configura el canal "Join to Create" para salas temporales.' },
-                { name: '/ticket_panel', emoji: '📨', description: 'Crear panel de tickets' }
-            ]
-        }
-    ],
-    'seguridad': [
-        {
-            title: 'Seguridad',
-            icon: '🔐',
-            content: 'Protege tu servidor con herramientas de análisis y verificación.',
-            commands: [
-                { name: '/analizar_archivo', emoji: '🔍', description: 'Analiza un archivo adjunto con VirusTotal' },
-                { name: '/analizar_url', emoji: '🔍', description: 'Analiza una URL para verificar su seguridad con VirusTotal' },
-                { name: '/generar_password', emoji: '🔐', description: 'Genera una contraseña segura' },
-                { name: '/setup_verification', emoji: '🛡️', description: 'Configurar verificación con Cookie-AP' }
-            ]
-        }
-    ],
-    'comandos-gaming': [
-        {
-            title: 'Fortnite',
-            icon: '🎮',
-            commands: [
-                { name: '/fortnite_stats', emoji: '🖼️', description: 'Muestra las stats de Fortnite de un jugador' },
-                { name: '/fortnite_tienda', emoji: '🛒', description: 'Muestra la tienda diaria de Fortnite con filtros' }
-            ]
+          name: "/serverinfo",
+          emoji: "📊",
+          description: "Muestra información del servidor",
         },
         {
-            title: 'League of Legends',
-            icon: '🏆',
-            commands: [
-                { name: '/lol_random_build', emoji: '❓', description: 'Recomienda un campeón con build y runas aleatorias oficiales según rol' },
-                { name: '/lol_champion_info', emoji: '📖', description: 'Muestra información detallada de un campeón de LoL' },
-                { name: '/lol_info', emoji: '📖', description: 'Obtener perfil y clasificación de invocador (Solo el servidor de Americas de momento)' },
-                { name: '/lol_items', emoji: '🛡️', description: 'Muestra los objetos de League of Legends con filtro y paginación' }
-            ]
+          name: "/usuarioinfo",
+          emoji: "👤",
+          description: "Muestra información de un usuario",
+        },
+      ],
+    },
+  ],
+  moderacion: [
+    {
+      title: "Moderación",
+      icon: "🛡️",
+      content:
+        "Herramientas esenciales para mantener el orden en tu comunidad.",
+      commands: [
+        {
+          name: "/ban",
+          emoji: "❌",
+          description: "Prohíbe a un usuario del servidor",
         },
         {
-            title: 'Valorant',
-            icon: '🔫',
-            commands: [
-                { name: '/valorant_agente', emoji: '📖', description: 'Muestra información detallada de un agente de Valorant (en español si está disponible)' },
-                { name: '/valorant_armas', emoji: '🔫', description: 'Muestra armas de Valorant con filtros y paginación' },
-                { name: '/valorant_info', emoji: '📖', description: 'Muestra información detallada de un jugador de Valorant' },
-                { name: '/valorant_mapas', emoji: '🗺️', description: 'Muestra los mapas de Valorant (En proceso)' }
-            ]
+          name: "/checkwarns",
+          emoji: "📖",
+          description: "Muestra la cantidad de advertencias de un usuario",
         },
         {
-            title: 'Otros Juegos',
-            icon: '🎲',
-            commands: [
-                { name: '/minecraft_skin', emoji: '🧱', description: 'Muestra el skin de un jugador de Minecraft con distintas vistas' },
-                { name: '/cartapokemontcg', emoji: '🎴', description: 'Busca cartas Pokémon TCG con filtros' },
-                { name: '/dragonball', emoji: '🐉', description: 'Busca personajes de Dragon Ball con filtros' }
-            ]
+          name: "/kick",
+          emoji: "❌",
+          description: "Expulsa a un usuario del servidor",
         },
         {
-            title: 'Entretenimiento',
-            icon: '📺',
-            commands: [
-                { name: '/twitch', emoji: '🎮', description: 'Consulta información de un canal de Twitch' },
-                { name: '/feedback', emoji: '', description: 'Reporta un error o sugiere una idea para el bot' }
-            ]
-        }
-    ],
-    'estadisticas-juegos': [
+          name: "/purge",
+          emoji: "🚮",
+          description: "Elimina una cantidad de mensajes del canal",
+        },
         {
-            title: 'Cómo usar las estadísticas',
-            icon: '📊',
-            content: `
+          name: "/unwarn",
+          emoji: "✅",
+          description: "Quita advertencias a un usuario",
+        },
+        {
+          name: "/warn",
+          emoji: "❌",
+          description:
+            "Advierte a un usuario. A las 3 advertencias será baneado automáticamente.",
+        },
+      ],
+    },
+    {
+      title: "Otros / Utilidad",
+      icon: "🛠️",
+      commands: [
+        {
+          name: "/banlist",
+          emoji: "📋",
+          description: "Muestra la lista de usuarios baneados",
+        },
+        {
+          name: "/unban",
+          emoji: "✅",
+          description: "Desbanea a un usuario por ID",
+        },
+        {
+          name: "/encuesta",
+          emoji: "📊",
+          description: "Crea una encuesta con botones.",
+        },
+        { name: "/giveaway", emoji: "🎉", description: "Sistema de Sorteos" },
+        {
+          name: "/setup_tempvoice",
+          emoji: "🔊",
+          description:
+            'Configura el canal "Join to Create" para salas temporales.',
+        },
+        {
+          name: "/ticket_panel",
+          emoji: "📨",
+          description: "Crear panel de tickets",
+        },
+      ],
+    },
+  ],
+  seguridad: [
+    {
+      title: "Seguridad",
+      icon: "🔐",
+      content:
+        "Protege tu servidor con herramientas de análisis y verificación.",
+      commands: [
+        {
+          name: "/analizar_archivo",
+          emoji: "🔍",
+          description: "Analiza un archivo adjunto con VirusTotal",
+        },
+        {
+          name: "/analizar_url",
+          emoji: "🔍",
+          description:
+            "Analiza una URL para verificar su seguridad con VirusTotal",
+        },
+        {
+          name: "/generar_password",
+          emoji: "🔐",
+          description: "Genera una contraseña segura",
+        },
+        {
+          name: "/setup_verification",
+          emoji: "🛡️",
+          description: "Configurar verificación con Cookie-AP",
+        },
+      ],
+    },
+  ],
+  "comandos-gaming": [
+    {
+      title: "Fortnite",
+      icon: "🎮",
+      commands: [
+        {
+          name: "/fortnite_stats",
+          emoji: "🖼️",
+          description: "Muestra las stats de Fortnite de un jugador",
+        },
+        {
+          name: "/fortnite_tienda",
+          emoji: "🛒",
+          description: "Muestra la tienda diaria de Fortnite con filtros",
+        },
+      ],
+    },
+    {
+      title: "League of Legends",
+      icon: "🏆",
+      commands: [
+        {
+          name: "/lol_random_build",
+          emoji: "❓",
+          description:
+            "Recomienda un campeón con build y runas aleatorias oficiales según rol",
+        },
+        {
+          name: "/lol_champion_info",
+          emoji: "📖",
+          description: "Muestra información detallada de un campeón de LoL",
+        },
+        {
+          name: "/lol_info",
+          emoji: "📖",
+          description:
+            "Obtener perfil y clasificación de invocador (Solo el servidor de Americas de momento)",
+        },
+        {
+          name: "/lol_items",
+          emoji: "🛡️",
+          description:
+            "Muestra los objetos de League of Legends con filtro y paginación",
+        },
+      ],
+    },
+    {
+      title: "Valorant",
+      icon: "🔫",
+      commands: [
+        {
+          name: "/valorant_agente",
+          emoji: "📖",
+          description:
+            "Muestra información detallada de un agente de Valorant (en español si está disponible)",
+        },
+        {
+          name: "/valorant_armas",
+          emoji: "🔫",
+          description: "Muestra armas de Valorant con filtros y paginación",
+        },
+        {
+          name: "/valorant_info",
+          emoji: "📖",
+          description:
+            "Muestra información detallada de un jugador de Valorant",
+        },
+        {
+          name: "/valorant_mapas",
+          emoji: "🗺️",
+          description: "Muestra los mapas de Valorant (En proceso)",
+        },
+      ],
+    },
+    {
+      title: "Otros Juegos",
+      icon: "🎲",
+      commands: [
+        {
+          name: "/minecraft_skin",
+          emoji: "🧱",
+          description:
+            "Muestra el skin de un jugador de Minecraft con distintas vistas",
+        },
+        {
+          name: "/cartapokemontcg",
+          emoji: "🎴",
+          description: "Busca cartas Pokémon TCG con filtros",
+        },
+        {
+          name: "/dragonball",
+          emoji: "🐉",
+          description: "Busca personajes de Dragon Ball con filtros",
+        },
+      ],
+    },
+    {
+      title: "Entretenimiento",
+      icon: "📺",
+      commands: [
+        {
+          name: "/twitch",
+          emoji: "🎮",
+          description: "Consulta información de un canal de Twitch",
+        },
+        {
+          name: "/feedback",
+          emoji: "",
+          description: "Reporta un error o sugiere una idea para el bot",
+        },
+      ],
+    },
+  ],
+  "estadisticas-juegos": [
+    {
+      title: "Cómo usar las estadísticas",
+      icon: "📊",
+      content: `
                 <div class="space-y-4">
                     <div class="bg-primary rounded-lg p-5 border border-[#333]">
                         <h4 class="text-lg font-bold text-white mb-3">Fortnite Stats</h4>
@@ -159,14 +310,14 @@ export const commandsData: Record<string, GuideSection[]> = {
                         </ul>
                     </div>
                 </div>
-            `
-        }
-    ],
-    'configuracion-servidor': [
-        {
-            title: 'Configuración Inicial',
-            icon: '🔧',
-            content: `
+            `,
+    },
+  ],
+  "configuracion-servidor": [
+    {
+      title: "Configuración Inicial",
+      icon: "🔧",
+      content: `
                 <div class="space-y-4">
                     <div class="bg-[#151515] rounded-lg p-5 border border-[#333]">
                         <h4 class="text-lg font-bold text-white mb-3">Pasos para configurar</h4>
@@ -179,14 +330,14 @@ export const commandsData: Record<string, GuideSection[]> = {
                         </ol>
                     </div>
                 </div>
-            `
-        }
-    ],
-    'permisos-roles': [
-        {
-            title: 'Sistema de Roles',
-            icon: '👑',
-            content: `
+            `,
+    },
+  ],
+  "permisos-roles": [
+    {
+      title: "Sistema de Roles",
+      icon: "👑",
+      content: `
                 <div class="space-y-4">
                     <div class="bg-[#151515] rounded-lg p-5 border border-[#333]">
                         <h4 class="text-lg font-bold text-white mb-3">Roles Recomendados</h4>
@@ -206,7 +357,7 @@ export const commandsData: Record<string, GuideSection[]> = {
                         </ul>
                     </div>
                 </div>
-            `
-        }
-    ]
+            `,
+    },
+  ],
 };

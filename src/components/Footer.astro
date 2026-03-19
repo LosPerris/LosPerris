@@ -1,129 +1,130 @@
 ---
+import { Image } from "astro:assets";
 import {
-    discordLink,
-    discordHelpBotsLink,
-    discordHelpApisLink,
-    domain,
+  discordLink,
+  discordHelpBotsLink,
+  discordHelpApisLink,
+  domain,
 } from "../data/community";
+import iconImg from "../../public/icon.webp";
 const pathname = new URL(Astro.request.url).pathname;
 const isHome =
-    pathname === "/" || pathname === "/index.html" || pathname === "/index";
+  pathname === "/" || pathname === "/index.html" || pathname === "/index";
 
 const getLink = (hash: string) => {
-    if (hash.startsWith("http")) return hash;
-    if (hash === "index.html" || hash === "/") return "/";
-    if (!hash.startsWith("#")) return hash;
-    return isHome ? hash : `/${hash}`;
+  if (hash.startsWith("http")) return hash;
+  if (hash === "index.html" || hash === "/") return "/";
+  if (!hash.startsWith("#")) return hash;
+  return isHome ? hash : `/${hash}`;
 };
 ---
 
 <footer
-    class="bg-linear-to-br from-[#0f0f0f] via-primary to-[#0f0f0f] backdrop-blur-md py-10 mt-auto relative z-10"
+  class="bg-linear-to-br from-[#0f0f0f] via-primary to-[#0f0f0f] backdrop-blur-md py-10 mt-auto relative z-10"
 >
-    <div class="container mx-auto px-5">
-        <div class="flex flex-wrap justify-between gap-10 mb-10">
-            <div class="flex-1 min-w-[250px] space-y-4">
-                <div class="flex items-center gap-3 mb-2">
-                    <img
-                        src="/icon.webp"
-                        alt="LosPerris Logo"
-                        class="w-8 h-8 rounded-full shadow-[0_0_15px_rgba(88,101,242,0.3)]"
-                    />
-                    <h3 class="text-xl font-bold text-white tracking-wide">
-                        LosPerris
-                    </h3>
-                </div>
-                <p class="text-text-secondary leading-relaxed text-[0.95rem]">
-                    Empezamos en 2025 con una idea simple: hacer más fácil y
-                    útil tu experiencia en Discord.
-                </p>
-            </div>
-            <div class="flex-1 min-w-[200px] space-y-4">
-                <h3 class="text-lg font-bold text-white mb-2 tracking-wide">
-                    Enlaces Rápidos
-                </h3>
-                <ul class="space-y-2.5">
-                    <li>
-                        <a
-                            href={discordHelpBotsLink}
-                            target="_blank"
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >LosPerrisHelp</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href={discordHelpApisLink}
-                            target="_blank"
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >LosPerrisGame</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href={getLink("#stats")}
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Estadísticas</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href={discordLink}
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            >Discord</a
-                        >
-                    </li>
-                </ul>
-            </div>
-            <div class="flex-1 min-w-[200px] space-y-4">
-                <h3 class="text-lg font-bold text-white mb-2 tracking-wide">
-                    Soporte
-                </h3>
-                <ul class="space-y-2.5">
-                    <li>
-                        <a
-                            href="/terminos"
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            data-astro-prefetch>Términos y condiciones</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/politica-privacidad"
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            data-astro-prefetch>Política de Privacidad</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/bots/documentacion"
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            data-astro-prefetch>Guías de Uso</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/contacto"
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            data-astro-prefetch>Reportar Bug</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/contacto"
-                            class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
-                            data-astro-prefetch>Sugerir Función</a
-                        >
-                    </li>
-                </ul>
-            </div>
+  <div class="container mx-auto px-5">
+    <div class="flex flex-wrap justify-between gap-10 mb-10">
+      <div class="flex-1 min-w-[250px] space-y-4">
+        <div class="flex items-center gap-3 mb-2">
+          <Image
+            src={iconImg}
+            alt=""
+            class="w-8 h-8 rounded-full shadow-[0_0_15px_rgba(88,101,242,0.3)]"
+            width={32}
+            height={32}
+            aria-hidden="true"
+          />
+          <h3 class="text-xl font-bold text-white tracking-wide">LosPerris</h3>
         </div>
-        <div class="pt-6 border-t border-[#404040] text-center">
-            <p class="text-text-muted text-sm">
-                &copy; {new Date().getFullYear()}
-                {domain}. Todos los derechos reservados. | Hecho con ❤️ para la
-                comunidad de Discord
-            </p>
-        </div>
+        <p class="text-text-secondary leading-relaxed text-[0.95rem]">
+          Empezamos en 2025 con una idea simple: hacer más fácil y útil tu
+          experiencia en Discord.
+        </p>
+      </div>
+      <div class="flex-1 min-w-[200px] space-y-4">
+        <h3 class="text-lg font-bold text-white mb-2 tracking-wide">
+          Enlaces Rápidos
+        </h3>
+        <ul class="space-y-2.5">
+          <li>
+            <a
+              href={discordHelpBotsLink}
+              target="_blank"
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              >LosPerrisHelp</a
+            >
+          </li>
+          <li>
+            <a
+              href={discordHelpApisLink}
+              target="_blank"
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              >LosPerrisGame</a
+            >
+          </li>
+          <li>
+            <a
+              href={getLink("#stats")}
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              >Estadísticas</a
+            >
+          </li>
+          <li>
+            <a
+              href={discordLink}
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              >Discord</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="flex-1 min-w-[200px] space-y-4">
+        <h3 class="text-lg font-bold text-white mb-2 tracking-wide">Soporte</h3>
+        <ul class="space-y-2.5">
+          <li>
+            <a
+              href="/terminos"
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              data-astro-prefetch>Términos y condiciones</a
+            >
+          </li>
+          <li>
+            <a
+              href="/politica-privacidad"
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              data-astro-prefetch>Política de Privacidad</a
+            >
+          </li>
+          <li>
+            <a
+              href="/bots/documentacion"
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              data-astro-prefetch>Guías de Uso</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contacto"
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              data-astro-prefetch>Reportar Bug</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contacto"
+              class="text-text-secondary hover:text-white transition-colors text-[0.95rem] block hover:-translate-y-0.5 transform duration-300"
+              data-astro-prefetch>Sugerir Función</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
+    <div class="pt-6 border-t border-[#404040] text-center">
+      <p class="text-text-muted text-sm">
+        &copy; {new Date().getFullYear()}
+        {domain}. Todos los derechos reservados. | Hecho con ❤️ para la
+        comunidad de Discord
+      </p>
+    </div>
+  </div>
 </footer>

@@ -1,43 +1,43 @@
 ---
 interface Props {
-    withWallpaper?: boolean;
-    variant?: "default" | "hero" | "global" | "discrete";
-    showBlobs?: boolean;
+  withWallpaper?: boolean;
+  variant?: "default" | "hero" | "global" | "discrete";
+  showBlobs?: boolean;
 }
 
 const {
-    withWallpaper = false,
-    variant = "default",
-    showBlobs = true,
+  withWallpaper = false,
+  variant = "default",
+  showBlobs = true,
 } = Astro.props;
 
 const blobSize =
-    variant === "hero" || variant === "global"
-        ? "w-[900px] h-[900px] opacity-20"
-        : variant === "discrete"
-          ? "w-[100px] h-[300px] opacity-[0.005]"
-          : "w-[600px] h-[600px] opacity-10";
+  variant === "hero" || variant === "global"
+    ? "w-[900px] h-[900px] opacity-20"
+    : variant === "discrete"
+      ? "w-[100px] h-[300px] opacity-[0.005]"
+      : "w-[600px] h-[600px] opacity-10";
 ---
 
 <div
-    class={`absolute inset-0 pointer-events-none overflow-hidden ${variant === "global" ? "fixed h-screen w-screen -z-10" : ""}`}
+  class={`absolute inset-0 pointer-events-none overflow-hidden ${variant === "global" ? "fixed h-screen w-screen -z-10" : ""}`}
 >
-    {
-        withWallpaper && (
-            <div class="absolute inset-0 opacity-10 bg-[url('/img/back.webp')] bg-cover bg-center mix-blend-overlay" />
-        )
-    }
-    {
-        showBlobs && (
-            <>
-                <div
-                    class={`absolute top-0 right-0 ${blobSize} bg-[#5865F2]/20 rounded-full blur-[120px] animate-pulse`}
-                />
-                <div
-                    class={`absolute bottom-0 left-0 ${blobSize} bg-purple-500/20 rounded-full blur-[120px] animate-pulse`}
-                    style="animation-delay: 2s;"
-                />
-            </>
-        )
-    }
+  {
+    withWallpaper && (
+      <div class="absolute inset-0 opacity-10 bg-[url('/img/back.webp')] bg-cover bg-center mix-blend-overlay" />
+    )
+  }
+  {
+    showBlobs && (
+      <>
+        <div
+          class={`absolute top-0 right-0 ${blobSize} bg-[#5865F2]/20 rounded-full blur-[120px] animate-pulse`}
+        />
+        <div
+          class={`absolute bottom-0 left-0 ${blobSize} bg-purple-500/20 rounded-full blur-[120px] animate-pulse`}
+          style="animation-delay: 2s;"
+        />
+      </>
+    )
+  }
 </div>

@@ -6,14 +6,30 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,astro}": [
+      "prettier --write",
+      "astro check"
+    ]
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/vercel": "^9.0.2",
+    "@astrojs/vercel": "^10.0.2",
     "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.4",
+    "astro": "^6.0.7",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/sitemap": "^3.7.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
