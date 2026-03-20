@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import backgroundImage from "../../assets/img/back.webp";
+
 interface Props {
   withWallpaper?: boolean;
   variant?: "default" | "hero" | "global" | "discrete";
@@ -24,7 +27,15 @@ const blobSize =
 >
   {
     withWallpaper && (
-      <div class="absolute inset-0 opacity-10 bg-[url('/img/back.webp')] bg-cover bg-center mix-blend-overlay" />
+      <div class="absolute inset-0 opacity-10 mix-blend-overlay">
+        <Image
+          src={backgroundImage}
+          alt=""
+          role="presentation"
+          class="w-full h-full object-cover object-center"
+          loading="eager"
+        />
+      </div>
     )
   }
   {

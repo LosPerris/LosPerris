@@ -89,7 +89,12 @@ const navItems = [
         navItems.map((item) =>
           item.type === "dropdown" ? (
             <div class="relative group">
-              <button class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-2 cursor-pointer group/btn">
+              <button
+                class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-2 cursor-pointer group/btn"
+                aria-expanded="false"
+                aria-haspopup="true"
+                aria-label={`Abrir menú de ${item.name}`}
+              >
                 {item.name}
                 <i class="fas fa-chevron-down text-xs opacity-50 group-hover:opacity-100 group-hover:translate-y-0.5 transition-all" />
               </button>
@@ -193,7 +198,11 @@ const navItems = [
     <div class="flex items-center justify-between text-white/40 text-xs">
       <span>LosPerris © 2026</span>
       <div class="flex gap-4">
-        <a href={discordLink} class="hover:text-white transition-colors">
+        <a
+          href={discordLink}
+          class="hover:text-white transition-colors"
+          aria-label="Ir a nuestro Discord"
+        >
           <i class="fab fa-discord" aria-hidden="true"></i>
         </a>
       </div>
