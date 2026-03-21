@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://losperris.site",
+  site: "https://losperris.dev",
   adapter: vercel(),
   output: "server",
   prefetch: true,
