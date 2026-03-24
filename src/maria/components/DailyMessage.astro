@@ -26,7 +26,7 @@ const dateStr = today.toLocaleDateString("es-MX", {
 
   <div class="message-block">
     <span class="message-decor" aria-hidden="true">"</span>
-    <blockquote class="message-text">
+    <blockquote class="message-text" id="daily-message-text">
       {message}
     </blockquote>
     <span class="message-decor message-decor--close" aria-hidden="true">"</span>
@@ -39,18 +39,63 @@ const dateStr = today.toLocaleDateString("es-MX", {
       <span class="divider-line"></span>
     </div>
     <p class="date-label">
-      <time datetime={today.toISOString()}>{dateStr}</time>
+      <time datetime={today.toISOString()} id="daily-date">{dateStr}</time>
     </p>
     {
       dayNumber > 0 && (
-        <p class="day-counter">
-          Día <strong>{dayNumber}</strong> desde que te quiero así de fuerte
+        <p class="day-counter" id="daily-counter-block">
+          Día <strong id="daily-day-num">{dayNumber}</strong> desde que te
+          quiero así de fuerte
         </p>
       )
     }
     <p class="signature">Con todo mi amor, Ponsscito ❤️</p>
   </footer>
 </article>
+
+<script>
+  import {
+    messages,
+    getDailyMessageIndex,
+    getDaysSinceStart,
+  } from "../data/messages";
+
+  function updateContent() {
+    const msgText = document.getElementById("daily-message-text");
+    const dateEl = document.getElementById("daily-date");
+    const dayNumEl = document.getElementById("daily-day-num");
+    const counterBlock = document.getElementById("daily-counter-block");
+
+    if (!msgText || !dateEl) return;
+
+    const epoch = new Date(2026, 2, 23);
+    const index = getDailyMessageIndex(epoch);
+    const dayNumber = getDaysSinceStart(epoch);
+    const today = new Date();
+
+    msgText.textContent = messages[index];
+
+    dateEl.textContent = today.toLocaleDateString("es-MX", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    dateEl.setAttribute("datetime", today.toISOString());
+
+    if (dayNumEl) {
+      dayNumEl.textContent = dayNumber.toString();
+    }
+    if (dayNumber <= 0 && counterBlock) {
+      counterBlock.style.display = "none";
+    } else if (counterBlock) {
+      counterBlock.style.display = "block";
+    }
+  }
+
+  updateContent();
+  setInterval(updateContent, 1000 * 60 * 15); // Cada 15 min
+</script>
 
 <style>
   .card-wrapper {
