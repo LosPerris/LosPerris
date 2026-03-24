@@ -10,7 +10,9 @@ export default defineConfig({
   adapter: vercel(),
   output: "server",
   prefetch: true,
-  integrations: [sitemap()],
+  integrations: [sitemap({
+    filter: (page) => !page.includes("/maria"),
+  })],
   image: {
     domains: [
       "mc-heads.net",
