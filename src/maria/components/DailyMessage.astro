@@ -85,7 +85,20 @@ const dateStr = today.toLocaleDateString("es-MX", {
     const dayNumber = getDaysSinceStart(epoch);
     const today = new Date();
 
-    msgText.textContent = messages[index];
+    function typeWriter(text: string, element: HTMLElement, delay = 50) {
+      element.textContent = "";
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, delay);
+        }
+      }
+      type();
+    }
+
+    typeWriter(messages[index], msgText, 45);
 
     dateEl.textContent = today.toLocaleDateString("es-MX", {
       weekday: "long",
@@ -162,13 +175,19 @@ const dateStr = today.toLocaleDateString("es-MX", {
   }
 
   @keyframes card-enter {
-    from {
+    0% {
       opacity: 0;
-      transform: translateY(32px) scale(0.97);
+      transform: translateY(40px) scale(0.92);
+      filter: blur(10px);
     }
-    to {
+    60% {
+      transform: translateY(-5px) scale(1.02);
+      filter: blur(0px);
+    }
+    100% {
       opacity: 1;
       transform: translateY(0) scale(1);
+      filter: blur(0px);
     }
   }
 
@@ -246,7 +265,7 @@ const dateStr = today.toLocaleDateString("es-MX", {
     text-align: center;
     padding: 0 0.5rem;
     border: none;
-    animation: text-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+    animation: none;
   }
 
   @keyframes text-reveal {
