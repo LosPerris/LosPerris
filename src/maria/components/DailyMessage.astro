@@ -44,13 +44,25 @@ const dateStr = today.toLocaleDateString("es-MX", {
     {
       dayNumber > 0 && (
         <p class="day-counter" id="daily-counter-block">
-          Día <strong id="daily-day-num">{dayNumber}</strong> desde que te
-          quiero así de fuerte
+          Día <strong id="daily-day-num">{dayNumber}</strong> amándote y
+          extrañándote cada vez más
         </p>
       )
     }
     <p class="signature">Con todo mi amor, Ponsscito ❤️</p>
+    <button id="special-msg-btn" class="special-button">Nuestro deseo ✨</button
+    >
   </footer>
+
+  <div id="special-overlay" class="special-overlay">
+    <div class="overlay-content">
+      <button id="close-overlay" class="close-button">×</button>
+      <p class="overlay-text">
+        Cuando quieras podemos regresar y amarnos nuevamente, cada segundo de mi
+        vida pienso en ti.❤️
+      </p>
+    </div>
+  </div>
 </article>
 
 <script>
@@ -90,6 +102,23 @@ const dateStr = today.toLocaleDateString("es-MX", {
       counterBlock.style.display = "none";
     } else if (counterBlock) {
       counterBlock.style.display = "block";
+    }
+
+    const specialBtn = document.getElementById("special-msg-btn");
+    const overlay = document.getElementById("special-overlay");
+    const closeBtn = document.getElementById("close-overlay");
+
+    if (specialBtn && overlay && closeBtn) {
+      specialBtn.onclick = () => {
+        overlay.classList.add("is-active");
+      };
+      closeBtn.onclick = (e) => {
+        e.stopPropagation();
+        overlay.classList.remove("is-active");
+      };
+      overlay.onclick = () => {
+        overlay.classList.remove("is-active");
+      };
     }
   }
 
@@ -298,6 +327,98 @@ const dateStr = today.toLocaleDateString("es-MX", {
     font-style: italic;
     color: rgba(255, 241, 245, 0.55);
     margin-top: 0.25rem;
+  }
+
+  .special-button {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(244, 63, 94, 0.1);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+    border-radius: 99px;
+    color: rgba(251, 113, 133, 0.8);
+    font-family: "Inter", sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+
+  .special-button:hover {
+    background: rgba(244, 63, 94, 0.2);
+    border-color: rgba(244, 63, 94, 0.4);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.2);
+  }
+
+  .special-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 7, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 10;
+  }
+
+  .special-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .overlay-content {
+    position: relative;
+    text-align: center;
+    transform: translateY(10px);
+    transition: transform 0.4s ease-out;
+  }
+
+  .special-overlay.is-active .overlay-content {
+    transform: translateY(0);
+  }
+
+  .overlay-text {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: #fff;
+    animation: text-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes text-glow {
+    from {
+      text-shadow: 0 0 10px rgba(244, 63, 94, 0.2);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(244, 63, 94, 0.5);
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: -3rem;
+    right: 50%;
+    transform: translateX(50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .close-button:hover {
+    color: #fff;
+  }
+
+  #daily-message-text {
   }
 
   @media (max-width: 400px) {

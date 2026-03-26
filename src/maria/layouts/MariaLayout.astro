@@ -85,21 +85,54 @@ const {
         background:
           radial-gradient(
             ellipse 80% 60% at 50% 0%,
-            rgba(168, 85, 247, 0.12) 0%,
+            rgba(168, 85, 247, 0.15) 0%,
             transparent 60%
           ),
           radial-gradient(
-            ellipse 60% 40% at 80% 100%,
-            rgba(244, 63, 94, 0.1) 0%,
-            transparent 50%
+            circle at 20% 30%,
+            rgba(244, 63, 94, 0.12) 0%,
+            transparent 40%
           ),
           radial-gradient(
-            ellipse 40% 30% at 10% 60%,
-            rgba(236, 72, 153, 0.08) 0%,
-            transparent 50%
+            circle at 80% 70%,
+            rgba(236, 72, 153, 0.1) 0%,
+            transparent 40%
           );
         pointer-events: none;
         z-index: 0;
+        filter: blur(40px);
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+          radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size:
+          60px 60px,
+          100px 100px;
+        background-position:
+          0 0,
+          30px 30px;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 0;
+        animation: stars-drift 100s linear infinite;
+      }
+
+      @keyframes stars-drift {
+        from {
+          background-position:
+            0 0,
+            30px 30px;
+        }
+        to {
+          background-position:
+            600px 600px,
+            330px 330px;
+        }
       }
 
       .hearts-canvas {
@@ -182,20 +215,20 @@ const {
     <script>
       const canvas = document.getElementById("hearts-canvas");
       if (canvas) {
-        const emojis = ["❤️", "🩷", "💕", "💗", "💓", "💞", "🌹", "✨"];
-        const count = 28;
+        const emojis = ["❤️", "🩷", "💕", "💗", "💓", "💞", "🌹", "✨", "☁️"];
+        const count = 35;
 
         for (let i = 0; i < count; i++) {
           const el = document.createElement("span");
           el.className = "heart-particle";
           el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
-          const size = 12 + Math.random() * 22;
+          const size = 10 + Math.random() * 25;
           const x = Math.random() * 100;
-          const duration = 12 + Math.random() * 18;
-          const delay = -(Math.random() * duration); // offset inicial para que no salgan todos a la vez
-          const opacity = 0.15 + Math.random() * 0.45;
-          const scale = 0.6 + Math.random() * 0.8;
+          const duration = 15 + Math.random() * 25;
+          const delay = -(Math.random() * duration);
+          const opacity = 0.1 + Math.random() * 0.4;
+          const scale = 0.5 + Math.random() * 1;
 
           el.style.setProperty("--size", `${size}px`);
           el.style.setProperty("--x", `${x}%`);
@@ -206,6 +239,18 @@ const {
 
           canvas.appendChild(el);
         }
+
+        // Mouse follow effect for background
+        document.addEventListener("mousemove", (e) => {
+          const x = e.clientX / window.innerWidth - 0.5;
+          const y = e.clientY / window.innerHeight - 0.5;
+          const wrapper = document.querySelector(
+            ".page-wrapper",
+          ) as HTMLElement;
+          if (wrapper) {
+            wrapper.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+          }
+        });
       }
     </script>
   </body>
