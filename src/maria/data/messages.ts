@@ -49,6 +49,10 @@ export const messages: string[] = [
   "Cada detalle tuyo que aprendo me hace quererte más, majito.",
   "Eres el tipo de amor que te hace agradecer todo lo que pasaste antes para llegar aquí.",
   "Hoy y siempre, gracias por existir, María. Gracias por ser tú, majito.",
+  "Eres como un girasol, siempre buscando la luz y llenando mi vida de color.",
+  "En mi jardín personal, tú eres el girasol más brillante y hermoso.",
+  "Si la vida es un campo, elijo caminar por siempre entre tus girasoles.",
+  "Tu sonrisa brilla más que mil campos de girasoles al amanecer.",
 ];
 
 export function getDailyMessageIndex(
