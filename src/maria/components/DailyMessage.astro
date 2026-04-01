@@ -119,31 +119,51 @@ const dateStr = today.toLocaleDateString("es-MX", {
     const bloomBtn = document.getElementById("bloom-btn");
     if (bloomBtn) {
       bloomBtn.onclick = () => {
-        const petals = ["🌻", "✨", "💛", "🌼", "🍃"];
-        for (let i = 0; i < 20; i++) {
-          const p = document.createElement("span");
-          p.textContent = petals[Math.floor(Math.random() * petals.length)];
-          p.className = "bloom-petal";
-          p.style.left = "50%";
-          p.style.top = "50%";
+        const petals = ["🌻", "🌻", "🌻", "🍃", "🌿"];
+        const totalParticles = 200;
+        const batchSize = 20;
+        let created = 0;
 
-          const angle = Math.random() * Math.PI * 2;
-          const dist = 100 + Math.random() * 200;
-          const dx = Math.cos(angle) * dist;
-          const dy = Math.sin(angle) * dist;
+        const burstInterval = setInterval(() => {
+          for (let i = 0; i < batchSize && created < totalParticles; i++) {
+            const p = document.createElement("span");
+            p.textContent = petals[Math.floor(Math.random() * petals.length)];
+            p.className = "bloom-petal";
 
-          p.style.setProperty("--dx", `${dx}px`);
-          p.style.setProperty("--dy", `${dy}px`);
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
 
-          document.querySelector(".card-wrapper")?.appendChild(p);
-          setTimeout(() => p.remove(), 1000);
-        }
+            p.style.left = `${x}px`;
+            p.style.top = `${y}px`;
+
+            const size = 0.6 + Math.random() * 3;
+            const duration = 4 + Math.random() * 4;
+            const swayX = (Math.random() - 0.5) * 60;
+            const swayY = (Math.random() - 0.5) * 60;
+
+            p.style.fontSize = `${size}rem`;
+            p.style.setProperty("--sway-x", `${swayX}px`);
+            p.style.setProperty("--sway-y", `${swayY}px`);
+            p.style.setProperty("--rot", `${Math.random() * 360}deg`);
+            p.style.animationDuration = `${duration}s`;
+
+            document.body.appendChild(p);
+            created++;
+
+            setTimeout(() => p.remove(), duration * 1000);
+          }
+
+          if (created >= totalParticles) {
+            clearInterval(burstInterval);
+          }
+        }, 40);
 
         const mainSun = document.getElementById("main-sunflower");
         if (mainSun) {
           mainSun.style.animation = "none";
           void mainSun.offsetWidth;
-          mainSun.style.animation = "bloom-pop 0.5s ease-out";
+          mainSun.style.animation =
+            "bloom-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)";
         }
       };
     }
@@ -385,23 +405,47 @@ const dateStr = today.toLocaleDateString("es-MX", {
     opacity: 1;
     color: var(--sunflower);
   }
+</style>
 
+<style is:global>
   .bloom-petal {
-    position: absolute;
+    position: fixed;
     pointer-events: none;
-    z-index: 50;
-    animation: petal-burst 1s ease-out forwards;
-    font-size: 1.5rem;
+    z-index: 10000;
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+    will-change: transform, opacity;
+    animation: garden-bloom ease-in-out forwards;
+    transform: translate(-50%, -50%) scale(0);
+    line-height: 1;
+    user-select: none;
   }
 
-  @keyframes petal-burst {
+  @keyframes garden-bloom {
     0% {
-      transform: translate(-50%, -50%) scale(0) rotate(0);
+      transform: translate3d(-50%, -50%, 0) scale(0) rotate(-45deg);
+      opacity: 0;
+    }
+    15% {
       opacity: 1;
+      transform: translate3d(-50%, -50%, 0) scale(1.1) rotate(15deg);
+    }
+    30%,
+    80% {
+      opacity: 1;
+      transform: translate3d(
+          calc(-50% + var(--sway-x)),
+          calc(-50% + var(--sway-y)),
+          0
+        )
+        scale(1) rotate(var(--rot));
     }
     100% {
-      transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
-        scale(1) rotate(360deg);
+      transform: translate3d(
+          calc(-50% + var(--sway-x) * 1.5),
+          calc(-50% + var(--sway-y) * 1.5),
+          0
+        )
+        scale(0) rotate(calc(var(--rot) + 90deg));
       opacity: 0;
     }
   }
