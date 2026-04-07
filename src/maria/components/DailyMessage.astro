@@ -469,24 +469,45 @@ const dateStr = today.toLocaleDateString("es-MX", {
     pointer-events: auto;
   }
 
+  .overlay-content {
+    position: relative;
+    width: min(500px, calc(100vw - 2rem));
+    background: rgba(12, 8, 4, 0.4);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(251, 191, 36, 0.15);
+    border-radius: 2.5rem;
+    padding: clamp(2.5rem, 6vw, 4rem);
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.5),
+      inset 0 0 20px rgba(251, 191, 36, 0.05);
+    text-align: center;
+  }
+
   .overlay-text {
     font-family: "Playfair Display", serif;
     font-size: 1.5rem;
     font-style: italic;
     color: #fff;
     max-width: 400px;
+    margin: 0 auto;
     line-height: 1.8;
   }
 
   .close-button {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 1rem;
+    right: 1.5rem;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--sunflower, rgba(251, 191, 36, 0.8));
     font-size: 2rem;
     cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .close-button:hover {
+    transform: scale(1.1);
   }
 
   @media (max-width: 480px) {

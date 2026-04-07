@@ -205,7 +205,7 @@ const {
     <script>
       const canvas = document.getElementById("sunflower-canvas");
       if (canvas) {
-        const emojis = ["🌻", "🌻", "🌻", "🍃", "🌿"];
+        const emojis = ["🌻", "🌻", "🌻", "💛", "💛", "💛"];
         const count = 40;
 
         for (let i = 0; i < count; i++) {
@@ -230,10 +230,9 @@ const {
           canvas.appendChild(el);
         }
 
-        // Sunburst click effect
         document.addEventListener("click", (e) => {
           const particleCount = 10;
-          const bits = ["🌻", "🌻", "🍃", "🌿"]; // Solo girasoles y pasto
+          const bits = ["🌻", "🌻", "💛", "💛"];
 
           for (let i = 0; i < particleCount; i++) {
             const p = document.createElement("span");
