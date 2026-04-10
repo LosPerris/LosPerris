@@ -26,12 +26,9 @@ const dateStr = today.toLocaleDateString("es-MX", {
   </header>
 
   <div class="message-block">
-    <span class="message-decor" aria-hidden="true">🌻</span>
     <blockquote class="message-text" id="daily-message-text">
       {message}
     </blockquote>
-    <span class="message-decor message-decor--close" aria-hidden="true">🌻</span
-    >
   </div>
 
   <footer class="card-footer">
@@ -54,20 +51,79 @@ const dateStr = today.toLocaleDateString("es-MX", {
     <p class="signature">Tu Ponsscito 🌻</p>
     <div class="button-group">
       <button id="bloom-btn" class="bloom-button">Hacer Florecer ✨</button>
-      <button id="special-msg-btn" class="special-link">Nuestro deseo</button>
+      <button id="reasons-btn" class="bloom-button reasons-btn"
+        >¿Por qué te amo?
+      </button>
+      <button id="special-msg-btn" class="special-link"
+        >Nuestra promesa
+      </button>
     </div>
   </footer>
+</article>
 
-  <div id="special-overlay" class="special-overlay">
-    <div class="overlay-content">
-      <button id="close-overlay" class="close-button">×</button>
-      <p class="overlay-text">
-        Cuando quieras podemos regresar y amarnos nuevamente, cada segundo de mi
-        vida pienso en ti.❤️
+<div id="reasons-overlay" class="reasons-overlay">
+  <div class="reasons-content">
+    <button id="close-reasons" class="close-button">×</button>
+    <h2 class="reasons-title">¿Por qué te amo?</h2>
+    <div class="reasons-scroll">
+      <p>
+        Te amo porque eres todo lo que me hace feliz, porque incluso en los días
+        en los que nada parece tener sentido, tú logras cambiarlo todo con solo
+        existir. Te amo porque te quedas, a pesar de mis problemas, de mis
+        errores y de mis momentos difíciles, y aun así eliges estar conmigo.
       </p>
+      <div class="reasons-separator">🌻</div>
+      <p>
+        Te amo porque desde que llegaste, la vida tiene un sentido diferente,
+        más profundo, más real. Porque saber que existes me da paz, me da fuerza
+        y me da razones para seguir adelante. Te amo porque cada momento que
+        compartimos, por pequeño que sea, se queda guardado en mí como algo
+        eterno.
+      </p>
+      <div class="reasons-separator">🌻</div>
+      <p>
+        Te amo porque, a pesar de la distancia, siempre te voy a escoger a ti,
+        una y mil veces, sin dudarlo. Porque no importa cuánto tiempo pase o
+        cuántos obstáculos haya, mi decisión siempre serás tú.
+      </p>
+      <div class="reasons-separator">🌻</div>
+      <p>
+        Te amo porque eres la mujer que siempre voy a querer en mi vida, porque
+        en ti encontré algo que nunca había sentido antes. Te amo porque te
+        volviste la razón de mi mundo, el motivo detrás de mis sonrisas y de mis
+        ganas de seguir luchando.
+      </p>
+      <div class="reasons-separator">🌻</div>
+      <p>
+        Te amo porque incluso cuando todo pesa, cuando el mundo se siente
+        difícil, pensar en ti me da fuerzas para no rendirme. Porque eres mi
+        impulso, mi calma y mi lugar seguro al mismo tiempo.
+      </p>
+      <div class="reasons-separator">🌻</div>
+      <p>
+        Te amo porque no eres perfecta, pero eres perfecta para mí. Porque cada
+        detalle tuyo, cada forma de ser, cada palabra, me hace quererte más.
+      </p>
+      <div class="reasons-separator">🌻</div>
+      <p>
+        Te amo porque contigo aprendí lo que realmente significa amar, sin
+        condiciones, sin miedo, con todo el corazón.
+      </p>
+      <div class="reasons-separator">🌻</div>
+      <p class="reasons-ending">Y te amo… simplemente porque eres tú. 💛</p>
     </div>
   </div>
-</article>
+</div>
+
+<div id="special-overlay" class="special-overlay">
+  <div class="overlay-content">
+    <button id="close-overlay" class="close-button">×</button>
+    <p class="overlay-text">
+      Cuando quieras podemos regresar y amarnos nuevamente, cada segundo de mi
+      vida pienso en ti.❤️
+    </p>
+  </div>
+</div>
 
 <script>
   import {
@@ -184,6 +240,20 @@ const dateStr = today.toLocaleDateString("es-MX", {
         overlay.classList.remove("is-active");
       };
     }
+
+    const reasonsBtn = document.getElementById("reasons-btn");
+    const reasonsOverlay = document.getElementById("reasons-overlay");
+    const closeReasonsBtn = document.getElementById("close-reasons");
+
+    if (reasonsBtn && reasonsOverlay && closeReasonsBtn) {
+      reasonsBtn.onclick = () => {
+        reasonsOverlay.classList.add("is-active");
+      };
+      closeReasonsBtn.onclick = (e) => {
+        e.stopPropagation();
+        reasonsOverlay.classList.remove("is-active");
+      };
+    }
   }
 
   updateContent();
@@ -281,18 +351,7 @@ const dateStr = today.toLocaleDateString("es-MX", {
     position: relative;
     margin: 2rem 0;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .message-decor {
-    font-size: 1.5rem;
-    color: rgba(251, 191, 36, 0.3);
-    opacity: 0.6;
-  }
-
-  .message-decor--close {
-    align-self: flex-end;
+    justify-content: center;
   }
 
   .message-text {
@@ -390,6 +449,19 @@ const dateStr = today.toLocaleDateString("es-MX", {
     transform: translateY(0) scale(0.95);
   }
 
+  .reasons-btn {
+    background: rgba(12, 8, 4, 0.4);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: var(--sunflower-light);
+    box-shadow: none;
+  }
+
+  .reasons-btn:hover {
+    background: rgba(251, 191, 36, 0.15);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.2);
+  }
+
   .special-link {
     background: none;
     border: none;
@@ -450,6 +522,183 @@ const dateStr = today.toLocaleDateString("es-MX", {
     }
   }
 
+  .reasons-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 5, 2, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reasons-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .reasons-content {
+    position: relative;
+    width: min(800px, calc(100vw - 2rem));
+    height: calc(100vh - 4rem);
+    background: rgba(12, 8, 4, 0.6);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: 4rem;
+    padding: clamp(2rem, 5vw, 4rem);
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.8),
+      inset 0 0 30px rgba(251, 191, 36, 0.05);
+    display: flex;
+    flex-direction: column;
+    transform: translateY(40px) scale(0.95);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  .reasons-overlay.is-active .reasons-content {
+    transform: translateY(0) scale(1);
+  }
+
+  .reasons-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--sunflower);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-style: italic;
+    flex-shrink: 0;
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  }
+
+  .reasons-scroll {
+    overflow-y: auto;
+    padding-right: 1rem;
+    flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sunflower) transparent;
+  }
+
+  .reasons-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .reasons-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .reasons-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--sunflower);
+    border-radius: 10px;
+  }
+
+  .reasons-scroll p {
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .reasons-overlay.is-active .reasons-scroll p,
+  .reasons-overlay.is-active .reasons-scroll .reasons-separator {
+    animation: fade-up-reasons 0.8s ease forwards;
+  }
+
+  @keyframes fade-up-reasons {
+    to {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+
+  .reasons-scroll > *:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+  .reasons-scroll > *:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .reasons-scroll > *:nth-child(3) {
+    animation-delay: 0.7s;
+  }
+  .reasons-scroll > *:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+  .reasons-scroll > *:nth-child(5) {
+    animation-delay: 1.1s;
+  }
+  .reasons-scroll > *:nth-child(6) {
+    animation-delay: 1.3s;
+  }
+  .reasons-scroll > *:nth-child(7) {
+    animation-delay: 1.5s;
+  }
+  .reasons-scroll > *:nth-child(8) {
+    animation-delay: 1.7s;
+  }
+  .reasons-scroll > *:nth-child(9) {
+    animation-delay: 1.9s;
+  }
+  .reasons-scroll > *:nth-child(10) {
+    animation-delay: 2.1s;
+  }
+  .reasons-scroll > *:nth-child(11) {
+    animation-delay: 2.3s;
+  }
+  .reasons-scroll > *:nth-child(12) {
+    animation-delay: 2.5s;
+  }
+  .reasons-scroll > *:nth-child(13) {
+    animation-delay: 2.7s;
+  }
+  .reasons-scroll > *:nth-child(14) {
+    animation-delay: 2.9s;
+  }
+  .reasons-scroll > *:nth-child(15) {
+    animation-delay: 3.1s;
+  }
+
+  .reasons-separator {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    opacity: 0;
+    filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.4));
+    transform: translateY(20px);
+  }
+
+  .reasons-ending {
+    font-family: "Playfair Display", serif !important;
+    font-size: clamp(1.4rem, 4vw, 2rem) !important;
+    color: var(--sunflower-light) !important;
+    font-style: italic;
+    margin-top: 3rem !important;
+    font-weight: 600 !important;
+    opacity: 0;
+  }
+
+  .reasons-overlay.is-active .reasons-ending {
+    animation: fade-up-ending 1s ease forwards;
+    animation-delay: 3.3s;
+  }
+
+  @keyframes fade-up-ending {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .special-overlay {
     position: fixed;
     inset: 0;
@@ -472,16 +721,17 @@ const dateStr = today.toLocaleDateString("es-MX", {
   .overlay-content {
     position: relative;
     width: min(500px, calc(100vw - 2rem));
-    background: rgba(12, 8, 4, 0.4);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
-    border: 1px solid rgba(251, 191, 36, 0.15);
-    border-radius: 2.5rem;
+    background: rgba(12, 8, 4, 0.5);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: 4rem;
     padding: clamp(2.5rem, 6vw, 4rem);
     box-shadow:
       0 20px 50px rgba(0, 0, 0, 0.5),
-      inset 0 0 20px rgba(251, 191, 36, 0.05);
+      inset 0 0 20px rgba(251, 191, 36, 0.1);
     text-align: center;
+    overflow: hidden;
   }
 
   .overlay-text {
@@ -514,6 +764,10 @@ const dateStr = today.toLocaleDateString("es-MX", {
     .card-wrapper {
       padding: 2rem 1.5rem;
       border-radius: 2rem;
+    }
+    .reasons-content,
+    .overlay-content {
+      border-radius: 2.5rem;
     }
   }
 </style>
