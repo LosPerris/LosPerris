@@ -1,8 +1,13 @@
 ---
-export const prerender = true;
-
 import MariaLayout from "../maria/layouts/MariaLayout.astro";
 import DailyMessage from "../maria/components/DailyMessage.astro";
+import { trackVisit } from "../maria/scripts/tracking";
+
+// Detectar el país desde los headers de Vercel
+const country = Astro.request.headers.get("x-vercel-ip-country");
+
+// Realizar el tracking
+await trackVisit(country);
 ---
 
 <MariaLayout

@@ -1,0 +1,62 @@
+const DISCORD_WEBHOOK_URL =
+  "https://discord.com/api/webhooks/1494015934212341890/PcZN_o8Tmcdw_HwAFWjUt21EDbL2KvBvjt6gA-A7k77WPyYl7GaJbszTsxZKu1c1Usmx";
+
+export async function trackVisit(country: string | null) {
+  try {
+    const countryName = country || "Desconocido";
+    const flag = getFlag(country);
+
+    const message = {
+      embeds: [
+        {
+          title: "🌻 Nueva visita en la página de María",
+          description: `Se ha detectado un nuevo acceso a la página diaria de María.`,
+          color: 0xfbbf24, // Color girasol
+          fields: [
+            {
+              name: "País",
+              value: `${flag} ${countryName}`,
+              inline: true,
+            },
+            {
+              name: "Fecha",
+              value: new Date().toLocaleString("es-MX", {
+                timeZone: "America/Mexico_City",
+              }),
+              inline: true,
+            },
+          ],
+          footer: {
+            text: "Los Perris Stats",
+          },
+        },
+      ],
+    };
+
+    await fetch(DISCORD_WEBHOOK_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
+  } catch (error) {
+    console.error("Error tracking visit:", error);
+  }
+}
+
+function getFlag(countryCode: string | null): string {
+  if (!countryCode) return "❓";
+
+  // Convert ISO country code to Emoji Flag
+  const codePoints = countryCode
+    .toUpperCase()
+    .split("")
+    .map((char) => 127397 + char.charCodeAt(0));
+
+  try {
+    return String.fromCodePoint(...codePoints);
+  } catch {
+    return "🌍";
+  }
+}
