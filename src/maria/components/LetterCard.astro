@@ -1,0 +1,329 @@
+---
+interface Props {
+  message: string;
+  dayNumber: number;
+}
+
+const { message, dayNumber } = Astro.props;
+
+const today = new Date();
+const dateStr = today.toLocaleDateString("es-MX", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<article class="card-wrapper sunflower-glass">
+  <div class="card-glow"></div>
+  <header class="card-header">
+    <div class="sunflower-icon" id="main-sunflower" aria-hidden="true">🌻</div>
+    <p class="subtitle">campo de girasoles</p>
+  </header>
+
+  <div class="message-block">
+    <blockquote class="message-text" id="daily-message-text">
+      {message}
+    </blockquote>
+  </div>
+
+  <footer class="card-footer">
+    <div class="divider" aria-hidden="true">
+      <span class="divider-line"></span>
+      <span class="divider-sun">☀️</span>
+      <span class="divider-line"></span>
+    </div>
+    <p class="date-label">
+      <time datetime={today.toISOString()} id="daily-date">{dateStr}</time>
+    </p>
+    {
+      dayNumber > 0 && (
+        <p class="day-counter" id="daily-counter-block">
+          Día <strong id="daily-day-num">{dayNumber}</strong> floreciendo a tu
+          lado
+        </p>
+      )
+    }
+    <p class="signature">Tu Ponsscito 🌻</p>
+
+    <div class="button-group">
+      <button id="bloom-btn" class="bloom-button">Hacer Florecer ✨</button>
+      <button id="reasons-btn" class="bloom-button reasons-btn"
+        >¿Por qué te amo?</button
+      >
+      <button id="special-msg-btn" class="special-link">Nuestra promesa</button>
+      <button
+        id="understanding-btn"
+        class="special-link"
+        style="margin-top: 0.5rem;">Si alguna vez lo necesitas...</button
+      >
+    </div>
+  </footer>
+</article>
+
+<script>
+  const msgText = document.getElementById("daily-message-text");
+  if (msgText) {
+    const text = msgText.textContent?.trim() || "";
+    msgText.textContent = "";
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        msgText!.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 40);
+      }
+    }
+    type();
+  }
+
+  const bloomBtn = document.getElementById("bloom-btn");
+  if (bloomBtn) {
+    bloomBtn.onclick = () => {
+      const petals = ["🌻", "🌻", "🌻", "🍃", "🌿"];
+      const totalParticles = 150;
+      let created = 0;
+
+      const burstInterval = setInterval(() => {
+        for (let i = 0; i < 15 && created < totalParticles; i++) {
+          const p = document.createElement("span");
+          p.textContent = petals[Math.floor(Math.random() * petals.length)];
+          p.className = "bloom-petal";
+          p.style.left = `${Math.random() * 100}vw`;
+          p.style.top = `${Math.random() * 100}vh`;
+          p.style.fontSize = `${0.6 + Math.random() * 2}rem`;
+
+          document.body.appendChild(p);
+          created++;
+          setTimeout(() => p.remove(), 6000);
+        }
+        if (created >= totalParticles) clearInterval(burstInterval);
+      }, 50);
+    };
+  }
+
+  const triggers = [
+    { id: "reasons-btn", target: "reasons-overlay" },
+    { id: "special-msg-btn", target: "special-overlay" },
+    { id: "understanding-btn", target: "understanding-overlay" },
+  ];
+
+  triggers.forEach(({ id, target }) => {
+    const btn = document.getElementById(id);
+    const overlay = document.getElementById(target);
+    if (btn && overlay) {
+      btn.onclick = () => overlay.classList.add("is-active");
+    }
+  });
+</script>
+
+<style>
+  .card-wrapper {
+    position: relative;
+    width: min(600px, calc(100vw - 2rem));
+    background: rgba(12, 8, 4, 0.4);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(251, 191, 36, 0.15);
+    border-radius: 2.5rem;
+    padding: clamp(2.5rem, 6vw, 4rem);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    animation: card-enter 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .card-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 2.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba(251, 191, 36, 0.2),
+      transparent 40%
+    );
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  @keyframes card-enter {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .sunflower-icon {
+    font-size: clamp(3rem, 8vw, 4rem);
+    filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.5));
+    animation: rotate-sway 6s ease-in-out infinite;
+  }
+
+  @keyframes rotate-sway {
+    0%,
+    100% {
+      transform: rotate(-5deg) scale(1);
+    }
+    50% {
+      transform: rotate(5deg) scale(1.05);
+    }
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #fbbf24;
+  }
+
+  .message-block {
+    position: relative;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .message-text {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-style: italic;
+    line-height: 1.6;
+    color: #fff;
+    text-align: center;
+    padding: 0 1rem;
+    min-height: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(251, 191, 36, 0.1);
+    padding-top: 2rem;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 60%;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(251, 191, 36, 0.4),
+      transparent
+    );
+  }
+
+  .divider-sun {
+    font-size: 0.8rem;
+    color: #fbbf24;
+  }
+
+  .date-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .day-counter {
+    font-size: 0.9rem;
+    color: #fbbf24;
+  }
+
+  .signature {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .bloom-button {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    border: none;
+    border-radius: 100px;
+    padding: 0.8rem 2.5rem;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .bloom-button:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
+
+  .reasons-btn {
+    background: rgba(12, 8, 4, 0.4);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+  }
+
+  .special-link {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .special-link:hover {
+    color: #fbbf24;
+  }
+</style>
+
+<style is:global>
+  .bloom-petal {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    animation: garden-bloom 6s ease-in-out forwards;
+  }
+
+  @keyframes garden-bloom {
+    0% {
+      transform: scale(0) rotate(0);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+      transform: scale(1.2) rotate(45deg);
+    }
+    100% {
+      transform: translateY(100px) rotate(180deg);
+      opacity: 1;
+    }
+  }
+</style>

@@ -1,0 +1,231 @@
+---
+interface Props {
+  songId?: string;
+  question?: string;
+}
+
+const { songId, question } = Astro.props;
+---
+
+<div id="daily-modal" class="reasons-overlay">
+  <div class="reasons-content daily-modal-content">
+    <h2 class="reasons-title">Una sorpresa para ti 🌻</h2>
+
+    <div class="modal-section-label">Canción de hoy</div>
+    {
+      songId && (
+        <div class="spotify-container modal-spotify">
+          <iframe
+            src={`https://open.spotify.com/embed/track/${songId}?utm_source=generator&theme=0`}
+            width="100%"
+            height="152"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            style="border-radius:12px;"
+          />
+        </div>
+      )
+    }
+
+    {
+      question && (
+        <div
+          class="question-container modal-question"
+          id="daily-question-block"
+        >
+          <p class="question-text">{question}</p>
+          <div class="question-buttons">
+            <button class="answer-btn yes" data-answer="Sí">
+              Sí
+            </button>
+            <button class="answer-btn no" data-answer="No">
+              No
+            </button>
+          </div>
+        </div>
+      )
+    }
+
+    <div class="modal-footer-actions">
+      <button id="close-daily-modal" class="bloom-button"
+        >Entrar al jardín ✨</button
+      >
+    </div>
+  </div>
+</div>
+
+<script>
+  const questionBlock = document.getElementById("daily-question-block");
+  if (questionBlock) {
+    const buttons = questionBlock.querySelectorAll(".answer-btn");
+    buttons.forEach((btn) => {
+      (btn as HTMLButtonElement).onclick = async () => {
+        const answer = btn.getAttribute("data-answer") || "";
+        const questionText =
+          questionBlock.querySelector(".question-text")?.textContent || "";
+
+        buttons.forEach((b) => ((b as HTMLButtonElement).disabled = true));
+        btn.classList.add("loading");
+
+        try {
+          const response = await fetch("/api/maria/respond", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ answer, question: questionText }),
+          });
+
+          if (response.ok) {
+            questionBlock.innerHTML = `
+              <div class="success-response">
+                <span class="heart-icon">❤️</span>
+                <p>¡Gracias por responder, mi vida! Te amo.</p>
+              </div>
+            `;
+          }
+        } catch (err) {
+          console.error("Error sending response:", err);
+          buttons.forEach((b) => ((b as HTMLButtonElement).disabled = false));
+        }
+      };
+    });
+  }
+
+  const dailyModal = document.getElementById("daily-modal");
+  const closeDailyBtn = document.getElementById("close-daily-modal");
+
+  if (dailyModal && closeDailyBtn) {
+    setTimeout(() => {
+      dailyModal.classList.add("is-active");
+    }, 500);
+
+    closeDailyBtn.onclick = () => {
+      dailyModal.classList.remove("is-active");
+    };
+  }
+</script>
+
+<style>
+  .daily-modal-content {
+    justify-content: center;
+    gap: 1.5rem;
+    height: auto !important;
+    max-height: 90vh;
+  }
+
+  .modal-section-label {
+    text-align: center;
+    color: var(--sunflower);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 700;
+    margin-bottom: -0.5rem;
+  }
+
+  .modal-spotify {
+    margin: 0 !important;
+  }
+
+  .modal-question {
+    background: rgba(251, 191, 36, 0.08) !important;
+    border-color: rgba(251, 191, 36, 0.2) !important;
+    margin-top: 0 !important;
+  }
+
+  .modal-footer-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .spotify-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .question-container {
+    width: 100%;
+    background: rgba(251, 191, 36, 0.05);
+    border: 1px solid rgba(251, 191, 36, 0.1);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .question-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .question-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .answer-btn {
+    padding: 0.5rem 2rem;
+    border-radius: 100px;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    background: transparent;
+    color: var(--sunflower-light, #fbbf24);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .answer-btn:hover {
+    background: rgba(251, 191, 36, 0.1);
+    border-color: #fbbf24;
+  }
+
+  .success-response {
+    animation: scale-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .heart-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    animation: heart-beat 1s ease infinite;
+  }
+
+  @keyframes heart-beat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes scale-up {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .bloom-button {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    border: none;
+    border-radius: 100px;
+    padding: 0.8rem 2.5rem;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+</style>
