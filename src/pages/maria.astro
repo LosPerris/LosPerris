@@ -2,9 +2,30 @@
 import MariaLayout from "../maria/layouts/MariaLayout.astro";
 import DailyMessage from "../maria/components/DailyMessage.astro";
 import { trackVisit } from "../maria/scripts/tracking";
+import { SPOTIFY_TRACK_IDS } from "../maria/data/songs";
+import { QUESTIONS } from "../maria/data/questions";
 
-// Detectar el país desde los headers de Vercel
+// Detectar el país y la IP desde los headers de Vercel
 const country = Astro.request.headers.get("x-vercel-ip-country");
+const ip = Astro.request.headers.get("x-real-ip") || "unknown";
+
+// Lógica de semilla estable para el día y la IP
+const today = new Date().toISOString().split("T")[0];
+const seedStr = `${ip}-${today}`;
+
+function hashCode(s: string) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++)
+    h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+const seed = hashCode(seedStr);
+const songIndex = seed % SPOTIFY_TRACK_IDS.length;
+const questionIndex = seed % QUESTIONS.length;
+
+const selectedSongId = SPOTIFY_TRACK_IDS[songIndex];
+const selectedQuestion = QUESTIONS[questionIndex];
 
 // Realizar el tracking
 await trackVisit(country);
@@ -14,5 +35,5 @@ await trackVisit(country);
   title="🌻 Mi Jardín de Girasoles 🌻"
   description="Cada día es un nuevo girasol para ti"
 >
-  <DailyMessage />
+  <DailyMessage songId={selectedSongId} question={selectedQuestion} />
 </MariaLayout>

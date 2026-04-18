@@ -45,6 +45,55 @@ export async function trackVisit(country: string | null) {
   }
 }
 
+export async function trackResponse(answer: string, question: string) {
+  try {
+    const isYes =
+      answer.toLowerCase() === "sí" || answer.toLowerCase() === "si";
+    const color = isYes ? 0x2ecc71 : 0xe74c3c; // Verde para sí, Rojo para no
+
+    const message = {
+      embeds: [
+        {
+          title: "💌 Nueva respuesta de María",
+          description: `María ha respondido a la pregunta del día.`,
+          color: color,
+          fields: [
+            {
+              name: "Pregunta",
+              value: question,
+            },
+            {
+              name: "Respuesta",
+              value: `**${answer}**`,
+              inline: true,
+            },
+            {
+              name: "Fecha",
+              value: new Date().toLocaleString("es-MX", {
+                timeZone: "America/Mexico_City",
+              }),
+              inline: true,
+            },
+          ],
+          footer: {
+            text: "Los Perris Interaction System",
+          },
+        },
+      ],
+    };
+
+    await fetch(DISCORD_WEBHOOK_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
+  } catch (error) {
+    console.error("Error tracking response:", error);
+  }
+}
+
 function getFlag(countryCode: string | null): string {
   if (!countryCode) return "❓";
 

@@ -5,6 +5,13 @@ import {
   getDaysSinceStart,
 } from "../data/messages";
 
+interface Props {
+  songId?: string;
+  question?: string;
+}
+
+const { songId, question } = Astro.props;
+
 const index = getDailyMessageIndex();
 const message = messages[index];
 const dayNumber = getDaysSinceStart();
@@ -49,6 +56,39 @@ const dateStr = today.toLocaleDateString("es-MX", {
       )
     }
     <p class="signature">Tu Ponsscito 🌻</p>
+
+    {
+      songId && (
+        <div class="spotify-container">
+          <iframe
+            src={`https://open.spotify.com/embed/track/${songId}?utm_source=generator&theme=0`}
+            width="100%"
+            height="80"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            style="border-radius:12px;"
+          />
+        </div>
+      )
+    }
+
+    {
+      question && (
+        <div class="question-container" id="daily-question-block">
+          <p class="question-text">{question}</p>
+          <div class="question-buttons">
+            <button class="answer-btn yes" data-answer="Sí">
+              Sí
+            </button>
+            <button class="answer-btn no" data-answer="No">
+              No
+            </button>
+          </div>
+        </div>
+      )
+    }
+
     <div class="button-group">
       <button id="bloom-btn" class="bloom-button">Hacer Florecer ✨</button>
       <button id="reasons-btn" class="bloom-button reasons-btn"
@@ -348,6 +388,43 @@ const dateStr = today.toLocaleDateString("es-MX", {
         understandingOverlay.classList.remove("is-active");
       };
     }
+
+    // Lógica para la pregunta diaria
+    const questionBlock = document.getElementById("daily-question-block");
+    if (questionBlock) {
+      const buttons = questionBlock.querySelectorAll(".answer-btn");
+      buttons.forEach((btn) => {
+        (btn as HTMLButtonElement).onclick = async () => {
+          const answer = btn.getAttribute("data-answer") || "";
+          const questionText =
+            questionBlock.querySelector(".question-text")?.textContent || "";
+
+          // Desactivar botones
+          buttons.forEach((b) => ((b as HTMLButtonElement).disabled = true));
+          btn.classList.add("loading");
+
+          try {
+            const response = await fetch("/api/maria/respond", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ answer, question: questionText }),
+            });
+
+            if (response.ok) {
+              questionBlock.innerHTML = `
+                <div class="success-response">
+                  <span class="heart-icon">❤️</span>
+                  <p>¡Gracias por responder, mi vida! Te amo.</p>
+                </div>
+              `;
+            }
+          } catch (err) {
+            console.error("Error sending response:", err);
+            buttons.forEach((b) => ((b as HTMLButtonElement).disabled = false));
+          }
+        };
+      });
+    }
   }
 
   updateContent();
@@ -510,6 +587,28 @@ const dateStr = today.toLocaleDateString("es-MX", {
     font-size: 1.1rem;
     font-style: italic;
     color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .spotify-container {
+    width: 100%;
+    margin: 1.5rem 0 0.5rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-out 1s both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .button-group {
@@ -570,6 +669,93 @@ const dateStr = today.toLocaleDateString("es-MX", {
   .special-link:hover {
     opacity: 1;
     color: var(--sunflower);
+  }
+
+  /* Estilos para la pregunta diaria */
+  .question-container {
+    width: 100%;
+    background: rgba(251, 191, 36, 0.05);
+    border: 1px solid rgba(251, 191, 36, 0.1);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    transition: all 0.5s ease;
+  }
+
+  .question-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .question-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .answer-btn {
+    padding: 0.5rem 2rem;
+    border-radius: 100px;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    background: transparent;
+    color: var(--sunflower-light);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .answer-btn:hover {
+    background: rgba(251, 191, 36, 0.1);
+    transform: translateY(-2px);
+    border-color: var(--sunflower);
+  }
+
+  .answer-btn.yes:hover {
+    background: rgba(46, 204, 113, 0.1);
+    border-color: #2ecc71;
+    color: #2ecc71;
+  }
+
+  .answer-btn.no:hover {
+    background: rgba(231, 76, 60, 0.1);
+    border-color: #e74c3c;
+    color: #e74c3c;
+  }
+
+  .success-response {
+    animation: scale-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .heart-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    animation: heart-beat 1s ease infinite;
+  }
+
+  @keyframes heart-beat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes scale-up {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 </style>
 
