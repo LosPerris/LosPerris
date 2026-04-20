@@ -56,11 +56,14 @@ const { songId, question } = Astro.props;
 </div>
 
 <script>
+  let hasResponded = false;
+
   const questionBlock = document.getElementById("daily-question-block");
   if (questionBlock) {
     const buttons = questionBlock.querySelectorAll(".answer-btn");
     buttons.forEach((btn) => {
       (btn as HTMLButtonElement).onclick = async () => {
+        hasResponded = true;
         const answer = btn.getAttribute("data-answer") || "";
         const questionText =
           questionBlock.querySelector(".question-text")?.textContent || "";
@@ -99,7 +102,25 @@ const { songId, question } = Astro.props;
       dailyModal.classList.add("is-active");
     }, 500);
 
-    closeDailyBtn.onclick = () => {
+    closeDailyBtn.onclick = async () => {
+      if (!hasResponded) {
+        const questionText =
+          questionBlock?.querySelector(".question-text")?.textContent ||
+          "Pregunta diaria";
+
+        try {
+          await fetch("/api/maria/respond", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              answer: "Omitida (entró directo al jardín)",
+              question: questionText,
+            }),
+          });
+        } catch (e) {
+          console.error("Error tracking omission:", e);
+        }
+      }
       dailyModal.classList.remove("is-active");
     };
   }
