@@ -94,6 +94,18 @@
     {
       "source": "/api/qr/:match*",
       "destination": "https://generador-qr-lyart.vercel.app/api/qr/:match*"
+    },
+    {
+      "source": "/api/transcript",
+      "destination": "https://transcripts-five.vercel.app/api/transcript"
+    },
+    {
+      "source": "/api/fetch",
+      "destination": "https://transcripts-five.vercel.app/api/fetch"
+    },
+    {
+      "source": "/transcripts/:match*",
+      "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
     }
   ],
   "headers": [
