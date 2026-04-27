@@ -100,8 +100,16 @@
       "destination": "https://transcripts-five.vercel.app/api/transcript"
     },
     {
+      "source": "/api/discord",
+      "destination": "https://transcripts-five.vercel.app/"
+    },
+    {
       "source": "/api/discord/transcripts",
       "destination": "https://transcripts-five.vercel.app/api/discord/transcripts"
+    },
+    {
+      "source": "/api/discord/transcripts/:match*",
+      "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
     },
     {
       "source": "/api/fetch",
