@@ -112,10 +112,6 @@
       "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
     },
     {
-      "source": "/api/fetch",
-      "destination": "https://transcripts-five.vercel.app/api/fetch"
-    },
-    {
       "source": "/api/transcripts/:match*",
       "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
     },
