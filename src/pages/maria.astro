@@ -27,6 +27,12 @@ const questionIndex = seed % QUESTIONS.length;
 const selectedSongId = SPOTIFY_TRACK_IDS[songIndex];
 const selectedQuestion = QUESTIONS[questionIndex];
 
+// Detectar el 2 de mayo (usando la zona horaria de Costa Rica para mayor precisión local)
+const dateInCR = new Date(
+  new Date().toLocaleString("en-US", { timeZone: "America/Costa_Rica" }),
+);
+const isMay2nd = dateInCR.getMonth() === 4 && dateInCR.getDate() === 2; // El mes empieza en 0 (4 = Mayo)
+
 await trackVisit(country);
 ---
 
@@ -34,5 +40,115 @@ await trackVisit(country);
   title="🌻 Mi Jardín de Girasoles 🌻"
   description="Cada día es un nuevo girasol para ti"
 >
+  {
+    isMay2nd && (
+      <div class="anniversary-banner">
+        <div class="banner-content">
+          <span class="sparkle">✨</span>
+          <div class="message-text">
+            <p class="date-title">Un 2 de mayo nos conocimos...</p>
+            <p class="emotional-text">
+              Aunque no todo esté mejor y sé que no estoy bien, quiero
+              recordarte que <strong>eres lo mejor del mundo</strong>. Gracias
+              por seguir a mi lado y por tantas cosas hermosas. Te amo
+              incondicionalmente y ojalá algún día pueda estar a tu lado. 💛
+            </p>
+          </div>
+          <span class="sparkle">✨</span>
+        </div>
+      </div>
+    )
+  }
+
   <DailyMessage songId={selectedSongId} question={selectedQuestion} />
 </MariaLayout>
+
+<style>
+  .anniversary-banner {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 600px;
+    animation: slideDown 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  .banner-content {
+    background: rgba(255, 235, 59, 0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    box-shadow:
+      0 8px 32px rgba(255, 215, 0, 0.2),
+      inset 0 0 10px rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #ffd700;
+    font-family: "Inter", system-ui, sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+
+  .message-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .date-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .emotional-text {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.4;
+    color: #fff9c4;
+  }
+
+  .sparkle {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .banner-content {
+      font-size: 0.95rem;
+      padding: 0.8rem 1rem;
+    }
+    .sparkle {
+      font-size: 1.2rem;
+    }
+  }
+</style>
