@@ -1,15 +1,14 @@
 ---
 import MariaLayout from "../maria/layouts/MariaLayout.astro";
 import DailyMessage from "../maria/components/DailyMessage.astro";
+import AnniversaryModal from "../maria/components/AnniversaryModal.astro";
 import { trackVisit } from "../maria/scripts/tracking";
 import { SPOTIFY_TRACK_IDS } from "../maria/data/songs";
 import { QUESTIONS } from "../maria/data/questions";
 
-// Detectar el país y la IP desde los headers de Vercel
 const country = Astro.request.headers.get("x-vercel-ip-country");
 const ip = Astro.request.headers.get("x-real-ip") || "unknown";
 
-// Lógica de semilla estable para el día y la IP
 const today = new Date().toISOString().split("T")[0];
 const seedStr = `${ip}-${today}`;
 
@@ -27,11 +26,10 @@ const questionIndex = seed % QUESTIONS.length;
 const selectedSongId = SPOTIFY_TRACK_IDS[songIndex];
 const selectedQuestion = QUESTIONS[questionIndex];
 
-// Detectar el 2 de mayo (usando la zona horaria de Costa Rica para mayor precisión local)
 const dateInCR = new Date(
   new Date().toLocaleString("en-US", { timeZone: "America/Costa_Rica" }),
 );
-const isMay2nd = dateInCR.getMonth() === 4 && dateInCR.getDate() === 2; // El mes empieza en 0 (4 = Mayo)
+const isMay2nd = dateInCR.getMonth() === 4 && dateInCR.getDate() === 2;
 
 await trackVisit(country);
 ---
@@ -40,39 +38,39 @@ await trackVisit(country);
   title="🌻 Mi Jardín de Girasoles 🌻"
   description="Cada día es un nuevo girasol para ti"
 >
-  {
-    isMay2nd && (
-      <div class="anniversary-banner">
-        <div class="banner-content">
-          <span class="sparkle">✨</span>
-          <div class="message-text">
-            <p class="date-title">Un 2 de mayo nos conocimos...</p>
-            <p class="emotional-text">
-              Aunque no todo esté mejor y sé que no estoy bien, quiero
-              recordarte que <strong>eres lo mejor del mundo</strong>. Gracias
-              por seguir a mi lado y por tantas cosas hermosas. Te amo
-              incondicionalmente y ojalá algún día pueda estar a tu lado. 💛
-            </p>
-          </div>
-          <span class="sparkle">✨</span>
-        </div>
-      </div>
-    )
-  }
+  {isMay2nd && <AnniversaryModal />}
+
+  <script>
+    const closeDailyBtn = document.getElementById("close-daily-modal");
+    const anniversaryModal = document.getElementById("anniversary-modal");
+
+    if (closeDailyBtn && anniversaryModal) {
+      closeDailyBtn.addEventListener("click", () => {
+        setTimeout(() => {
+          anniversaryModal.classList.add("is-active");
+        }, 500);
+      });
+    }
+  </script>
 
   <DailyMessage songId={selectedSongId} question={selectedQuestion} />
 </MariaLayout>
 
 <style>
   .anniversary-banner {
-    position: fixed;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     z-index: 1000;
-    width: 90%;
+    width: 100%;
     max-width: 600px;
-    animation: slideDown 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    margin-bottom: 2rem;
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  .anniversary-banner.show {
+    display: block;
+    animation: slideDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   }
 
   .banner-content {
@@ -122,11 +120,11 @@ await trackVisit(country);
   @keyframes slideDown {
     0% {
       opacity: 0;
-      transform: translate(-50%, -100%);
+      transform: translateY(-20px);
     }
     100% {
       opacity: 1;
-      transform: translate(-50%, 0);
+      transform: translateY(0);
     }
   }
 

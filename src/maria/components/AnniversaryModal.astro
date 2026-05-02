@@ -1,0 +1,195 @@
+---
+
+---
+
+<div id="anniversary-modal" class="daily-modal-overlay">
+  <div class="daily-modal-content">
+    <h2 class="reasons-title" style="font-size: 1.8rem;">
+      Un 2 de mayo nos conocimos... 🌻
+    </h2>
+
+    <div class="modal-section-label">Día especial</div>
+
+    <div class="question-container modal-question text-center">
+      <span class="sparkle block mb-4" style="font-size: 2rem;">✨</span>
+      <p class="question-text" style="line-height: 1.6; font-size: 1.05rem;">
+        Aunque no todo esté mejor y sé que no estoy bien, quiero recordarte que <strong
+          >eres lo mejor del mundo</strong
+        >.
+      </p>
+      <p
+        class="question-text"
+        style="line-height: 1.6; font-size: 1.05rem; margin-top: 1rem;"
+      >
+        A veces las palabras se quedan cortas para expresar todo lo que me haces
+        sentir. Cada día que pasa me doy cuenta de lo afortunado que soy de
+        haberte conocido un día como hoy. Eres mi refugio, mi luz y esa persona
+        que le da sentido a tantas cosas.
+      </p>
+      <p
+        class="question-text"
+        style="line-height: 1.6; font-size: 1.05rem; margin-top: 1rem;"
+      >
+        Gracias por seguir a mi lado a pesar de la distancia y las dificultades,
+        por llenarme de tantas cosas hermosas y por ser siempre tú misma. Nunca
+        dudes de lo mucho que vales para mí.
+      </p>
+      <p
+        class="question-text"
+        style="line-height: 1.6; font-size: 1.05rem; margin-top: 1rem;"
+      >
+        Te amo incondicionalmente, con cada parte de mi corazón, y mi mayor
+        deseo es que ojalá algún día pueda estar a tu lado para abrazarte y no
+        soltarte nunca. 💛
+      </p>
+      <span class="sparkle block mt-4" style="font-size: 2rem;">✨</span>
+    </div>
+
+    <div class="modal-footer-actions">
+      <button id="close-anniversary-modal" class="bloom-button">
+        Entrar al jardín 🌻
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("anniversary-modal");
+  const closeBtn = document.getElementById("close-anniversary-modal");
+
+  if (modal && closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("is-active");
+    });
+  }
+</script>
+
+<style>
+  .daily-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 5, 2, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .daily-modal-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .daily-modal-content {
+    position: relative;
+    width: min(500px, calc(100vw - 2rem));
+    background: rgba(12, 8, 4, 0.5);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: 3rem;
+    padding: clamp(2rem, 5vw, 3rem);
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.6),
+      inset 0 0 30px rgba(251, 191, 36, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transform: translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .daily-modal-overlay.is-active .daily-modal-content {
+    transform: translateY(0);
+  }
+
+  .reasons-title {
+    font-family: "Playfair Display", serif;
+    color: #fbbf24;
+    text-align: center;
+    margin: 0;
+    font-weight: 600;
+    font-style: italic;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+  }
+
+  .modal-section-label {
+    text-align: center;
+    color: #fbbf24;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+
+  .question-container {
+    width: 100%;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .question-text {
+    font-family: "Inter", sans-serif;
+    color: #fff;
+    margin: 0;
+  }
+
+  .modal-footer-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .bloom-button {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    border: none;
+    border-radius: 100px;
+    padding: 0.8rem 2.5rem;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .bloom-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(251, 191, 36, 0.4);
+  }
+
+  .sparkle {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  }
+
+  .block {
+    display: block;
+  }
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  .mt-4 {
+    margin-top: 1rem;
+  }
+</style>
