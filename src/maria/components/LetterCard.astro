@@ -53,11 +53,6 @@ const dateStr = today.toLocaleDateString("es-MX", {
         >¿Por qué te amo?</button
       >
       <button id="special-msg-btn" class="special-link">Nuestra promesa</button>
-      <button
-        id="understanding-btn"
-        class="special-link"
-        style="margin-top: 0.5rem;">Si alguna vez lo necesitas...</button
-      >
     </div>
   </footer>
 </article>
@@ -106,7 +101,6 @@ const dateStr = today.toLocaleDateString("es-MX", {
   const triggers = [
     { id: "reasons-btn", target: "reasons-overlay" },
     { id: "special-msg-btn", target: "special-overlay" },
-    { id: "understanding-btn", target: "understanding-overlay" },
   ];
 
   triggers.forEach(({ id, target }) => {
