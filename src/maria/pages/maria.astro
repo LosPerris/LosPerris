@@ -29,7 +29,7 @@ const selectedQuestion = QUESTIONS[questionIndex];
 const dateInCR = new Date(
   new Date().toLocaleString("en-US", { timeZone: "America/Costa_Rica" }),
 );
-const isMay2nd = dateInCR.getMonth() === 4 && dateInCR.getDate() === 2;
+const isMay15th = dateInCR.getMonth() === 4 && dateInCR.getDate() === 15;
 
 await trackVisit(country);
 ---
@@ -38,7 +38,7 @@ await trackVisit(country);
   title="🌻 Mi Jardín de Girasoles 🌻"
   description="Cada día es un nuevo girasol para ti"
 >
-  {isMay2nd && <AnniversaryModal />}
+  {isMay15th && <AnniversaryModal />}
 
   <script>
     const closeDailyBtn = document.getElementById("close-daily-modal");
