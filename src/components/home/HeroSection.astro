@@ -12,43 +12,44 @@ const inviteCode = discordLink.split("/").pop();
 >
   <div class="relative z-10 max-w-5xl px-6 text-center">
     <span
-      class="inline-block py-1 px-3 rounded-full bg-[#5865F2]/20 text-[#5865F2] border border-[#5865F2]/30 text-sm font-semibold mb-6 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.1s_forwards]"
+      class="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm font-semibold mb-6 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.1s_forwards]"
     >
-      <i class="fab fa-discord mr-2" aria-hidden="true"></i>Comunidad Oficial
+      <i class="fas fa-code mr-2" aria-hidden="true"></i>Herramientas abiertas
     </span>
     <h1
       class="text-5xl md:text-8xl font-black mb-6 text-white tracking-tight opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.3s_forwards]"
     >
-      LOSPERRIS <span
-        class="text-transparent bg-clip-text bg-gradient-to-r from-[#5865F2] to-purple-500"
-        >REAL</span
+      Bots y APIs <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300"
+        >Públicas</span
       >
     </h1>
     <p
       class="text-xl md:text-2xl text-[#b0b0b0] mb-8 max-w-3xl mx-auto font-light opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
     >
-      Mejora tu servidor de Discord con moderación avanzada y estadísticas de
-      juegos en tiempo real.
+      Un espacio donde compartimos los bots de Discord y las herramientas que
+      vamos creando. Son de uso libre, así que si te sirven para tu servidor o
+      stream, siéntete libre de usarlas.
     </p>
 
     <div
       class="flex flex-wrap justify-center gap-4 my-8 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.9s_forwards]"
     >
       <a
-        href={discordLink}
-        target="_blank"
-        class="inline-flex items-center px-8 py-4 rounded-full font-bold transition-all text-lg cursor-pointer bg-[#5865F2] text-white hover:bg-[#4752c4] hover:scale-105 hover:shadow-[0_0_30px_rgba(88,101,242,0.5)]"
-        aria-label="Unirse a nuestro servidor de Discord"
+        href="#apis"
+        class="inline-flex items-center px-8 py-4 rounded-full font-bold transition-all text-lg cursor-pointer bg-blue-600 text-white hover:bg-blue-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]"
+        aria-label="Ver proyectos disponibles"
       >
-        <i class="fab fa-discord mr-3 text-2xl" aria-hidden="true"></i> Unirse al
-        Discord
+        <i class="fas fa-rocket mr-3 text-2xl" aria-hidden="true"></i> Ver proyectos
       </a>
       <a
-        href="#features"
+        href={discordLink}
+        target="_blank"
         class="inline-flex items-center px-8 py-4 rounded-full font-bold transition-all text-lg cursor-pointer bg-[#2d2d2d] text-white border border-[#404040] hover:bg-[#404040] hover:-translate-y-1"
-        aria-label="Saber más sobre nuestras funciones"
+        aria-label="Unirse a la comunidad de Discord"
       >
-        Saber más
+        <i class="fab fa-discord mr-3 text-xl" aria-hidden="true"></i> Comunidad de
+        Discord
       </a>
     </div>
 
