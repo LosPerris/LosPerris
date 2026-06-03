@@ -107,7 +107,7 @@ const categories = Object.keys(groupedGuides);
                           class={`w-full text-left px-4 py-2 text-sm transition-all duration-200 flex items-center justify-between group relative
                                                     ${
                                                       isActive
-                                                        ? "text-[#5865F2] font-medium bg-[#5865F2]/5"
+                                                        ? "text-[#f97316] font-medium bg-[#f97316]/5"
                                                         : "text-text-muted hover:text-white hover:bg-white/5"
                                                     }`}
                           data-id={guide.id}
@@ -115,7 +115,7 @@ const categories = Object.keys(groupedGuides);
                         >
                           <span class="truncate">{guide.title}</span>
                           {isActive && (
-                            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#5865F2] rounded-r-full" />
+                            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#f97316] rounded-r-full" />
                           )}
                         </button>
                       </li>

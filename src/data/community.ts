@@ -4,7 +4,7 @@ export const communityFeatures = [
     description:
       "Nuestro equipo de moderación siempre está disponible para ayudarte y mantener el orden.",
     icon: "fas fa-user-shield",
-    color: "text-blue-400",
+    color: "text-#fb923c",
   },
   {
     title: "Eventos de Minecraft",

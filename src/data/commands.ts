@@ -279,7 +279,7 @@ export const commandsData: Record<string, GuideSection[]> = {
                 <div class="space-y-4">
                     <div class="bg-primary rounded-lg p-5 border border-[#333]">
                         <h4 class="text-lg font-bold text-white mb-3">Fortnite Stats</h4>
-                        <p class="text-gray-400 mb-3 text-sm">Usa <code class="bg-secondary text-[#5865F2] px-2 py-1 rounded font-mono text-xs border border-[#404040]">/fortnite_stats [nombre_usuario]</code> para obtener:</p>
+                        <p class="text-gray-400 mb-3 text-sm">Usa <code class="bg-secondary text-[#f97316] px-2 py-1 rounded font-mono text-xs border border-[#404040]">/fortnite_stats [nombre_usuario]</code> para obtener:</p>
                         <ul class="space-y-1.5 list-disc ml-5 text-gray-400 text-sm">
                             <li>Estadísticas de Battle Royale</li>
                             <li>Wins, kills, K/D ratio</li>
@@ -290,7 +290,7 @@ export const commandsData: Record<string, GuideSection[]> = {
                 
                     <div class="bg-primary rounded-lg p-5 border border-[#333]">
                         <h4 class="text-lg font-bold text-white mb-3">League of Legends</h4>
-                        <p class="text-gray-400 mb-3 text-sm">Usa <code class="bg-secondary text-[#5865F2] px-2 py-1 rounded font-mono text-xs border border-[#404040]">/lol_info [nombre_invocador]</code> para ver:</p>
+                        <p class="text-gray-400 mb-3 text-sm">Usa <code class="bg-secondary text-[#f97316] px-2 py-1 rounded font-mono text-xs border border-[#404040]">/lol_info [nombre_invocador]</code> para ver:</p>
                         <ul class="space-y-1.5 list-disc ml-5 text-gray-400 text-sm">
                             <li>Rango actual en todas las colas</li>
                             <li>LP (League Points)</li>
@@ -301,7 +301,7 @@ export const commandsData: Record<string, GuideSection[]> = {
                 
                     <div class="bg-primary rounded-lg p-5 border border-[#333]">
                         <h4 class="text-lg font-bold text-white mb-3">Valorant</h4>
-                        <p class="text-gray-400 mb-3 text-sm">Usa <code class="bg-secondary text-[#5865F2] px-2 py-1 rounded font-mono text-xs border border-[#404040]">/valorant_info [nombre_usuario#tag]</code> para obtener:</p>
+                        <p class="text-gray-400 mb-3 text-sm">Usa <code class="bg-secondary text-[#f97316] px-2 py-1 rounded font-mono text-xs border border-[#404040]">/valorant_info [nombre_usuario#tag]</code> para obtener:</p>
                         <ul class="space-y-1.5 list-disc ml-5 text-gray-400 text-sm">
                             <li>Rango competitivo actual</li>
                             <li>RR (Rank Rating)</li>
