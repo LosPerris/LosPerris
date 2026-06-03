@@ -33,7 +33,7 @@
   "rewrites": [
     {
       "source": "/api/valorant/",
-      "destination": "https://los-perris-valorant-api.vercel.app/"
+      "destination": "https://los-perris-valorant-api.vercel.app/?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/valorant/css/:match*",
@@ -49,11 +49,11 @@
     },
     {
       "source": "/api/valorant/:match*",
-      "destination": "https://los-perris-valorant-api.vercel.app/:match*"
+      "destination": "https://los-perris-valorant-api.vercel.app/:match*?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/twitch/",
-      "destination": "https://twitch-api-smoky.vercel.app/"
+      "destination": "https://twitch-api-smoky.vercel.app/?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/twitch/css/:match*",
@@ -69,11 +69,11 @@
     },
     {
       "source": "/api/twitch/:match*",
-      "destination": "https://twitch-api-smoky.vercel.app/:match*"
+      "destination": "https://twitch-api-smoky.vercel.app/:match*?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/qr/",
-      "destination": "https://generador-qr-lyart.vercel.app/"
+      "destination": "https://generador-qr-lyart.vercel.app/?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/qr/styles/:match*",
@@ -93,31 +93,31 @@
     },
     {
       "source": "/api/qr/:match*",
-      "destination": "https://generador-qr-lyart.vercel.app/api/qr/:match*"
+      "destination": "https://generador-qr-lyart.vercel.app/api/qr/:match*?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/transcript",
-      "destination": "https://transcripts-five.vercel.app/api/transcript"
+      "destination": "https://transcripts-five.vercel.app/api/transcript?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/discord",
-      "destination": "https://transcripts-five.vercel.app/"
+      "destination": "https://transcripts-five.vercel.app/?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/discord/transcripts",
-      "destination": "https://transcripts-five.vercel.app/api/discord/transcripts"
+      "destination": "https://transcripts-five.vercel.app/api/discord/transcripts?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/discord/transcripts/:match*",
-      "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
+      "destination": "https://transcripts-five.vercel.app/transcripts/:match*?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/transcripts/:match*",
-      "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
+      "destination": "https://transcripts-five.vercel.app/transcripts/:match*?internal_secret=losperris_secure_api"
     },
     {
       "source": "/transcripts/:match*",
-      "destination": "/api/transcripts/:match*"
+      "destination": "/api/transcripts/:match*?internal_secret=losperris_secure_api"
     }
   ],
   "headers": [
