@@ -51,7 +51,7 @@ export const apis = [
   },
   {
     title: "Discord Transcripts",
-    popular: true,
+    popular: false,
     description:
       "Genera, almacena y visualiza transcripciones de canales de Discord en formato HTML de manera rápida y sencilla.",
     icon: "fab fa-discord",
