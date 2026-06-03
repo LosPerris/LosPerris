@@ -42,7 +42,3 @@ export const discordUpdatesLink =
 export const domain = "losperris.dev";
 export const siteUrl = "https://www.losperris.dev";
 export const contactEmail = "contacto@losperris.dev";
-
-export const twitchApiUrl = "https://twitch-api-smoky.vercel.app";
-export const qrApiUrl = "https://generador-qr-lyart.vercel.app";
-export const valorantApiUrl = "https://los-perris-valorant-api.vercel.app";
