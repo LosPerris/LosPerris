@@ -30,7 +30,9 @@ import SectionHeader from "../ui/SectionHeader.astro";
               </div>
             </div>
 
-            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-[#f97316] transition-colors">
+            <h3
+              class={`text-2xl font-bold text-white mb-3 transition-colors ${api.hoverColor}`}
+            >
               {api.title}
             </h3>
             <p class="text-[rgb(176,176,176)] leading-relaxed mb-6 grow">

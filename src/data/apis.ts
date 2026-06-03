@@ -8,6 +8,7 @@ export const apis = [
       "Suite completa para streamers: API de Followage y gestor de Clips. Todo en un solo lugar.",
     icon: "fab fa-twitch",
     color: "text-[#9146FF]",
+    hoverColor: "group-hover:text-[#9146FF]",
     link: "/api/twitch/",
     linkText: "Ir al Panel",
     endpoints: [
@@ -32,6 +33,7 @@ export const apis = [
       "Obtén datos en tiempo real de Valorant: Rango, MMR, Historial de partidas y más. Respuestas en texto plano para fácil integración.",
     icon: "fas fa-crosshairs",
     color: "text-[#FF4655]",
+    hoverColor: "group-hover:text-[#FF4655]",
     link: "/api/valorant",
     linkText: "Visitar Web",
     endpoints: [
@@ -56,7 +58,8 @@ export const apis = [
       "Genera, almacena y visualiza transcripciones de canales de Discord en formato HTML de manera rápida y sencilla.",
     icon: "fab fa-discord",
     color: "text-[#5865F2]",
-    link: "/api/transcript",
+    hoverColor: "group-hover:text-[#5865F2]",
+    link: "/api/discord",
     linkText: "Documentación",
     endpoints: [
       {
@@ -81,6 +84,7 @@ export const apis = [
       "Herramienta visual profesional para crear códigos QR personalizados. Soporta estilos, logotipos, WiFi, VCard y descargas en alta resolución.",
     icon: "fas fa-qrcode",
     color: "text-[#FACC15]",
+    hoverColor: "group-hover:text-[#FACC15]",
     link: "/api/qr",
     linkText: "Crear QR",
     endpoints: [
