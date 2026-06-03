@@ -14,9 +14,9 @@ import SectionHeader from "../ui/SectionHeader.astro";
     >
       <span
         slot="badge"
-        class="inline-block py-1 px-3 rounded-full bg-red-500/20 text-red-400 border border-red-500/30 text-sm font-semibold mb-6 animate-[fadeInUp_1s_ease-out]"
+        class="inline-block py-1 px-3 rounded-full bg-[#f97316]/20 text-[#f97316] border border-[#f97316]/30 text-sm font-semibold mb-6 animate-[fadeInUp_1s_ease-out]"
       >
-        <i class="fas fa-ban mr-2"></i>Deshabilitado
+        <i class="fab fa-discord mr-2"></i>Comunidad Oficial
       </span>
     </SectionHeader>
 
@@ -76,12 +76,12 @@ import SectionHeader from "../ui/SectionHeader.astro";
       class="flex gap-4 justify-center flex-wrap animate-[fadeInUp_1s_ease-out_0.8s_both]"
     >
       <Button
-        href="#"
-        class="bg-[#2d2d2d] text-gray-500 cursor-not-allowed border border-[#404040]"
-        aria-label="Invitaciones deshabilitadas temporalmente"
-        onclick="event.preventDefault()"
+        href={discordLink}
+        target="_blank"
+        class="bg-[#f97316] hover:bg-[#ea580c] shadow-lg shadow-[#f97316]/20 border-none"
+        aria-label="Unirse al servidor principal de Discord"
       >
-        <i class="fab fa-discord mr-2 text-xl"></i> Invitaciones Pausadas
+        <i class="fab fa-discord mr-2 text-xl"></i> Unirse Ahora
       </Button>
       <Button
         variant="outline"
