@@ -55,7 +55,7 @@ export const apis = [
     description:
       "Genera, almacena y visualiza transcripciones de canales de Discord en formato HTML de manera rápida y sencilla.",
     icon: "fab fa-discord",
-    color: "text-[#f97316]",
+    color: "text-[#5865F2]",
     link: "/api/transcript",
     linkText: "Documentación",
     endpoints: [
