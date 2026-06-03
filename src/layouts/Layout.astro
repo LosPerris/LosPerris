@@ -8,6 +8,7 @@ import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
 
 interface Props {
   title: string;
+  description?: string;
   showHeader?: boolean;
   showFooter?: boolean;
   showWallpaper?: boolean;
@@ -15,6 +16,7 @@ interface Props {
 
 const {
   title,
+  description = "LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real.",
   showHeader = true,
   showFooter = true,
   showWallpaper = true,
@@ -27,37 +29,37 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta
-      name="description"
-      content="LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real."
-    />
+    <meta name="description" content={description} />
     <meta name="theme-color" content="#5865F2" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={`https://losperris.dev${Astro.url.pathname}`} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={Astro.url.href} />
     <meta property="og:title" content={title} />
-    <meta
-      property="og:description"
-      content="LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real."
-    />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content="https://losperris.dev/icon.webp" />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:url" content={Astro.url.href} />
     <meta property="twitter:title" content={title} />
-    <meta
-      property="twitter:description"
-      content="LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real."
-    />
+    <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="https://losperris.dev/icon.webp" />
 
     <link rel="icon" type="image/webp" href="/icon.webp" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      /></noscript
+    >
     <ClientRouter />
   </head>
   <body
@@ -77,20 +79,8 @@ const {
     <slot />
     {showFooter && <Footer />}
 
-    <script
-      is:inline
-      defer
-      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-    ></script>
-
     <script>
-      import "../scripts/visuals.js";
-      import "../scripts/commands.js";
-      import "../scripts/chat.js";
-      import "../scripts/menu.js";
-      import "../scripts/contact.js";
-      import "../scripts/discord-stats.js";
-      import "../scripts/sidebar.js";
+      import "../scripts/menu.ts";
     </script>
   </body>
 </html>

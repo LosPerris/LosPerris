@@ -64,6 +64,7 @@ const dateStr = today.toLocaleDateString("es-MX", {
     msgText.textContent = "";
     let i = 0;
     function type() {
+      if (!document.body.contains(msgText)) return; // Stop if navigating away
       if (i < text.length) {
         msgText!.textContent += text.charAt(i);
         i++;

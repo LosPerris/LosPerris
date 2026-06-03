@@ -1,3 +1,5 @@
+export {};
+
 document.addEventListener("astro:page-load", () => {
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -6,7 +8,7 @@ document.addEventListener("astro:page-load", () => {
 
   if (!menuBtn || !mobileMenu) return;
 
-  const toggleMenu = (show) => {
+  const toggleMenu = (show: boolean): void => {
     if (show) {
       mobileMenu.classList.remove("translate-x-full");
       document.body.style.overflow = "hidden";
@@ -18,7 +20,7 @@ document.addEventListener("astro:page-load", () => {
     }
   };
 
-  menuBtn.addEventListener("click", (e) => {
+  menuBtn.addEventListener("click", (e: MouseEvent) => {
     e.stopPropagation();
     toggleMenu(true);
   });
@@ -29,21 +31,26 @@ document.addEventListener("astro:page-load", () => {
     link.addEventListener("click", () => toggleMenu(false));
   });
 
-  document.addEventListener("click", (e) => {
-    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+  document.addEventListener("click", (e: MouseEvent) => {
+    const target = e.target as Node;
+    if (!mobileMenu.contains(target) && !menuBtn.contains(target)) {
       toggleMenu(false);
     }
   });
 
   const mobileDropdowns = mobileMenu.querySelectorAll(".mobile-dropdown-btn");
   mobileDropdowns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", (e: Event) => {
       e.preventDefault();
-      const content = btn.nextElementSibling;
+      const content = btn.nextElementSibling as HTMLElement | null;
       const icon = btn.querySelector("i");
 
-      content.classList.toggle("hidden");
-      if (icon) icon.classList.toggle("rotate-180");
+      if (content) {
+        content.classList.toggle("hidden");
+      }
+      if (icon) {
+        icon.classList.toggle("rotate-180");
+      }
     });
   });
 });

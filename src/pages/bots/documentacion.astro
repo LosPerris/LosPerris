@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Layout from "../../layouts/Layout.astro";
 import DocsSidebar from "../../components/guides/DocsSidebar.astro";
 import DocsContent from "../../components/guides/DocsContent.astro";
@@ -16,49 +14,8 @@ const initialGuide = guides[0];
   </div>
 </Layout>
 
-<script define:vars={{ guides }} is:inline>
-  window.switchGuide = (id) => {
-    const guide = guides.find((g) => g.id === id);
-    if (!guide) return;
-
-    document
-      .querySelectorAll(".guide-btn")
-      .forEach((btn) => btn.classList.remove("active"));
-    const activeBtn = document.querySelector(`.guide-btn[data-id="${id}"]`);
-    if (activeBtn) activeBtn.classList.add("active");
-
-    const titleEl = document.getElementById("guide-title");
-    const descEl = document.getElementById("guide-desc");
-    const bodyEl = document.getElementById("guide-body");
-    const badgeEl = document.getElementById("guide-badge");
-    const timeEl = document.getElementById("guide-time");
-    const contentArea = document.getElementById("content-area");
-
-    if (contentArea) {
-      contentArea.style.opacity = "0";
-      contentArea.style.transform = "translateY(10px)";
-
-      setTimeout(() => {
-        if (titleEl) titleEl.innerText = guide.contentTitle;
-        if (descEl) descEl.innerText = guide.description;
-        if (bodyEl) bodyEl.innerHTML = guide.content;
-        if (timeEl) timeEl.innerText = guide.time;
-
-        if (badgeEl) {
-          badgeEl.className = `${guide.difficultyColor} ${guide.difficultyTextColor} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide`;
-          badgeEl.innerText = guide.difficulty;
-        }
-
-        contentArea.style.opacity = "1";
-        contentArea.style.transform = "translateY(0)";
-      }, 200);
-    }
-
-    const nav = document.getElementById("sidebar-nav");
-    if (nav && window.innerWidth < 1024) {
-      nav.classList.add("hidden");
-    }
-  };
+<script>
+  import "../../scripts/sidebar.ts";
 </script>
 
 <style>

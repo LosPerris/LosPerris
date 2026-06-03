@@ -2,15 +2,11 @@
 import MariaLayout from "../layouts/MariaLayout.astro";
 import DailyMessage from "../components/DailyMessage.astro";
 import AnniversaryModal from "../components/AnniversaryModal.astro";
-import { trackVisit } from "../scripts/tracking";
 import { SPOTIFY_TRACK_IDS } from "../data/songs";
 import { QUESTIONS } from "../data/questions";
 
-const country = Astro.request.headers.get("x-vercel-ip-country");
-const ip = Astro.request.headers.get("x-real-ip") || "unknown";
-
 const today = new Date().toISOString().split("T")[0];
-const seedStr = `${ip}-${today}`;
+const seedStr = today; // Use date as seed instead of IP for GDPR compliance
 
 function hashCode(s: string) {
   let h = 0;
@@ -30,8 +26,6 @@ const dateInCR = new Date(
   new Date().toLocaleString("en-US", { timeZone: "America/Costa_Rica" }),
 );
 const isMay15th = dateInCR.getMonth() === 4 && dateInCR.getDate() === 15;
-
-await trackVisit(country);
 ---
 
 <MariaLayout
@@ -51,102 +45,12 @@ await trackVisit(country);
         }, 500);
       });
     }
+
+    // Registrar la visita al cargar la página
+    window.addEventListener("DOMContentLoaded", () => {
+      fetch("/api/maria/visit", { method: "POST" }).catch(() => {});
+    });
   </script>
 
   <DailyMessage songId={selectedSongId} question={selectedQuestion} />
 </MariaLayout>
-
-<style>
-  .anniversary-banner {
-    position: relative;
-    z-index: 1000;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 2rem;
-    display: none;
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  .anniversary-banner.show {
-    display: block;
-    animation: slideDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  }
-
-  .banner-content {
-    background: rgba(255, 235, 59, 0.15);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 215, 0, 0.4);
-    box-shadow:
-      0 8px 32px rgba(255, 215, 0, 0.2),
-      inset 0 0 10px rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    padding: 1.2rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    color: #ffd700;
-    font-family: "Inter", system-ui, sans-serif;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    text-align: center;
-  }
-
-  .message-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .date-title {
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin: 0;
-  }
-
-  .emotional-text {
-    font-weight: 500;
-    font-size: 0.95rem;
-    margin: 0;
-    line-height: 1.4;
-    color: #fff9c4;
-  }
-
-  .sparkle {
-    font-size: 1.5rem;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes slideDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.2);
-      opacity: 0.8;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .banner-content {
-      font-size: 0.95rem;
-      padding: 0.8rem 1rem;
-    }
-    .sparkle {
-      font-size: 1.2rem;
-    }
-  }
-</style>

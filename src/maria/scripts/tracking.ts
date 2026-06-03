@@ -1,5 +1,5 @@
-const DISCORD_WEBHOOK_URL =
-  "https://discord.com/api/webhooks/1494015934212341890/PcZN_o8Tmcdw_HwAFWjUt21EDbL2KvBvjt6gA-A7k77WPyYl7GaJbszTsxZKu1c1Usmx";
+// Usar variable de entorno para el Webhook por seguridad
+const DISCORD_WEBHOOK_URL = import.meta.env.DISCORD_WEBHOOK_URL || "";
 
 export async function trackVisit(country: string | null) {
   try {

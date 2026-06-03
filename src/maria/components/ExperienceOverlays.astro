@@ -2,10 +2,18 @@
 
 ---
 
-<div id="reasons-overlay" class="reasons-overlay">
+<div
+  id="reasons-overlay"
+  class="reasons-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="reasons-title"
+>
   <div class="reasons-content">
-    <button id="close-reasons" class="close-button">×</button>
-    <h2 class="reasons-title">¿Por qué te amo?</h2>
+    <button id="close-reasons" class="close-button" aria-label="Cerrar modal"
+      >×</button
+    >
+    <h2 id="reasons-title" class="reasons-title">¿Por qué te amo?</h2>
     <div class="reasons-scroll">
       <p>
         Te amo porque eres todo lo que me hace feliz, porque incluso en los días
@@ -56,9 +64,17 @@
   </div>
 </div>
 
-<div id="special-overlay" class="special-overlay">
+<div
+  id="special-overlay"
+  class="special-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mensaje especial"
+>
   <div class="overlay-content">
-    <button id="close-overlay" class="close-button">×</button>
+    <button id="close-overlay" class="close-button" aria-label="Cerrar modal"
+      >×</button
+    >
     <p class="overlay-text">
       Cuando quieras podemos regresar y amarnos nuevamente, cada segundo de mi
       vida pienso en ti.❤️

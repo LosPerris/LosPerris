@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/ui/Section.astro";
 import ContactForm from "../components/contact/ContactForm.astro";
@@ -8,7 +6,6 @@ import ContactInfo from "../components/contact/ContactInfo.astro";
 import FAQSection from "../components/contact/FAQSection.astro";
 
 import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
-import { discordLink } from "../data/community";
 ---
 
 <Layout title="Contacto - LosPerris Real" showWallpaper={false}>
@@ -44,3 +41,7 @@ import { discordLink } from "../data/community";
     <FAQSection />
   </main>
 </Layout>
+
+<script>
+  import "../scripts/contact.ts";
+</script>

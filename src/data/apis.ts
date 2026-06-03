@@ -50,6 +50,31 @@ export const apis = [
     ],
   },
   {
+    title: "Discord Transcripts",
+    popular: true,
+    description:
+      "Genera, almacena y visualiza transcripciones de canales de Discord en formato HTML de manera rápida y sencilla.",
+    icon: "fab fa-discord",
+    color: "text-[#5865F2]",
+    link: "/api/transcript",
+    linkText: "Documentación",
+    endpoints: [
+      {
+        method: "POST",
+        path: "/api/discord/transcripts",
+        description:
+          "Crea una nueva transcripción a partir de un JSON de mensajes de Discord.",
+        example: `${siteUrl}/api/discord/transcripts`,
+      },
+      {
+        method: "GET",
+        path: "/api/discord/transcripts/:id",
+        description: "Visualiza o recupera la transcripción generada.",
+        example: `${siteUrl}/api/discord/transcripts/123456`,
+      },
+    ],
+  },
+  {
     title: "Generador de Códigos QR",
     popular: false,
     description:

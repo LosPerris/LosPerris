@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Layout from "../layouts/Layout.astro";
 import HeroSection from "../components/home/HeroSection.astro";
 import CommunityFeatures from "../components/home/CommunityFeatures.astro";
@@ -18,3 +16,7 @@ import DiscordSection from "../components/home/DiscordSection.astro";
   <ApiSection />
   <DiscordSection />
 </Layout>
+
+<script>
+  import "../scripts/discord-stats.ts";
+</script>

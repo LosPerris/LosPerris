@@ -7,9 +7,15 @@ interface Props {
 const { songId, question } = Astro.props;
 ---
 
-<div id="daily-modal" class="daily-modal-overlay">
+<div
+  id="daily-modal"
+  class="daily-modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="gift-modal-title"
+>
   <div class="daily-modal-content">
-    <h2 class="reasons-title">Una sorpresa para ti 🌻</h2>
+    <h2 id="gift-modal-title" class="reasons-title">Una sorpresa para ti 🌻</h2>
 
     <div class="modal-section-label">Canción de hoy</div>
     {
@@ -19,10 +25,9 @@ const { songId, question } = Astro.props;
             src={`https://open.spotify.com/embed/track/${songId}?utm_source=generator&theme=0`}
             width="100%"
             height="152"
-            frameborder="0"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
-            style="border-radius:12px;"
+            style="border-radius:12px; border:none;"
           />
         </div>
       )

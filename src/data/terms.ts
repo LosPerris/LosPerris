@@ -118,11 +118,11 @@ export const termsSections = [
       <div class="mt-4">
           <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
               <i class="fab fa-discord text-white text-xl w-5"></i>
-              <span>Servidor de Discord: <a href={discordLink} target="_blank" class="text-white font-semibold no-underline hover:underline">Los Perris Community</a></span>
+              <span>Servidor de Discord: <a href="${discordLink}" target="_blank" class="text-white font-semibold no-underline hover:underline">Los Perris Community</a></span>
           </div>
           <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
               <i class="fas fa-headset text-white text-xl w-5"></i>
-              <span>Canal de Soporte: <a href={discordLink} target="_blank" class="text-white font-semibold no-underline hover:underline">#soporte-técnico</a></span>
+              <span>Canal de Soporte: <a href="${discordLink}" target="_blank" class="text-white font-semibold no-underline hover:underline">#soporte-técnico</a></span>
           </div>
       </div>
     `,

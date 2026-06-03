@@ -1,4 +1,6 @@
-const setupSidebar = () => {
+export {};
+
+const setupSidebar = (): void => {
   const triggers = document.querySelectorAll(".accordion-trigger");
   const toggleBtn = document.getElementById("toggle-sidebar");
   const nav = document.getElementById("sidebar-nav");

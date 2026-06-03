@@ -55,8 +55,6 @@ const categories = Object.keys(groupedGuides);
       </h2>
       {
         categories.map((category) => {
-          const isGaming = category === "Bot Gaming";
-          const isHelp = category === "Bot Ayuda";
           const hasActiveChild = groupedGuides[category].some(
             (g) => g.id === activeId,
           );

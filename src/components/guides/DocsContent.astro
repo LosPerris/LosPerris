@@ -75,6 +75,7 @@ const initialGuide = guides[0];
 
 <script>
   import { guides } from "../../data/guides";
+  import type { GuideSection, Command } from "../../data/commands";
 
   declare global {
     interface Window {
@@ -135,7 +136,7 @@ const initialGuide = guides[0];
     };
   });
 
-  function renderGuideSections(sections: any[]) {
+  function renderGuideSections(sections: GuideSection[]) {
     if (!sections) return "";
     return sections
       .map(
@@ -153,7 +154,7 @@ const initialGuide = guides[0];
                     <div class="grid gap-4">
                         ${section.commands
                           .map(
-                            (cmd: any) => `
+                            (cmd: Command) => `
                             <div class="group bg-[#151515] hover:bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#404040] rounded-xl p-4 transition-all duration-300">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                                     <div class="shrink-0">
