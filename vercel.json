@@ -76,6 +76,10 @@
       "destination": "https://generador-qr-lyart.vercel.app/?internal_secret=losperris_secure_api"
     },
     {
+      "source": "/qr_assets/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/qr_assets/:match*"
+    },
+    {
       "source": "/api/qr/styles/:match*",
       "destination": "https://generador-qr-lyart.vercel.app/styles/:match*"
     },
