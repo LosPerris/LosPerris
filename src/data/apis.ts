@@ -83,8 +83,8 @@ export const apis = [
     description:
       "Herramienta visual profesional para crear códigos QR personalizados. Soporta estilos, logotipos, WiFi, VCard y descargas en alta resolución.",
     icon: "fas fa-qrcode",
-    color: "text-[#FACC15]",
-    hoverColor: "group-hover:text-[#FACC15]",
+    color: "text-[#22C55E]",
+    hoverColor: "group-hover:text-[#22C55E]",
     link: "/api/qr",
     linkText: "Crear QR",
     endpoints: [
