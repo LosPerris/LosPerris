@@ -36,36 +36,12 @@
       "destination": "https://los-perris-valorant-api.vercel.app/?internal_secret=losperris_secure_api"
     },
     {
-      "source": "/api/valorant/css/:match*",
-      "destination": "https://los-perris-valorant-api.vercel.app/css/:match*"
-    },
-    {
-      "source": "/api/valorant/js/:match*",
-      "destination": "https://los-perris-valorant-api.vercel.app/js/:match*"
-    },
-    {
-      "source": "/api/valorant/imgs/:match*",
-      "destination": "https://los-perris-valorant-api.vercel.app/imgs/:match*"
-    },
-    {
       "source": "/api/valorant/:match*",
       "destination": "https://los-perris-valorant-api.vercel.app/:match*?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/twitch/",
       "destination": "https://twitch-api-smoky.vercel.app/?internal_secret=losperris_secure_api"
-    },
-    {
-      "source": "/api/twitch/css/:match*",
-      "destination": "https://twitch-api-smoky.vercel.app/css/:match*"
-    },
-    {
-      "source": "/api/twitch/js/:match*",
-      "destination": "https://twitch-api-smoky.vercel.app/js/:match*"
-    },
-    {
-      "source": "/api/twitch/img/:match*",
-      "destination": "https://twitch-api-smoky.vercel.app/img/:match*"
     },
     {
       "source": "/api/twitch/:match*",
