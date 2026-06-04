@@ -79,18 +79,7 @@
       "source": "/qr_assets/:match*",
       "destination": "https://generador-qr-lyart.vercel.app/qr_assets/:match*"
     },
-    {
-      "source": "/api/qr/styles/:match*",
-      "destination": "https://generador-qr-lyart.vercel.app/styles/:match*"
-    },
-    {
-      "source": "/api/qr/js/:match*",
-      "destination": "https://generador-qr-lyart.vercel.app/js/:match*"
-    },
-    {
-      "source": "/api/qr/scripts/:match*",
-      "destination": "https://generador-qr-lyart.vercel.app/scripts/:match*"
-    },
+
     {
       "source": "/api/qr/img/:match*",
       "destination": "https://generador-qr-lyart.vercel.app/img/:match*"
