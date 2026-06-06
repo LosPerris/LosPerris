@@ -37,7 +37,7 @@
     },
     {
       "source": "/api/valorant/:match*",
-      "destination": "https://los-perris-valorant-api.vercel.app/:match*?internal_secret=losperris_secure_api"
+      "destination": "https://los-perris-valorant-api.vercel.app/api/valorant/:match*?internal_secret=losperris_secure_api"
     },
     {
       "source": "/api/twitch/",
