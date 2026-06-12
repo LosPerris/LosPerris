@@ -102,5 +102,5 @@ export const QUESTIONS = [
   "¿Sientes cómo mi amor te acompaña a todas partes, como un escudo protector, majito? 🛡️",
   "¿Te das cuenta de que todo mi mundo es más bonito simplemente porque tú existes en él? 🌻",
   "¿Sabes que siempre seré fiel a ti y al amor inmenso que construimos todos los días? 💍",
-  "¿Sientes cuánto te amo, hoy, mañana y para siempre, María? ❤️",
+  "¿Sientes cuánto te amo, hoy, mañana y para siempre, María?  ❤️",
 ];
