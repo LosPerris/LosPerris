@@ -35,13 +35,13 @@ const categories = Object.keys(groupedGuides);
 ---
 
 <aside
-  class="w-full lg:w-72 shrink-0 lg:border-r border-[#2A2A2A] bg-[#050505] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto custom-scrollbar"
+  class="w-full lg:w-72 shrink-0 lg:border-r border-[#1A1A1A] bg-[#0E0E0E] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto"
 >
   <div class="p-6 lg:p-0">
     <div class="mb-6 lg:hidden">
       <button
         id="toggle-sidebar"
-        class="w-full py-3 bg-[#151515] text-white rounded-lg font-bold border border-[#333] flex items-center justify-center gap-2 hover:bg-[#222] transition-colors"
+        class="w-full py-3 bg-[#151515] text-[#b0b0b0] rounded-lg font-bold border border-[#2A2A2A] flex items-center justify-center gap-2 hover:bg-[#1A1A1A] hover:text-white transition-colors"
       >
         <i class="fas fa-bars"></i> Índice de Documentación
       </button>
@@ -49,7 +49,7 @@ const categories = Object.keys(groupedGuides);
 
     <nav id="sidebar-nav" class="hidden lg:block space-y-2 lg:p-6 lg:pt-10">
       <h2
-        class="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-6 pl-2 hidden lg:block"
+        class="text-xs font-black text-[#f97316] uppercase tracking-[0.2em] mb-6 pl-2 hidden lg:block"
       >
         Documentación
       </h2>
@@ -60,63 +60,48 @@ const categories = Object.keys(groupedGuides);
           );
 
           return (
-            <div class="category-group mb-4">
-              <button
-                class="w-full flex items-center gap-3 px-2 py-2 mb-1 text-left group hover:bg-white/5 rounded-lg transition-colors cursor-pointer accordion-trigger"
-                data-category={category}
-                aria-expanded={hasActiveChild ? "true" : "false"}
-              >
-                <span
-                  class={`transition-transform duration-200 text-xs text-text-muted group-hover:text-white ${hasActiveChild ? "rotate-90" : ""}`}
-                >
-                  <i class="fas fa-chevron-right" aria-hidden="true" />
-                </span>
-
+            <div class="category-group mb-6">
+              <div class="flex items-center gap-2 px-2 mb-3">
                 {categoryImages[category as keyof typeof categoryImages] ? (
                   <Image
                     src={
                       categoryImages[category as keyof typeof categoryImages]
                     }
                     alt=""
-                    class="w-5 h-5 rounded-full"
-                    width={20}
-                    height={20}
+                    class="w-4 h-4 rounded-full"
+                    width={16}
+                    height={16}
                     aria-hidden="true"
+                    loading="eager"
                   />
                 ) : (
-                  <span class="w-5 h-5 rounded-full flex items-center justify-center bg-[#2A2A2A] text-[10px] text-white">
-                    <i class="fas fa-cog" aria-hidden="true" />
-                  </span>
+                  <i
+                    class="fas fa-cog text-gray-500 text-[10px] w-4 text-center"
+                    aria-hidden="true"
+                  />
                 )}
-
-                <span class="text-sm font-bold text-gray-200 uppercase tracking-wider group-hover:text-white">
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">
                   {category}
                 </span>
-              </button>
+              </div>
 
-              <div
-                class={`overflow-hidden transition-all duration-300 ease-in-out pl-6 ${hasActiveChild ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
-                id={`content-${category}`}
-              >
-                <ul class="space-y-[2px] border-l border-[#2A2A2A] content-list">
+              <div class="pl-2">
+                <ul class="space-y-1">
                   {groupedGuides[category].map((guide) => {
                     const isActive = guide.id === activeId;
                     return (
                       <li>
                         <button
-                          class={`w-full text-left px-4 py-2 text-sm transition-all duration-200 flex items-center justify-between group relative
+                          class={`guide-btn w-full text-left px-3 py-2 text-sm transition-all duration-200 flex items-center justify-between group rounded-lg
                                                     ${
                                                       isActive
-                                                        ? "text-[#f97316] font-medium bg-[#f97316]/5"
-                                                        : "text-text-muted hover:text-white hover:bg-white/5"
+                                                        ? "text-[#f97316] font-semibold bg-[#f97316]/10 border-l-2 border-[#f97316]"
+                                                        : "text-[#a1a1aa] hover:text-white hover:bg-[#1a1a1a] border-l-2 border-transparent"
                                                     }`}
                           data-id={guide.id}
                           onclick={`switchGuide('${guide.id}')`}
                         >
-                          <span class="truncate">{guide.title}</span>
-                          {isActive && (
-                            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#f97316] rounded-r-full" />
-                          )}
+                          <span class="truncate ml-2">{guide.title}</span>
                         </button>
                       </li>
                     );
@@ -130,19 +115,3 @@ const categories = Object.keys(groupedGuides);
     </nav>
   </div>
 </aside>
-
-<style>
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-</style>

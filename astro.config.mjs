@@ -9,11 +9,13 @@ export default defineConfig({
   site: "https://losperris.dev",
   adapter: vercel({
     webAnalytics: { enabled: true },
-    imagesConfig: { sizes: [320, 480, 640, 750, 828, 1080, 1200, 1920, 2048, 3840], domains: ["losperris.dev"] },
-    imageService: true,
+    imageService: false,
   }),
   output: "static",
-  prefetch: true,
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover"
+  },
   integrations: [sitemap({
     filter: (page) => !page.includes("/maria"),
   })],

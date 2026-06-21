@@ -6,6 +6,7 @@ interface Props {
   onclick?: string;
   target?: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 const {
@@ -27,7 +28,7 @@ const variants = {
   secondary:
     "bg-[#252525] text-white border border-white/5 hover:bg-[#303030] hover:-translate-y-1 hover:shadow-xl transition-all",
   outline:
-    "bg-transparent text-[#b0b0b0] border border-white/10 hover:bg-white/5 hover:text-white hover:-translate-y-1 transition-all",
+    "bg-transparent text-[#b0b0b0] border border-white/10 hover:bg-white/5 hover:-translate-y-1 transition-all",
   ghost: "bg-transparent text-[#b0b0b0] hover:text-white transition-all",
 };
 

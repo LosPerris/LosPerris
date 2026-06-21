@@ -5,10 +5,10 @@ export const termsSections = [
     title: "1. Información General",
     icon: "fas fa-info-circle",
     content: `
-      Los Perris Bots es un servicio que proporciona dos bots especializados para Discord:
+      LosPerris es un conjunto de herramientas y servicios que proporciona:
       <ul class="ml-8 mb-4 list-disc marker:text-white">
-          <li class="mb-2"><strong class="text-white">LosPerrisHelp:</strong> Bot de moderación y utilidades</li>
-          <li class="mb-2"><strong class="text-white">LosPerrisGame:</strong> Bot gaming con estadísticas de juegos</li>
+          <li class="mb-2"><strong class="text-white">Bots de Discord:</strong> Herramientas de moderación, utilidades y gaming para comunidades.</li>
+          <li class="mb-2"><strong class="text-white">APIs Públicas:</strong> Servicios accesibles para desarrolladores e integraciones.</li>
       </ul>
       Estos servicios son proporcionados de forma gratuita y están sujetos a los términos descritos en este documento.
     `,
@@ -32,9 +32,9 @@ export const termsSections = [
     content: `
       <h3 class="text-text-secondary my-4 text-xl font-semibold">Uso Permitido:</h3>
       <ul class="ml-8 mb-4 list-disc marker:text-white">
-          <li class="mb-2">Utilizar los comandos según su propósito diseñado</li>
-          <li class="mb-2">Moderar tu servidor con LosPerrisHelp</li>
-          <li class="mb-2">Consultar estadísticas de juegos con LosPerrisGame</li>
+          <li class="mb-2">Utilizar los servicios y APIs según su propósito diseñado</li>
+          <li class="mb-2">Integrar nuestras herramientas para administrar y potenciar tu comunidad</li>
+          <li class="mb-2">Consumir nuestras APIs públicas para el desarrollo de proyectos</li>
           <li class="mb-2">Reportar bugs o problemas técnicos</li>
       </ul>
       <h3 class="text-text-secondary my-4 text-xl font-semibold">Uso Prohibido:</h3>

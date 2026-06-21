@@ -30,7 +30,7 @@ const bots = [helpBotData, gameBotData];
             <Image
               src={bot.imageSrc}
               alt={bot.botName}
-              class="w-20 h-20 md:w-24 md:h-24 rounded-2xl shadow-lg group-hover:scale-105 transition-transform bg-secondary self-start"
+              class="w-20 h-20 md:w-24 md:h-24 rounded-2xl shadow-lg group-hover:scale-105 transition-transform bg-white/5 self-start"
               width={96}
               height={96}
             />
@@ -43,7 +43,7 @@ const bots = [helpBotData, gameBotData];
               </p>
               <div class="flex gap-2 flex-wrap justify-start">
                 {bot.tags.slice(0, 2).map((tag) => (
-                  <span class="text-xs font-bold bg-secondary text-white px-3 py-1 rounded-full border border-white/10">
+                  <span class="text-xs font-bold bg-[#f97316]/20 text-[#f97316] px-3 py-1 rounded-full border border-[#f97316]/50 shadow-[0_0_10px_rgba(249,115,22,0.2)] tracking-wider">
                     {tag}
                   </span>
                 ))}
@@ -51,17 +51,17 @@ const bots = [helpBotData, gameBotData];
             </div>
           </div>
 
-          <div class="space-y-4 mb-8 bg-white/2 p-6 rounded-xl border border-white/5">
+          <div class="space-y-4 mb-8 bg-white/5 p-6 rounded-xl border border-white/10">
             {bot.features.slice(0, 3).map((feature) => (
               <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-[#f97316]/20 flex items-center justify-center text-[#f97316] shrink-0">
+                <div class="w-8 h-8 rounded-lg bg-[#f97316]/20 flex items-center justify-center text-[#f97316] shrink-0 border border-[#f97316]/30">
                   <i class={feature.icon} aria-hidden="true" />
                 </div>
                 <div class="overflow-hidden">
                   <span class="text-white font-semibold block text-sm truncate">
                     {feature.title}
                   </span>
-                  <span class="text-xs text-text-secondary truncate block">
+                  <span class="text-xs text-[#a0a0a0] truncate block">
                     {feature.list[0]}
                   </span>
                 </div>
@@ -71,17 +71,16 @@ const bots = [helpBotData, gameBotData];
 
           <div class="flex gap-4">
             <Button
-              href="#"
-              onclick="event.preventDefault()"
               class="flex-1 justify-center bg-[#2d2d2d] text-gray-500 cursor-not-allowed border border-[#404040]"
               aria-label={`El bot ${bot.botName} está deshabilitado`}
+              disabled
             >
               <i class="fas fa-lock mr-2" aria-hidden="true" /> No Disponible
             </Button>
             <Button
               variant="outline"
               href="/bots/documentacion"
-              class="flex-1 justify-center border-white/20 hover:bg-white/10 hover:border-white"
+              class="flex-1 justify-center"
               aria-label={`Ver guías para ${bot.botName}`}
             >
               Ver Guías

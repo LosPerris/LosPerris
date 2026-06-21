@@ -36,13 +36,7 @@ const mxClass = align === "center" ? "mx-auto" : "";
     class="text-4xl md:text-6xl font-black text-white mb-4 animate-[fadeInUp_0.8s_ease-out]"
   >
     {title}
-    {
-      highlight && (
-        <span class="text-transparent bg-clip-text bg-linear-to-r from-[#f97316] to-yellow-500">
-          {highlight}
-        </span>
-      )
-    }
+    {highlight && <span class="text-[#f97316]">{highlight}</span>}
   </h2>
 
   {

@@ -59,3 +59,24 @@ html {
     opacity: 1;
   }
 }
+
+/* Scrollbar Global */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 #0a0a0a;
+}

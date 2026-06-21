@@ -19,7 +19,7 @@ export const privacySections = [
     content: `
       Utilizamos la información recopilada para:
       <ul class="ml-8 mb-4 list-disc marker:text-white">
-          <li class="mb-2">Proporcionar y mantener la funcionalidad de LosPerrisHelp y LosPerrisGame.</li>
+          <li class="mb-2">Proporcionar y mantener la funcionalidad de nuestros servicios (Bots y APIs).</li>
           <li class="mb-2">Gestionar las características de moderación (historial de sanciones).</li>
           <li class="mb-2">Personalizar la experiencia del usuario (perfiles de juego, niveles).</li>
           <li class="mb-2">Mejorar nuestros servicios y corregir errores técnicos.</li>

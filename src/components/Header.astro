@@ -16,14 +16,14 @@ const navItems = [
       {
         name: "Bots",
         href: "/#bots",
-        icon: "fa-robot",
+        icon: "fas fa-robot",
         color: "text-purple-400",
         bg: "bg-yellow-500/10",
       },
       {
         name: "APIs",
         href: "/#apis",
-        icon: "fa-code",
+        icon: "fas fa-code",
         color: "text-emerald-400",
         bg: "bg-emerald-500/10",
       },
@@ -43,14 +43,14 @@ const navItems = [
       {
         name: "Soporte",
         href: discordTicketLink,
-        icon: "fa-life-ring",
+        icon: "fas fa-life-ring",
         color: "text-red-400",
         bg: "bg-red-500/10",
       },
       {
         name: "Actualizaciones",
         href: discordUpdatesLink,
-        icon: "fa-bell",
+        icon: "fas fa-bell",
         color: "text-amber-400",
         bg: "bg-amber-500/10",
       },
@@ -76,6 +76,7 @@ const navItems = [
           class="relative w-10 h-10 rounded-full border border-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
           width={40}
           height={40}
+          loading="eager"
         />
       </div>
       <span
@@ -103,11 +104,12 @@ const navItems = [
                   <a
                     href={subItem.href}
                     class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 text-white/60 hover:text-white transition-all group/item"
+                    aria-label={`Ir a ${subItem.name}`}
                   >
                     <div
                       class={`w-9 h-9 rounded-lg ${subItem.bg} flex items-center justify-center ${subItem.color} group-hover/item:scale-110 group-hover/item:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all`}
                     >
-                      <i class={`fas ${subItem.icon}`} aria-hidden="true" />
+                      <i class={subItem.icon} aria-hidden="true" />
                     </div>
                     <span class="text-sm font-medium">{subItem.name}</span>
                   </a>
@@ -144,7 +146,12 @@ const navItems = [
     class="h-20 px-6 flex items-center justify-between border-b border-white/5"
   >
     <div class="flex items-center gap-3">
-      <Image src={realImg} alt="" class="w-8 h-8 rounded-full" />
+      <Image
+        src={realImg}
+        alt=""
+        class="w-8 h-8 rounded-full"
+        loading="eager"
+      />
       <span class="font-bold text-xl text-white">Navegación</span>
     </div>
     <button
@@ -169,11 +176,12 @@ const navItems = [
                 <a
                   href={subItem.href}
                   class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-white/80 hover:text-white hover:bg-white/[0.08] transition-all active:scale-[0.98]"
+                  aria-label={`Ir a ${subItem.name}`}
                 >
                   <div
                     class={`w-10 h-10 rounded-xl ${subItem.bg} flex items-center justify-center ${subItem.color} text-lg shadow-inner`}
                   >
-                    <i class={`fas ${subItem.icon}`} aria-hidden="true" />
+                    <i class={subItem.icon} aria-hidden="true" />
                   </div>
                   <div class="flex flex-col">
                     <span class="font-bold">{subItem.name}</span>

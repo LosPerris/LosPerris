@@ -3,15 +3,20 @@ import Button from "../ui/Button.astro";
 import { contactEmail } from "../../data/community";
 ---
 
-<div class="h-full">
-  <h2 class="text-3xl font-semibold mb-8 text-white">Envíanos un mensaje</h2>
+<div class="h-full flex flex-col justify-center">
+  <h2 class="text-3xl font-bold mb-2 text-white">Envíanos un mensaje</h2>
+  <p class="text-white/60 mb-8">
+    Completa el formulario y te responderemos lo antes posible.
+  </p>
   <form
     class="flex flex-col gap-6"
     id="contactForm"
     data-to-email={contactEmail}
   >
-    <div class="flex flex-col">
-      <label for="nombre" class="font-medium mb-2 block text-text-secondary"
+    <div class="flex flex-col group relative">
+      <label
+        for="nombre"
+        class="text-xs font-bold mb-2 block text-white/70 uppercase tracking-wider transition-colors group-focus-within:text-[#f97316]"
         >Nombre completo</label
       >
       <input
@@ -19,12 +24,14 @@ import { contactEmail } from "../../data/community";
         id="nombre"
         name="nombre"
         required
-        class="w-full px-4 py-3 border border-white/10 rounded-xl text-base bg-white/5 text-white transition-all focus:outline-none focus:border-[#f97316] focus:bg-white/10 placeholder:text-white/20"
-        placeholder="Tu nombre"
+        class="w-full px-5 py-4 border border-white/10 rounded-2xl text-base bg-white/5 text-white backdrop-blur-md transition-all duration-300 focus:outline-none focus:border-[#f97316]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#f97316]/10 focus:-translate-y-1 placeholder:text-white/20 hover:border-white/20 hover:bg-white/10"
+        placeholder="Ej: Juan Pérez"
       />
     </div>
-    <div class="flex flex-col">
-      <label for="email" class="font-medium mb-2 block text-text-secondary"
+    <div class="flex flex-col group relative">
+      <label
+        for="email"
+        class="text-xs font-bold mb-2 block text-white/70 uppercase tracking-wider transition-colors group-focus-within:text-[#f97316]"
         >Correo electrónico</label
       >
       <input
@@ -32,62 +39,221 @@ import { contactEmail } from "../../data/community";
         id="email"
         name="email"
         required
-        class="w-full px-4 py-3 border border-white/10 rounded-xl text-base bg-white/5 text-white transition-all focus:outline-none focus:border-[#f97316] focus:bg-white/10 placeholder:text-white/20"
+        class="w-full px-5 py-4 border border-white/10 rounded-2xl text-base bg-white/5 text-white backdrop-blur-md transition-all duration-300 focus:outline-none focus:border-[#f97316]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#f97316]/10 focus:-translate-y-1 placeholder:text-white/20 hover:border-white/20 hover:bg-white/10"
         placeholder="tu@email.com"
       />
     </div>
-    <div class="flex flex-col">
-      <label for="asunto" class="font-medium mb-2 block text-text-secondary"
+    <div class="flex flex-col group relative">
+      <label
+        for="asunto"
+        class="text-xs font-bold mb-2 block text-white/70 uppercase tracking-wider transition-colors group-focus-within:text-[#f97316]"
         >Asunto</label
       >
-      <select
-        id="asunto"
-        name="asunto"
-        required
-        class="w-full px-4 py-3 border border-white/10 rounded-xl text-base bg-white/5 text-white transition-all focus:outline-none focus:border-[#f97316] focus:bg-white/10 appearance-none"
-      >
-        <option value="" class="bg-[#151515] text-white"
-          >Selecciona un asunto</option
+      <div class="relative custom-select-wrapper">
+        <select
+          id="asunto"
+          name="asunto"
+          required
+          class="hidden"
+          aria-hidden="true"
         >
-        <option value="Soporte API" class="bg-[#151515] text-white"
-          >Soporte API</option
+          <option value="" disabled selected>Selecciona un asunto...</option>
+          <option value="Soporte API">Soporte API</option>
+          <option value="Acceso a API">Solicitar Acceso API</option>
+          <option value="Ayuda técnica">Ayuda técnica general</option>
+          <option value="Sugerencia">Sugerencia</option>
+          <option value="Reporte de bug">Reporte de bug</option>
+          <option value="Colaboración">Colaboración</option>
+          <option value="Consulta general">Otro</option>
+        </select>
+
+        <div
+          class="custom-select-trigger w-full px-5 py-4 border border-white/10 rounded-2xl text-base bg-white/5 text-white backdrop-blur-md transition-all duration-300 focus:outline-none hover:border-white/20 hover:bg-white/10 cursor-pointer flex items-center justify-between group-focus-within:border-[#f97316]/50 group-focus-within:bg-white/10 group-focus-within:ring-4 group-focus-within:ring-[#f97316]/10 group-focus-within:-translate-y-1"
+          tabindex="0"
         >
-        <option value="Acceso a API" class="bg-[#151515] text-white"
-          >Solicitar Acceso API</option
+          <span class="custom-select-value text-white/50"
+            >Selecciona un asunto...</span
+          >
+          <i
+            class="fas fa-chevron-down text-sm text-white/50 transition-transform duration-300 custom-select-icon"
+          ></i>
+        </div>
+
+        <div
+          class="custom-select-options absolute z-50 w-full mt-2 bg-[#151515] border border-white/10 rounded-2xl shadow-2xl shadow-black overflow-hidden opacity-0 pointer-events-none transition-all duration-300 translate-y-[-10px] max-h-64 overflow-y-auto hidden"
         >
-        <option value="Ayuda técnica" class="bg-[#151515] text-white"
-          >Ayuda técnica general</option
-        >
-        <option value="Sugerencia" class="bg-[#151515] text-white"
-          >Sugerencia</option
-        >
-        <option value="Reporte de bug" class="bg-[#151515] text-white"
-          >Reporte de bug</option
-        >
-        <option value="Colaboración" class="bg-[#151515] text-white"
-          >Colaboración</option
-        >
-        <option value="Consulta general" class="bg-[#151515] text-white"
-          >Otro</option
-        >
-      </select>
+          <div class="p-2 flex flex-col gap-1">
+            <div
+              class="custom-option px-4 py-3 rounded-xl text-white cursor-pointer hover:bg-[#f97316] hover:text-white transition-colors"
+              data-value="Soporte API"
+            >
+              Soporte API
+            </div>
+            <div
+              class="custom-option px-4 py-3 rounded-xl text-white cursor-pointer hover:bg-[#f97316] hover:text-white transition-colors"
+              data-value="Acceso a API"
+            >
+              Solicitar Acceso API
+            </div>
+            <div
+              class="custom-option px-4 py-3 rounded-xl text-white cursor-pointer hover:bg-[#f97316] hover:text-white transition-colors"
+              data-value="Ayuda técnica"
+            >
+              Ayuda técnica general
+            </div>
+            <div
+              class="custom-option px-4 py-3 rounded-xl text-white cursor-pointer hover:bg-[#f97316] hover:text-white transition-colors"
+              data-value="Sugerencia"
+            >
+              Sugerencia
+            </div>
+            <div
+              class="custom-option px-4 py-3 rounded-xl text-white cursor-pointer hover:bg-[#f97316] hover:text-white transition-colors"
+              data-value="Reporte de bug"
+            >
+              Reporte de bug
+            </div>
+            <div
+              class="custom-option px-4 py-3 rounded-xl text-white cursor-pointer hover:bg-[#f97316] hover:text-white transition-colors"
+              data-value="Colaboración"
+            >
+              Colaboración
+            </div>
+            <div
+              class="custom-option px-4 py-3 rounded-xl text-white cursor-pointer hover:bg-[#f97316] hover:text-white transition-colors"
+              data-value="Consulta general"
+            >
+              Otro
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="flex flex-col">
-      <label for="mensaje" class="font-medium mb-2 block text-text-secondary"
+    <div class="flex flex-col group relative">
+      <label
+        for="mensaje"
+        class="text-xs font-bold mb-2 block text-white/70 uppercase tracking-wider transition-colors group-focus-within:text-[#f97316]"
         >Mensaje</label
       >
       <textarea
         id="mensaje"
         name="mensaje"
-        rows="6"
+        rows="5"
         required
-        placeholder="Describe tu consulta o mensaje..."
-        class="w-full px-4 py-3 border border-white/10 rounded-xl text-base bg-white/5 text-white transition-all focus:outline-none focus:border-[#f97316] focus:bg-white/10 resize-none min-h-[120px] placeholder:text-white/20"
+        placeholder="Describe tu consulta con el mayor detalle posible..."
+        class="w-full px-5 py-4 border border-white/10 rounded-2xl text-base bg-white/5 text-white backdrop-blur-md transition-all duration-300 focus:outline-none focus:border-[#f97316]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#f97316]/10 focus:-translate-y-1 resize-none min-h-[140px] placeholder:text-white/20 hover:border-white/20 hover:bg-white/10"
       ></textarea>
     </div>
-    <Button type="submit" class="w-full">
+    <Button
+      type="submit"
+      class="w-full mt-2 bg-gradient-to-r from-[#f97316] to-[#fb923c] hover:from-[#ea580c] hover:to-[#f97316] text-white font-bold py-4 rounded-2xl shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] border-none transition-all duration-300 hover:-translate-y-1"
+    >
       <i class="fas fa-paper-plane mr-2"></i>
       Enviar mensaje
     </Button>
   </form>
 </div>
+
+<script>
+  function setupCustomSelect() {
+    const wrappers = document.querySelectorAll(".custom-select-wrapper");
+    wrappers.forEach((wrapper) => {
+      const select = wrapper.querySelector("select") as HTMLSelectElement;
+      const trigger = wrapper.querySelector(
+        ".custom-select-trigger",
+      ) as HTMLElement;
+      const valueDisplay = wrapper.querySelector(
+        ".custom-select-value",
+      ) as HTMLElement;
+      const optionsContainer = wrapper.querySelector(
+        ".custom-select-options",
+      ) as HTMLElement;
+      const options = wrapper.querySelectorAll(".custom-option");
+      const icon = wrapper.querySelector(".custom-select-icon") as HTMLElement;
+
+      if (!select || !trigger || !optionsContainer || !valueDisplay || !icon)
+        return;
+
+      if (trigger.hasAttribute("data-initialized")) return;
+      trigger.setAttribute("data-initialized", "true");
+
+      trigger.addEventListener("click", () => {
+        const isOpen = !optionsContainer.classList.contains("hidden");
+
+        document.querySelectorAll(".custom-select-options").forEach((opt) => {
+          opt.classList.add(
+            "hidden",
+            "opacity-0",
+            "pointer-events-none",
+            "translate-y-[-10px]",
+          );
+        });
+        document
+          .querySelectorAll(".custom-select-icon")
+          .forEach(
+            (ic) => ((ic as HTMLElement).style.transform = "rotate(0deg)"),
+          );
+
+        if (!isOpen) {
+          optionsContainer.classList.remove("hidden");
+          setTimeout(() => {
+            optionsContainer.classList.remove(
+              "opacity-0",
+              "pointer-events-none",
+              "translate-y-[-10px]",
+            );
+            icon.style.transform = "rotate(180deg)";
+          }, 10);
+        }
+      });
+
+      options.forEach((option) => {
+        option.addEventListener("click", (e) => {
+          const target = e.target as HTMLElement;
+          const value = target.getAttribute("data-value");
+          const text = target.innerText;
+
+          select.value = value || "";
+          // Dispatch change event manually so other scripts can catch it
+          select.dispatchEvent(new Event("change"));
+
+          valueDisplay.textContent = text;
+          valueDisplay.classList.remove("text-white/50");
+          valueDisplay.classList.add("text-white");
+
+          options.forEach((opt) =>
+            opt.classList.remove("bg-[#f97316]", "text-white"),
+          );
+          target.classList.add("bg-[#f97316]", "text-white");
+
+          optionsContainer.classList.add(
+            "opacity-0",
+            "pointer-events-none",
+            "translate-y-[-10px]",
+          );
+          setTimeout(() => {
+            optionsContainer.classList.add("hidden");
+          }, 300);
+          icon.style.transform = "rotate(0deg)";
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!wrapper.contains(e.target as Node)) {
+          optionsContainer.classList.add(
+            "opacity-0",
+            "pointer-events-none",
+            "translate-y-[-10px]",
+          );
+          setTimeout(() => {
+            optionsContainer.classList.add("hidden");
+          }, 300);
+          icon.style.transform = "rotate(0deg)";
+        }
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", setupCustomSelect);
+  document.addEventListener("astro:page-load", setupCustomSelect);
+</script>
