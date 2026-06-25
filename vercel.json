@@ -10,6 +10,21 @@
       "permanent": true
     },
     {
+      "source": "/api/twitch/dashboard/",
+      "destination": "/api/twitch/dashboard",
+      "permanent": true
+    },
+    {
+      "source": "/api/twitch/docs/",
+      "destination": "/api/twitch/docs",
+      "permanent": true
+    },
+    {
+      "source": "/api/twitch/dashboard/:tab(followage|clips|shoutout|trends|stalker|magic8|roulette|russian|duel|profile|feedback)/",
+      "destination": "/api/twitch/dashboard/:tab",
+      "permanent": true
+    },
+    {
       "source": "/twitch",
       "destination": "/api/twitch/",
       "permanent": true

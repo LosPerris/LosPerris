@@ -8,7 +8,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://losperris.dev",
   adapter: vercel({
-    webAnalytics: { enabled: true },
+    // Web Analytics requiere "Audiences" activo en el dashboard de Vercel;
+    // sin eso el script inyectado POSTea a /{id}/vitals y devuelve 404 en consola.
+    webAnalytics: { enabled: false },
     imageService: false,
   }),
   output: "static",
