@@ -60,6 +60,10 @@
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/?internal_secret=losperris_secure_api"
     },
     {
+      "source": "/api/twitch/:match+/",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match+/?internal_secret=losperris_secure_api"
+    },
+    {
       "source": "/api/twitch/:match*",
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match*?internal_secret=losperris_secure_api"
     },

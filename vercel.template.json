@@ -60,6 +60,10 @@
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/?internal_secret=__INTERNAL_SECRET__"
     },
     {
+      "source": "/api/twitch/:match+/",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match+/?internal_secret=__INTERNAL_SECRET__"
+    },
+    {
       "source": "/api/twitch/:match*",
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match*?internal_secret=__INTERNAL_SECRET__"
     },
