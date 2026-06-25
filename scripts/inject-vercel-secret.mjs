@@ -12,9 +12,12 @@ const secret =
 
 if (!process.env.INTERNAL_API_SECRET) {
   console.warn(
-    "[vercel-config] INTERNAL_API_SECRET no definido; usando valor por defecto de desarrollo.",
+    "[vercel-config] INTERNAL_API_SECRET no definido; usando valor por defecto.",
   );
 }
+
+// Vercel lee vercel.json del repo al desplegar (no durante el build).
+// Si cambias el secret, ejecuta `npm run vercel:config` y commitea vercel.json.
 
 const template = fs.readFileSync(templatePath, "utf8");
 const output = template.replaceAll("__INTERNAL_SECRET__", secret);

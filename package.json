@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/inject-vercel-secret.mjs",
+    "vercel:config": "node scripts/inject-vercel-secret.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",

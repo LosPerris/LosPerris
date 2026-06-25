@@ -1,0 +1,153 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/apis",
+      "destination": "/api",
+      "permanent": true
+    },
+    {
+      "source": "/twitch",
+      "destination": "/api/twitch/",
+      "permanent": true
+    },
+    {
+      "source": "/api/twitch",
+      "destination": "/api/twitch/",
+      "permanent": true
+    },
+    {
+      "source": "/api/qr",
+      "destination": "/api/qr/",
+      "permanent": true
+    },
+    {
+      "source": "/api/valorant",
+      "destination": "/api/valorant/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/valorant/",
+      "destination": "https://los-perris-valorant-api.vercel.app/?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/valorant/:match*",
+      "destination": "https://los-perris-valorant-api.vercel.app/api/valorant/:match*?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/twitch/_astro/:match*",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/_astro/:match*?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/twitch/img/:match*",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/img/:match*?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/twitch/sw.js",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/sw.js?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/twitch/manifest.json",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/manifest.json?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/twitch/",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/twitch/:match*",
+      "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match*?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/qr/",
+      "destination": "https://generador-qr-lyart.vercel.app/?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/qr_assets/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/qr_assets/:match*"
+    },
+
+    {
+      "source": "/api/qr/img/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/img/:match*"
+    },
+    {
+      "source": "/api/qr/:match*",
+      "destination": "https://generador-qr-lyart.vercel.app/api/qr/:match*?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/transcript",
+      "destination": "https://transcripts-five.vercel.app/api/transcript?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/discord",
+      "destination": "https://transcripts-five.vercel.app/?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/discord/transcripts",
+      "destination": "https://transcripts-five.vercel.app/api/discord/transcripts?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/discord/transcripts/:match*",
+      "destination": "https://transcripts-five.vercel.app/transcripts/:match*?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/api/transcripts/:match*",
+      "destination": "https://transcripts-five.vercel.app/transcripts/:match*?internal_secret=losperris_secure_api"
+    },
+    {
+      "source": "/transcripts/:match*",
+      "destination": "/api/transcripts/:match*?internal_secret=losperris_secure_api"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "upgrade-insecure-requests; frame-ancestors 'self'"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(fonts|imgs|css|js)/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
