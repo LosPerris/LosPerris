@@ -3,8 +3,13 @@ import emailjs from "@emailjs/browser";
 const setupContactForm = (): void => {
   const form = document.getElementById("contactForm") as HTMLFormElement | null;
 
-  // Inicializamos EmailJS con la clave pública
-  emailjs.init(import.meta.env.PUBLIC_EMAILJS_KEY || "GMUaeNqA-ftlkGhwm");
+  emailjs.init(import.meta.env.PUBLIC_EMAILJS_KEY);
+
+  if (!import.meta.env.PUBLIC_EMAILJS_KEY) {
+    console.warn(
+      "PUBLIC_EMAILJS_KEY no configurada. El formulario de contacto no funcionará.",
+    );
+  }
 
   if (form) {
     if (form.hasAttribute("data-has-listener")) return;
@@ -60,10 +65,19 @@ const setupContactForm = (): void => {
         sent_date: new Date().toLocaleString("es-ES"),
       };
 
+      if (!import.meta.env.PUBLIC_EMAILJS_KEY) {
+        showNotification("Servicio de contacto no configurado.", "error");
+        if (btn) {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+        return;
+      }
+
       emailjs
         .send(
-          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || "service_3hduvpa",
-          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || "template_f4qyw0q",
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
           templateParams,
         )
         .then(function () {

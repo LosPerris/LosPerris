@@ -1,7 +1,11 @@
 // Usar variable de entorno para el Webhook por seguridad
+import { sanitizeEmbedText } from "../../lib/rateLimit";
+
 const DISCORD_WEBHOOK_URL = import.meta.env.DISCORD_WEBHOOK_URL || "";
 
 export async function trackVisit(country: string | null) {
+  if (!DISCORD_WEBHOOK_URL) return;
+
   try {
     const countryName = country || "Desconocido";
     const flag = getFlag(country);
@@ -46,7 +50,11 @@ export async function trackVisit(country: string | null) {
 }
 
 export async function trackResponse(answer: string, question: string) {
+  if (!DISCORD_WEBHOOK_URL) return;
+
   try {
+    const safeAnswer = sanitizeEmbedText(answer, 100);
+    const safeQuestion = sanitizeEmbedText(question, 500);
     const isYes =
       answer.toLowerCase() === "sí" || answer.toLowerCase() === "si";
     const color = isYes ? 0x2ecc71 : 0xe74c3c; // Verde para sí, Rojo para no
@@ -60,11 +68,11 @@ export async function trackResponse(answer: string, question: string) {
           fields: [
             {
               name: "Pregunta",
-              value: question,
+              value: safeQuestion,
             },
             {
               name: "Respuesta",
-              value: `**${answer}**`,
+              value: `**${safeAnswer}**`,
               inline: true,
             },
             {

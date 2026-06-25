@@ -40,5 +40,5 @@ export const discordUpdatesLink =
   "https://discord.com/channels/1158802490561667103/1158802492612673542";
 
 export const domain = "losperris.dev";
-export const siteUrl = "https://www.losperris.dev";
+export const siteUrl = "https://losperris.dev";
 export const contactEmail = "contacto@losperris.dev";

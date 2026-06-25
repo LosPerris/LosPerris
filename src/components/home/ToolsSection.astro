@@ -22,7 +22,9 @@ const bots = [helpBotData, gameBotData];
   >
     {
       bots.map((bot) => (
-        <Card class="p-6 md:p-8 bg-white/2 bg-none border border-white/10 hover:bg-white/4 hover:border-[#f97316]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl backdrop-blur-sm relative">
+        <Card
+          class={`p-6 md:p-8 bg-white/2 bg-none border border-white/10 hover:bg-white/4 hover:border-[#f97316]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl backdrop-blur-sm relative ${bot.backgroundColor}`}
+        >
           <div class="absolute top-4 right-4 bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 z-20 shadow-lg">
             <i class="fas fa-ban" /> Deshabilitado
           </div>

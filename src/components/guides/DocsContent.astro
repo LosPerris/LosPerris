@@ -1,6 +1,7 @@
 ---
 import { guides } from "../../data/guides";
 import type { Command, GuideSection } from "../../data/commands";
+import { discordLink } from "../../data/community";
 
 const initialGuide = guides[0];
 
@@ -79,7 +80,7 @@ const emojiToIcon: Record<string, string> = {
           Explorar Temas
         </a>
         <a
-          href="https://discord.gg/JKPUVf9aeU"
+          href={discordLink}
           target="_blank"
           class="px-6 py-2 bg-transparent text-gray-300 border border-[#333] font-semibold rounded-lg hover:bg-[#1a1a1a] hover:text-white transition-colors flex items-center gap-2"
         >

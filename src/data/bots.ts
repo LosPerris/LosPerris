@@ -9,7 +9,7 @@ export const helpBotData = {
   imageSrc: realImg,
   tags: ["🛡️ Moderación Avanzada", "🔒 Seguridad Total", "💾 Base de Datos"],
   backgroundColor: "bg-[#2d2d2d]",
-  inviteLink: `https://discord.com/api/oauth2/authorize?client_id=${import.meta.env.PUBLIC_BOT_HELP_CLIENT_ID || "TU_CLIENT_ID_HELP"}&permissions=8&scope=bot`,
+  inviteLink: `https://discord.com/api/oauth2/authorize?client_id=${import.meta.env.PUBLIC_BOT_HELP_CLIENT_ID || "TU_CLIENT_ID_HELP"}&permissions=84992&scope=bot`,
   features: [
     {
       icon: "fas fa-shield-alt",
@@ -74,7 +74,7 @@ export const gameBotData = {
     "🔄 Actualizaciones Diarias",
   ],
   backgroundColor: "bg-[#1a1a1a]",
-  inviteLink: `https://discord.com/api/oauth2/authorize?client_id=${import.meta.env.PUBLIC_BOT_GAME_CLIENT_ID || "TU_CLIENT_ID_GAME"}&permissions=8&scope=bot`,
+  inviteLink: `https://discord.com/api/oauth2/authorize?client_id=${import.meta.env.PUBLIC_BOT_GAME_CLIENT_ID || "TU_CLIENT_ID_GAME"}&permissions=84992&scope=bot`,
   features: [
     {
       icon: "fas fa-gamepad",

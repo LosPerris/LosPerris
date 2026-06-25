@@ -14,15 +14,15 @@ export const apis = [
     endpoints: [
       {
         method: "GET",
-        path: "/api/followage/:user/:channel",
+        path: "/api/twitch/followage/:user/:channel",
         description: "API de tiempo de seguimiento (Followage).",
-        example: `${siteUrl}/api/followage/usuario/canal`,
+        example: `${siteUrl}/api/twitch/followage/usuario/canal`,
       },
       {
         method: "WEB",
-        path: "/api/clips",
+        path: "/api/twitch/clips",
         description: "Gestor y descargador de Clips.",
-        example: `${siteUrl}/twitch/clips`,
+        example: `${siteUrl}/api/twitch/clips`,
       },
     ],
   },
@@ -39,9 +39,9 @@ export const apis = [
     endpoints: [
       {
         method: "GET",
-        path: "/valorant/v1/mmr/:region/:name/:tag",
+        path: "/api/valorant/v1/mmr/:region/:name/:tag",
         description: "Obtiene el rango y ELO actual de un jugador.",
-        example: `${siteUrl}/valorant/v1/mmr/na/user/tag`,
+        example: `${siteUrl}/api/valorant/v1/mmr/na/user/tag`,
       },
       {
         method: "GET",

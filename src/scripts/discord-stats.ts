@@ -16,7 +16,10 @@ const setupDiscordStats = (): void => {
   const code = section.dataset.inviteCode || "JKPUVf9aeU";
 
   fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error(`Discord API ${res.status}`);
+      return res.json();
+    })
     .then((data: DiscordInviteResponse) => {
       if (data.approximate_member_count) {
         const members = data.approximate_member_count;

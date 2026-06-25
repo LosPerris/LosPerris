@@ -27,6 +27,7 @@ pnpm-debug.log*
 
 # vercel
 .vercel
+vercel.json
 
 backup
 legacy_backup
