@@ -59,6 +59,14 @@
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/_astro/:match*?internal_secret=__INTERNAL_SECRET__"
     },
     {
+      "source": "/2f7a780e1a8ef1cf/:match*",
+      "destination": "https://twitch-api-modern.vercel.app/2f7a780e1a8ef1cf/:match*"
+    },
+    {
+      "source": "/_vercel/speed-insights/:match*",
+      "destination": "https://twitch-api-modern.vercel.app/_vercel/speed-insights/:match*"
+    },
+    {
       "source": "/api/twitch/img/:match*",
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/img/:match*?internal_secret=__INTERNAL_SECRET__"
     },
