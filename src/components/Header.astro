@@ -4,77 +4,93 @@ import { discordLink } from "../data/community";
 const navItems = [
   { name: "Inicio", href: "/" },
   { name: "Ecosistema", href: "/#bots" },
-  { name: "Desarrolladores", href: "/#apis" },
+  { name: "API", href: "/api" },
 ];
 ---
 
 <header
-  class="fixed top-0 inset-x-0 z-50 h-20 bg-[#050505] border-b border-[#111111] transition-all duration-300"
+  id="main-header"
+  class="fixed top-0 inset-x-0 z-50 h-16 bg-[#050505] border-b border-transparent transition-all duration-500"
 >
-  <div class="h-full container mx-auto px-4 flex items-center justify-between">
+  <div
+    class="h-full container mx-auto px-6 max-w-6xl flex items-center justify-between"
+  >
+    <!-- Logo -->
     <a href="/" class="flex items-center gap-3 group">
       <img
         src="/LosPerris-minimal.svg"
         alt="Los Perris"
-        class="w-10 h-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
+        class="w-7 h-7 group-hover:scale-110 transition-transform duration-300"
       />
       <span
-        class="font-bold text-xl tracking-tight text-white group-hover:text-[#f97316] transition-colors"
+        class="font-bold text-lg tracking-tight text-white group-hover:text-[#f97316] transition-colors"
         >LosPerris</span
       >
     </a>
 
-    <nav
-      class="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2"
-    >
+    <!-- Navegación Desktop -->
+    <nav class="hidden md:flex items-center gap-8">
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors"
+            class="group relative text-sm font-medium text-zinc-400 hover:text-[#f97316] transition-colors"
           >
             {item.name}
+            <span class="absolute -bottom-1.5 left-0 w-full h-[2px] bg-[#f97316] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
           </a>
         ))
       }
     </nav>
 
+    <!-- Botón Discord Desktop -->
+    <div class="hidden md:flex items-center">
+      <a
+        href={discordLink}
+        class="flex items-center gap-2 text-sm font-semibold bg-[#f97316]/10 text-[#f97316] hover:bg-[#f97316] hover:text-white border border-[#f97316]/20 px-4 py-1.5 rounded-lg transition-all duration-300 shadow-[0_0_10px_rgba(249,115,22,0.1)]"
+      >
+        <i class="fab fa-discord" aria-hidden="true"></i>
+        <span>Discord</span>
+      </a>
+    </div>
+
+    <!-- Menú Hamburguesa Móvil -->
     <button
       id="menu-btn"
-      class="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+      class="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"
       aria-label="Menú principal"
     >
-      <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+      <i class="fas fa-bars text-lg" aria-hidden="true"></i>
     </button>
   </div>
 </header>
 
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-[100] bg-[#050505] translate-x-full transition-transform duration-500 md:hidden flex flex-col"
+  class="fixed inset-0 z-[100] bg-[#050505]/95 backdrop-blur-xl translate-x-full transition-transform duration-500 md:hidden flex flex-col"
 >
   <div
-    class="h-20 px-6 flex items-center justify-between border-b border-[#111111]"
+    class="h-16 px-6 flex items-center justify-between border-b border-white/5"
   >
     <div class="flex items-center gap-3">
-      <img src="/LosPerris-minimal.svg" alt="" class="w-8 h-8" />
-      <span class="font-bold text-xl text-white">Navegación</span>
+      <img src="/LosPerris-minimal.svg" alt="" class="w-7 h-7" />
+      <span class="font-bold text-lg text-white">Navegación</span>
     </div>
     <button
       id="close-menu"
-      class="p-2 w-10 h-10 rounded-full bg-white/5 text-white/60 hover:text-white transition-colors flex items-center justify-center"
+      class="p-2 text-zinc-400 hover:text-white transition-colors"
       aria-label="Cerrar menú"
     >
       <i class="fas fa-times text-xl" aria-hidden="true"></i>
     </button>
   </div>
 
-  <div class="flex-1 overflow-y-auto p-6 space-y-4">
+  <div class="flex-1 p-6 flex flex-col gap-2">
     {
       navItems.map((item) => (
         <a
           href={item.href}
-          class="block p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-white font-bold hover:bg-white/[0.08] transition-all active:scale-[0.98]"
+          class="block px-4 py-3 rounded-lg text-zinc-300 font-medium hover:bg-white/5 hover:text-white transition-all active:scale-[0.98]"
         >
           {item.name}
         </a>
@@ -82,18 +98,47 @@ const navItems = [
     }
   </div>
 
-  <div class="p-6 border-t border-[#111111] bg-[#050505]">
-    <div class="flex items-center justify-between text-white/40 text-xs">
+  <div class="p-6 border-t border-white/5">
+    <div class="flex items-center justify-between text-zinc-500 text-xs">
       <span>LosPerris © 2026</span>
-      <div class="flex gap-4">
-        <a
-          href={discordLink}
-          class="hover:text-white transition-colors"
-          aria-label="Ir a nuestro Discord"
-        >
-          <i class="fab fa-discord" aria-hidden="true"></i>
-        </a>
-      </div>
+      <a
+        href={discordLink}
+        class="text-zinc-400 hover:text-white transition-colors text-lg"
+        aria-label="Ir a nuestro Discord"
+      >
+        <i class="fab fa-discord" aria-hidden="true"></i>
+      </a>
     </div>
   </div>
 </div>
+
+<script>
+  function initHeaderScroll() {
+    const header = document.getElementById("main-header");
+    if (!header) return;
+
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        // Cuando haces scroll: sombra naranja y borde naranja
+        header.classList.add(
+          "shadow-[0_4px_15px_rgba(249,115,22,0.08)]",
+          "border-[#f97316]/30",
+        );
+        header.classList.remove("border-transparent");
+      } else {
+        // Cuando estás arriba: normal
+        header.classList.remove(
+          "shadow-[0_4px_15px_rgba(249,115,22,0.08)]",
+          "border-[#f97316]/30",
+        );
+        header.classList.add("border-transparent");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Inicializar por si la página carga ya scrolleada
+  }
+
+  // Soportar las transiciones de página de Astro
+  document.addEventListener("astro:page-load", initHeaderScroll);
+</script>

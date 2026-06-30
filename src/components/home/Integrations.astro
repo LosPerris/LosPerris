@@ -5,32 +5,32 @@ const technologies = [
   {
     name: "Discord API",
     slug: "discord",
-    hoverColor: "group-hover:text-[#5865F2]",
+    color: "text-[#5865F2]",
   },
   {
     name: "Node.js",
     slug: "nodedotjs",
-    hoverColor: "group-hover:text-[#339933]",
+    color: "text-[#339933]",
   },
   {
     name: "TypeScript",
     slug: "typescript",
-    hoverColor: "group-hover:text-[#3178C6]",
+    color: "text-[#3178C6]",
   },
-  { name: "React", slug: "react", hoverColor: "group-hover:text-[#61DAFB]" },
-  { name: "Astro", slug: "astro", hoverColor: "group-hover:text-[#FF5D01]" },
-  { name: "Express", slug: "express", hoverColor: "group-hover:text-white" },
+  { name: "React", slug: "react", color: "text-[#61DAFB]" },
+  { name: "Astro", slug: "astro", color: "text-[#FF5D01]" },
+  { name: "Express", slug: "express", color: "text-zinc-200" },
   {
     name: "Tailwind CSS",
     slug: "tailwindcss",
-    hoverColor: "group-hover:text-[#06B6D4]",
+    color: "text-[#06B6D4]",
   },
-  { name: "Vercel", slug: "vercel", hoverColor: "group-hover:text-white" },
+  { name: "Vercel", slug: "vercel", color: "text-zinc-200" },
 ];
 ---
 
 <section
-  class="py-10 border-y border-[#111111] bg-[#050505] overflow-hidden relative"
+  class="py-10 border-y border-[#f97316]/20 bg-[#050505] overflow-hidden relative"
 >
   <div
     data-timeline-bridge-source
@@ -54,13 +54,13 @@ const technologies = [
       {
         technologies.map((tech) => (
           <div
-            class={`group flex items-center gap-3 text-zinc-600 transition-colors duration-300 cursor-default ${tech.hoverColor}`}
+            class={`group flex items-center gap-3 transition-all duration-300 cursor-default ${tech.color} opacity-60 hover:opacity-100 hover:scale-105 hover:drop-shadow-lg`}
           >
             <div
               class="flex items-center justify-center shrink-0"
               set:html={icons[tech.slug as keyof typeof icons]}
             />
-            <span class="text-sm font-semibold uppercase tracking-wider">
+            <span class="text-sm font-bold uppercase tracking-wider">
               {tech.name}
             </span>
           </div>
@@ -72,13 +72,13 @@ const technologies = [
       {
         technologies.map((tech) => (
           <div
-            class={`group flex items-center gap-3 text-zinc-600 transition-colors duration-300 cursor-default ${tech.hoverColor}`}
+            class={`group flex items-center gap-3 transition-all duration-300 cursor-default ${tech.color} opacity-60 hover:opacity-100 hover:scale-105 hover:drop-shadow-lg`}
           >
             <div
               class="flex items-center justify-center shrink-0"
               set:html={icons[tech.slug as keyof typeof icons]}
             />
-            <span class="text-sm font-semibold uppercase tracking-wider">
+            <span class="text-sm font-bold uppercase tracking-wider">
               {tech.name}
             </span>
           </div>
