@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import Button from "../ui/Button.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+import Card from "../ui/Card.astro";
+
+// Obtenemos de la colección y ordenamos por fecha
+const allUpdates = await getCollection("updates");
+const sortedUpdates = allUpdates.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const latestUpdates = sortedUpdates.slice(0, 3);
+---
+
+<section
+  id="updates"
+  class="py-24 relative bg-[#050505] border-t border-[#f97316]/40"
+>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="flex flex-col items-center text-center mb-16">
+      <SectionHeader
+        title="ÚLTIMAS"
+        highlight="NOVEDADES"
+        description="El ecosistema de LosPerris evoluciona constantemente. Esto es lo nuevo."
+        align="center"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      {
+        latestUpdates.map((update) => (
+          <Card
+            hoverEffect={true}
+            class="p-6 border border-[#27272a] bg-[#0a0a0a]/50 flex flex-col h-full"
+          >
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-xs font-bold tracking-wider text-zinc-500 uppercase">
+                {update.data.dateString}
+              </span>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 text-[10px] font-bold tracking-wider text-zinc-300 uppercase bg-zinc-800 border border-zinc-700 rounded-full hidden sm:inline-block">
+                  {update.data.api}
+                </span>
+                <span class="px-2.5 py-1 text-[10px] font-bold tracking-wider text-[#f97316] uppercase bg-[#f97316]/10 border border-[#f97316]/20 rounded-full">
+                  {update.data.tag}
+                </span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 tracking-tight">
+              {update.data.title}
+            </h3>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+              {update.data.description}
+            </p>
+          </Card>
+        ))
+      }
+    </div>
+
+    <div class="flex justify-center">
+      <Button
+        href="/actualizaciones"
+        variant="outline"
+        class="px-8 py-3 font-bold"
+      >
+        Ver historial completo
+      </Button>
+    </div>
+  </div>
+</section>

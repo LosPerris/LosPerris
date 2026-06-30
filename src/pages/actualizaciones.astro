@@ -1,0 +1,148 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/ui/BackButton.astro";
+import { getCollection } from "astro:content";
+
+const allUpdates = await getCollection("updates");
+const sortedUpdates = allUpdates.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Layout title="Actualizaciones | LosPerris" showBackgroundEffects={false}>
+  <main class="min-h-screen pt-32 pb-24 px-4 relative z-10 bg-[#050505]">
+    <div class="max-w-4xl mx-auto relative z-10">
+      <BackButton class="mb-4" />
+
+      <div class="mb-16">
+        <h1
+          class="text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block animate-[fadeInUp_0.8s_ease-out] uppercase"
+        >
+          REGISTRO DE <br /><span
+            class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.2)]"
+            >ACTUALIZACIONES</span
+          >
+        </h1>
+        <p
+          class="text-lg text-zinc-400 max-w-2xl mt-6 animate-[fadeInUp_0.8s_ease-out_0.1s_both]"
+        >
+          Todo el historial de cambios, mejoras y nuevas herramientas agregadas
+          al ecosistema de LosPerris.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div
+        class="flex flex-wrap gap-3 mb-12 animate-[fadeInUp_1s_ease-out_0.3s_both]"
+      >
+        <button
+          data-filter="all"
+          class="filter-btn active px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-[#f97316] text-white"
+          >Todos</button
+        >
+        <button
+          data-filter="Twitch"
+          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
+          >Twitch</button
+        >
+        <button
+          data-filter="Valorant"
+          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
+          >Valorant</button
+        >
+        <button
+          data-filter="Transcripts"
+          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
+          >Transcripts</button
+        >
+        <button
+          data-filter="Códigos QR"
+          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
+          >Códigos QR</button
+        >
+      </div>
+
+      <div
+        class="space-y-8 animate-[fadeInUp_1s_ease-out_0.4s_both]"
+        id="updates-list"
+      >
+        {
+          sortedUpdates.map((update) => (
+            <div
+              data-api={update.data.api}
+              class="update-card p-8 border border-[#27272a] bg-[#0a0a0a]/80 backdrop-blur-sm rounded-2xl relative overflow-hidden group hover:border-[#f97316]/50 transition-all duration-500"
+            >
+              <div class="absolute top-0 left-0 w-1 h-full bg-[#f97316] opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
+
+              <div class="flex flex-wrap items-center gap-3 mb-4">
+                <span class="text-xs font-black tracking-wider text-white uppercase bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
+                  {update.data.dateString}
+                </span>
+                <span class="px-3 py-1.5 text-xs font-bold tracking-wider text-[#f97316] uppercase bg-[#f97316]/10 border border-[#f97316]/20 rounded-lg">
+                  {update.data.tag}
+                </span>
+                <span class="px-3 py-1.5 text-xs font-bold tracking-wider text-zinc-300 uppercase bg-zinc-800 border border-zinc-700 rounded-lg ml-auto sm:ml-0">
+                  {update.data.api}
+                </span>
+              </div>
+
+              <h2 class="text-2xl font-bold text-white mb-3 tracking-tight">
+                {update.data.title}
+              </h2>
+              <p class="text-base text-zinc-400 leading-relaxed">
+                {update.data.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Script para manejar el filtrado
+  const setupFilters = () => {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".update-card");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remover activo de todos
+        buttons.forEach((b) => {
+          b.classList.remove("bg-[#f97316]", "text-white");
+          b.classList.add("bg-white/5", "text-zinc-400");
+        });
+
+        // Agregar activo al seleccionado
+        button.classList.remove("bg-white/5", "text-zinc-400");
+        button.classList.add("bg-[#f97316]", "text-white");
+
+        const filterValue = button.getAttribute("data-filter");
+
+        cards.forEach((card) => {
+          const api = card.getAttribute("data-api");
+          const element = card as HTMLElement;
+
+          if (filterValue === "all" || filterValue === api) {
+            element.style.display = "block";
+            setTimeout(() => {
+              element.style.opacity = "1";
+              element.style.transform = "translateY(0)";
+            }, 10);
+          } else {
+            element.style.opacity = "0";
+            element.style.transform = "translateY(10px)";
+            setTimeout(() => {
+              element.style.display = "none";
+            }, 300); // Coincide con la duración de la transición
+          }
+        });
+      });
+    });
+  };
+
+  // Ejecutar al cargar y después de transiciones de ViewTransitions
+  setupFilters();
+  document.addEventListener("astro:page-load", setupFilters);
+</script>

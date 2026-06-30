@@ -90,11 +90,11 @@ const categories = Object.keys(groupedGuides);
                     return (
                       <li>
                         <button
-                          class={`guide-btn w-full text-left px-3 py-2 text-sm transition-all duration-200 flex items-center justify-between group rounded-lg
+                          class={`guide-btn w-full text-left px-3 py-2 text-sm transition-colors duration-200 flex items-center justify-between group rounded-lg border-l-2
                                                     ${
                                                       isActive
-                                                        ? "text-[#f97316] font-medium bg-[#f97316]/5"
-                                                        : "text-[#a1a1aa] hover:text-white hover:bg-white/5"
+                                                        ? "text-[#f97316] font-semibold bg-[#f97316]/10 border-[#f97316]"
+                                                        : "text-[#a1a1aa] hover:text-white hover:bg-white/5 border-transparent"
                                                     }`}
                           data-id={guide.id}
                           onclick={`switchGuide('${guide.id}')`}

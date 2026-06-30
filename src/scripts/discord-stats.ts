@@ -48,15 +48,6 @@ const setupDiscordStats = (): void => {
         data.approximate_presence_count,
       );
 
-      const memberEl = document.getElementById("member-count");
-      const onlineEl = document.getElementById("online-count");
-      if (memberEl && data.approximate_member_count) {
-        memberEl.textContent = formatCount(data.approximate_member_count);
-      }
-      if (onlineEl && data.approximate_presence_count) {
-        onlineEl.textContent = formatCount(data.approximate_presence_count);
-      }
-
       document.body.setAttribute("data-discord-stats-loaded", "true");
     })
     .catch((e: Error) => console.error("Error fetching Discord stats:", e));

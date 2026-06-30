@@ -117,20 +117,25 @@ const navItems = [
 </div>
 
 <script>
+  let _headerScrollHandler: (() => void) | null = null;
+
   function initHeaderScroll() {
     const header = document.getElementById("main-header");
     if (!header) return;
 
+    // Cleanup del listener anterior para evitar acumulación
+    if (_headerScrollHandler) {
+      window.removeEventListener("scroll", _headerScrollHandler);
+    }
+
     const handleScroll = () => {
       if (window.scrollY > 20) {
-        // Cuando haces scroll: sombra naranja y borde naranja
         header.classList.add(
           "shadow-[0_4px_15px_rgba(249,115,22,0.08)]",
           "border-[#f97316]/30",
         );
         header.classList.remove("border-transparent");
       } else {
-        // Cuando estás arriba: normal
         header.classList.remove(
           "shadow-[0_4px_15px_rgba(249,115,22,0.08)]",
           "border-[#f97316]/30",
@@ -139,10 +144,10 @@ const navItems = [
       }
     };
 
+    _headerScrollHandler = handleScroll;
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Inicializar por si la página carga ya scrolleada
+    handleScroll();
   }
 
-  // Soportar las transiciones de página de Astro
   document.addEventListener("astro:page-load", initHeaderScroll);
 </script>

@@ -10,7 +10,7 @@ interface Props {
   description?: string;
   showHeader?: boolean;
   showFooter?: boolean;
-  showWallpaper?: boolean;
+  showBackgroundEffects?: boolean;
 }
 
 const {
@@ -18,7 +18,7 @@ const {
   description = "LosPerris | Bots de Moderación y Gaming para Discord. Mejora tu servidor con herramientas avanzadas y estadísticas en tiempo real.",
   showHeader = true,
   showFooter = true,
-  showWallpaper = true,
+  showBackgroundEffects = true,
 } = Astro.props;
 ---
 
@@ -46,7 +46,7 @@ const {
     <link rel="icon" type="image/svg+xml" href="/LosPerris-minimal.svg" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       rel="stylesheet"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
@@ -56,7 +56,7 @@ const {
     <noscript
       ><link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       /></noscript
     >
     <ClientRouter />
@@ -64,15 +64,13 @@ const {
   <body
     class="bg-[#050505] min-h-screen relative text-white selection:bg-[#f97316] selection:text-white overflow-x-clip"
   >
-    <div
-      class="absolute top-0 inset-x-0 h-[100vh] overflow-hidden -z-10 pointer-events-none"
-    >
-      <BackgroundEffects
-        withWallpaper={showWallpaper}
-        variant="hero"
-        showBlobs={true}
-      />
-    </div>
+    {
+      showBackgroundEffects && (
+        <div class="absolute top-0 inset-x-0 h-[70vh] overflow-hidden -z-10 pointer-events-none">
+          <BackgroundEffects />
+        </div>
+      )
+    }
     {showHeader && <Header />}
     <slot />
     {showFooter && <Footer />}

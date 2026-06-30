@@ -4,6 +4,7 @@ import Button from "../ui/Button.astro";
 import SectionHeader from "../ui/SectionHeader.astro";
 import TimelineLine from "../ui/TimelineLine.astro";
 import ApiCard from "./ApiCard.astro";
+import { socialIcons } from "../../data/icons";
 ---
 
 <section
@@ -41,9 +42,16 @@ import ApiCard from "./ApiCard.astro";
                   data-timeline-item
                 >
                   <div class="timeline-node timeline-node--left top-12">
-                    <i
-                      class={`${api.icon || "fas fa-code"} text-xl timeline-icon`}
-                    />
+                    {api.iconId && socialIcons[api.iconId] ? (
+                      <div
+                        class="timeline-icon flex items-center justify-center w-full h-full text-white"
+                        set:html={socialIcons[api.iconId]}
+                      />
+                    ) : (
+                      <i
+                        class={`${api.icon || "fas fa-code"} text-xl timeline-icon`}
+                      />
+                    )}
                   </div>
 
                   <div class="timeline-content">

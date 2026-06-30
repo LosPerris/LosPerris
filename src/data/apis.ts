@@ -7,6 +7,7 @@ export const apis = [
     description:
       "Suite completa para streamers: API de Followage y gestor de Clips. Todo en un solo lugar.",
     icon: "fab fa-twitch",
+    iconId: "twitch",
     color: "text-[#9146FF]",
     hoverColor: "group-hover:text-[#9146FF]",
     link: "/api/twitch/",
@@ -43,6 +44,7 @@ export const apis = [
     description:
       "Obtén datos en tiempo real de Valorant: Rango, MMR, Historial de partidas y más. Respuestas en texto plano para fácil integración.",
     icon: "fas fa-crosshairs",
+    iconId: "valorant",
     color: "text-[#FF4655]",
     hoverColor: "group-hover:text-[#FF4655]",
     link: "/api/valorant",

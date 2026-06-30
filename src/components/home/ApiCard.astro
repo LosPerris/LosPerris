@@ -1,6 +1,7 @@
 ---
 import Card from "../ui/Card.astro";
 import Button from "../ui/Button.astro";
+import { socialIcons } from "../../data/icons";
 
 interface ApiEndpoint {
   method: string;
@@ -14,6 +15,7 @@ interface Props {
     title: string;
     description: string;
     icon?: string;
+    iconId?: string;
     color?: string;
     hoverColor?: string;
     link: string;
@@ -34,7 +36,16 @@ const { api, index, showTestedBadge = false } = Astro.props;
     <div
       class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl transition-transform ${api.color || "text-white"}`}
     >
-      <i class={api.icon || "fas fa-code"}></i>
+      {
+        api.iconId && socialIcons[api.iconId] ? (
+          <div
+            set:html={socialIcons[api.iconId]}
+            class="flex items-center justify-center w-full h-full"
+          />
+        ) : (
+          <i class={api.icon || "fas fa-code"} />
+        )
+      }
     </div>
     {
       showTestedBadge && (
