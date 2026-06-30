@@ -2,6 +2,7 @@
 import { guides } from "../../data/guides";
 import { helpBotData, gameBotData } from "../../data/bots";
 import { Image } from "astro:assets";
+import BackButton from "../ui/BackButton.astro";
 
 const categoryImages = {
   "Bot Ayuda": helpBotData.imageSrc,
@@ -48,6 +49,7 @@ const categories = Object.keys(groupedGuides);
     </div>
 
     <nav id="sidebar-nav" class="hidden lg:block space-y-2 lg:p-6 lg:pt-10">
+      <BackButton class="mb-8" />
       <h2
         class="text-xs font-black text-[#f97316] uppercase tracking-[0.2em] mb-6 pl-2 hidden lg:block"
       >

@@ -1,0 +1,25 @@
+---
+interface Props {
+  href?: string;
+  text?: string;
+  class?: string;
+}
+
+const {
+  href = "/",
+  text = "Volver al Inicio",
+  class: className = "mb-8 flex justify-start",
+} = Astro.props;
+---
+
+<div class={className}>
+  <a
+    href={href}
+    class="inline-flex items-center gap-2 text-zinc-400 hover:text-[#f97316] transition-colors text-sm font-medium group"
+  >
+    <i
+      class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform duration-300"
+    ></i>
+    {text}
+  </a>
+</div>

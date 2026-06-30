@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { apis } from "../../data/apis";
 import ApiCard from "../../components/home/ApiCard.astro";
+import BackButton from "../../components/ui/BackButton.astro";
 ---
 
 <Layout title="APIs | LosPerris" showWallpaper={false}>
@@ -17,6 +18,7 @@ import ApiCard from "../../components/home/ApiCard.astro";
     </div>
 
     <div class="max-w-6xl mx-auto relative z-10">
+      <BackButton class="mb-4" />
       <div class="text-center mb-16">
         <h1
           class="text-4xl md:text-6xl font-black text-white tracking-tight relative inline-block animate-[fadeInUp_0.8s_ease-out] uppercase"

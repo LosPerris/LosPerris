@@ -116,12 +116,12 @@ export const termsSections = [
     content: `
       <p class="mb-4">Para preguntas, dudas o reportes relacionados con estos términos y condiciones, puedes contactarnos a través de:</p>
       <div class="mt-4">
-          <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
-              <i class="fab fa-discord text-white text-xl w-5"></i>
+          <div class="flex items-center gap-3 mb-3 p-3 bg-[#f97316]/10 rounded-xl border border-[#f97316]/20 transition-colors hover:bg-[#f97316]/20">
+              <i class="fab fa-discord text-[#f97316] text-xl w-5"></i>
               <span>Servidor de Discord: <a href="${discordLink}" target="_blank" rel="noopener noreferrer" class="text-white font-semibold no-underline hover:underline">Los Perris Community</a></span>
           </div>
-          <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
-              <i class="fas fa-headset text-white text-xl w-5"></i>
+          <div class="flex items-center gap-3 mb-3 p-3 bg-[#f97316]/10 rounded-xl border border-[#f97316]/20 transition-colors hover:bg-[#f97316]/20">
+              <i class="fas fa-headset text-[#f97316] text-xl w-5"></i>
               <span>Canal de Soporte: <a href="${discordLink}" target="_blank" rel="noopener noreferrer" class="text-white font-semibold no-underline hover:underline">#soporte-técnico</a></span>
           </div>
       </div>

@@ -74,8 +74,8 @@ export const privacySections = [
     content: `
       <p class="mb-4">Si tienes preguntas sobre esta Política de Privacidad, contáctanos en:</p>
       <div class="mt-4">
-          <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
-              <i class="fab fa-discord text-white text-xl w-5"></i>
+          <div class="flex items-center gap-3 mb-3 p-3 bg-[#f97316]/10 rounded-xl border border-[#f97316]/20 transition-colors hover:bg-[#f97316]/20">
+              <i class="fab fa-discord text-[#f97316] text-xl w-5"></i>
               <span>Servidor de Soporte: <a href="${discordLink}" target="_blank" rel="noopener noreferrer" class="text-white font-semibold no-underline hover:underline">Los Perris Community</a></span>
           </div>
       </div>
