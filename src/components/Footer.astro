@@ -50,13 +50,15 @@ const getLink = (hash: string) => {
               <a
                 href={getLink("#bots")}
                 class="text-zinc-500 hover:text-zinc-200 transition-colors text-sm"
-                >Bots de Moderación</a>
+                >Bots de Moderación</a
+              >
             </li>
             <li>
               <a
                 href={getLink("#apis")}
                 class="text-zinc-500 hover:text-zinc-200 transition-colors text-sm"
-                >APIs Públicas</a>
+                >APIs Públicas</a
+              >
             </li>
           </ul>
         </div>
@@ -72,13 +74,17 @@ const getLink = (hash: string) => {
               <a
                 href={discordLink}
                 class="text-zinc-500 hover:text-zinc-200 transition-colors text-sm"
-                >Servidor de Discord</a>
+                >Servidor de Discord</a
+              >
             </li>
             <li>
               <a
-                href="/estado"
+                href="https://status.losperris.dev"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="text-zinc-500 hover:text-zinc-200 transition-colors text-sm"
-                >Estado del Sistema</a>
+                >Estado del Sistema</a
+              >
             </li>
           </ul>
         </div>
@@ -94,13 +100,15 @@ const getLink = (hash: string) => {
               <a
                 href="/terminos"
                 class="text-zinc-500 hover:text-zinc-200 transition-colors text-sm"
-                >Términos de Servicio</a>
+                >Términos de Servicio</a
+              >
             </li>
             <li>
               <a
                 href="/politica-privacidad"
                 class="text-zinc-500 hover:text-zinc-200 transition-colors text-sm"
-                >Privacidad</a>
+                >Privacidad</a
+              >
             </li>
           </ul>
         </div>
@@ -115,12 +123,21 @@ const getLink = (hash: string) => {
         &copy; {new Date().getFullYear()}
         {domain}. Todos los derechos reservados.
       </p>
-      <div class="flex items-center gap-2 mt-4 md:mt-0 text-sm text-zinc-600">
-        <span
-          class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]"
-        ></span>
-        <span>Todos los sistemas operativos</span>
-      </div>
+      <!-- Better Stack Live Badge -->
+      <a
+        href="https://status.losperris.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 md:mt-0 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
+      >
+        <iframe
+          src="https://status.losperris.dev/badge?theme=dark"
+          width="250"
+          height="30"
+          frameborder="0"
+          scrolling="no"
+          style="color-scheme: normal; pointer-events: none;"></iframe>
+      </a>
     </div>
   </div>
 </footer>
