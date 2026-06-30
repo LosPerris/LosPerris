@@ -9,6 +9,13 @@ interface BridgeEntry {
   path: SVGPathElement;
 }
 
+interface BridgeSpec {
+  d: string;
+  y1Doc: number;
+  y2Doc: number;
+  maxY: number;
+}
+
 interface ZonePoint {
   x: number;
   y: number;
@@ -24,6 +31,8 @@ let lines: HTMLElement[] = [];
 let items: HTMLElement[] = [];
 let scrollListener: (() => void) | null = null;
 let resizeListener: (() => void) | null = null;
+let layoutRafId: number | null = null;
+let cachedBridgeKey = "";
 
 function scrollTop(): number {
   return window.scrollY || document.documentElement.scrollTop;
@@ -93,9 +102,6 @@ function onScroll(): void {
   rafId = requestAnimationFrame(tick);
 }
 
-/**
- * Punto de conexión: X de la línea, Y del borde del track (sin extensiones artificiales).
- */
 function connectorPoint(
   line: HTMLElement,
   zoneEl: HTMLElement,
@@ -118,7 +124,6 @@ function connectorPoint(
   return { x, y: yDoc - zoneTopDoc, yDoc };
 }
 
-/** S-curve clásica: baja vertical, curva horizontal, sube vertical. */
 function bridgePathD(x1: number, y1: number, x2: number, y2: number): string {
   const dy = y2 - y1;
   const lead = Math.min(72, Math.max(20, Math.abs(dy) * 0.22));
@@ -129,61 +134,10 @@ function bridgePathD(x1: number, y1: number, x2: number, y2: number): string {
   return `M ${x1} ${y1} L ${x1} ${y1e} C ${x1} ${mid}, ${x2} ${mid}, ${x2} ${y2e} L ${x2} ${y2}`;
 }
 
-function appendBridge(
-  group: Element,
-  d: string,
-  y1Doc: number,
-  y2Doc: number,
-): BridgeEntry {
-  const bg = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  bg.setAttribute("d", d);
-  bg.setAttribute("stroke", "#27272a");
-  bg.setAttribute("stroke-width", "2");
-  bg.setAttribute("stroke-linecap", "round");
-  bg.setAttribute("stroke-linejoin", "round");
-  bg.setAttribute("fill", "none");
-  group.appendChild(bg);
+function collectBridgeSpecs(): BridgeSpec[] {
+  if (!zone) return [];
 
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", d);
-  path.setAttribute("stroke", "url(#bridge-gradient)");
-  path.setAttribute("stroke-width", "2");
-  path.setAttribute("stroke-linecap", "round");
-  path.setAttribute("stroke-linejoin", "round");
-  path.setAttribute("fill", "none");
-  group.appendChild(path);
-
-  const length = path.getTotalLength();
-  path.style.strokeDasharray = `${length}`;
-  path.style.strokeDashoffset = `${length}`;
-
-  return { y1Doc, y2Doc, length, path };
-}
-
-function syncSvgSize(svg: SVGSVGElement, zoneEl: HTMLElement): void {
-  const w = zoneEl.offsetWidth;
-  const h = zoneEl.offsetHeight;
-  svg.setAttribute("width", String(w));
-  svg.setAttribute("height", String(h));
-  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
-}
-
-function drawBridges(): void {
-  const group = document.getElementById("bridges-group");
-  const svg = document.getElementById(
-    "timeline-bridges-svg",
-  ) as SVGSVGElement | null;
-
-  if (!group || !svg || !zone || window.innerWidth < DESKTOP_MIN) {
-    bridges = [];
-    group?.replaceChildren();
-    return;
-  }
-
-  syncSvgSize(svg, zone);
-  group.replaceChildren();
-  bridges = [];
-
+  const specs: BridgeSpec[] = [];
   const source = zone.querySelector<HTMLElement>(
     "[data-timeline-bridge-source]",
   );
@@ -207,9 +161,8 @@ function drawBridges(): void {
         y1 = 0;
       }
 
-      bridges.push(
-        appendBridge(group, bridgePathD(x1, y1, top.x, top.y), y1Doc, top.yDoc),
-      );
+      const d = bridgePathD(x1, y1, top.x, top.y);
+      specs.push({ d, y1Doc, y2Doc: top.yDoc, maxY: Math.max(y1, top.y) });
     }
   }
 
@@ -218,17 +171,171 @@ function drawBridges(): void {
     const top = connectorPoint(lines[i + 1], zone, "top");
     if (!bottom || !top) continue;
 
-    bridges.push(
-      appendBridge(
-        group,
-        bridgePathD(bottom.x, bottom.y, top.x, top.y),
-        bottom.yDoc,
-        top.yDoc,
-      ),
+    const d = bridgePathD(bottom.x, bottom.y, top.x, top.y);
+    specs.push({
+      d,
+      y1Doc: bottom.yDoc,
+      y2Doc: top.yDoc,
+      maxY: Math.max(bottom.y, top.y),
+    });
+  }
+
+  return specs;
+}
+
+function bridgeGeometryKey(): string {
+  if (!zone || window.innerWidth < DESKTOP_MIN) return "";
+
+  const parts: string[] = [];
+  const source = zone.querySelector<HTMLElement>(
+    "[data-timeline-bridge-source]",
+  );
+
+  if (source && lines.length > 0) {
+    const top = connectorPoint(lines[0], zone, "top");
+    const s = source.getBoundingClientRect();
+    if (top) {
+      parts.push(
+        `s:${Math.round(s.left)}:${Math.round(s.bottom)}:${Math.round(top.x)}:${Math.round(top.y)}`,
+      );
+    }
+  }
+
+  for (let i = 0; i < lines.length - 1; i++) {
+    const bottom = connectorPoint(lines[i], zone, "bottom");
+    const top = connectorPoint(lines[i + 1], zone, "top");
+    if (!bottom || !top) continue;
+    parts.push(
+      `${i}:${Math.round(bottom.x)}:${Math.round(bottom.y)}:${Math.round(top.x)}:${Math.round(top.y)}`,
     );
   }
 
+  return parts.join("|");
+}
+
+function spineHeight(specs: BridgeSpec[]): number {
+  if (!specs.length) return 0;
+  return Math.ceil(Math.max(...specs.map((s) => s.maxY)) + 64);
+}
+
+function syncSvgSize(svg: SVGSVGElement, width: number, height: number): void {
+  svg.setAttribute("width", String(width));
+  svg.setAttribute("height", String(height));
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+}
+
+function applyBridgeSpecs(group: Element, specs: BridgeSpec[]): void {
+  const needed = specs.length * 2;
+  const existing = group.children;
+
+  if (existing.length === needed) {
+    bridges = [];
+    for (let i = 0; i < specs.length; i++) {
+      const spec = specs[i];
+      const bg = existing[i * 2] as SVGPathElement;
+      const path = existing[i * 2 + 1] as SVGPathElement;
+      bg.setAttribute("d", spec.d);
+      path.setAttribute("d", spec.d);
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = `${length}`;
+      bridges.push({ y1Doc: spec.y1Doc, y2Doc: spec.y2Doc, length, path });
+    }
+    return;
+  }
+
+  group.replaceChildren();
+  bridges = [];
+
+  for (const spec of specs) {
+    const bg = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    bg.setAttribute("d", spec.d);
+    bg.setAttribute("stroke", "#27272a");
+    bg.setAttribute("stroke-width", "2");
+    bg.setAttribute("stroke-linecap", "round");
+    bg.setAttribute("stroke-linejoin", "round");
+    bg.setAttribute("fill", "none");
+    group.appendChild(bg);
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", spec.d);
+    path.setAttribute("stroke", "url(#bridge-gradient)");
+    path.setAttribute("stroke-width", "2");
+    path.setAttribute("stroke-linecap", "round");
+    path.setAttribute("stroke-linejoin", "round");
+    path.setAttribute("fill", "none");
+    group.appendChild(path);
+
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = `${length}`;
+    path.style.strokeDashoffset = `${length}`;
+    bridges.push({ y1Doc: spec.y1Doc, y2Doc: spec.y2Doc, length, path });
+  }
+}
+
+function drawBridges(): void {
+  const group = document.getElementById("bridges-group");
+  const svg = document.getElementById(
+    "timeline-bridges-svg",
+  ) as SVGSVGElement | null;
+  const container = document.getElementById("timeline-bridges-container");
+
+  if (
+    !group ||
+    !svg ||
+    !zone ||
+    !container ||
+    window.innerWidth < DESKTOP_MIN
+  ) {
+    bridges = [];
+    group?.replaceChildren();
+    return;
+  }
+
+  const specs = collectBridgeSpecs();
+  const width = zone.offsetWidth;
+  const height = spineHeight(specs);
+
+  container.style.height = `${height}px`;
+  syncSvgSize(svg, width, height);
+  applyBridgeSpecs(group, specs);
   updateBridges();
+  cachedBridgeKey = bridgeGeometryKey();
+}
+
+/** La línea del FAQ solo cubre los summaries; las respuestas abiertas no la estiran. */
+function syncFaqLineHeight(): void {
+  if (!zone || window.innerWidth < DESKTOP_MIN) return;
+
+  const faqLine = zone.querySelector<HTMLElement>("#faq [data-timeline-line]");
+  const track = faqLine?.closest<HTMLElement>("[data-timeline-track]");
+  if (!faqLine || !track) return;
+
+  const faqItems = track.querySelectorAll<HTMLElement>("[data-timeline-item]");
+  if (!faqItems.length) return;
+
+  const trackRect = track.getBoundingClientRect();
+  const firstNode =
+    faqItems[0].querySelector<HTMLElement>(".timeline-node") ?? faqItems[0];
+  const lastSummary =
+    faqItems[faqItems.length - 1].querySelector<HTMLElement>("summary") ??
+    faqItems[faqItems.length - 1];
+
+  const top = firstNode.getBoundingClientRect().top - trackRect.top;
+  const bottom = lastSummary.getBoundingClientRect().bottom - trackRect.top;
+
+  faqLine.style.top = `${Math.max(0, top)}px`;
+  faqLine.style.height = `${Math.max(1, bottom - top)}px`;
+  faqLine.style.bottom = "auto";
+}
+
+function resetFaqLineStyles(): void {
+  zone
+    ?.querySelectorAll<HTMLElement>("#faq [data-timeline-line]")
+    .forEach((line) => {
+      line.style.top = "";
+      line.style.height = "";
+      line.style.bottom = "";
+    });
 }
 
 function cacheElements(): void {
@@ -239,6 +346,54 @@ function cacheElements(): void {
   items = Array.from(
     zone.querySelectorAll<HTMLElement>("[data-timeline-item]"),
   );
+}
+
+function runLayoutSync(): void {
+  cacheElements();
+
+  if (window.innerWidth < DESKTOP_MIN) {
+    document.getElementById("bridges-group")?.replaceChildren();
+    bridges = [];
+    cachedBridgeKey = "";
+    resetFaqLineStyles();
+    items.forEach((item) => item.classList.remove("is-lit"));
+    return;
+  }
+
+  syncFaqLineHeight();
+
+  const key = bridgeGeometryKey();
+  if (key !== cachedBridgeKey) {
+    drawBridges();
+  } else {
+    onScroll();
+  }
+}
+
+function syncLayout(debounce: boolean): void {
+  if (debounce) {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => runLayoutSync(), RESIZE_DEBOUNCE_MS);
+    return;
+  }
+
+  if (layoutRafId !== null) return;
+  layoutRafId = requestAnimationFrame(() => {
+    layoutRafId = null;
+    runLayoutSync();
+  });
+}
+
+function bindFaqToggles(): void {
+  if (!zone) return;
+
+  zone
+    .querySelectorAll<HTMLDetailsElement>("#faq details")
+    .forEach((details) => {
+      details.addEventListener("toggle", () => {
+        requestAnimationFrame(() => onScroll());
+      });
+    });
 }
 
 function destroy(): void {
@@ -262,29 +417,20 @@ function destroy(): void {
     cancelAnimationFrame(rafId);
     rafId = null;
   }
+  if (layoutRafId !== null) {
+    cancelAnimationFrame(layoutRafId);
+    layoutRafId = null;
+  }
   zone = null;
   bridges = [];
   lines = [];
   items = [];
-}
-
-function scheduleRedraw(): void {
-  if (resizeTimer) clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    cacheElements();
-    if (window.innerWidth < DESKTOP_MIN) {
-      document.getElementById("bridges-group")?.replaceChildren();
-      bridges = [];
-      items.forEach((item) => item.classList.remove("is-lit"));
-      return;
-    }
-    drawBridges();
-    onScroll();
-  }, RESIZE_DEBOUNCE_MS);
+  cachedBridgeKey = "";
 }
 
 function redraw(): void {
   cacheElements();
+  syncFaqLineHeight();
   drawBridges();
   onScroll();
 }
@@ -300,16 +446,17 @@ function init(): void {
   scrollListener = onScroll;
   window.addEventListener("scroll", scrollListener, { passive: true });
 
-  resizeListener = scheduleRedraw;
+  resizeListener = () => syncLayout(true);
   window.addEventListener("resize", resizeListener, { passive: true });
 
-  resizeObserver = new ResizeObserver(scheduleRedraw);
-  resizeObserver.observe(zone);
+  resizeObserver = new ResizeObserver(() => syncLayout(false));
   zone
-    .querySelectorAll("[data-timeline-section], [data-timeline-track]")
+    .querySelectorAll<HTMLElement>("[data-timeline-section]:not(#faq)")
     .forEach((el) => {
       resizeObserver!.observe(el);
     });
+
+  bindFaqToggles();
 
   requestAnimationFrame(() => {
     requestAnimationFrame(redraw);

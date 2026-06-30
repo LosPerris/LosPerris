@@ -167,6 +167,10 @@
   transition: color 0.4s ease;
 }
 
+#faq [data-timeline-line] {
+  bottom: auto;
+}
+
 details.timeline-content > summary .open-icon {
   transition: transform 0.3s ease;
 }
@@ -177,7 +181,9 @@ details.timeline-content[open] > summary .open-icon {
 
 #timeline-bridges-container {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   pointer-events: none;
   z-index: 2;
   overflow: visible;
@@ -185,6 +191,7 @@ details.timeline-content[open] > summary .open-icon {
 
 #timeline-bridges-svg {
   overflow: visible;
+  display: block;
 }
 
 .static-zone,
