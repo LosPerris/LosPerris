@@ -118,11 +118,11 @@ export const termsSections = [
       <div class="mt-4">
           <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
               <i class="fab fa-discord text-white text-xl w-5"></i>
-              <span>Servidor de Discord: <a href="${discordLink}" target="_blank" class="text-white font-semibold no-underline hover:underline">Los Perris Community</a></span>
+              <span>Servidor de Discord: <a href="${discordLink}" target="_blank" rel="noopener noreferrer" class="text-white font-semibold no-underline hover:underline">Los Perris Community</a></span>
           </div>
           <div class="flex items-center gap-3 mb-3 p-3 bg-[#404040] rounded-xl border border-[#404040]">
               <i class="fas fa-headset text-white text-xl w-5"></i>
-              <span>Canal de Soporte: <a href="${discordLink}" target="_blank" class="text-white font-semibold no-underline hover:underline">#soporte-técnico</a></span>
+              <span>Canal de Soporte: <a href="${discordLink}" target="_blank" rel="noopener noreferrer" class="text-white font-semibold no-underline hover:underline">#soporte-técnico</a></span>
           </div>
       </div>
     `,
@@ -143,7 +143,7 @@ export const termsSections = [
       <ul class="ml-8 mb-4 list-disc marker:text-white">
           <li class="mb-2">Almacenamos los datos necesarios en nuestra base de datos segura para el funcionamiento persistente de los servicios.</li>
           <li class="mb-2">Respetamos los límites de la API (Rate Limits) establecidos por Discord.</li>
-          <li class="mb-2">El uso de nuestros bots implica la aceptación de los <a href="https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service" target="_blank" class="text-white font-semibold no-underline hover:underline">Términos de Servicio para Desarrolladores de Discord</a>.</li>
+          <li class="mb-2">El uso de nuestros bots implica la aceptación de los <a href="https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service" target="_blank" rel="noopener noreferrer" class="text-white font-semibold no-underline hover:underline">Términos de Servicio para Desarrolladores de Discord</a>.</li>
       </ul>
     `,
   },

@@ -1,0 +1,87 @@
+---
+import TimelineLine from "../ui/TimelineLine.astro";
+
+const faqs = [
+  {
+    question: "¿Tienen algún costo los bots o las APIs?",
+    answer:
+      "No. Todo lo que ves aquí es gratuito. No vendemos planes ni suscripciones: lo hacemos por hobby y para la comunidad.",
+  },
+  {
+    question: "¿Necesito saber programar para usar los bots?",
+    answer:
+      "No hace falta. Los comandos están pensados para usarse desde Discord sin tocar código.",
+  },
+  {
+    question: "¿Cómo pido ayuda si algo falla?",
+    answer:
+      "Por Discord. Somos pocos y respondemos cuando podemos, sin prometer tiempos ni soporte comercial.",
+  },
+  {
+    question: "¿Con qué frecuencia actualizan las cosas?",
+    answer:
+      "Cuando hay tiempo y ganas. Arreglamos bugs y añadimos cosas pequeñas según lo que la gente del servidor pide.",
+  },
+];
+---
+
+<section
+  id="faq"
+  data-timeline-section
+  class="py-24 relative bg-[#050505] scroll-mt-32 pb-16 lg:pb-20"
+>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      <div
+        class="lg:col-span-4 lg:col-start-9 lg:sticky lg:top-32 text-right order-1 lg:order-2"
+      >
+        <h2
+          class="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight uppercase"
+        >
+          PREGUNTAS <br /><span
+            class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.2)]"
+            >FRECUENTES</span
+          >
+        </h2>
+        <p class="text-zinc-400 text-lg leading-relaxed">
+          Respuestas directas, sin marketing. Si te queda alguna duda,
+          escríbenos en Discord.
+        </p>
+      </div>
+
+      <div
+        class="lg:col-span-8 lg:col-start-1 lg:pr-16 relative order-2 lg:order-1"
+        data-timeline-track
+      >
+        <TimelineLine side="right" />
+
+        <div class="space-y-12 relative z-10 py-4">
+          {
+            faqs.map((faq) => (
+              <div class="relative pl-0 md:pr-20 text-right" data-timeline-item>
+                <div class="timeline-node timeline-node--right top-3">
+                  <i class="fas fa-question text-xl" />
+                </div>
+
+                <details
+                  name="faq-accordion"
+                  class="border border-[#27272a] bg-[#050505] rounded-xl px-6 [&_summary::-webkit-details-marker]:hidden timeline-content text-left"
+                >
+                  <summary class="flex cursor-pointer items-center justify-between py-5 text-white font-bold text-base">
+                    {faq.question}
+                    <span class="open-icon text-zinc-500">
+                      <i class="fas fa-chevron-down" />
+                    </span>
+                  </summary>
+                  <div class="pb-5 text-base text-zinc-400 leading-relaxed border-t border-[#27272a] pt-4">
+                    {faq.answer}
+                  </div>
+                </details>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

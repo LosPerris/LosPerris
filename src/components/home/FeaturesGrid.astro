@@ -1,0 +1,106 @@
+---
+import TimelineLine from "../ui/TimelineLine.astro";
+---
+
+<section
+  class="py-24 relative bg-[#050505]"
+  id="features-section"
+  data-timeline-section
+>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      <div class="lg:col-span-4 lg:sticky lg:top-32 text-left">
+        <h2
+          class="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight uppercase"
+        >
+          CARACTERÍSTICAS <br /><span
+            class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.2)]"
+            >PRINCIPALES</span
+          >
+        </h2>
+        <p class="text-zinc-400 text-lg leading-relaxed">
+          Nuestras herramientas están construidas con un enfoque claro en el
+          rendimiento, la seguridad y la facilidad de uso.
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 lg:pl-16 relative" data-timeline-track>
+        <TimelineLine side="left" />
+
+        <div class="space-y-16 relative z-10 py-4">
+          <div class="relative pl-0 md:pl-20" data-timeline-item>
+            <div class="timeline-node timeline-node--left top-1">
+              <i class="fas fa-bolt text-xl"></i>
+            </div>
+            <div
+              class="md:hidden flex-shrink-0 w-12 h-12 rounded-xl bg-[#0a0a0a] border border-[#f97316]/30 flex items-center justify-center text-[#f97316] mb-4"
+            >
+              <i class="fas fa-bolt text-lg"></i>
+            </div>
+            <div class="timeline-content timeline-content--text">
+              <h3 class="text-2xl font-bold text-white mb-3">Rapidez</h3>
+              <p class="text-zinc-400 text-lg leading-relaxed">
+                Nuestros bots están optimizados para responder rápidamente a los
+                comandos en tu servidor.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative pl-0 md:pl-20" data-timeline-item>
+            <div class="timeline-node timeline-node--left top-1">
+              <i class="fas fa-shield-alt text-xl"></i>
+            </div>
+            <div
+              class="md:hidden flex-shrink-0 w-12 h-12 rounded-xl bg-[#0a0a0a] border border-[#f97316]/30 flex items-center justify-center text-[#f97316] mb-4"
+            >
+              <i class="fas fa-shield-alt text-lg"></i>
+            </div>
+            <div class="timeline-content timeline-content--text">
+              <h3 class="text-2xl font-bold text-white mb-3">Privacidad</h3>
+              <p class="text-zinc-400 text-lg leading-relaxed">
+                No guardamos el contenido de los mensajes de tu servidor. La
+                información de tu comunidad se mantiene privada.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative pl-0 md:pl-20" data-timeline-item>
+            <div class="timeline-node timeline-node--left top-1">
+              <i class="fab fa-github text-xl"></i>
+            </div>
+            <div
+              class="md:hidden flex-shrink-0 w-12 h-12 rounded-xl bg-[#0a0a0a] border border-[#f97316]/30 flex items-center justify-center text-[#f97316] mb-4"
+            >
+              <i class="fab fa-github text-lg"></i>
+            </div>
+            <div class="timeline-content timeline-content--text">
+              <h3 class="text-2xl font-bold text-white mb-3">Comunidad</h3>
+              <p class="text-zinc-400 text-lg leading-relaxed">
+                Desarrollamos estas herramientas basándonos en las sugerencias y
+                en lo que los usuarios realmente utilizan.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative pl-0 md:pl-20" data-timeline-item>
+            <div class="timeline-node timeline-node--left top-1">
+              <i class="fas fa-book-open text-xl"></i>
+            </div>
+            <div
+              class="md:hidden flex-shrink-0 w-12 h-12 rounded-xl bg-[#0a0a0a] border border-[#f97316]/30 flex items-center justify-center text-[#f97316] mb-4"
+            >
+              <i class="fas fa-book-open text-lg"></i>
+            </div>
+            <div class="timeline-content timeline-content--text">
+              <h3 class="text-2xl font-bold text-white mb-3">Simplicidad</h3>
+              <p class="text-zinc-400 text-lg leading-relaxed">
+                La configuración es directa y rápida. Puedes tener los bots
+                funcionando en pocos minutos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

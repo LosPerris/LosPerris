@@ -28,11 +28,11 @@ const { api, index, showTestedBadge = false } = Astro.props;
 ---
 
 <Card
-  class="p-8 bg-white/2 bg-none border border-white/10 hover:border-[#f97316]/50 hover:bg-white/4 transition-all duration-300 group hover:-translate-y-1 shadow-lg backdrop-blur-sm"
+  class="api-card p-8 bg-none border border-[#27272a] transition-all duration-500 shadow-lg backdrop-blur-sm"
 >
   <div class="flex items-start justify-between mb-6">
     <div
-      class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform ${api.color || "text-white"}`}
+      class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl transition-transform ${api.color || "text-white"}`}
     >
       <i class={api.icon || "fas fa-code"}></i>
     </div>
@@ -46,7 +46,7 @@ const { api, index, showTestedBadge = false } = Astro.props;
   </div>
 
   <h3
-    class={`text-2xl font-bold text-white mb-3 transition-colors ${api.hoverColor || ""}`}
+    class={`text-2xl font-bold text-white mb-3 transition-colors ${api.hoverColor ? `hover:text-[${api.hoverColor}]` : ""}`}
   >
     {api.title}
   </h3>

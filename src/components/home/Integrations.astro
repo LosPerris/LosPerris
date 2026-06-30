@@ -1,0 +1,100 @@
+---
+import { icons } from "../../data/icons";
+
+const technologies = [
+  {
+    name: "Discord API",
+    slug: "discord",
+    hoverColor: "group-hover:text-[#5865F2]",
+  },
+  {
+    name: "Node.js",
+    slug: "nodedotjs",
+    hoverColor: "group-hover:text-[#339933]",
+  },
+  {
+    name: "TypeScript",
+    slug: "typescript",
+    hoverColor: "group-hover:text-[#3178C6]",
+  },
+  { name: "React", slug: "react", hoverColor: "group-hover:text-[#61DAFB]" },
+  { name: "Astro", slug: "astro", hoverColor: "group-hover:text-[#FF5D01]" },
+  { name: "Express", slug: "express", hoverColor: "group-hover:text-white" },
+  {
+    name: "Tailwind CSS",
+    slug: "tailwindcss",
+    hoverColor: "group-hover:text-[#06B6D4]",
+  },
+  { name: "Vercel", slug: "vercel", hoverColor: "group-hover:text-white" },
+];
+---
+
+<section
+  class="py-10 border-y border-[#111111] bg-[#050505] overflow-hidden relative"
+>
+  <div
+    data-timeline-bridge-source
+    class="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 pointer-events-none"
+    aria-hidden="true"
+  >
+  </div>
+  <!-- Fade Edges para que no se vea cortado -->
+  <div
+    class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none"
+  >
+  </div>
+
+  <div class="flex whitespace-nowrap animate-[marquee_40s_linear_infinite]">
+    <!-- Primer grupo -->
+    <div class="flex items-center justify-around w-full shrink-0 gap-16 px-8">
+      {
+        technologies.map((tech) => (
+          <div
+            class={`group flex items-center gap-3 text-zinc-600 transition-colors duration-300 cursor-default ${tech.hoverColor}`}
+          >
+            <div
+              class="flex items-center justify-center shrink-0"
+              set:html={icons[tech.slug as keyof typeof icons]}
+            />
+            <span class="text-sm font-semibold uppercase tracking-wider">
+              {tech.name}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+    <!-- Grupo duplicado para scroll infinito continuo -->
+    <div class="flex items-center justify-around w-full shrink-0 gap-16 px-8">
+      {
+        technologies.map((tech) => (
+          <div
+            class={`group flex items-center gap-3 text-zinc-600 transition-colors duration-300 cursor-default ${tech.hoverColor}`}
+          >
+            <div
+              class="flex items-center justify-center shrink-0"
+              set:html={icons[tech.slug as keyof typeof icons]}
+            />
+            <span class="text-sm font-semibold uppercase tracking-wider">
+              {tech.name}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>

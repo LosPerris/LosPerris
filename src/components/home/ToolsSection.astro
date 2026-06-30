@@ -1,95 +1,124 @@
 ---
 import { helpBotData, gameBotData } from "../../data/bots";
-import Section from "../ui/Section.astro";
 import Card from "../ui/Card.astro";
 import Button from "../ui/Button.astro";
 import SectionHeader from "../ui/SectionHeader.astro";
+import TimelineLine from "../ui/TimelineLine.astro";
 import { Image } from "astro:assets";
 
 const bots = [helpBotData, gameBotData];
 ---
 
-<Section id="bots" class="relative overflow-hidden">
-  <SectionHeader
-    badge="Ecosistema"
-    title="NUESTRAS"
-    highlight="HERRAMIENTAS"
-    description="Bots exclusivos desarrollados para potenciar tu experiencia en Discord."
-  />
+<section
+  id="bots"
+  data-timeline-section
+  class="py-24 relative bg-[#050505] scroll-mt-32"
+>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      <div
+        class="lg:col-span-4 lg:col-start-9 lg:sticky lg:top-32 text-right order-1 lg:order-2 self-start"
+      >
+        <SectionHeader
+          title="NUESTRAS"
+          highlight="HERRAMIENTAS"
+          description="Bots exclusivos desarrollados para potenciar tu experiencia en Discord."
+          align="right"
+        />
+      </div>
 
-  <div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto px-6 relative z-10"
-  >
-    {
-      bots.map((bot) => (
-        <Card
-          class={`p-6 md:p-8 bg-white/2 bg-none border border-white/10 hover:bg-white/4 hover:border-[#f97316]/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl backdrop-blur-sm relative ${bot.backgroundColor}`}
-        >
-          <div class="absolute top-4 right-4 bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 z-20 shadow-lg">
-            <i class="fas fa-ban" /> Deshabilitado
-          </div>
-          <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6 mb-6 text-left">
-            <Image
-              src={bot.imageSrc}
-              alt={bot.botName}
-              class="w-20 h-20 md:w-24 md:h-24 rounded-2xl shadow-lg group-hover:scale-105 transition-transform bg-white/5 self-start"
-              width={96}
-              height={96}
-            />
-            <div>
-              <h3 class="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-[#f97316] transition-colors">
-                {bot.botName}
-              </h3>
-              <p class="text-[#bdbdbd] text-sm leading-relaxed mb-4">
-                {bot.description}
-              </p>
-              <div class="flex gap-2 flex-wrap justify-start">
-                {bot.tags.slice(0, 2).map((tag) => (
-                  <span class="text-xs font-bold bg-[#f97316]/20 text-[#f97316] px-3 py-1 rounded-full border border-[#f97316]/50 shadow-[0_0_10px_rgba(249,115,22,0.2)] tracking-wider">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+      <div
+        class="lg:col-span-8 lg:col-start-1 lg:pr-16 relative order-2 lg:order-1"
+        data-timeline-track
+      >
+        <TimelineLine side="right" />
 
-          <div class="space-y-4 mb-8 bg-white/5 p-6 rounded-xl border border-white/10">
-            {bot.features.slice(0, 3).map((feature) => (
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-[#f97316]/20 flex items-center justify-center text-[#f97316] shrink-0 border border-[#f97316]/30">
-                  <i class={feature.icon} aria-hidden="true" />
+        <div class="space-y-12 relative z-10 py-4">
+          {
+            bots.map((bot) => (
+              <div class="relative pl-0 md:pr-20 text-right" data-timeline-item>
+                <div class="timeline-node timeline-node--right top-6">
+                  <img
+                    src="/LosPerris-minimal.svg"
+                    alt=""
+                    class="w-8 h-8 object-contain timeline-logo"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <div class="overflow-hidden">
-                  <span class="text-white font-semibold block text-sm truncate">
-                    {feature.title}
-                  </span>
-                  <span class="text-xs text-[#a0a0a0] truncate block">
-                    {feature.list[0]}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
 
-          <div class="flex gap-4">
-            <Button
-              class="flex-1 justify-center bg-[#2d2d2d] text-gray-500 cursor-not-allowed border border-[#404040]"
-              aria-label={`El bot ${bot.botName} está deshabilitado`}
-              disabled
-            >
-              <i class="fas fa-lock mr-2" aria-hidden="true" /> No Disponible
-            </Button>
-            <Button
-              variant="outline"
-              href="/bots/documentacion"
-              class="flex-1 justify-center"
-              aria-label={`Ver guías para ${bot.botName}`}
-            >
-              Ver Guías
-            </Button>
-          </div>
-        </Card>
-      ))
-    }
+                <Card
+                  hoverEffect={false}
+                  class="p-8 relative flex flex-col bg-none border border-[#27272a] backdrop-blur-sm shadow-xl timeline-content timeline-content--card"
+                >
+                  <div class="flex items-start justify-start gap-5 mb-8">
+                    <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center p-2 border border-white/10 shadow-lg flex-shrink-0">
+                      <Image
+                        src={bot.imageSrc}
+                        alt={bot.botName}
+                        class="w-full h-full object-contain drop-shadow-md"
+                        width={64}
+                        height={64}
+                      />
+                    </div>
+                    <div class="pt-1 text-left">
+                      <h3 class="text-2xl font-black text-white tracking-tight mb-2">
+                        {bot.botName}
+                      </h3>
+                      <div class="flex gap-2 items-center justify-start">
+                        {bot.tags.slice(0, 1).map((tag) => (
+                          <span class="bg-[#f97316]/20 px-3 py-1 rounded-full text-[10px] sm:text-xs text-[#f97316] font-bold border border-[#f97316]/50 shadow-[0_0_10px_rgba(249,115,22,0.2)] tracking-wider uppercase">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="text-zinc-400 text-base leading-relaxed mb-8 text-left font-medium">
+                    {bot.description}
+                  </p>
+
+                  <div class="space-y-5 mb-10">
+                    {bot.features.slice(0, 3).map((feature) => (
+                      <div class="flex items-start justify-start gap-4 text-left">
+                        <div class="flex-shrink-0 text-[#f97316] text-sm bg-[#f97316]/10 w-10 h-10 flex items-center justify-center rounded-xl border border-[#f97316]/20">
+                          <i class="fas fa-check" aria-hidden="true" />
+                        </div>
+                        <div>
+                          <span class="text-white font-bold text-base block">
+                            {feature.title}
+                          </span>
+                          <span class="text-sm text-zinc-500 block mt-1 leading-relaxed">
+                            {feature.list[0]}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div class="mt-auto border-t border-[#27272a] pt-6 flex justify-between items-center">
+                    <span class="text-xs font-bold text-zinc-500 flex items-center gap-2 uppercase tracking-wider">
+                      <span class="w-2 h-2 rounded-full bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.6)] inline-block" />{" "}
+                      Mantenimiento
+                    </span>
+                    <Button
+                      variant="outline"
+                      href="/bots/documentacion"
+                      class="px-5 py-2.5 text-sm bg-[#f97316]/10 border border-[#f97316]/30 text-[#f97316] hover:bg-[#f97316] hover:text-white transition-colors duration-300 rounded-xl font-bold"
+                      aria-label={`Ver guías para ${bot.botName}`}
+                    >
+                      Documentación
+                    </Button>
+                  </div>
+                </Card>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
   </div>
-</Section>
+</section>

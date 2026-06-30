@@ -277,7 +277,7 @@ export const commandsData: Record<string, GuideSection[]> = {
       icon: "📊",
       content: `
                 <div class="space-y-4">
-                    <div class="bg-[#111] border border-[#f97316]/30 hover:border-[#f97316]/50 hover:bg-[#151515] rounded-xl p-5 transition-all duration-300 group hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:-translate-y-0.5">
+                    <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl p-5">
                         <h4 class="text-lg font-bold text-white mb-3">Fortnite Stats</h4>
                         <p class="text-gray-400 mb-3 text-sm leading-relaxed">Usa <code class="px-2 py-1 rounded bg-[#f97316]/10 text-[#f97316] font-mono text-sm border border-[#f97316]/30 shrink-0">/fortnite_stats [nombre_usuario]</code> para obtener:</p>
                         <ul class="space-y-1.5 list-disc ml-5 text-gray-400 text-sm">
@@ -288,7 +288,7 @@ export const commandsData: Record<string, GuideSection[]> = {
                         </ul>
                     </div>
                 
-                    <div class="bg-[#111] border border-[#f97316]/30 hover:border-[#f97316]/50 hover:bg-[#151515] rounded-xl p-5 transition-all duration-300 group hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:-translate-y-0.5">
+                    <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl p-5">
                         <h4 class="text-lg font-bold text-white mb-3">League of Legends</h4>
                         <p class="text-gray-400 mb-3 text-sm leading-relaxed">Usa <code class="px-2 py-1 rounded bg-[#f97316]/10 text-[#f97316] font-mono text-sm border border-[#f97316]/30 shrink-0">/lol_info [nombre_invocador]</code> para ver:</p>
                         <ul class="space-y-1.5 list-disc ml-5 text-gray-400 text-sm">
@@ -299,7 +299,7 @@ export const commandsData: Record<string, GuideSection[]> = {
                         </ul>
                     </div>
                 
-                    <div class="bg-[#111] border border-[#f97316]/30 hover:border-[#f97316]/50 hover:bg-[#151515] rounded-xl p-5 transition-all duration-300 group hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:-translate-y-0.5">
+                    <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl p-5">
                         <h4 class="text-lg font-bold text-white mb-3">Valorant</h4>
                         <p class="text-gray-400 mb-3 text-sm leading-relaxed">Usa <code class="px-2 py-1 rounded bg-[#f97316]/10 text-[#f97316] font-mono text-sm border border-[#f97316]/30 shrink-0">/valorant_info [nombre_usuario#tag]</code> para obtener:</p>
                         <ul class="space-y-1.5 list-disc ml-5 text-gray-400 text-sm">
@@ -319,7 +319,7 @@ export const commandsData: Record<string, GuideSection[]> = {
       icon: "🔧",
       content: `
                 <div class="space-y-4">
-                    <div class="bg-[#111] border border-[#f97316]/30 hover:border-[#f97316]/50 hover:bg-[#151515] rounded-xl p-5 transition-all duration-300 group hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:-translate-y-0.5">
+                    <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl p-5">
                         <h4 class="text-lg font-bold text-white mb-3">Pasos para configurar</h4>
                         <ol class="space-y-2 list-decimal ml-5 text-gray-400 text-sm">
                             <li>Invita los bots a tu servidor</li>
@@ -339,7 +339,7 @@ export const commandsData: Record<string, GuideSection[]> = {
       icon: "👑",
       content: `
                 <div class="space-y-4">
-                    <div class="bg-[#111] border border-[#f97316]/30 hover:border-[#f97316]/50 hover:bg-[#151515] rounded-xl p-5 transition-all duration-300 group hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:-translate-y-0.5">
+                    <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl p-5">
                         <h4 class="text-lg font-bold text-white mb-3">Roles Recomendados</h4>
                         <ul class="space-y-2 list-none p-0 text-sm">
                             <li class="text-gray-400 mb-2"><strong class="text-[#f97316]">Administrador:</strong> Acceso completo a todos los comandos</li>
@@ -348,7 +348,7 @@ export const commandsData: Record<string, GuideSection[]> = {
                             <li class="text-gray-400 mb-2"><strong class="text-[#f97316]">Miembro:</strong> Comandos básicos y de entretenimiento</li>
                         </ul>
                     </div>
-                     <div class="bg-[#111] border border-[#f97316]/30 hover:border-[#f97316]/50 hover:bg-[#151515] rounded-xl p-5 transition-all duration-300 group hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:-translate-y-0.5">
+                     <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl p-5">
                         <h4 class="text-lg font-bold text-white mb-3">Configuración de Permisos</h4>
                          <ul class="space-y-2 list-disc ml-5 text-gray-400 text-sm">
                             <li>Los bots tengan rol superior a los usuarios</li>

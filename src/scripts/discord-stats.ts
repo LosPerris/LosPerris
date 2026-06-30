@@ -5,15 +5,36 @@ interface DiscordInviteResponse {
   approximate_presence_count?: number;
 }
 
+function formatCount(n: number): string {
+  return n > 1000 ? `${(n / 1000).toFixed(1)}k+` : n.toString();
+}
+
+function fillStats(root: ParentNode, members?: number, online?: number): void {
+  if (members != null) {
+    const formatted = formatCount(members);
+    root.querySelectorAll("[data-stat='members']").forEach((el) => {
+      el.textContent = formatted;
+    });
+  }
+  if (online != null) {
+    const formatted = formatCount(online);
+    root.querySelectorAll("[data-stat='online']").forEach((el) => {
+      el.textContent = formatted;
+    });
+  }
+}
+
 const setupDiscordStats = (): void => {
-  const section = document.querySelector<HTMLElement>(
-    "section[data-invite-code]",
+  const hero = document.querySelector<HTMLElement>("section[data-invite-code]");
+  const staticZone = document.querySelector<HTMLElement>(
+    "[data-discord-stats]",
   );
-  if (!section) return;
+  if (!hero && !staticZone) return;
 
-  if (section.hasAttribute("data-stats-loaded")) return;
+  const code =
+    hero?.dataset.inviteCode || staticZone?.dataset.inviteCode || "JKPUVf9aeU";
 
-  const code = section.dataset.inviteCode || "JKPUVf9aeU";
+  if (document.body.hasAttribute("data-discord-stats-loaded")) return;
 
   fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`)
     .then((res) => {
@@ -21,23 +42,22 @@ const setupDiscordStats = (): void => {
       return res.json();
     })
     .then((data: DiscordInviteResponse) => {
-      if (data.approximate_member_count) {
-        const members = data.approximate_member_count;
-        const formattedMembers =
-          members > 1000
-            ? (members / 1000).toFixed(1) + "k+"
-            : members.toString();
-        const memberEl = document.getElementById("member-count");
-        if (memberEl) memberEl.innerText = formattedMembers;
+      fillStats(
+        document,
+        data.approximate_member_count,
+        data.approximate_presence_count,
+      );
+
+      const memberEl = document.getElementById("member-count");
+      const onlineEl = document.getElementById("online-count");
+      if (memberEl && data.approximate_member_count) {
+        memberEl.textContent = formatCount(data.approximate_member_count);
       }
-      if (data.approximate_presence_count) {
-        const online = data.approximate_presence_count;
-        const formattedOnline =
-          online > 1000 ? (online / 1000).toFixed(1) + "k+" : online.toString();
-        const onlineEl = document.getElementById("online-count");
-        if (onlineEl) onlineEl.innerText = formattedOnline;
+      if (onlineEl && data.approximate_presence_count) {
+        onlineEl.textContent = formatCount(data.approximate_presence_count);
       }
-      section.setAttribute("data-stats-loaded", "true");
+
+      document.body.setAttribute("data-discord-stats-loaded", "true");
     })
     .catch((e: Error) => console.error("Error fetching Discord stats:", e));
 };

@@ -1,22 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import HeroSection from "../components/home/HeroSection.astro";
-import CommunityFeatures from "../components/home/CommunityFeatures.astro";
+import Integrations from "../components/home/Integrations.astro";
 import ToolsSection from "../components/home/ToolsSection.astro";
 import ApiSection from "../components/home/ApiSection.astro";
-import DiscordSection from "../components/home/DiscordSection.astro";
+import FaqSection from "../components/home/FaqSection.astro";
+import FeaturesGrid from "../components/home/FeaturesGrid.astro";
+import HomeStaticZone from "../components/home/HomeStaticZone.astro";
+import TimelineBridges from "../components/ui/TimelineBridges.astro";
 ---
 
 <Layout title="LosPerris">
   <HeroSection />
-  <div id="features">
-    <CommunityFeatures />
+
+  <div class="relative" data-timeline-zone>
+    <Integrations />
+    <TimelineBridges />
+    <FeaturesGrid />
+    <ToolsSection />
+    <ApiSection />
+    <FaqSection />
   </div>
-  <ToolsSection />
-  <ApiSection />
-  <DiscordSection />
+
+  <HomeStaticZone />
 </Layout>
 
 <script>
   import "../scripts/discord-stats.ts";
+  import "../scripts/timeline.ts";
 </script>

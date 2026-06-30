@@ -10,78 +10,120 @@ const inviteCode = discordLink.split("/").pop();
   class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
   data-invite-code={inviteCode}
 >
-  <div class="relative z-10 max-w-5xl px-6 text-center">
-    <span
-      class="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 text-sm font-semibold mb-6 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.1s_forwards]"
+  <div class="relative z-10 max-w-5xl px-6 text-center mx-auto pb-12">
+    <!-- Badge Superior Elegante -->
+    <a
+      href="#apis"
+      class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-300 mb-8 hover:bg-white/10 transition-colors animate-[fadeInUp_0.8s_ease-out]"
     >
-      <i class="fas fa-code mr-2" aria-hidden="true"></i>Herramientas abiertas
-    </span>
+      <span
+        class="w-1.5 h-1.5 rounded-full bg-[#f97316] shadow-[0_0_8px_rgba(249,115,22,0.8)]"
+      ></span>
+      Nueva API v2.0 disponible <span class="text-zinc-500 ml-1">&rarr;</span>
+    </a>
+
+    <!-- Título Principal -->
     <h1
-      class="text-5xl md:text-8xl font-black mb-6 text-white tracking-tight opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.3s_forwards]"
+      class="text-6xl md:text-8xl font-black mb-8 text-white tracking-tight leading-none animate-[fadeInUp_0.8s_ease-out_0.1s_both]"
     >
-      Los<span class="text-[#f97316]">Perris</span>
+      Los<span
+        class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.3)]"
+        >Perris</span
+      >
     </h1>
+
+    <!-- Subtítulo -->
     <p
-      class="text-xl md:text-2xl text-[#b0b0b0] mb-8 max-w-3xl mx-auto font-light opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
+      class="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed animate-[fadeInUp_0.8s_ease-out_0.2s_both]"
     >
-      Un espacio donde compartimos los bots de Discord y las herramientas que
-      vamos creando. Son de uso libre, así que si te sirven para tu servidor o
-      stream, siéntete libre de usarlas.
+      Bots de Discord y APIs gratuitas de alto rendimiento. Herramientas
+      diseñadas para ser rápidas, seguras y fáciles de implementar.
     </p>
 
+    <!-- Botones de Acción -->
     <div
-      class="flex flex-wrap justify-center gap-4 my-8 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.9s_forwards]"
+      class="flex flex-col sm:flex-row justify-center gap-6 animate-[fadeInUp_0.8s_ease-out_0.3s_both]"
     >
       <a
-        href="#apis"
-        class="inline-flex items-center px-8 py-4 rounded-full font-bold transition-all text-lg cursor-pointer bg-[#f97316]/10 text-white border border-[#f97316]/50 hover:bg-[#f97316]/20 hover:scale-105 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]"
-        aria-label="Ver proyectos disponibles"
+        href="#bots"
+        class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold transition-all text-lg bg-[#f97316] text-white hover:bg-[#ea580c] shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] hover:-translate-y-1"
       >
-        <i class="fas fa-rocket mr-3 text-2xl" aria-hidden="true"></i> Ver proyectos
+        <i class="fas fa-rocket mr-3 text-xl"></i> Explorar Ecosistema
       </a>
       <a
         href={discordLink}
         target="_blank"
-        class="inline-flex items-center px-8 py-4 rounded-full font-bold transition-all text-lg cursor-pointer bg-[#222222] text-white border border-[#404040] hover:bg-[#333333] hover:-translate-y-1 shadow-md hover:shadow-xl"
-        aria-label="Unirse a la comunidad de Discord"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold transition-all text-lg bg-[#111111] text-white border border-[#27272a] hover:bg-[#1a1a1a] hover:border-[#3f3f46]"
       >
-        <i class="fab fa-discord mr-3 text-xl" aria-hidden="true"></i> Comunidad de
-        Discord
+        <i class="fab fa-discord mr-3 text-xl"></i> Únete a Discord
       </a>
     </div>
 
-    <div
-      class="flex justify-center gap-12 mt-12 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_1.2s_forwards]"
-    >
-      <div class="text-center">
-        <span
-          id="member-count"
-          class="block text-3xl md:text-4xl font-bold text-white mb-1">...</span
+    <!-- Mini Feature Grid (Estilo Cookie-API) -->
+    <div class="mt-24 text-left animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Feature 1 -->
+        <div
+          class="group rounded-2xl bg-[#0a0a0a] p-5 ring-1 ring-inset ring-[#27272a] transition-all hover:bg-[#111111] hover:ring-[#f97316]/50"
         >
-        <span
-          class="text-xs text-[#808080] uppercase tracking-widest font-semibold"
-          >Miembros</span
+          <div
+            class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#111111] shadow-sm ring-1 ring-[#27272a] text-[#f97316] group-hover:scale-110 transition-transform"
+          >
+            <i class="fas fa-robot text-lg"></i>
+          </div>
+          <div class="text-base font-bold text-white mb-1">Bots de Discord</div>
+          <div class="text-sm text-zinc-400">
+            Automatización, moderación y entretenimiento para tu servidor.
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div
+          class="group rounded-2xl bg-[#0a0a0a] p-5 ring-1 ring-inset ring-[#27272a] transition-all hover:bg-[#111111] hover:ring-[#f97316]/50"
         >
-      </div>
-      <div class="text-center">
-        <span
-          id="online-count"
-          class="block text-3xl md:text-4xl font-bold text-[#4ade80] mb-1"
-          >...</span
+          <div
+            class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#111111] shadow-sm ring-1 ring-[#27272a] text-[#f97316] group-hover:scale-110 transition-transform"
+          >
+            <i class="fas fa-code block text-lg"></i>
+          </div>
+          <div class="text-base font-bold text-white mb-1">APIs Globales</div>
+          <div class="text-sm text-zinc-400">
+            Endpoints rápidos y seguros para conectar tus aplicaciones.
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div
+          class="group rounded-2xl bg-[#0a0a0a] p-5 ring-1 ring-inset ring-[#27272a] transition-all hover:bg-[#111111] hover:ring-[#f97316]/50"
         >
-        <span
-          class="text-xs text-[#808080] uppercase tracking-widest font-semibold"
-          >Online</span
+          <div
+            class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#111111] shadow-sm ring-1 ring-[#27272a] text-[#f97316] group-hover:scale-110 transition-transform"
+          >
+            <i class="fas fa-layer-group text-lg"></i>
+          </div>
+          <div class="text-base font-bold text-white mb-1">Paneles Web</div>
+          <div class="text-sm text-zinc-400">
+            Configura todo desde interfaces gráficas fáciles de usar.
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div
+          class="group rounded-2xl bg-[#0a0a0a] p-5 ring-1 ring-inset ring-[#27272a] transition-all hover:bg-[#111111] hover:ring-[#f97316]/50"
         >
-      </div>
-      <div class="text-center">
-        <span class="block text-3xl md:text-4xl font-bold text-[#f472b6] mb-1"
-          >2+</span
-        >
-        <span
-          class="text-xs text-[#808080] uppercase tracking-widest font-semibold"
-          >Bots Propios</span
-        >
+          <div
+            class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#111111] shadow-sm ring-1 ring-[#27272a] text-[#f97316] group-hover:scale-110 transition-transform"
+          >
+            <i class="fas fa-users text-lg"></i>
+          </div>
+          <div class="text-base font-bold text-white mb-1">
+            Comunidad Activa
+          </div>
+          <div class="text-sm text-zinc-400">
+            Soporte técnico, recursos y desarrollo colaborativo 24/7.
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -35,13 +35,13 @@ const categories = Object.keys(groupedGuides);
 ---
 
 <aside
-  class="w-full lg:w-72 shrink-0 lg:border-r border-[#1A1A1A] bg-[#0E0E0E] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto"
+  class="w-full lg:w-72 shrink-0 lg:border-r border-[#27272a] bg-[#050505] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 overflow-y-auto"
 >
   <div class="p-6 lg:p-0">
     <div class="mb-6 lg:hidden">
       <button
         id="toggle-sidebar"
-        class="w-full py-3 bg-[#151515] text-[#b0b0b0] rounded-lg font-bold border border-[#2A2A2A] flex items-center justify-center gap-2 hover:bg-[#1A1A1A] hover:text-white transition-colors"
+        class="w-full py-3 bg-[#111111] text-[#b0b0b0] rounded-lg font-medium border border-[#27272a] flex items-center justify-center gap-2 hover:bg-[#18181b] hover:text-white transition-colors"
       >
         <i class="fas fa-bars"></i> Índice de Documentación
       </button>
@@ -55,10 +55,6 @@ const categories = Object.keys(groupedGuides);
       </h2>
       {
         categories.map((category) => {
-          const hasActiveChild = groupedGuides[category].some(
-            (g) => g.id === activeId,
-          );
-
           return (
             <div class="category-group mb-6">
               <div class="flex items-center gap-2 px-2 mb-3">
@@ -95,8 +91,8 @@ const categories = Object.keys(groupedGuides);
                           class={`guide-btn w-full text-left px-3 py-2 text-sm transition-all duration-200 flex items-center justify-between group rounded-lg
                                                     ${
                                                       isActive
-                                                        ? "text-[#f97316] font-semibold bg-[#f97316]/10 border-l-2 border-[#f97316]"
-                                                        : "text-[#a1a1aa] hover:text-white hover:bg-[#1a1a1a] border-l-2 border-transparent"
+                                                        ? "text-[#f97316] font-medium bg-[#f97316]/5"
+                                                        : "text-[#a1a1aa] hover:text-white hover:bg-white/5"
                                                     }`}
                           data-id={guide.id}
                           onclick={`switchGuide('${guide.id}')`}

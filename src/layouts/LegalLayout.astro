@@ -27,7 +27,7 @@ const {
 
 <Layout title={title} showHeader={false} showFooter={false}>
   <header
-    class="sticky top-0 z-[100] backdrop-blur-md bg-primary/95 border-b-2 border-[#404040] py-4"
+    class="sticky top-0 z-[100] backdrop-blur-md bg-[#050505]/95 border-b border-[#27272a] py-4"
   >
     <nav class="w-full">
       <div class="max-w-7xl mx-auto px-8 flex justify-between items-center">
@@ -51,13 +51,13 @@ const {
     </nav>
   </header>
 
-  <main class="flex-1 py-12 bg-[#151515] relative overflow-hidden">
+  <main class="flex-1 py-12 bg-[#050505] relative overflow-hidden">
     <BackgroundEffects />
 
     <div class="max-w-4xl mx-auto px-8 relative z-10">
       <div class="text-center mb-16">
         <h1
-          class="text-4xl md:text-6xl font-black mb-6 text-white flex flex-wrap items-center justify-center gap-x-4 gap-y-2 tracking-tight uppercase text-center"
+          class="text-3xl md:text-5xl font-bold mb-6 text-white flex flex-wrap items-center justify-center gap-x-4 gap-y-2 tracking-tight text-center"
         >
           <span class="flex items-center gap-3 justify-center">
             <i class={`${pageIcon} text-[#f97316]`}></i>
@@ -84,16 +84,16 @@ const {
 
       <div class="mt-12">
         <div
-          class="bg-linear-to-r from-[#f97316]/10 to-yellow-500/10 border border-[#f97316]/20 p-8 rounded-2xl mb-12 flex items-center gap-6 shadow-lg backdrop-blur-md"
+          class="bg-[#111111] border border-[#27272a] p-8 rounded-xl mb-12 flex items-center gap-6"
         >
           <div
-            class="w-12 h-12 shrink-0 rounded-full bg-[#f97316]/20 flex items-center justify-center text-[#f97316] text-2xl"
+            class="w-12 h-12 shrink-0 rounded-full bg-[#f97316]/10 flex items-center justify-center text-[#f97316] text-xl"
           >
             <i class="fas fa-check-circle"></i>
           </div>
-          <p class="text-white font-medium m-0 text-lg">
-            Al utilizar nuestros bots, confirmas que has leído, entendido y
-            aceptado nuestras políticas.
+          <p class="text-zinc-300 font-medium m-0 text-sm md:text-base">
+            Al utilizar nuestros bots y APIs, confirmas que has leído, entendido
+            y aceptado nuestras políticas.
           </p>
         </div>
         <div class="flex gap-4 justify-center flex-wrap">
@@ -108,7 +108,7 @@ const {
     </div>
   </main>
 
-  <footer class="bg-primary/95 py-8 border-t-2 border-[#404040] mt-auto">
+  <footer class="bg-[#050505] py-8 border-t border-[#27272a] mt-auto">
     <div class="max-w-4xl mx-auto px-8">
       <div
         class="flex justify-between items-center flex-wrap gap-4 text-center"

@@ -5,37 +5,39 @@ import ApiCard from "../../components/home/ApiCard.astro";
 ---
 
 <Layout title="APIs | LosPerris" showWallpaper={false}>
-  <main class="min-h-screen pt-32 pb-24 px-4 relative z-10 bg-[#151515]">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-20">
-        <div class="mb-6">
-          <span
-            class="inline-block py-1 px-3 rounded-full bg-[#f97316]/20 text-[#f97316] border border-[#f97316]/30 text-sm font-semibold opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.1s_forwards]"
-          >
-            <i class="fas fa-code mr-2"></i>Developers
-          </span>
-        </div>
+  <main class="min-h-screen pt-32 pb-24 px-4 relative z-10 bg-black">
+    <!-- Diferente fondo oscuro con patrón de cuadrícula -->
+    <div
+      class="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none"
+    >
+    </div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center mb-16">
         <h1
-          class="text-5xl md:text-7xl font-black text-white uppercase tracking-tight relative inline-block opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.3s_forwards]"
+          class="text-4xl md:text-6xl font-black text-white tracking-tight relative inline-block animate-[fadeInUp_0.8s_ease-out] uppercase"
         >
-          PRO <span class="text-[#f97316]">APIs</span>
+          APIS PÚBLICAS DE <br /><span
+            class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.2)]"
+            >LOSPERRIS</span
+          >
         </h1>
         <p
-          class="text-xl text-text-secondary max-w-2xl mx-auto opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"
+          class="text-lg text-zinc-400 max-w-2xl mx-auto mt-6 animate-[fadeInUp_0.8s_ease-out_0.1s_both]"
         >
-          Integra la potencia de Los Perris en tus propias aplicaciones.
-          Escalable, rápido y fácil de usar.
+          Endpoints REST gratuitos diseñados para creadores de contenido y
+          desarrolladores. Escalables, rápidos y sin complicaciones.
         </p>
       </div>
 
       <div
         class="grid grid-cols-1 md:grid-cols-2 gap-8 opacity-0 translate-y-8 animate-[fadeInUp_1s_ease-out_0.9s_forwards]"
       >
-        {
-          apis.map((api, index) => (
-            <ApiCard api={api} index={index} showTestedBadge />
-          ))
-        }
+        {apis.map((api, index) => <ApiCard api={api} index={index} />)}
       </div>
     </div>
   </main>

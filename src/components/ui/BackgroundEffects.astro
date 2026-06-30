@@ -1,54 +1,43 @@
 ---
-import { Image } from "astro:assets";
-import backgroundImage from "../../assets/img/back.webp";
-
-interface Props {
-  withWallpaper?: boolean;
-  variant?: "default" | "hero" | "global" | "discrete";
-  showBlobs?: boolean;
-}
-
-const {
-  withWallpaper = false,
-  variant = "default",
-  showBlobs = false,
-} = Astro.props;
-
-const blobSize =
-  variant === "hero" || variant === "global"
-    ? "w-[900px] h-[900px] opacity-20"
-    : variant === "discrete"
-      ? "w-[100px] h-[300px] opacity-[0.005]"
-      : "w-[600px] h-[600px] opacity-10";
+// Fondo elegante: Spotlight sutil y grid tenue
 ---
 
 <div
-  class={`absolute inset-0 pointer-events-none overflow-hidden ${variant === "global" ? "fixed h-screen w-screen -z-10" : ""}`}
+  class="absolute inset-0 pointer-events-none overflow-hidden z-0"
+  id="hero-grid-container"
 >
-  {
-    withWallpaper && (
-      <div class="absolute inset-0 opacity-10 mix-blend-overlay">
-        <Image
-          src={backgroundImage}
-          alt=""
-          role="presentation"
-          class="w-full h-full object-cover object-center"
-          loading="eager"
-        />
-      </div>
-    )
-  }
-  {
-    showBlobs && (
-      <>
-        <div
-          class={`absolute top-0 right-0 ${blobSize} bg-[#f97316]/20 rounded-full blur-[120px] animate-pulse`}
-        />
-        <div
-          class={`absolute bottom-0 left-0 ${blobSize} bg-yellow-500/20 rounded-full blur-[120px] animate-pulse`}
-          style="animation-delay: 2s;"
-        />
-      </>
-    )
-  }
+  <!-- Spotlight central estático muy suave -->
+  <div
+    class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#f97316]/10 rounded-full blur-[130px]"
+  >
+  </div>
+
+  <!-- Patrón de Grid que siempre está visible, pero brilla más con el mouse -->
+  <div
+    class="absolute inset-0 opacity-[0.25] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px] transition-opacity duration-300"
+    style="mask-image: radial-gradient(circle 90px at var(--mouse-x, 50%) var(--mouse-y, 20%), black 0%, rgba(0,0,0,0.15) 100%); -webkit-mask-image: radial-gradient(circle 90px at var(--mouse-x, 50%) var(--mouse-y, 20%), black 0%, rgba(0,0,0,0.15) 100%);"
+  >
+  </div>
+
+  <!-- Fade out at the bottom -->
+  <div
+    class="absolute bottom-0 inset-x-0 h-[200vh] bg-gradient-to-t from-[#050505] to-transparent pointer-events-none"
+  >
+  </div>
 </div>
+
+<script>
+  const updateMousePosition = (e: MouseEvent) => {
+    const container = document.getElementById("hero-grid-container");
+    if (!container) return;
+
+    // Obtener la posición del mouse relativa a la ventana
+    const x = e.clientX;
+    const y = e.clientY + window.scrollY; // Ajustar por el scroll actual
+
+    container.style.setProperty("--mouse-x", `${x}px`);
+    container.style.setProperty("--mouse-y", `${y}px`);
+  };
+
+  window.addEventListener("mousemove", updateMousePosition);
+</script>

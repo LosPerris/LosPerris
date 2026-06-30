@@ -1,0 +1,16 @@
+---
+interface Props {
+  side: "left" | "right";
+}
+
+const { side } = Astro.props;
+---
+
+<div
+  class={`timeline-line timeline-line--${side} hidden md:block`}
+  data-timeline-line
+  data-timeline-side={side}
+>
+  <div class="timeline-line__track" aria-hidden="true"></div>
+  <div class="timeline-line__progress" data-timeline-line-progress></div>
+</div>

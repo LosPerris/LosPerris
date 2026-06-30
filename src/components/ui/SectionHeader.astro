@@ -1,7 +1,6 @@
 ---
 interface Props {
-  align?: "center" | "left";
-  badge?: string;
+  align?: "center" | "left" | "right";
   title: string;
   highlight?: string;
   description?: string;
@@ -10,7 +9,6 @@ interface Props {
 
 const {
   align = "center",
-  badge,
   title,
   highlight,
   description,
@@ -18,25 +16,27 @@ const {
 } = Astro.props;
 
 const alignClass =
-  align === "center" ? "text-center items-center" : "text-left items-start";
-const mxClass = align === "center" ? "mx-auto" : "";
+  align === "center"
+    ? "text-center items-center"
+    : align === "right"
+      ? "text-right items-end"
+      : "text-left items-start";
+const mxClass =
+  align === "center" ? "mx-auto" : align === "right" ? "ml-auto" : "";
 ---
 
 <div class={`mb-16 relative z-10 ${alignClass} ${className}`}>
-  {
-    badge && (
-      <span class="text-[#f97316] font-semibold tracking-widest uppercase text-sm mb-2 block animate-[fadeInUp_0.8s_ease-out]">
-        {badge}
-      </span>
-    )
-  }
-  <slot name="badge" />
-
   <h2
     class="text-4xl md:text-6xl font-black text-white mb-4 animate-[fadeInUp_0.8s_ease-out]"
   >
     {title}
-    {highlight && <span class="text-[#f97316]">{highlight}</span>}
+    {
+      highlight && (
+        <span class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.2)] ml-2">
+          {highlight}
+        </span>
+      )
+    }
   </h2>
 
   {

@@ -25,6 +25,17 @@ export const apis = [
         example: `${siteUrl}/api/twitch/clips`,
       },
     ],
+    previewCode: `{
+  "user": "elxokas",
+  "channel": "ibai",
+  "following": true,
+  "follow_date": "2021-02-15T10:00:00Z",
+  "duration": {
+    "years": 3,
+    "months": 4,
+    "days": 12
+  }
+}`,
   },
   {
     title: "Valorant API",
@@ -50,6 +61,18 @@ export const apis = [
         example: `${siteUrl}/api/valorant/v1/account/nombre/tag`,
       },
     ],
+    previewCode: `{
+  "status": 200,
+  "data": {
+    "name": "TenZ",
+    "tag": "SEN",
+    "current_tier": 24,
+    "current_tier_patched": "Radiant",
+    "ranking_in_tier": 100,
+    "mmr_change_to_last_game": 14,
+    "elo": 2400
+  }
+}`,
   },
   {
     title: "Discord Transcripts",
@@ -76,6 +99,16 @@ export const apis = [
         example: `${siteUrl}/api/discord/transcripts/123456`,
       },
     ],
+    previewCode: `{
+  "success": true,
+  "transcript_url": "https://losperris.com/t/abc123xyz",
+  "metadata": {
+    "channel_id": "10023456789",
+    "message_count": 145,
+    "participants": 4,
+    "generated_at": "2026-06-21T18:45:00Z"
+  }
+}`,
   },
   {
     title: "Generador de Códigos QR",
@@ -95,5 +128,13 @@ export const apis = [
         example: `${siteUrl}/api/qr`,
       },
     ],
+    previewCode: `<!-- Preview Tool -->
+<div class="qr-preview bg-white p-4 rounded-xl inline-block">
+  <img src="/qr-example.png" alt="QR Code" width="120" height="120" loading="lazy" decoding="async"/>
+</div>
+<style>
+  .qr-preview { border: 2px solid #22c55e; }
+</style>
+`,
   },
 ];
