@@ -25,6 +25,18 @@ const bots = [helpBotData, gameBotData];
           description="Bots exclusivos desarrollados para potenciar tu experiencia en Discord."
           align="right"
         />
+        <div class="mt-8 flex justify-end lg:justify-end justify-center">
+          <Button
+            variant="primary"
+            href="/bots/documentacion"
+            class="px-6 py-3 shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] group flex items-center gap-2 bg-[#f97316] text-white hover:bg-[#ea580c] transition-all rounded-xl font-bold"
+          >
+            <i class="fas fa-book-open"></i> Ver Documentación
+            <i
+              class="fas fa-arrow-right group-hover:translate-x-1 transition-transform ml-1"
+            ></i>
+          </Button>
+        </div>
       </div>
 
       <div
@@ -99,19 +111,11 @@ const bots = [helpBotData, gameBotData];
                     ))}
                   </div>
 
-                  <div class="mt-auto border-t border-[#27272a] pt-6 flex justify-between items-center">
+                  <div class="mt-auto border-t border-[#27272a] pt-6 flex justify-start items-center">
                     <span class="text-xs font-bold text-zinc-500 flex items-center gap-2 uppercase tracking-wider">
                       <span class="w-2 h-2 rounded-full bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.6)] inline-block" />{" "}
                       Mantenimiento
                     </span>
-                    <Button
-                      variant="outline"
-                      href="/bots/documentacion"
-                      class="px-5 py-2.5 text-sm bg-[#f97316]/10 border border-[#f97316]/30 text-[#f97316] hover:bg-[#f97316] hover:text-white transition-colors duration-300 rounded-xl font-bold"
-                      aria-label={`Ver guías para ${bot.botName}`}
-                    >
-                      Documentación
-                    </Button>
                   </div>
                 </Card>
               </div>

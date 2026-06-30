@@ -129,6 +129,7 @@ const getLink = (hash: string) => {
         target="_blank"
         rel="noopener noreferrer"
         class="mt-4 md:mt-0 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
+        aria-label="Ver estado de los servicios (Página externa)"
       >
         <iframe
           src="https://status.losperris.dev/badge?theme=dark"
@@ -136,6 +137,8 @@ const getLink = (hash: string) => {
           height="30"
           frameborder="0"
           scrolling="no"
+          title="Estado de los servicios de LosPerris"
+          loading="lazy"
           style="color-scheme: normal; pointer-events: none;"></iframe>
       </a>
     </div>

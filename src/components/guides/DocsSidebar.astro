@@ -5,17 +5,17 @@ import { Image } from "astro:assets";
 import BackButton from "../ui/BackButton.astro";
 
 const categoryImages = {
-  "Bot Ayuda": helpBotData.imageSrc,
-  "Bot Gaming": gameBotData.imageSrc,
+  "LosPerris Help": helpBotData.imageSrc,
+  "LosPerris Game": gameBotData.imageSrc,
 };
 
 const groupedGuides = guides.reduce(
   (acc, guide) => {
     const categoryName =
       guide.category === "bot-ayuda"
-        ? "Bot Ayuda"
+        ? "LosPerris Help"
         : guide.category === "bot-gaming"
-          ? "Bot Gaming"
+          ? "LosPerris Game"
           : "Configuración";
 
     if (!acc[categoryName]) {

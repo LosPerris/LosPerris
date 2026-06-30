@@ -73,12 +73,6 @@ const emojiToIcon: Record<string, string> = {
 
       <div class="flex flex-wrap items-center gap-4">
         <a
-          href="#content"
-          class="px-6 py-2 bg-[#f97316] text-white font-semibold rounded-lg hover:bg-[#ea580c] transition-colors"
-        >
-          Explorar Temas
-        </a>
-        <a
           href={discordLink}
           target="_blank"
           rel="noopener noreferrer"
@@ -93,34 +87,34 @@ const emojiToIcon: Record<string, string> = {
       {
         initialGuide.sections?.map((section) => (
           <div class="section-block border-t border-[#27272a] py-12 first:border-0 first:pt-0">
-            <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12">
-              <div class="xl:col-span-5 relative">
-                <div class="xl:sticky xl:top-28">
-                  <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3">
-                    <i
-                      class={`${emojiToIcon[section.icon || ""] || "fas fa-layer-group"} text-[#f97316]`}
-                    />
-                    {section.title}
-                  </h3>
-                  {section.content && (
-                    <div
-                      class="text-zinc-400 leading-relaxed text-sm md:text-base"
-                      set:html={section.content}
-                    />
-                  )}
+            {section.commands && section.commands.length > 0 ? (
+              <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12">
+                <div class="xl:col-span-5 relative">
+                  <div class="xl:sticky xl:top-28">
+                    <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3">
+                      <i
+                        class={`${emojiToIcon[section.icon || ""] || "fas fa-layer-group"} text-[#f97316]`}
+                      />
+                      {section.title}
+                    </h3>
+                    {section.content && (
+                      <div
+                        class="text-zinc-400 leading-relaxed text-sm md:text-base"
+                        set:html={section.content}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div class="xl:col-span-7">
-                {section.commands && (
+                <div class="xl:col-span-7">
                   <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex flex-col divide-y divide-[#27272a]/50">
                     {section.commands.map((cmd) => (
                       <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-white/[0.02] transition-colors group">
                         <div class="shrink-0 sm:w-48">
-                          <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-[#f97316] font-mono text-sm shadow-sm group-hover:border-[#f97316]/30 transition-colors">
+                          <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-[#f97316]/30 transition-colors">
                             {cmd.emoji && (
                               <i
-                                class={`${emojiToIcon[cmd.emoji] || "fas fa-terminal"} opacity-70`}
+                                class={`${emojiToIcon[cmd.emoji] || "fas fa-terminal"} opacity-70 text-[#f97316]`}
                               />
                             )}
                             {cmd.name}
@@ -134,9 +128,24 @@ const emojiToIcon: Record<string, string> = {
                       </div>
                     ))}
                   </div>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3">
+                  <i
+                    class={`${emojiToIcon[section.icon || ""] || "fas fa-layer-group"} text-[#f97316]`}
+                  />
+                  {section.title}
+                </h3>
+                {section.content && (
+                  <div
+                    class="text-zinc-400 leading-relaxed text-sm md:text-base w-full max-w-none"
+                    set:html={section.content}
+                  />
                 )}
               </div>
-            </div>
+            )}
           </div>
         ))
       }
@@ -181,7 +190,7 @@ const emojiToIcon: Record<string, string> = {
         currentActiveBtn.classList.contains("border-[#f97316]")
       ) {
         // Si tocaste la misma sección en la que ya estás, solo sube
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo(0, 0);
         return;
       }
 
@@ -208,7 +217,7 @@ const emojiToIcon: Record<string, string> = {
       contentArea.style.animation = "fadeInUp 0.4s ease-out forwards";
 
       // Hacer scroll suave hacia arriba al cambiar de sección
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo(0, 0);
 
       document.querySelectorAll(".guide-btn").forEach((btn) => {
         const button = btn as HTMLElement;
@@ -254,29 +263,29 @@ const emojiToIcon: Record<string, string> = {
       .map(
         (section) => `
                 <div class="section-block border-t border-[#27272a] py-12 first:border-0 first:pt-0">
-                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12">
-                        <div class="xl:col-span-5 relative">
-                            <div class="xl:sticky xl:top-28">
-                                <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3">
-                                    <i class="${(window as any).emojiToIcon?.[section.icon || ""] || "fas fa-layer-group"} text-[#f97316]"></i> 
-                                    ${section.title}
-                                </h3>
-                                ${section.content ? `<div class="text-zinc-400 leading-relaxed text-sm md:text-base">${section.content}</div>` : ""}
+                    ${
+                      section.commands && section.commands.length > 0
+                        ? `
+                        <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12">
+                            <div class="xl:col-span-5 relative">
+                                <div class="xl:sticky xl:top-28">
+                                    <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3">
+                                        <i class="${(window as any).emojiToIcon?.[section.icon || ""] || "fas fa-layer-group"} text-[#f97316]"></i> 
+                                        ${section.title}
+                                    </h3>
+                                    ${section.content ? `<div class="text-zinc-400 leading-relaxed text-sm md:text-base">${section.content}</div>` : ""}
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="xl:col-span-7">
-                            ${
-                              section.commands
-                                ? `
+                            
+                            <div class="xl:col-span-7">
                                 <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex flex-col divide-y divide-[#27272a]/50">
                                     ${section.commands
                                       .map(
                                         (cmd: Command) => `
                                         <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-white/[0.02] transition-colors group">
                                             <div class="shrink-0 sm:w-48">
-                                                <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-[#f97316] font-mono text-sm shadow-sm group-hover:border-[#f97316]/30 transition-colors">
-                                                    ${cmd.emoji ? `<i class="${(window as any).emojiToIcon?.[cmd.emoji] || "fas fa-terminal"} opacity-70"></i>` : ""}
+                                                <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-[#f97316]/30 transition-colors">
+                                                    ${cmd.emoji ? `<i class="${(window as any).emojiToIcon?.[cmd.emoji] || "fas fa-terminal"} opacity-70 text-[#f97316]"></i>` : ""}
                                                     ${cmd.name}
                                                 </code>
                                             </div>
@@ -288,13 +297,21 @@ const emojiToIcon: Record<string, string> = {
                                       )
                                       .join("")}
                                 </div>
-                            `
-                                : ""
-                            }
+                            </div>
                         </div>
-                    </div>
+                    `
+                        : `
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-5 flex items-center gap-3">
+                                <i class="${(window as any).emojiToIcon?.[section.icon || ""] || "fas fa-layer-group"} text-[#f97316]"></i> 
+                                ${section.title}
+                            </h3>
+                            ${section.content ? `<div class="text-zinc-400 leading-relaxed text-sm md:text-base w-full max-w-none">${section.content}</div>` : ""}
+                        </div>
+                    `
+                    }
                 </div>
-        `,
+            `,
       )
       .join("");
   }
