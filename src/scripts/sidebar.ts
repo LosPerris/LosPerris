@@ -26,7 +26,7 @@ const setupSidebar = (): void => {
         trigger.setAttribute("aria-expanded", "false");
       } else {
         if (content) {
-          content.style.maxHeight = "500px";
+          content.style.maxHeight = content.scrollHeight + "px";
           content.style.opacity = "100";
         }
         chevron?.classList.add("rotate-90");
@@ -36,12 +36,12 @@ const setupSidebar = (): void => {
   });
 
   if (toggleBtn && nav) {
-    if (toggleBtn.hasAttribute("data-has-listener")) return;
-    toggleBtn.setAttribute("data-has-listener", "true");
-
-    toggleBtn.addEventListener("click", () => {
-      nav.classList.toggle("hidden");
-    });
+    if (!toggleBtn.hasAttribute("data-has-listener")) {
+      toggleBtn.setAttribute("data-has-listener", "true");
+      toggleBtn.addEventListener("click", () => {
+        nav.classList.toggle("hidden");
+      });
+    }
   }
 };
 

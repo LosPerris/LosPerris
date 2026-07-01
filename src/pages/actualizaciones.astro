@@ -26,37 +26,43 @@ const sortedUpdates = allUpdates.sort(
         <p
           class="text-lg text-zinc-400 max-w-2xl mt-6 animate-[fadeInUp_0.8s_ease-out_0.1s_both]"
         >
-          Todo el historial de cambios, mejoras y nuevas herramientas agregadas
-          al ecosistema de LosPerris.
+          Historial de cambios, mejoras y correcciones de cada servicio.
         </p>
       </div>
 
       <!-- Filter Buttons -->
       <div
         class="flex flex-wrap gap-3 mb-12 animate-[fadeInUp_1s_ease-out_0.3s_both]"
+        role="group"
+        aria-label="Filtrar actualizaciones"
       >
         <button
           data-filter="all"
+          aria-pressed="true"
           class="filter-btn active px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-[#f97316] text-white"
           >Todos</button
         >
         <button
           data-filter="Twitch"
+          aria-pressed="false"
           class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
           >Twitch</button
         >
         <button
           data-filter="Valorant"
+          aria-pressed="false"
           class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
           >Valorant</button
         >
         <button
           data-filter="Transcripts"
+          aria-pressed="false"
           class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
           >Transcripts</button
         >
         <button
           data-filter="Códigos QR"
+          aria-pressed="false"
           class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
           >Códigos QR</button
         >
@@ -65,6 +71,7 @@ const sortedUpdates = allUpdates.sort(
       <div
         class="space-y-8 animate-[fadeInUp_1s_ease-out_0.4s_both]"
         id="updates-list"
+        style="view-transition-name: updates-list;"
       >
         {
           sortedUpdates.map((update) => (
@@ -101,43 +108,58 @@ const sortedUpdates = allUpdates.sort(
 </Layout>
 
 <script>
+  const STORAGE_KEY = "updates-filter";
+
+  const applyFilter = (
+    filterValue: string,
+    cards: NodeListOf<Element>,
+    buttons: NodeListOf<Element>,
+    container: HTMLElement,
+  ) => {
+    // Actualizar estado visual y aria-pressed de los botones
+    buttons.forEach((b) => {
+      const isActive = b.getAttribute("data-filter") === filterValue;
+      b.classList.toggle("bg-[#f97316]", isActive);
+      b.classList.toggle("text-white", isActive);
+      b.classList.toggle("bg-white/5", !isActive);
+      b.classList.toggle("text-zinc-400", !isActive);
+      b.classList.toggle("hover:text-white", !isActive);
+      b.classList.toggle("hover:bg-white/10", !isActive);
+      b.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    const updateDOM = () => {
+      cards.forEach((card) => {
+        const api = card.getAttribute("data-api");
+        const element = card as HTMLElement;
+        element.style.display =
+          filterValue === "all" || filterValue === api ? "block" : "none";
+      });
+    };
+
+    if (document.startViewTransition) {
+      document.startViewTransition(() => updateDOM());
+    } else {
+      updateDOM();
+    }
+  };
+
   // Script para manejar el filtrado
   const setupFilters = () => {
     const buttons = document.querySelectorAll(".filter-btn");
     const cards = document.querySelectorAll(".update-card");
+    const container = document.getElementById("updates-list");
+    if (!container) return;
+
+    // Restaurar el filtro guardado en sessionStorage
+    const savedFilter = sessionStorage.getItem(STORAGE_KEY) || "all";
+    applyFilter(savedFilter, cards, buttons, container);
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        // Remover activo de todos
-        buttons.forEach((b) => {
-          b.classList.remove("bg-[#f97316]", "text-white");
-          b.classList.add("bg-white/5", "text-zinc-400");
-        });
-
-        // Agregar activo al seleccionado
-        button.classList.remove("bg-white/5", "text-zinc-400");
-        button.classList.add("bg-[#f97316]", "text-white");
-
-        const filterValue = button.getAttribute("data-filter");
-
-        cards.forEach((card) => {
-          const api = card.getAttribute("data-api");
-          const element = card as HTMLElement;
-
-          if (filterValue === "all" || filterValue === api) {
-            element.style.display = "block";
-            setTimeout(() => {
-              element.style.opacity = "1";
-              element.style.transform = "translateY(0)";
-            }, 10);
-          } else {
-            element.style.opacity = "0";
-            element.style.transform = "translateY(10px)";
-            setTimeout(() => {
-              element.style.display = "none";
-            }, 300); // Coincide con la duración de la transición
-          }
-        });
+        const filterValue = button.getAttribute("data-filter") || "all";
+        sessionStorage.setItem(STORAGE_KEY, filterValue);
+        applyFilter(filterValue, cards, buttons, container);
       });
     });
   };

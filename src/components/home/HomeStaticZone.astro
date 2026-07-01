@@ -39,16 +39,10 @@ const links = [
 
 <section
   id="comunidad"
-  class="static-zone relative z-10 bg-[#050505] border-t border-[#1a1a1a]"
+  class="static-zone relative z-10 bg-[#050505] border-t border-[#f97316]/20"
   data-discord-stats
   data-invite-code={inviteCode}
 >
-  <div
-    class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-[#27272a] to-transparent"
-    aria-hidden="true"
-  >
-  </div>
-
   <div class="max-w-7xl mx-auto px-6 py-20 lg:py-28">
     <div
       class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center mb-16"
@@ -79,7 +73,10 @@ const links = [
               En el servidor
             </p>
           </div>
-          <div class="w-px bg-[#27272a]"></div>
+          <div
+            class="w-px bg-gradient-to-b from-transparent via-[#f97316]/40 to-transparent self-stretch"
+          >
+          </div>
           <div>
             <p
               class="text-2xl font-black text-white"
@@ -120,10 +117,13 @@ const links = [
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              class="group rounded-2xl bg-[#0a0a0a] border border-[#27272a] p-5 transition-colors hover:border-[#f97316]/40 hover:bg-[#111111]"
+              class="group rounded-2xl bg-[#0a0a0a] border border-[#27272a] p-5 transition-all duration-300 hover:border-[#f97316]/40 hover:bg-[#0f0f0f] hover:shadow-[0_0_20px_rgba(249,115,22,0.05)]"
             >
-              <div class="w-10 h-10 rounded-xl bg-[#111111] border border-[#27272a] flex items-center justify-center text-[#f97316] mb-4 group-hover:scale-105 transition-transform">
-                <i class={`${link.icon} text-sm`} />
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-[#111111] border border-[#27272a] flex items-center justify-center text-[#f97316] group-hover:scale-110 group-hover:border-[#f97316]/30 transition-all duration-300">
+                  <i class={`${link.icon} text-sm`} />
+                </div>
+                <i class="fas fa-arrow-right text-zinc-700 text-xs mt-1 group-hover:text-[#f97316] group-hover:translate-x-0.5 transition-all duration-300" />
               </div>
               <h3 class="font-bold text-white text-sm mb-1">{link.title}</h3>
               <p class="text-sm text-zinc-500 leading-relaxed">

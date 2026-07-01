@@ -5,6 +5,14 @@ type RateEntry = { count: number; resetAt: number };
 
 const hits = new Map<string, RateEntry>();
 
+// Limpiar entradas expiradas cada minuto para evitar memory leak en producción
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of hits.entries()) {
+    if (now > entry.resetAt) hits.delete(key);
+  }
+}, 60_000);
+
 export function checkRateLimit(
   key: string,
   max = RATE_LIMIT_MAX,

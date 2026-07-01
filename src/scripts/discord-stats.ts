@@ -53,10 +53,6 @@ const setupDiscordStats = (): void => {
     .catch((e: Error) => console.error("Error fetching Discord stats:", e));
 };
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", setupDiscordStats);
-} else {
-  setupDiscordStats();
-}
-
+// Con Astro View Transitions, astro:page-load se dispara en cada navegación
+// y también en la carga inicial, por lo que no necesitamos DOMContentLoaded
 document.addEventListener("astro:page-load", setupDiscordStats);
