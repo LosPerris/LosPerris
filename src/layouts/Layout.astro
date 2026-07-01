@@ -72,7 +72,9 @@ const {
       )
     }
     {showHeader && <Header />}
-    <slot />
+    <main id="main-content">
+      <slot />
+    </main>
     {showFooter && <Footer />}
 
     <script>
