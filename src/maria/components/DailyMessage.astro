@@ -51,11 +51,12 @@ const dayNumber = getDaysSinceStart();
       <!-- Bloom button — vintage seal style, no emojis -->
       <button
         id="bloom-btn"
-        class="mt-10 group relative w-fit animate-fade-in-up"
+        type="button"
+        class="mt-10 group relative animate-fade-in-up outline-none focus:outline-none"
         style="background: transparent; border: none; padding: 0; animation-delay: 1.2s; animation-fill-mode: both;"
       >
         <div
-          class="flex items-center gap-3 px-7 py-3 border border-amber-600/25 text-amber-200/70 tracking-widest uppercase transition-all duration-500 group-hover:border-amber-500/50 group-hover:text-amber-200/90 group-hover:bg-amber-900/10"
+          class="flex items-center justify-center gap-3 px-7 py-3 min-w-[220px] border border-amber-600/25 text-amber-200/70 tracking-widest uppercase transition-all duration-500 group-hover:border-amber-500/50 group-hover:text-amber-200/90 group-hover:bg-amber-900/10 group-active:scale-95 group-active:bg-amber-900/30"
           style="font-family: 'Special Elite', monospace; font-size: 0.7rem; letter-spacing: 0.2em;"
         >
           <!-- Small sunflower icon -->
@@ -147,7 +148,7 @@ const dayNumber = getDaysSinceStart();
 <FloatingPlayer songId={songId} question={question} />
 
 <script>
-  // ── Petal / Bloom Animation (SVG petals, no emojis) ─────────────────────
+  // ── Enhanced Petal & Magic Bloom Animation ─────────────────────────────
   const bloomBtn = document.getElementById("bloom-btn");
   const bloomLabel = document.getElementById("bloom-label");
 
@@ -160,69 +161,131 @@ const dayNumber = getDaysSinceStart();
       bloomLabel.textContent = "Floreciendo...";
       (bloomBtn as HTMLButtonElement).style.pointerEvents = "none";
 
-      const totalPetals = 55;
-      const colors = ["#f5c842", "#e8a030", "#d4821a", "#f0d060", "#c8941a"];
+      // Magic Screen Flash
+      const flash = document.createElement("div");
+      flash.style.position = "fixed";
+      flash.style.inset = "0";
+      flash.style.backgroundColor = "#fbbf24";
+      flash.style.mixBlendMode = "overlay";
+      flash.style.pointerEvents = "none";
+      flash.style.zIndex = "9999";
+      flash.style.opacity = "0";
+      flash.style.transition = "opacity 2s ease-out";
+      document.body.appendChild(flash);
+
+      // Trigger flash
+      requestAnimationFrame(() => {
+        flash.style.opacity = "0.2";
+        setTimeout(() => {
+          flash.style.opacity = "0";
+          setTimeout(() => flash.remove(), 2000);
+        }, 300);
+      });
+
+      const totalParticles = 120; // More particles!
+      const colors = [
+        "#f5c842",
+        "#e8a030",
+        "#d4821a",
+        "#f0d060",
+        "#c8941a",
+        "#ffffff",
+      ];
       let created = 0;
 
-      // SVG petal path (simple teardrop)
-      const petalPath = "M0,-10 C4,-6 6,2 0,8 C-6,2 -4,-6 0,-10Z";
+      // Different SVG paths for variety
+      const paths = [
+        "M0,-10 C4,-6 6,2 0,8 C-6,2 -4,-6 0,-10Z", // Normal petal
+        "M0,-12 C3,-5 4,3 0,10 C-4,3 -3,-5 0,-12Z", // Long petal
+        "M0,-8 C5,-4 7,4 0,6 C-7,4 -5,-4 0,-8Z", // Wide petal
+      ];
 
       const interval = setInterval(() => {
-        for (let i = 0; i < 4 && created < totalPetals; i++) {
+        for (let i = 0; i < 6 && created < totalParticles; i++) {
+          const isMote = Math.random() > 0.75; // 25% chance to be a glowing mote of light
+
           const ns = "http://www.w3.org/2000/svg";
           const svg = document.createElementNS(ns, "svg");
-          svg.setAttribute("width", "20");
-          svg.setAttribute("height", "20");
+          svg.setAttribute("width", isMote ? "10" : "24");
+          svg.setAttribute("height", isMote ? "10" : "24");
           svg.setAttribute("viewBox", "-12 -12 24 24");
           svg.style.position = "fixed";
           svg.style.pointerEvents = "none";
           svg.style.zIndex = "10000";
           svg.style.opacity = "0";
 
-          const path = document.createElementNS(ns, "path");
-          path.setAttribute("d", petalPath);
-          path.setAttribute(
-            "fill",
-            colors[Math.floor(Math.random() * colors.length)],
-          );
-          path.setAttribute("opacity", "0.85");
-          svg.appendChild(path);
+          if (isMote) {
+            // Glowing light mote
+            const circle = document.createElementNS(ns, "circle");
+            circle.setAttribute("cx", "0");
+            circle.setAttribute("cy", "0");
+            circle.setAttribute("r", "4");
+            circle.setAttribute("fill", "#fbbf24");
+            circle.style.filter = "blur(2px)";
+            svg.appendChild(circle);
+          } else {
+            // Petal
+            const path = document.createElementNS(ns, "path");
+            path.setAttribute(
+              "d",
+              paths[Math.floor(Math.random() * paths.length)],
+            );
+            path.setAttribute(
+              "fill",
+              colors[Math.floor(Math.random() * (colors.length - 1))],
+            ); // Exclude white for petals
+            path.setAttribute(
+              "opacity",
+              (0.7 + Math.random() * 0.3).toString(),
+            );
+            svg.appendChild(path);
+          }
 
-          const startX = Math.random() * window.innerWidth;
+          // Spread completely across the screen width (from slightly off-screen left to off-screen right)
+          const startX = (Math.random() * 1.2 - 0.1) * window.innerWidth;
+          const startY = window.innerHeight + 20;
+
           svg.style.left = `${startX}px`;
-          svg.style.top = `${window.innerHeight + 10}px`;
+          svg.style.top = `${startY}px`;
 
-          const size = 0.7 + Math.random() * 1.8;
-          svg.style.transform = `scale(${size})`;
+          const size = isMote
+            ? 0.5 + Math.random() * 1.5
+            : 0.6 + Math.random() * 1.6;
 
-          const duration = 4500 + Math.random() * 4000;
-          const swayX = -120 + Math.random() * 240;
-          const endRot = -360 + Math.random() * 720;
+          // 3D Tumbling physics setup
+          const duration = 3500 + Math.random() * 4500;
+          const swayX = -300 + Math.random() * 600; // Wider horizontal drift
+
+          // Random 3D rotation axes
+          const rX = Math.random() > 0.5 ? 1 : -1;
+          const rY = Math.random() > 0.5 ? 1 : -1;
+          const rZ = Math.random() > 0.5 ? 1 : -1;
+          const endRot = 360 + Math.random() * 1080;
 
           svg.animate(
             [
               {
-                transform: `scale(${size}) translate(0px, 0px) rotate(0deg)`,
+                transform: `scale(${size}) translate3d(0px, 0px, 0px) rotate3d(0, 0, 0, 0deg)`,
                 opacity: 0,
               },
               {
-                transform: `scale(${size}) translate(${swayX * 0.2}px, -25vh) rotate(${endRot * 0.3}deg)`,
-                opacity: 0.9,
+                transform: `scale(${size}) translate3d(${swayX * 0.3}px, -30vh, 100px) rotate3d(${rX}, ${rY}, ${rZ}, ${endRot * 0.3}deg)`,
+                opacity: isMote ? 0.8 : 1,
                 offset: 0.15,
               },
               {
-                transform: `scale(${size}) translate(${swayX * 0.7}px, -75vh) rotate(${endRot * 1.4}deg)`,
-                opacity: 0.7,
+                transform: `scale(${size}) translate3d(${swayX * 0.8}px, -80vh, -100px) rotate3d(${rX}, ${rY}, ${rZ}, ${endRot * 0.7}deg)`,
+                opacity: isMote ? 0.6 : 0.8,
                 offset: 0.75,
               },
               {
-                transform: `scale(${size}) translate(${swayX}px, -115vh) rotate(${endRot * 2}deg)`,
+                transform: `scale(${size}) translate3d(${swayX}px, -120vh, 200px) rotate3d(${rX}, ${rY}, ${rZ}, ${endRot}deg)`,
                 opacity: 0,
               },
             ],
             {
               duration,
-              easing: "ease-in-out",
+              easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)", // Smooth deceleration upwards
               fill: "forwards",
             },
           );
@@ -231,14 +294,14 @@ const dayNumber = getDaysSinceStart();
           setTimeout(() => svg.remove(), duration);
           created++;
         }
-        if (created >= totalPetals) clearInterval(interval);
-      }, 70);
+        if (created >= totalParticles) clearInterval(interval);
+      }, 50);
 
       setTimeout(() => {
         blooming = false;
         bloomLabel.textContent = "Hacer Florecer";
         (bloomBtn as HTMLButtonElement).style.pointerEvents = "auto";
-      }, 6000);
+      }, 6500);
     });
   }
 </script>

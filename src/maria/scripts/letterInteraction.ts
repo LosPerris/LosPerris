@@ -72,6 +72,7 @@ export function initLetterInteraction() {
       cover.style.transform = "perspective(1200px) rotateY(-110deg)";
       cover.style.opacity = "0";
       cover.style.pointerEvents = "none";
+      content.classList.remove("invisible");
       content.classList.remove("pointer-events-none");
 
       // Auto-scale text based on actual physical dimensions to guarantee it fits!
@@ -170,6 +171,7 @@ export function initLetterInteraction() {
       cover.style.opacity = "1";
       cover.style.pointerEvents = "auto";
       content.classList.add("pointer-events-none");
+      content.classList.add("invisible");
       content.style.opacity = "0"; // fade out content
 
       // Slide the entire book container back

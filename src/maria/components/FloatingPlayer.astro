@@ -16,40 +16,68 @@ const { songId, question } = Astro.props;
       onmouseover="this.style.scale='1.01'; this.style.rotate='-4deg';"
       onmouseout="this.style.scale='1'; this.style.rotate='-5deg';"
     >
-      <div class="absolute inset-0 bg-[#c6b394] rounded-sm" />
-      <div class="absolute inset-x-3 top-0 bottom-3 bg-[#e4d8c0] transition-transform duration-500 ease-out group-hover:-translate-y-14 flex flex-col items-center pt-4 z-0">
-        <div class="w-24 md:w-32 h-[2px] bg-[#1a1510]/20 mb-3" />
-        <div class="w-32 md:w-48 h-[2px] bg-[#1a1510]/10 mb-3" />
-        <div class="w-20 md:w-28 h-[2px] bg-[#1a1510]/10" />
+      {/* Base envelope back */}
+      <div class="absolute inset-0 bg-[#b8a486] rounded-sm shadow-inner z-0" />
+
+      {/* Letter inside (with little details) */}
+      <div class="absolute inset-x-3 top-0 bottom-3 bg-[#e8dcc8] shadow-sm transition-transform duration-500 ease-out group-hover:delay-300 group-hover:-translate-y-14 flex flex-col items-center pt-2 px-3 z-10">
+        {/* Detallitos de la carta */}
+        <div class="w-full flex justify-between items-center mb-2 px-1">
+          <div class="w-4 h-4 text-[#8b3a3a] opacity-80">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+          <div class="w-10 h-[2px] bg-[#1a1510]/15" />
+        </div>
+        <div class="w-full h-[2px] bg-[#1a1510]/15 mb-2" />
+        <div class="w-[90%] h-[2px] bg-[#1a1510]/15 mb-2" />
+        <div class="w-[70%] h-[2px] bg-[#1a1510]/15" />
       </div>
+
+      {/* Envelope front fold */}
       <div
-        class="absolute inset-0 bg-[#d2c3aa] rounded-sm z-10"
+        class="absolute inset-0 bg-[#cbb99d] rounded-sm z-20 shadow-sm pointer-events-none"
         style="clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);"
       />
+
+      {/* Envelope Label */}
       <div
         id="envelope-label"
-        class="absolute bottom-3 md:bottom-5 left-1/2 -translate-x-1/2 z-[15] opacity-65 text-[#1a1510] text-xl md:text-2xl rotate-[-2deg] whitespace-nowrap pointer-events-none"
+        class="absolute bottom-3 md:bottom-5 left-1/2 -translate-x-1/2 z-20 opacity-75 text-[#2a2015] text-xl md:text-2xl rotate-[-2deg] whitespace-nowrap pointer-events-none drop-shadow-sm"
         style="font-family: 'Caveat', cursive;"
       >
         Pregunta del día
       </div>
+
+      {/* Top Flap BACK (Inside of the flap, visible when open, always behind letter) */}
       <div
-        class="absolute top-0 left-0 w-full h-[55%] bg-[#d8cabb] z-20 origin-top transition-transform duration-700 ease-in-out group-hover:[transform:rotateX(180deg)]"
+        class="absolute top-0 left-0 w-full h-[55%] bg-[#d8cabb] z-0 origin-top transition-transform duration-700 ease-in-out group-hover:[transform:rotateX(180deg)]"
         style="clip-path: polygon(0 0, 100% 0, 50% 100%);"
       />
-      <div class="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-[#8b3a3a] rounded-full z-30 opacity-90 transition-opacity duration-300 group-hover:opacity-0 flex items-center justify-center border-2 border-[#6b2a2a] pointer-events-none">
+
+      {/* Top Flap FRONT Wrapper (Casts shadow on front fold) */}
+      <div
+        class="absolute top-0 left-0 w-full h-[55%] z-30 origin-top group-hover:[transform:rotateX(180deg)] opacity-100 group-hover:opacity-0"
+        style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35)); transition: transform 700ms ease-in-out, opacity 0ms linear 350ms;"
+      >
+        {/* Top Flap FRONT */}
+        <div
+          class="w-full h-full bg-[#d8cabb]"
+          style="clip-path: polygon(0 0, 100% 0, 50% 100%);"
+        />
+      </div>
+
+      {/* Wax Seal with Heart */}
+      <div class="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-[#8b3a3a] rounded-full z-40 opacity-90 transition-opacity duration-300 delay-[650ms] group-hover:delay-0 group-hover:opacity-0 flex items-center justify-center border border-[#5a1a1a] shadow-md pointer-events-none">
         <svg
           width="16"
           height="16"
           viewBox="0 0 24 24"
-          fill="none"
-          stroke="#e4d8c0"
-          stroke-width="2"
+          fill="#e4d8c0"
+          stroke="none"
         >
-          <>
-            <path d="M4 4h16v16H4z" />
-            <path d="M4 4l8 8 8-8" />
-          </>
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
         </svg>
       </div>
     </div>

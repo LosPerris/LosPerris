@@ -45,12 +45,11 @@ const today = new Date().toLocaleDateString("es-ES", {
       <div
         id="diary-cover"
         class="absolute inset-y-0 right-0 w-1/2 z-40 group origin-left transition-all duration-[1200ms] ease-in-out outline-none focus:outline-none"
-        style="transform-style: preserve-3d;"
       >
         <!-- Realistic Paper Stack Under Leather Cover (Pushed back in 3D space) -->
         <div
           class="absolute top-2.5 bottom-1 -right-2.5 left-2 rounded-r-sm rounded-bl-sm"
-          style="background-color: #e8dec3; box-shadow: 1px 1px 0 #dfd4b6, 2px 2px 0 #d1c5a5, 3px 3px 0 #c4b591, inset 5px 5px 15px rgba(0,0,0,0.6); transform: translateZ(-5px);"
+          style="background-color: #e8dec3; box-shadow: 1px 1px 0 #dfd4b6, 2px 2px 0 #d1c5a5, 3px 3px 0 #c4b591, inset 5px 5px 15px rgba(0,0,0,0.6);"
         >
           <div
             class="absolute inset-0 bg-[repeating-linear-gradient(to_bottom,transparent,transparent_1px,rgba(0,0,0,0.2)_2px)] opacity-30 rounded-r-sm rounded-bl-sm"
@@ -65,7 +64,7 @@ const today = new Date().toLocaleDateString("es-ES", {
         <!-- The actual leather cover background layer -->
         <div
           class="absolute inset-0 rounded-r-lg rounded-l-md"
-          style="background-color: #442312; box-shadow: inset 0 0 100px rgba(0,0,0,0.9), inset 0 2px 3px rgba(255,255,255,0.1), 0 30px 60px -15px rgba(0,0,0,0.8); transform: translateZ(2px);"
+          style="background-color: #442312; box-shadow: inset 0 0 100px rgba(0,0,0,0.9), inset 0 2px 3px rgba(255,255,255,0.1), 0 30px 60px -15px rgba(0,0,0,0.8);"
         >
           <!-- Leather Texture Overlay -->
           <div
@@ -96,7 +95,7 @@ const today = new Date().toLocaleDateString("es-ES", {
         <div
           id="snap-strap"
           class="absolute top-1/2 -translate-y-1/2 right-0 w-10 h-8 md:w-24 md:h-14 rounded-l-full z-50 flex items-center justify-start pl-2 md:pl-4 cursor-pointer origin-right group/strap outline-none focus:outline-none"
-          style="background-color: #3a1d0f; box-shadow: inset 0 0 15px rgba(0,0,0,0.9), inset -1px 1px 1px rgba(255,255,255,0.1), -5px 0 10px rgba(0,0,0,0.6); transform: translateZ(4px);"
+          style="background-color: #3a1d0f; box-shadow: inset 0 0 15px rgba(0,0,0,0.9), inset -1px 1px 1px rgba(255,255,255,0.1), -5px 0 10px rgba(0,0,0,0.6);"
         >
           <div
             class="absolute inset-0 rounded-l-full pointer-events-none opacity-[0.8] mix-blend-multiply leather-texture"
@@ -110,6 +109,7 @@ const today = new Date().toLocaleDateString("es-ES", {
           <!-- Antique Bronze Snap Button -->
           <div
             class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-[#4a3a2a] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.8),inset_0_2px_4px_rgba(255,255,255,0.2),0_4px_6px_rgba(0,0,0,0.6)] border border-[#1a110a] flex items-center justify-center group-hover/strap:shadow-[0_8px_12px_rgba(0,0,0,0.7)] group-hover/strap:scale-110 transition-all duration-300"
+            style="will-change: transform, box-shadow;"
           >
             <div
               class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full border border-black/60 opacity-60 shadow-[inset_0_1px_1px_rgba(0,0,0,0.5)]"
@@ -121,7 +121,6 @@ const today = new Date().toLocaleDateString("es-ES", {
         <!-- Center Content (Gold Foil Embossed look) -->
         <div
           class="relative z-20 flex flex-col items-center justify-center h-full w-full pl-2 pr-6 md:pl-8 md:pr-0 pb-16 md:pb-64 text-center pointer-events-none"
-          style="transform: translateZ(5px);"
         >
           <!-- Gold Logo (Sunflower) -->
           <div
@@ -148,7 +147,7 @@ const today = new Date().toLocaleDateString("es-ES", {
       {/* Hidden Content State (Open Photorealistic Leather Journal) */}
       <div
         id="diary-content"
-        class="absolute inset-0 z-10 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out flex w-full h-full rounded-lg py-2 px-2 md:py-10 md:px-8"
+        class="absolute inset-0 z-10 opacity-0 pointer-events-none transition-all duration-1000 ease-in-out flex w-full h-full rounded-lg py-2 px-2 md:py-10 md:px-8 invisible"
         style="background-color: #3a1e10; box-shadow: inset 0 0 100px rgba(0,0,0,0.9), inset 0 1px 2px rgba(255,255,255,0.1), 0 30px 60px -15px rgba(0,0,0,1);"
       >
         <!-- Leather Texture for inside cover -->
@@ -168,7 +167,7 @@ const today = new Date().toLocaleDateString("es-ES", {
         <div
           id="close-strap"
           class="flex absolute top-1/2 -translate-y-1/2 -right-8 md:-right-20 w-10 md:w-24 h-8 md:h-14 rounded-r-full shadow-[8px_8px_20px_rgba(0,0,0,0.7)] z-0 items-center justify-end pr-1.5 md:pr-4 cursor-pointer origin-right group/close outline-none focus:outline-none"
-          style="background-color: #3a1d0f; box-shadow: inset 0 0 15px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.1), 8px 8px 20px rgba(0,0,0,0.7);"
+          style="background-color: #3a1d0f; box-shadow: inset 0 0 15px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.1), 8px 8px 20px rgba(0,0,0,0.7); outline: 1px solid transparent;"
         >
           <div
             class="absolute inset-0 rounded-r-full pointer-events-none opacity-[0.8] mix-blend-multiply leather-texture"
@@ -182,6 +181,7 @@ const today = new Date().toLocaleDateString("es-ES", {
           <!-- Male Snap Button (Underneath side) -->
           <div
             class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#4a3a2a] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.6)] border border-[#1a110a] flex items-center justify-center group-hover/close:shadow-[0_8px_12px_rgba(0,0,0,0.7)] transition-all duration-300"
+            style="will-change: transform, box-shadow;"
           >
             <div
               class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full border border-black/60 opacity-60"
@@ -386,10 +386,10 @@ const today = new Date().toLocaleDateString("es-ES", {
                 id="turn-back-btn"
                 class="absolute top-0 left-0 w-[35px] h-[35px] md:w-[50px] md:h-[50px] cursor-pointer group z-50"
               >
-                <!-- The fold flap -->
+                <!-- The fold flap (inverse logic for the back of the page) -->
                 <div
-                  class="absolute inset-0 bg-[#cbb99a] shadow-[2px_2px_4px_rgba(0,0,0,0.2)] transition-colors duration-300 group-hover:bg-[#bfa780]"
-                  style="clip-path: polygon(100% 0, 0 100%, 100% 100%);"
+                  class="absolute inset-0 bg-[#d2c3aa] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.2)] transition-colors duration-300 group-hover:bg-[#c6b394]"
+                  style="clip-path: polygon(0 0, 100% 0, 0 100%);"
                 >
                 </div>
                 <!-- Arrow Icon -->
