@@ -1,153 +1,89 @@
 ---
-import MariaOverlay from "./MariaOverlay.astro";
+// AnniversaryModal.astro
 ---
 
-<MariaOverlay
+<dialog
   id="anniversary-modal"
-  contentClass="w-[min(500px,calc(100vw-2rem))] rounded-[3rem] p-[clamp(2rem,5vw,3rem)] text-center flex flex-col items-center gap-6"
+  class="backdrop:bg-black/90 backdrop:backdrop-blur-xl bg-transparent m-auto p-0 rounded-[3rem] w-full max-w-[600px] open:animate-scale-in"
 >
-  <h2 id="anniversary-title" class="reasons-title" style="font-size: 1.8rem;">
-    ¡Feliz Cumpleaños, María! 🌻
-  </h2>
-
-  <div class="modal-section-label">Un día muy especial</div>
-
-  <div class="question-container modal-question text-center">
-    <span class="sparkle block mb-4" style="font-size: 2rem;">✨</span>
-    <p class="question-text" style="line-height: 1.6; font-size: 1.05rem;">
-      Feliz cumpleaño mi vida, y quiero que sepas que <strong
-        >siempre la voy a amar maria : )</strong
+  <div
+    class="relative w-full p-8 md:p-14 glass-modal rounded-[3rem] text-center flex flex-col items-center gap-6 shadow-[0_0_80px_rgba(251,191,36,0.2)]"
+  >
+    <header class="text-center relative z-10 w-full mb-2">
+      <h2
+        id="anniversary-title"
+        class="font-serif text-3xl md:text-4xl italic font-semibold text-amber-400 text-glow"
       >
-      y que <strong>siempre va a ser la mujer de mis ojos</strong>.
-    </p>
-    <p
-      class="question-text"
-      style="line-height: 1.6; font-size: 1.05rem; margin-top: 1rem;"
+        ¡Feliz Cumpleaños, María! 🌻
+      </h2>
+      <span
+        class="text-[0.7rem] font-bold tracking-[0.3em] uppercase text-amber-500/80 mt-2 block"
+        >Un día muy especial</span
+      >
+    </header>
+
+    <div
+      class="w-full flex flex-col items-center gap-4 bg-amber-500/5 border border-amber-500/20 rounded-3xl p-6 md:p-8"
     >
-      A veces las palabras se quedan cortas para expresar todo lo que me haces
-      sentir. Cada día que pasa me doy cuenta de lo afortunado que soy de
-      tenerte en mi vida. Eres mi refugio, mi luz y esa persona que le da
-      sentido a tantas cosas.
-    </p>
-    <p
-      class="question-text"
-      style="line-height: 1.6; font-size: 1.05rem; margin-top: 1rem;"
-    >
-      Gracias por ser exactamente quien eres, por llenarme de tantas cosas
-      hermosas y por ser mi mayor inspiración. Nunca dudes de lo mucho que vales
-      para mí.
-    </p>
-    <p
-      class="question-text"
-      style="line-height: 1.6; font-size: 1.05rem; margin-top: 1rem;"
-    >
-      Te amo incondicionalmente, con cada parte de mi corazón, hoy y todos los
-      días de mi vida. 💛
-    </p>
-    <span class="sparkle block mt-4" style="font-size: 2rem;">✨</span>
+      <span
+        class="text-4xl animate-pulse drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]"
+        >✨</span
+      >
+
+      <div
+        class="font-sans text-lg md:text-xl text-white/90 font-light leading-relaxed space-y-4"
+      >
+        <p>
+          Feliz cumpleaño mi vida, y quiero que sepas que <strong
+            class="font-medium text-amber-300"
+            >siempre la voy a amar maria : )</strong
+          > y que <strong class="font-medium text-amber-300"
+            >siempre va a ser la mujer de mis ojos</strong
+          >.
+        </p>
+        <p>
+          A veces las palabras se quedan cortas para expresar todo lo que me
+          haces sentir. Cada día que pasa me doy cuenta de lo afortunado que soy
+          de tenerte en mi vida. Eres mi refugio, mi luz y esa persona que le da
+          sentido a tantas cosas.
+        </p>
+        <p>
+          Gracias por ser exactamente quien eres, por llenarme de tantas cosas
+          hermosas y por ser mi mayor inspiración. Nunca dudes de lo mucho que
+          vales para mí.
+        </p>
+        <p>
+          Te amo incondicionalmente, con cada parte de mi corazón, hoy y todos
+          los días de mi vida. 💛
+        </p>
+      </div>
+
+      <span
+        class="text-4xl animate-pulse drop-shadow-[0_0_15px_rgba(251,191,36,0.5)] mt-2"
+        >✨</span
+      >
+    </div>
+
+    <div class="w-full pt-4 mt-2">
+      <button
+        onclick="document.getElementById('anniversary-modal').close()"
+        class="group relative px-8 py-3 rounded-full bg-amber-500 text-black font-semibold shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] hover:bg-amber-400 hover:scale-105 transition-all duration-300 overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"
+        >
+        </div>
+        <span class="relative flex items-center gap-2">Entrar al jardín 🌻</span
+        >
+      </button>
+    </div>
   </div>
-
-  <div class="modal-footer-actions">
-    <button id="close-anniversary-modal" class="bloom-button">
-      Entrar al jardín 🌻
-    </button>
-  </div>
-</MariaOverlay>
-
-<script>
-  const modal = document.getElementById("anniversary-modal");
-  const closeBtn = document.getElementById("close-anniversary-modal");
-
-  if (modal && closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      modal.classList.remove("is-active");
-    });
-  }
-</script>
+</dialog>
 
 <style>
-  .reasons-title {
-    font-family: "Playfair Display", serif;
-    color: #fbbf24;
-    text-align: center;
-    margin: 0;
-    font-weight: 600;
-    font-style: italic;
-    text-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
-  }
-
-  .modal-section-label {
-    text-align: center;
-    color: #fbbf24;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3rem;
-    font-weight: 700;
-    opacity: 0.8;
-  }
-
-  .question-container {
-    width: 100%;
-    background: rgba(251, 191, 36, 0.08);
-    border: 1px solid rgba(251, 191, 36, 0.2);
-    border-radius: 1.5rem;
-    padding: 1.5rem;
-    text-align: center;
-  }
-
-  .question-text {
-    font-family: "Inter", sans-serif;
-    color: #fff;
-    margin: 0;
-  }
-
-  .modal-footer-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 0.5rem;
-  }
-
-  .bloom-button {
-    background: linear-gradient(135deg, #fbbf24, #d97706);
-    border: none;
-    border-radius: 100px;
-    padding: 0.8rem 2.5rem;
-    color: #000;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .bloom-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(251, 191, 36, 0.4);
-  }
-
-  .sparkle {
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.2);
-      opacity: 0.8;
-    }
-  }
-
-  .block {
-    display: block;
-  }
-  .mb-4 {
-    margin-bottom: 1rem;
-  }
-  .mt-4 {
-    margin-top: 1rem;
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 </style>

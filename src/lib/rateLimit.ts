@@ -1,23 +1,29 @@
+// In-memory rate limiter – works within a single warm serverless instance.
+// NOTE: On Vercel, multiple cold-starts each get their own Map (no shared state).
+// This still provides per-instance protection against burst abuse.
+// For cross-instance rate limiting, use Vercel KV / Upstash Redis.
+
 const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX = 20;
 
 type RateEntry = { count: number; resetAt: number };
-
 const hits = new Map<string, RateEntry>();
 
-// Limpiar entradas expiradas cada minuto para evitar memory leak en producción
-setInterval(() => {
+// Lazy cleanup: purge expired entries on each check instead of setInterval.
+// setInterval in serverless keeps the Lambda container alive unnecessarily.
+function purgeExpired(): void {
   const now = Date.now();
   for (const [key, entry] of hits.entries()) {
     if (now > entry.resetAt) hits.delete(key);
   }
-}, 60_000);
+}
 
 export function checkRateLimit(
   key: string,
-  max = RATE_LIMIT_MAX,
+  max: number,
   windowMs = RATE_LIMIT_WINDOW_MS,
 ): boolean {
+  purgeExpired();
+
   const now = Date.now();
   const entry = hits.get(key);
 

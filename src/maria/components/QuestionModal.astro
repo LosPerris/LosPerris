@@ -1,0 +1,300 @@
+---
+// QuestionModal.astro – Styled as an open page from El Diario
+---
+
+<dialog
+  id="question-modal"
+  class="bg-transparent m-auto p-0 w-[90vw] max-w-[440px] outline-none"
+>
+  <!-- Page from the Diary -->
+  <div
+    class="diary-page paper-texture relative flex flex-col overflow-hidden"
+    style="
+    background: #e8dec3;
+    min-height: 460px;
+    box-shadow:
+      0 30px 80px -10px rgba(0,0,0,0.8),
+      0 10px 30px -5px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      inset -3px 0 8px rgba(0,0,0,0.1);
+    transform: rotate(-0.3deg);
+  "
+  >
+    <!-- Left margin shadow (spine of the book) -->
+    <div
+      class="absolute top-0 bottom-0 left-0 w-8 pointer-events-none"
+      style="background: linear-gradient(90deg, rgba(0,0,0,0.12), transparent);"
+    >
+    </div>
+
+    <!-- Close button -->
+    <button
+      id="modal-close-btn"
+      aria-label="Cerrar"
+      class="absolute top-4 right-4 z-50 w-7 h-7 flex items-center justify-center transition-opacity duration-200 opacity-40 hover:opacity-80"
+      style="color: #1a1510;"
+    >
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      >
+        <line x1="1" y1="1" x2="13" y2="13"></line>
+        <line x1="13" y1="1" x2="1" y2="13"></line>
+      </svg>
+    </button>
+
+    <!-- Decorative top rule -->
+    <div class="relative z-10 flex items-center gap-3 px-10 pt-8">
+      <div
+        class="flex-1 h-[1px]"
+        style="background: linear-gradient(90deg, transparent, rgba(139,58,58,0.4));"
+      >
+      </div>
+      <svg
+        width="10"
+        height="10"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="rgba(139,58,58,0.5)"
+        stroke-width="1.5"
+        ><path
+          d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"
+        ></path></svg
+      >
+      <div
+        class="flex-1 h-[1px]"
+        style="background: linear-gradient(90deg, rgba(139,58,58,0.4), transparent);"
+      >
+      </div>
+    </div>
+
+    <!-- Header label -->
+    <div class="relative z-10 px-10 pt-4 pb-1">
+      <p
+        class="text-[10px] tracking-[0.25em] uppercase opacity-35 text-[#1a1510]"
+        style="font-family: 'Special Elite', monospace;"
+      >
+        Hoy, en El Diario
+      </p>
+    </div>
+
+    <!-- Main content -->
+    <div class="relative z-10 flex flex-col gap-6 px-10 pb-10 flex-1">
+      <!-- Title -->
+      <h2
+        class="font-serif italic text-[#1a1510] opacity-85 leading-snug"
+        style="font-size: clamp(1.5rem, 4vw, 2rem);"
+      >
+        Pregunta del día
+      </h2>
+
+      <!-- Divider -->
+      <div class="w-full h-[1px] opacity-20" style="background: #1a1510;"></div>
+
+      <!-- The question -->
+      <p
+        id="question-text"
+        class="font-serif text-[#1a1510] opacity-85 leading-relaxed"
+        style="font-size: clamp(1.05rem, 2.5vw, 1.25rem);"
+      >
+        ¿Sientes todo este amor sincero que tengo guardado exclusivamente para
+        ti?
+      </p>
+
+      <!-- Typed response area (hidden until answer) -->
+      <div id="typed-response-wrapper" class="hidden">
+        <div
+          class="w-full h-[1px] opacity-15 mb-4"
+          style="background: #1a1510;"
+        >
+        </div>
+        <p
+          id="typed-response"
+          class="font-serif italic text-[#8b3a3a] opacity-90 leading-relaxed"
+          style="font-family: 'Caveat', cursive; font-size: 1.3rem; min-height: 2.5rem;"
+        >
+        </p>
+      </div>
+
+      <!-- Spacer -->
+      <div class="flex-1"></div>
+
+      <!-- Signature -->
+      <p
+        class="text-right italic opacity-45 text-[#1a1510]"
+        style="font-family: 'Caveat', cursive; font-size: 1.1rem;"
+      >
+        Con todo mi amor,<br />
+        <span style="font-size: 1.3rem;">— Yo</span>
+      </p>
+
+      <!-- Bottom rule with heart -->
+      <div class="flex items-center gap-3">
+        <div
+          class="flex-1 h-[1px]"
+          style="background: linear-gradient(90deg, transparent, rgba(139,58,58,0.35));"
+        >
+        </div>
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 24 24"
+          fill="rgba(139,58,58,0.4)"
+          ><path
+            d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"
+          ></path></svg
+        >
+        <div
+          class="flex-1 h-[1px]"
+          style="background: linear-gradient(90deg, rgba(139,58,58,0.35), transparent);"
+        >
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div id="answer-buttons" class="flex gap-4 justify-center">
+        <button
+          id="btn-yes"
+          class="px-8 py-2.5 font-medium tracking-widest uppercase transition-all duration-300"
+          style="border: 1px solid rgba(139,58,58,0.5); color: #8b3a3a; background: transparent; font-family: 'Special Elite', monospace; font-size: 0.7rem; letter-spacing: 0.2em;"
+          >Si</button
+        >
+        <button
+          id="btn-no"
+          class="px-8 py-2.5 font-medium tracking-widest uppercase transition-all duration-300"
+          style="border: 1px solid rgba(26,21,16,0.2); color: rgba(26,21,16,0.4); background: transparent; font-family: 'Special Elite', monospace; font-size: 0.7rem; letter-spacing: 0.2em;"
+          >No</button
+        >
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const btnYes = document.getElementById("btn-yes") as HTMLButtonElement;
+  const btnNo = document.getElementById("btn-no") as HTMLButtonElement;
+  const modal = document.getElementById("question-modal") as HTMLDialogElement;
+  const closeBtn = document.getElementById(
+    "modal-close-btn",
+  ) as HTMLButtonElement;
+  const responseWrapper = document.getElementById(
+    "typed-response-wrapper",
+  ) as HTMLElement;
+  const responseEl = document.getElementById("typed-response") as HTMLElement;
+  const answerButtons = document.getElementById(
+    "answer-buttons",
+  ) as HTMLElement;
+
+  // Close button
+  closeBtn?.addEventListener("click", () => modal.close());
+
+  // Typewriter helper
+  function typewrite(
+    el: HTMLElement,
+    text: string,
+    speed = 40,
+    onDone?: () => void,
+  ) {
+    el.textContent = "";
+    let i = 0;
+    const tick = () => {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        setTimeout(tick, speed + Math.random() * 20);
+      } else {
+        onDone?.();
+      }
+    };
+    tick();
+  }
+
+  function handleAnswer(yesPath: boolean) {
+    // Hide buttons
+    answerButtons.style.opacity = "0";
+    answerButtons.style.pointerEvents = "none";
+    setTimeout(() => {
+      answerButtons.style.display = "none";
+    }, 300);
+
+    // Show typed response area
+    responseWrapper.classList.remove("hidden");
+
+    const text = yesPath
+      ? "Sabia que dirias que si. Te amo."
+      : "Aun no te creo. Te amo de todas formas.";
+
+    setTimeout(() => {
+      typewrite(responseEl, text, 45, () => {
+        if (yesPath) {
+          try {
+            fetch("/api/maria/respond", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                answer: "Si",
+                question:
+                  "Sientes todo este amor sincero que tengo guardado exclusivamente para ti?",
+              }),
+            });
+          } catch (_) {}
+          setTimeout(() => modal.close(), 2200);
+        }
+      });
+    }, 150);
+  }
+
+  btnYes?.addEventListener("click", () => handleAnswer(true));
+
+  btnNo?.addEventListener("click", () => {
+    // Runaway button
+    const x = Math.random() * 70 - 35;
+    const y = Math.random() * 50 - 25;
+    btnNo.style.transform = `translate(${x}px, ${y}px)`;
+    handleAnswer(false);
+  });
+</script>
+
+<style>
+  dialog#question-modal::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  @keyframes pageOpen {
+    from {
+      opacity: 0;
+      transform: rotate(-0.3deg) translateY(14px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(-0.3deg) translateY(0) scale(1);
+    }
+  }
+
+  dialog[open] .diary-page {
+    animation: pageOpen 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  #btn-yes:hover {
+    background: #8b3a3a !important;
+    color: #e8dec3 !important;
+  }
+  #btn-no:hover {
+    background: rgba(26, 21, 16, 0.08) !important;
+  }
+  #answer-buttons {
+    transition: opacity 0.3s;
+  }
+
+  .paper-texture {
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='qp'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23qp)' opacity='0.08'/%3E%3C/svg%3E"),
+      linear-gradient(180deg, #e2d5b5 0%, #e8dec3 50%, #dfd2b0 100%);
+  }
+</style>

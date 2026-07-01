@@ -5,9 +5,8 @@ import {
   getDaysSinceStart,
 } from "../data/messages";
 
-import LetterCard from "./LetterCard.astro";
-import GiftModal from "./GiftModal.astro";
-import ExperienceOverlays from "./ExperienceOverlays.astro";
+import FloatingPlayer from "./FloatingPlayer.astro";
+import LetterFeed from "./LetterFeed.astro";
 
 interface Props {
   songId?: string;
@@ -21,20 +20,225 @@ const message = messages[index];
 const dayNumber = getDaysSinceStart();
 ---
 
-<div class="daily-message-wrapper">
-  <GiftModal songId={songId} question={question} />
-  <LetterCard message={message} dayNumber={dayNumber} />
-  <ExperienceOverlays />
+<div
+  class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row relative z-10 pt-8 md:pt-16 lg:pt-24 px-4"
+>
+  {/* Left Sidebar (Sticky in Desktop, normal in Mobile) */}
+  <aside
+    class="w-full lg:w-1/3 lg:sticky lg:top-24 h-fit flex flex-col gap-6 mb-12 lg:mb-0 lg:pr-8"
+  >
+    <div class="animate-fade-in-up">
+      <h1
+        class="font-serif italic text-5xl md:text-6xl lg:text-7xl text-amber-200/90 drop-shadow-[0_0_15px_rgba(251,191,36,0.3)] leading-tight tracking-tight animate-fade-in-up"
+        style="animation-delay: 0.1s; animation-fill-mode: both;"
+      >
+        Tu Diario
+      </h1>
+      <div
+        class="mt-8 w-32 h-[1px] bg-gradient-to-r from-amber-400/80 via-amber-600/30 to-transparent animate-fade-in-up"
+        style="animation-delay: 0.55s; animation-fill-mode: both;"
+      >
+      </div>
+
+      <p
+        class="mt-8 font-sans text-lg text-white/60 font-light leading-relaxed max-w-sm animate-fade-in-up"
+        style="animation-delay: 0.85s; animation-fill-mode: both;"
+      >
+        Un lugar hecho solo para ti. Donde cada pagina te recuerda lo mucho que
+        significas para mi.
+      </p>
+
+      <!-- Bloom button — vintage seal style, no emojis -->
+      <button
+        id="bloom-btn"
+        class="mt-10 group relative w-fit animate-fade-in-up"
+        style="background: transparent; border: none; padding: 0; animation-delay: 1.2s; animation-fill-mode: both;"
+      >
+        <div
+          class="flex items-center gap-3 px-7 py-3 border border-amber-600/25 text-amber-200/70 tracking-widest uppercase transition-all duration-500 group-hover:border-amber-500/50 group-hover:text-amber-200/90 group-hover:bg-amber-900/10"
+          style="font-family: 'Special Elite', monospace; font-size: 0.7rem; letter-spacing: 0.2em;"
+        >
+          <!-- Small sunflower icon -->
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="opacity-60 group-hover:opacity-90 transition-opacity"
+          >
+            <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"></ellipse>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"
+              transform="rotate(45 12 12)"></ellipse>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"
+              transform="rotate(90 12 12)"></ellipse>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"
+              transform="rotate(135 12 12)"></ellipse>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"
+              transform="rotate(180 12 12)"></ellipse>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"
+              transform="rotate(225 12 12)"></ellipse>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"
+              transform="rotate(270 12 12)"></ellipse>
+            <ellipse
+              cx="12"
+              cy="4"
+              rx="2"
+              ry="4"
+              fill="currentColor"
+              opacity="0.7"
+              transform="rotate(315 12 12)"></ellipse>
+          </svg>
+          <span id="bloom-label">Hacer Florecer</span>
+        </div>
+      </button>
+    </div>
+  </aside>
+
+  {/* Right Main Content (Scrollable) */}
+  <div class="w-full lg:w-2/3 lg:pl-8">
+    <LetterFeed message={message} dayNumber={dayNumber} />
+  </div>
 </div>
 
-<style>
-  .daily-message-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    padding: 2rem 1rem;
-    perspective: 1000px;
+<!-- Floating Elements -->
+<FloatingPlayer songId={songId} question={question} />
+
+<script>
+  // ── Petal / Bloom Animation (SVG petals, no emojis) ─────────────────────
+  const bloomBtn = document.getElementById("bloom-btn");
+  const bloomLabel = document.getElementById("bloom-label");
+
+  if (bloomBtn && bloomLabel) {
+    let blooming = false;
+
+    bloomBtn.addEventListener("click", () => {
+      if (blooming) return;
+      blooming = true;
+      bloomLabel.textContent = "Floreciendo...";
+      (bloomBtn as HTMLButtonElement).style.pointerEvents = "none";
+
+      const totalPetals = 55;
+      const colors = ["#f5c842", "#e8a030", "#d4821a", "#f0d060", "#c8941a"];
+      let created = 0;
+
+      // SVG petal path (simple teardrop)
+      const petalPath = "M0,-10 C4,-6 6,2 0,8 C-6,2 -4,-6 0,-10Z";
+
+      const interval = setInterval(() => {
+        for (let i = 0; i < 4 && created < totalPetals; i++) {
+          const ns = "http://www.w3.org/2000/svg";
+          const svg = document.createElementNS(ns, "svg");
+          svg.setAttribute("width", "20");
+          svg.setAttribute("height", "20");
+          svg.setAttribute("viewBox", "-12 -12 24 24");
+          svg.style.position = "fixed";
+          svg.style.pointerEvents = "none";
+          svg.style.zIndex = "10000";
+          svg.style.opacity = "0";
+
+          const path = document.createElementNS(ns, "path");
+          path.setAttribute("d", petalPath);
+          path.setAttribute(
+            "fill",
+            colors[Math.floor(Math.random() * colors.length)],
+          );
+          path.setAttribute("opacity", "0.85");
+          svg.appendChild(path);
+
+          const startX = Math.random() * window.innerWidth;
+          svg.style.left = `${startX}px`;
+          svg.style.top = `${window.innerHeight + 10}px`;
+
+          const size = 0.7 + Math.random() * 1.8;
+          svg.style.transform = `scale(${size})`;
+
+          const duration = 4500 + Math.random() * 4000;
+          const swayX = -120 + Math.random() * 240;
+          const endRot = -360 + Math.random() * 720;
+
+          svg.animate(
+            [
+              {
+                transform: `scale(${size}) translate(0px, 0px) rotate(0deg)`,
+                opacity: 0,
+              },
+              {
+                transform: `scale(${size}) translate(${swayX * 0.2}px, -25vh) rotate(${endRot * 0.3}deg)`,
+                opacity: 0.9,
+                offset: 0.15,
+              },
+              {
+                transform: `scale(${size}) translate(${swayX * 0.7}px, -75vh) rotate(${endRot * 1.4}deg)`,
+                opacity: 0.7,
+                offset: 0.75,
+              },
+              {
+                transform: `scale(${size}) translate(${swayX}px, -115vh) rotate(${endRot * 2}deg)`,
+                opacity: 0,
+              },
+            ],
+            {
+              duration,
+              easing: "ease-in-out",
+              fill: "forwards",
+            },
+          );
+
+          document.body.appendChild(svg);
+          setTimeout(() => svg.remove(), duration);
+          created++;
+        }
+        if (created >= totalPetals) clearInterval(interval);
+      }, 70);
+
+      setTimeout(() => {
+        blooming = false;
+        bloomLabel.textContent = "Hacer Florecer";
+        (bloomBtn as HTMLButtonElement).style.pointerEvents = "auto";
+      }, 6000);
+    });
   }
-</style>
+</script>

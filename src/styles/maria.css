@@ -1,0 +1,220 @@
+@import "tailwindcss";
+@source "../maria";
+
+/* Premium Custom Properties for Maria Page */
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  --color-sunflower-light: #fcd34d; /* amber-300 */
+  --color-sunflower: #fbbf24; /* amber-400 */
+  --color-sunflower-dark: #b45309; /* amber-700 */
+  
+  --color-bg-dark: #0a0704;
+}
+
+@utility glass-card {
+  background: linear-gradient(135deg, rgba(20, 15, 10, 0.7) 0%, rgba(10, 7, 4, 0.9) 100%);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(251, 191, 36, 0.1);
+}
+
+@utility glass-modal {
+  background: linear-gradient(135deg, rgba(20, 15, 10, 0.8) 0%, rgba(5, 3, 2, 0.95) 100%);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.9),
+    0 0 100px -20px rgba(251, 191, 36, 0.15),
+    inset 0 1px 0 rgba(251, 191, 36, 0.15);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+}
+
+@utility text-glow-strong {
+  text-shadow: 0 0 30px rgba(251, 191, 36, 0.8), 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(251, 191, 36, 0.5);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(251, 191, 36, 0.8);
+  }
+}
+
+/* 3D Transform Utilities for Polaroid/Cards */
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Base resets specifically for Maria layout */
+html.maria-html, html.maria-html body {
+  background-color: var(--color-bg-dark);
+  background-image: linear-gradient(rgba(10, 7, 4, 0.75), rgba(10, 7, 4, 0.95)), url('/images/wood-desk.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  overscroll-behavior: none;
+}
+
+/* Animations */
+@keyframes float-particle {
+  0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-in-up {
+  0%   { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  0%   { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@utility animate-float-particle {
+  animation: float-particle linear infinite;
+}
+
+@utility animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@utility animate-fade-in-up {
+  animation: fade-in-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-scale-in {
+  animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stamp-down {
+  0% {
+    opacity: 0;
+    transform: scale(3) var(--rotate, rotate(0deg));
+  }
+  15% {
+    opacity: var(--final-opacity, 1);
+    transform: scale(0.95) var(--rotate, rotate(0deg));
+  }
+  30% {
+    opacity: var(--final-opacity, 1);
+    transform: scale(1) var(--rotate, rotate(0deg));
+  }
+  100% {
+    opacity: var(--final-opacity, 1);
+    transform: scale(1) var(--rotate, rotate(0deg));
+  }
+}
+
+@utility animate-stamp {
+  animation: stamp-down 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+}
+
+/* Native Dialog reset */
+dialog {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Desk Object Entry Animations ───────────────────────────── */
+
+@keyframes desk-envelope-in {
+  from {
+    opacity: 0;
+    transform: rotate(-5deg) translate(-40px, 110px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-5deg) translate(0, 0);
+  }
+}
+
+@keyframes desk-polaroid-in {
+  from {
+    opacity: 0;
+    transform: rotate(4deg) translate(60px, -90px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(4deg) translate(0, 0);
+  }
+}
+
+@keyframes desk-note-in {
+  from {
+    opacity: 0;
+    transform: rotate(4deg) translate(80px, 60px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(4deg) translate(0, 0);
+  }
+}
+
+@utility animate-desk-envelope {
+  animation: desk-envelope-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+}
+
+@utility animate-desk-polaroid {
+  animation: desk-polaroid-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) 1.1s both;
+}
+
+@utility animate-desk-note {
+  animation: desk-note-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
+}
+
+/* Staggered sidebar entries */
+@utility anim-delay-100 { animation-delay: 0.1s; }
+@utility anim-delay-200 { animation-delay: 0.2s; }
+@utility anim-delay-300 { animation-delay: 0.3s; }
+@utility anim-delay-500 { animation-delay: 0.5s; }
+@utility anim-delay-700 { animation-delay: 0.7s; }
+
+/* Inline SVG noise textures — defined here to avoid " in JSX expressions */
+.spotify-note-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='snp'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23snp)' opacity='0.1'/%3E%3C/svg%3E");
+}

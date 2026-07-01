@@ -1,0 +1,44 @@
+---
+const {
+  width = 42,
+  height = 42,
+  "stroke-width": strokeWidth = 1.2,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<svg
+  width={width}
+  height={height}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  {...rest}
+>
+  <!-- Center seeds -->
+  <circle cx="12" cy="12" r="4" fill="currentColor" fill-opacity="0.2"></circle>
+  <!-- Petals -->
+  <path d="M12 2c1.1 0 2 1.5 2 3s-.9 3-2 3-2-1.5-2-3 .9-3 2-3z"></path>
+  <path d="M12 22c-1.1 0-2-1.5-2-3s.9-3 2-3 2 1.5 2 3-.9 3-2 3z"></path>
+  <path d="M2 12c0-1.1 1.5-2 3-2s3 .9 3 2-1.5 2-3 2-3-.9-3-2z"></path>
+  <path d="M22 12c0 1.1-1.5 2-3 2s-3-.9-3-2 1.5-2 3-2 3 .9 3 2z"></path>
+
+  <!-- Diagonal Petals -->
+  <path
+    d="M4.93 4.93c.78-.78 2.65-.25 3.54.64.88.88 1.41 2.75.64 3.54-.78.78-2.65.25-3.54-.64-.88-.88-1.41-2.75-.64-3.54z"
+  ></path>
+  <path
+    d="M19.07 19.07c-.78.78-2.65.25-3.54-.64-.88-.88-1.41-2.75-.64-3.54.78-.78 2.65-.25 3.54.64.88.88 1.41 2.75.64 3.54z"
+  ></path>
+  <path
+    d="M4.93 19.07c-.78.78-.25-2.65.64-3.54.88-.88 2.75-1.41 3.54-.64.78.78.25 2.65-.64 3.54-.88.88-2.75 1.41-3.54.64z"
+  ></path>
+  <path
+    d="M19.07 4.93c.78.78.25 2.65-.64 3.54-.88.88-2.75 1.41-3.54.64-.78-.78-.25-2.65.64-3.54.88-.88 2.75-1.41 3.54-.64z"
+  ></path>
+</svg>
