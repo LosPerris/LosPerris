@@ -1,12 +1,49 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/ui/BackButton.astro";
+import Dropdown from "../components/ui/Dropdown.astro";
 import { getCollection } from "astro:content";
+import { socialIcons } from "../data/icons";
 
 const allUpdates = await getCollection("updates");
 const sortedUpdates = allUpdates.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+// Colores sutiles por tipo de tag
+const tagStyle: Record<string, string> = {
+  Fix: "text-red-400 bg-red-500/10 border-red-500/20",
+  Feature: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+  "Fix & Feat": "text-amber-400 bg-amber-500/10 border-amber-500/20",
+  A11y: "text-sky-400 bg-sky-500/10 border-sky-500/20",
+  Infra: "text-violet-400 bg-violet-500/10 border-violet-500/20",
+  Optimización: "text-teal-400 bg-teal-500/10 border-teal-500/20",
+};
+const defaultTagStyle = "text-[#f97316] bg-[#f97316]/10 border-[#f97316]/20";
+
+// Color e icono por servicio
+const apiStyle: Record<string, { cls: string; iconHtml: string }> = {
+  Twitch: {
+    cls: "text-[#9146ff] bg-[#9146ff]/10 border-[#9146ff]/25",
+    iconHtml: socialIcons.twitch.replace("w-8 h-8", "w-3 h-3"),
+  },
+  Valorant: {
+    cls: "text-[#ff4655] bg-[#ff4655]/10 border-[#ff4655]/25",
+    iconHtml: socialIcons.valorant.replace("w-8 h-8", "w-3 h-3"),
+  },
+  Transcripts: {
+    cls: "text-[#3b82f6] bg-[#3b82f6]/10 border-[#3b82f6]/25",
+    iconHtml: `<i class="fas fa-file-lines text-[10px]"></i>`,
+  },
+  "Códigos QR": {
+    cls: "text-[#22c55e] bg-[#22c55e]/10 border-[#22c55e]/25",
+    iconHtml: `<i class="fas fa-qrcode text-[10px]"></i>`,
+  },
+};
+const defaultApiStyle = {
+  cls: "text-zinc-300 bg-zinc-800 border-zinc-700",
+  iconHtml: `<i class="fas fa-circle text-[10px]"></i>`,
+};
 ---
 
 <Layout title="Actualizaciones | LosPerris" showBackgroundEffects={false}>
@@ -14,7 +51,7 @@ const sortedUpdates = allUpdates.sort(
     <div class="max-w-4xl mx-auto relative z-10">
       <BackButton class="mb-4" />
 
-      <div class="mb-16">
+      <div class="mb-12">
         <h1
           class="text-4xl md:text-5xl font-black text-white tracking-tight relative inline-block animate-[fadeInUp_0.8s_ease-out] uppercase"
         >
@@ -30,95 +67,166 @@ const sortedUpdates = allUpdates.sort(
         </p>
       </div>
 
-      <!-- Filter Buttons -->
+      <!-- Filtros -->
       <div
-        class="flex flex-wrap gap-3 mb-12 animate-[fadeInUp_1s_ease-out_0.3s_both]"
+        class="flex flex-wrap items-center gap-2 mb-10 animate-[fadeInUp_1s_ease-out_0.3s_both] relative z-50"
         role="group"
         aria-label="Filtrar actualizaciones"
       >
         <button
-          data-filter="all"
+          data-filter-api="all"
           aria-pressed="true"
-          class="filter-btn active px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-[#f97316] text-white"
+          class="filter-btn-api px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-[#f97316] text-white"
           >Todos</button
         >
         <button
-          data-filter="Twitch"
+          data-filter-api="Twitch"
           aria-pressed="false"
-          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-          >Twitch</button
+          class="filter-btn-api px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 flex items-center gap-2"
         >
+          <Fragment
+            set:html={socialIcons.twitch
+              .replace("w-8 h-8", "w-4 h-4")
+              .replace(
+                "fill-current transition-colors duration-300",
+                "fill-[#9146ff]",
+              )}
+          />
+          Twitch
+        </button>
         <button
-          data-filter="Valorant"
+          data-filter-api="Valorant"
           aria-pressed="false"
-          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-          >Valorant</button
+          class="filter-btn-api px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 flex items-center gap-2"
         >
+          <Fragment
+            set:html={socialIcons.valorant
+              .replace("w-8 h-8", "w-4 h-4")
+              .replace(
+                "fill-current transition-colors duration-300",
+                "fill-[#ff4655]",
+              )}
+          />
+          Valorant
+        </button>
         <button
-          data-filter="Transcripts"
+          data-filter-api="Transcripts"
           aria-pressed="false"
-          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-          >Transcripts</button
+          class="filter-btn-api px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 flex items-center gap-2"
         >
+          <i class="fas fa-file-lines text-[#3b82f6]"></i>
+          Transcripts
+        </button>
         <button
-          data-filter="Códigos QR"
+          data-filter-api="Códigos QR"
           aria-pressed="false"
-          class="filter-btn px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-          >Códigos QR</button
+          class="filter-btn-api px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 flex items-center gap-2"
         >
+          <i class="fas fa-qrcode text-[#22c55e]"></i>
+          Códigos QR
+        </button>
+
+        <!-- Separador vertical -->
+        <div class="w-px h-6 bg-[#27272a] mx-1 self-center hidden sm:block">
+        </div>
+
+        <!-- Select de fecha usando el componente Dropdown -->
+        <Dropdown
+          id="date-filter"
+          label=""
+          options={[
+            {
+              value: "all",
+              label: "Todas las fechas",
+              icon: '<i class="fas fa-calendar-alt text-zinc-500"></i>',
+            },
+            {
+              value: "7",
+              label: "Últimos 7 días",
+              icon: '<i class="fas fa-clock text-zinc-500"></i>',
+            },
+            {
+              value: "30",
+              label: "Último mes",
+              icon: '<i class="fas fa-calendar-week text-zinc-500"></i>',
+            },
+          ]}
+          defaultValue="all"
+        />
       </div>
 
+      <!-- Lista -->
       <div
-        class="space-y-8 animate-[fadeInUp_1s_ease-out_0.4s_both]"
+        class="space-y-6 animate-[fadeInUp_1s_ease-out_0.4s_both]"
         id="updates-list"
         style="view-transition-name: updates-list;"
       >
         {
-          sortedUpdates.map((update) => (
-            <div
-              data-api={update.data.api}
-              class="update-card p-8 border border-[#27272a] bg-[#0a0a0a]/80 backdrop-blur-sm rounded-2xl relative overflow-hidden group hover:border-[#f97316]/50 transition-all duration-500"
-            >
-              <div class="absolute top-0 left-0 w-1 h-full bg-[#f97316] opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
+          sortedUpdates.map((update) => {
+            const tag = update.data.tag as string;
+            const api = update.data.api as string;
+            const tc = tagStyle[tag] ?? defaultTagStyle;
+            const ac = apiStyle[api] ?? defaultApiStyle;
+            return (
+              <div
+                data-api={update.data.api}
+                data-date={update.data.date.valueOf()}
+                class="update-card p-8 border border-[#27272a] bg-[#0a0a0a]/80 backdrop-blur-sm rounded-2xl relative overflow-hidden group hover:border-[#f97316]/50 transition-all duration-500"
+              >
+                <div class="absolute top-0 left-0 w-1 h-full bg-[#f97316] opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div class="flex flex-wrap items-center gap-3 mb-4">
-                <span class="text-xs font-black tracking-wider text-white uppercase bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
-                  {update.data.dateString}
-                </span>
-                <span class="px-3 py-1.5 text-xs font-bold tracking-wider text-[#f97316] uppercase bg-[#f97316]/10 border border-[#f97316]/20 rounded-lg">
-                  {update.data.tag}
-                </span>
-                <span class="px-3 py-1.5 text-xs font-bold tracking-wider text-zinc-300 uppercase bg-zinc-800 border border-zinc-700 rounded-lg ml-auto sm:ml-0">
-                  {update.data.api}
-                </span>
+                <div class="flex flex-wrap items-center gap-3 mb-4">
+                  <span class="text-xs font-black tracking-wider text-white uppercase bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
+                    {update.data.dateString}
+                  </span>
+                  <span
+                    class={`px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border ${tc}`}
+                  >
+                    {tag}
+                  </span>
+                  <span
+                    class={`px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border flex items-center gap-1.5 ml-auto sm:ml-0 ${ac.cls}`}
+                  >
+                    <Fragment set:html={ac.iconHtml} />
+                    {api}
+                  </span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mb-3 tracking-tight">
+                  {update.data.title}
+                </h2>
+                <p class="text-base text-zinc-400 leading-relaxed">
+                  {update.data.description}
+                </p>
               </div>
-
-              <h2 class="text-2xl font-bold text-white mb-3 tracking-tight">
-                {update.data.title}
-              </h2>
-              <p class="text-base text-zinc-400 leading-relaxed">
-                {update.data.description}
-              </p>
-            </div>
-          ))
+            );
+          })
         }
+      </div>
+
+      <!-- Sin resultados -->
+      <div id="no-results" class="hidden text-center py-20">
+        <p class="text-zinc-500 text-sm">
+          No hay actualizaciones para este filtro.
+        </p>
       </div>
     </div>
   </main>
 </Layout>
 
 <script>
-  const STORAGE_KEY = "updates-filter";
-
-  const applyFilter = (
-    filterValue: string,
+  const applyFilters = (
+    apiFilter: string,
+    dateFilter: string,
     cards: NodeListOf<Element>,
-    buttons: NodeListOf<Element>,
-    container: HTMLElement,
+    apiButtons: NodeListOf<Element>,
+    skipTransition = false,
   ) => {
-    // Actualizar estado visual y aria-pressed de los botones
-    buttons.forEach((b) => {
-      const isActive = b.getAttribute("data-filter") === filterValue;
+    const now = Date.now();
+    const msInDay = 86400000;
+
+    apiButtons.forEach((b) => {
+      const isActive = b.getAttribute("data-filter-api") === apiFilter;
       b.classList.toggle("bg-[#f97316]", isActive);
       b.classList.toggle("text-white", isActive);
       b.classList.toggle("bg-white/5", !isActive);
@@ -129,42 +237,60 @@ const sortedUpdates = allUpdates.sort(
     });
 
     const updateDOM = () => {
+      let visible = 0;
       cards.forEach((card) => {
         const api = card.getAttribute("data-api");
+        const dateMs = parseInt(card.getAttribute("data-date") || "0", 10);
         const element = card as HTMLElement;
-        element.style.display =
-          filterValue === "all" || filterValue === api ? "block" : "none";
+        const apiMatch = apiFilter === "all" || apiFilter === api;
+        const dateMatch =
+          dateFilter === "all" ||
+          now - dateMs <= parseInt(dateFilter, 10) * msInDay;
+        const show = apiMatch && dateMatch;
+        element.style.display = show ? "block" : "none";
+        if (show) visible++;
       });
+      const noResults = document.getElementById("no-results");
+      if (noResults) noResults.classList.toggle("hidden", visible > 0);
     };
 
-    if (document.startViewTransition) {
+    if (!skipTransition && document.startViewTransition) {
       document.startViewTransition(() => updateDOM());
     } else {
       updateDOM();
     }
   };
 
-  // Script para manejar el filtrado
+  // Estado local por instancia de página (no persiste entre navegaciones)
+  let activeApi = "all";
+  let activeDate = "all";
+
   const setupFilters = () => {
-    const buttons = document.querySelectorAll(".filter-btn");
+    const apiButtons = document.querySelectorAll(".filter-btn-api");
     const cards = document.querySelectorAll(".update-card");
-    const container = document.getElementById("updates-list");
-    if (!container) return;
+    const dateDropdown = document.getElementById("date-filter");
+    if (!document.getElementById("updates-list")) return;
 
-    // Restaurar el filtro guardado en sessionStorage
-    const savedFilter = sessionStorage.getItem(STORAGE_KEY) || "all";
-    applyFilter(savedFilter, cards, buttons, container);
+    // Arrancar siempre en "Todos"
+    activeApi = "all";
+    activeDate = "all";
+    applyFilters(activeApi, activeDate, cards, apiButtons, true);
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const filterValue = button.getAttribute("data-filter") || "all";
-        sessionStorage.setItem(STORAGE_KEY, filterValue);
-        applyFilter(filterValue, cards, buttons, container);
-      });
+    const filterGroup = document.querySelector(
+      "[aria-label='Filtrar actualizaciones']",
+    );
+    filterGroup?.addEventListener("click", (e) => {
+      const btn = (e.target as Element).closest(".filter-btn-api");
+      if (!btn) return;
+      activeApi = btn.getAttribute("data-filter-api") || "all";
+      applyFilters(activeApi, activeDate, cards, apiButtons);
+    });
+
+    dateDropdown?.addEventListener("change", (e: any) => {
+      activeDate = e.detail.value;
+      applyFilters(activeApi, activeDate, cards, apiButtons);
     });
   };
 
-  // Ejecutar al cargar y después de transiciones de ViewTransitions
-  setupFilters();
   document.addEventListener("astro:page-load", setupFilters);
 </script>

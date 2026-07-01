@@ -1,0 +1,161 @@
+---
+interface Option {
+  value: string;
+  label: string;
+  icon?: string; // Cadena HTML o clase de icono (p. ej. fontawesome)
+}
+
+interface Props {
+  id: string;
+  options: Option[];
+  defaultValue?: string;
+  label?: string;
+}
+
+const { id, options, defaultValue = options[0]?.value, label } = Astro.props;
+const defaultOption =
+  options.find((o) => o.value === defaultValue) || options[0];
+---
+
+<div
+  class="custom-dropdown relative inline-block text-left"
+  id={id}
+  data-value={defaultValue}
+>
+  <button
+    type="button"
+    class="dropdown-toggle px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 flex items-center gap-2 border border-transparent focus:outline-none focus:ring-2 focus:ring-[#f97316]/50"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+  >
+    {label && <span class="text-zinc-600 mr-1">{label}:</span>}
+    <span class="dropdown-selected-text flex items-center gap-2">
+      {defaultOption.icon && <Fragment set:html={defaultOption.icon} />}
+      {defaultOption.label}
+    </span>
+    <i
+      class="fas fa-chevron-down text-[10px] ml-1 transition-transform duration-300 dropdown-arrow text-zinc-500"
+    ></i>
+  </button>
+
+  <ul
+    class="dropdown-menu absolute right-0 mt-2 w-48 rounded-xl bg-[#0a0a0a] border border-[#27272a] shadow-xl opacity-0 invisible translate-y-[-10px] transition-all duration-300 z-50 overflow-hidden"
+    role="listbox"
+  >
+    {
+      options.map((opt) => (
+        <li
+          role="option"
+          aria-selected={opt.value === defaultValue ? "true" : "false"}
+          data-value={opt.value}
+          class="dropdown-item px-4 py-3 text-sm font-semibold text-zinc-400 hover:text-white hover:bg-white/5 cursor-pointer flex items-center gap-2 transition-colors duration-200"
+        >
+          {opt.icon && <Fragment set:html={opt.icon} />}
+          {opt.label}
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  class CustomDropdown {
+    element: HTMLElement;
+    toggle: HTMLButtonElement;
+    menu: HTMLUListElement;
+    items: NodeListOf<HTMLElement>;
+    selectedText: HTMLElement;
+    arrow: HTMLElement;
+    isOpen = false;
+
+    constructor(element: HTMLElement) {
+      this.element = element;
+      this.toggle = element.querySelector(
+        ".dropdown-toggle",
+      ) as HTMLButtonElement;
+      this.menu = element.querySelector(".dropdown-menu") as HTMLUListElement;
+      this.items = element.querySelectorAll(".dropdown-item");
+      this.selectedText = element.querySelector(
+        ".dropdown-selected-text",
+      ) as HTMLElement;
+      this.arrow = element.querySelector(".dropdown-arrow") as HTMLElement;
+
+      this.init();
+    }
+
+    init() {
+      this.toggle.addEventListener("click", () => this.toggleMenu());
+
+      this.items.forEach((item) => {
+        item.addEventListener("click", () => this.selectItem(item));
+      });
+
+      // Cerrar al hacer clic afuera
+      document.addEventListener("click", (e) => {
+        if (!this.element.contains(e.target as Node) && this.isOpen) {
+          this.closeMenu();
+        }
+      });
+    }
+
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
+      this.toggle.setAttribute("aria-expanded", this.isOpen.toString());
+
+      if (this.isOpen) {
+        this.menu.classList.remove(
+          "opacity-0",
+          "invisible",
+          "translate-y-[-10px]",
+        );
+        this.menu.classList.add("opacity-100", "visible", "translate-y-0");
+        this.arrow.classList.add("rotate-180");
+      } else {
+        this.closeMenu();
+      }
+    }
+
+    closeMenu() {
+      this.isOpen = false;
+      this.toggle.setAttribute("aria-expanded", "false");
+      this.menu.classList.remove("opacity-100", "visible", "translate-y-0");
+      this.menu.classList.add("opacity-0", "invisible", "translate-y-[-10px]");
+      this.arrow.classList.remove("rotate-180");
+    }
+
+    selectItem(item: HTMLElement) {
+      const value = item.getAttribute("data-value") || "";
+      const htmlContent = item.innerHTML;
+
+      // Actualizar valor en el contenedor
+      this.element.setAttribute("data-value", value);
+
+      // Actualizar el texto e icono en el botón
+      this.selectedText.innerHTML = htmlContent;
+
+      // Actualizar estado de aria-selected
+      this.items.forEach((i) => i.setAttribute("aria-selected", "false"));
+      item.setAttribute("aria-selected", "true");
+
+      this.closeMenu();
+
+      // Emitir evento custom para que el padre pueda reaccionar
+      this.element.dispatchEvent(
+        new CustomEvent("change", { detail: { value } }),
+      );
+    }
+  }
+
+  const initDropdowns = () => {
+    document.querySelectorAll(".custom-dropdown").forEach((el) => {
+      // Evitar doble inicialización
+      if (!(el as any)._dropdownInitialized) {
+        new CustomDropdown(el as HTMLElement);
+        (el as any)._dropdownInitialized = true;
+      }
+    });
+  };
+
+  initDropdowns();
+  document.addEventListener("astro:page-load", initDropdowns);
+</script>

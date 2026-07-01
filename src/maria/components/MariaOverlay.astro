@@ -1,0 +1,34 @@
+---
+interface Props {
+  id: string;
+  isSpecial?: boolean;
+  contentClass?: string;
+}
+
+const { id, isSpecial = false, contentClass = "" } = Astro.props;
+
+const overlayBg = isSpecial
+  ? "bg-black/92 backdrop-blur-[15px]"
+  : "bg-[#070502]/90 backdrop-blur-[15px]";
+---
+
+<div
+  id={id}
+  class={`maria-overlay fixed inset-0 flex items-center justify-center z-[10000] opacity-0 pointer-events-none transition-opacity duration-500 ${overlayBg}`}
+>
+  <div
+    class={`maria-overlay-content relative bg-[#0c0804]/50 backdrop-blur-[40px] border border-amber-400/25 shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_0_30px_rgba(251,191,36,0.05)] translate-y-5 transition-transform duration-500 cubic-bezier(0.16,1,0.3,1) ${contentClass}`}
+  >
+    <slot />
+  </div>
+</div>
+
+<style is:global>
+  .maria-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .maria-overlay.is-active .maria-overlay-content {
+    transform: translateY(0);
+  }
+</style>

@@ -1,5 +1,5 @@
 // Usar variable de entorno para el Webhook por seguridad
-import { sanitizeEmbedText } from "../../lib/rateLimit";
+import { sanitizeEmbedText } from "../../lib/discord";
 
 const DISCORD_WEBHOOK_URL = import.meta.env.DISCORD_WEBHOOK_URL || "";
 
