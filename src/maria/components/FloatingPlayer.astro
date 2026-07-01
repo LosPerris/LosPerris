@@ -11,7 +11,7 @@ const { songId, question } = Astro.props;
   question && (
     <div
       id="interactive-envelope"
-      class="fixed bottom-0 left-4 md:bottom-0 md:left-8 z-[90] group w-64 h-40 md:w-80 md:h-48 cursor-pointer pointer-events-auto animate-desk-envelope"
+      class="fixed bottom-0 left-4 md:bottom-0 md:left-8 z-[90] group w-52 h-32 md:w-80 md:h-48 cursor-pointer pointer-events-auto animate-desk-envelope"
       style="perspective: 1200px; filter: drop-shadow(0 8px 8px rgba(0,0,0,0.55)) drop-shadow(0 18px 28px rgba(0,0,0,0.35)); transition: scale 0.5s, rotate 0.5s;"
       onmouseover="this.style.scale='1.01'; this.style.rotate='-4deg';"
       onmouseout="this.style.scale='1'; this.style.rotate='-5deg';"
@@ -59,14 +59,13 @@ const { songId, question } = Astro.props;
 <!-- Polaroid Promise Widget — slides in from top-right -->
 <div
   id="polaroid-widget"
-  class="fixed top-0 right-4 md:top-0 md:right-12 z-[85] w-36 md:w-44 select-none animate-desk-polaroid"
+  class="fixed top-2 right-2 md:top-0 md:right-12 z-[85] w-24 md:w-44 select-none animate-desk-polaroid"
   style="cursor: pointer;"
 >
   <!-- Tilt + flip target -->
   <div
     id="polaroid-tilt"
     style="
-      transform: rotate(4deg);
       transform-origin: center;
       box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 22px 44px rgba(0,0,0,0.4);
       position: relative;
@@ -369,7 +368,8 @@ const { songId, question } = Astro.props;
         </div>
         <!-- Caption row -->
         <p
-          style="display:block; padding:7px 0 9px; text-align:center; font-family:'Caveat',cursive; font-size:1.05rem; color:#1a1510; opacity:0.70; font-weight:bold;"
+          class="text-[10px] md:text-[17px]"
+          style="display:block; padding:7px 0 9px; text-align:center; font-family:'Caveat',cursive; color:#1a1510; opacity:0.70; font-weight:bold;"
         >
           Nuestra promesa
         </p>
@@ -377,13 +377,13 @@ const { songId, question } = Astro.props;
 
       <div
         id="polaroid-back"
+        class="p-1 md:p-[14px]"
         style="
         position:absolute; inset:0;
         display: none;
         background: #faf6ed;
         border: 1px solid rgba(0,0,0,0.08);
         box-sizing: border-box;
-        padding: 14px;
       "
       >
         <!-- inner area matches photo aspect-ratio so total height = front -->
@@ -391,22 +391,26 @@ const { songId, question } = Astro.props;
           style="display:flex; flex-direction:column; justify-content:center; gap:8px; width:100%; aspect-ratio:1;"
         >
           <p
-            style="font-family:'Special Elite',monospace;font-size:8px;color:#8b3a3a;opacity:0.45;letter-spacing:0.2em;text-transform:uppercase;text-align:center;"
+            class="text-[5px] md:text-[8px]"
+            style="font-family:'Special Elite',monospace;color:#8b3a3a;opacity:0.45;letter-spacing:0.2em;text-transform:uppercase;text-align:center;"
           >
             — nuestra promesa —
           </p>
           <p
-            style="font-family:'Caveat',cursive;font-size:1rem;color:#1a1510;opacity:0.85;line-height:1.4;"
+            class="text-[9px] md:text-base"
+            style="font-family:'Caveat',cursive;color:#1a1510;opacity:0.85;line-height:1.4;"
           >
             No importa lo dificil<br />que sea el camino...
           </p>
           <p
-            style="font-family:'Caveat',cursive;font-size:1.05rem;color:#1a1510;opacity:0.9;font-weight:bold;line-height:1.4;"
+            class="text-[10px] md:text-[17px]"
+            style="font-family:'Caveat',cursive;color:#1a1510;opacity:0.9;font-weight:bold;line-height:1.4;"
           >
             Siempre te<br />elegire a ti.
           </p>
           <p
-            style="font-family:'Caveat',cursive;font-size:0.9rem;color:#8b3a3a;opacity:0.55;text-align:right;margin-top:4px;"
+            class="text-[7px] md:text-[14px]"
+            style="font-family:'Caveat',cursive;color:#8b3a3a;opacity:0.55;text-align:right;margin-top:4px;"
           >
             — Yo
           </p>

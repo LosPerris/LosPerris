@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { trackResponse } from "../scripts/tracking";
-import { checkRateLimit, getClientIp } from "../../lib/rateLimit";
+import { checkRateLimit, getClientIp } from "../lib/rateLimit";
 
 export const POST: APIRoute = async ({ request }) => {
   const ip = getClientIp(request);

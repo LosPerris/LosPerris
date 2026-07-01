@@ -81,7 +81,7 @@ export function initLetterInteraction() {
         const fullText = msgText.getAttribute("data-text") || "";
         msgText.textContent = fullText; // temporarily fill
 
-        let currentSize = 28;
+        let currentSize = window.innerWidth < 768 ? 20 : 28;
         msgText.style.fontSize = currentSize + "px";
 
         // Shrink until wrapper fits inside container, checking both height and width, with a minimum size of 14px
