@@ -2,29 +2,17 @@
 import { icons } from "../../data/icons";
 
 const technologies = [
-  {
-    name: "Discord API",
-    slug: "discord",
-    color: "text-[#5865F2]",
-  },
-  {
-    name: "Node.js",
-    slug: "nodedotjs",
-    color: "text-[#339933]",
-  },
-  {
-    name: "TypeScript",
-    slug: "typescript",
-    color: "text-[#3178C6]",
-  },
-  { name: "React", slug: "react", color: "text-[#61DAFB]" },
+  { name: "Node.js", slug: "nodedotjs", color: "text-[#339933]" },
   { name: "Astro", slug: "astro", color: "text-[#FF5D01]" },
+  { name: "Zod", slug: "zod", color: "text-[#3E67B1]" },
+  { name: "Tailwind CSS", slug: "tailwindcss", color: "text-[#06B6D4]" },
+  { name: "Discord Developer", slug: "discord", color: "text-[#5865F2]" },
+  { name: "Upstash Redis", slug: "upstash", color: "text-[#00E9A3]" },
+  { name: "React", slug: "react", color: "text-[#61DAFB]" },
   { name: "Express", slug: "express", color: "text-zinc-200" },
-  {
-    name: "Tailwind CSS",
-    slug: "tailwindcss",
-    color: "text-[#06B6D4]",
-  },
+  { name: "Twitch Developer", slug: "twitch", color: "text-[#9146FF]" },
+  { name: "TypeScript", slug: "typescript", color: "text-[#3178C6]" },
+  { name: "Supabase", slug: "supabase", color: "text-[#3FCF8E]" },
   { name: "Vercel", slug: "vercel", color: "text-zinc-200" },
 ];
 ---
@@ -48,9 +36,11 @@ const technologies = [
   >
   </div>
 
-  <div class="flex whitespace-nowrap animate-[marquee_40s_linear_infinite]">
+  <div class="flex whitespace-nowrap w-max" id="integrations-carousel">
     <!-- Primer grupo -->
-    <div class="flex items-center justify-around w-full shrink-0 gap-16 px-8">
+    <div
+      class="marquee-group flex items-center justify-around min-w-full w-max shrink-0 gap-16 px-8 animate-[marquee_40s_linear_infinite]"
+    >
       {
         technologies.map((tech) => (
           <div
@@ -68,7 +58,9 @@ const technologies = [
       }
     </div>
     <!-- Grupo duplicado para scroll infinito continuo -->
-    <div class="flex items-center justify-around w-full shrink-0 gap-16 px-8">
+    <div
+      class="marquee-group flex items-center justify-around min-w-full w-max shrink-0 gap-16 px-8 animate-[marquee_40s_linear_infinite]"
+    >
       {
         technologies.map((tech) => (
           <div
@@ -98,3 +90,27 @@ const technologies = [
     }
   }
 </style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const carousel = document.getElementById("integrations-carousel");
+    if (!carousel) return;
+
+    const groups = carousel.querySelectorAll(".marquee-group");
+    if (groups.length < 2) return;
+
+    // Crear un orden aleatorio
+    const itemCount = groups[0].children.length;
+    const randomOrder = Array.from({ length: itemCount }, (_, i) => i).sort(
+      () => Math.random() - 0.5,
+    );
+
+    // Aplicar el mismo orden exacto a ambos grupos para mantener el scroll infinito sin saltos
+    groups.forEach((group) => {
+      const children = Array.from(group.children);
+      children.forEach((child, i) => {
+        (child as HTMLElement).style.order = randomOrder[i].toString();
+      });
+    });
+  });
+</script>
