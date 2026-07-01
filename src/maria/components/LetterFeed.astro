@@ -165,7 +165,8 @@ const today = new Date().toLocaleDateString("es-ES", {
 
         <!-- Long Strap extending from the right (Male side) -->
         <div
-          class="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-20 w-24 h-14 rounded-r-full shadow-[8px_8px_20px_rgba(0,0,0,0.7)] z-0 items-center justify-end pr-4"
+          id="close-strap"
+          class="flex absolute top-1/2 -translate-y-1/2 -right-12 md:-right-20 w-16 md:w-24 h-14 rounded-r-full shadow-[8px_8px_20px_rgba(0,0,0,0.7)] z-0 items-center justify-end pr-2 md:pr-4 cursor-pointer hover:scale-[1.03] transition-transform duration-300 group/close"
           style="background-color: #3a1d0f; box-shadow: inset 0 0 15px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.1), 8px 8px 20px rgba(0,0,0,0.7);"
         >
           <div
@@ -179,9 +180,11 @@ const today = new Date().toLocaleDateString("es-ES", {
           </div>
           <!-- Male Snap Button (Underneath side) -->
           <div
-            class="w-6 h-6 rounded-full bg-[#4a3a2a] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.6)] border border-[#1a110a] flex items-center justify-center"
+            class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#4a3a2a] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.6)] border border-[#1a110a] flex items-center justify-center group-hover/close:shadow-[0_8px_12px_rgba(0,0,0,0.7)] transition-all duration-300"
           >
-            <div class="w-3 h-3 rounded-full border border-black/60 opacity-60">
+            <div
+              class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full border border-black/60 opacity-60"
+            >
             </div>
           </div>
         </div>

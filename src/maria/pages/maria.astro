@@ -47,8 +47,12 @@ const isMay15th = dateInCR.getMonth() === 4 && dateInCR.getDate() === 15;
       }, 2000); // Muestra el aniversario 2 segundos después de entrar a la página
     }
 
-    // Registrar la visita al cargar la página
-    fetch("/api/maria/visit", { method: "POST" }).catch(() => {});
+    // Registrar la visita al cargar la página (evitando spam al refrescar)
+    const hasVisitedSession = sessionStorage.getItem("maria_visited");
+    if (!hasVisitedSession) {
+      sessionStorage.setItem("maria_visited", "true");
+      fetch("/api/maria/visit", { method: "POST" }).catch(() => {});
+    }
   </script>
 
   <DailyMessage songId={selectedSongId} question={selectedQuestion} />

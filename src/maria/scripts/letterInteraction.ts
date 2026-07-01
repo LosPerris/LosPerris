@@ -1,10 +1,16 @@
 // Interactive Cover & Sequential Typing Effect (3D Book Opening)
 export function initLetterInteraction() {
+  let isBookOpen = false;
+  let stampTimeoutId: any = null;
+  let textTimeoutId: any = null;
+  let signatureTimeoutId: any = null;
+
   const wrapper = document.getElementById("book-wrapper");
   const cover = document.getElementById("diary-cover");
   const content = document.getElementById("diary-content");
   const cursor = document.getElementById("typing-cursor");
   const strap = document.getElementById("snap-strap");
+  const closeStrap = document.getElementById("close-strap");
 
   // Elements to type
   const leftTitle = document.getElementById("left-title");
@@ -30,6 +36,7 @@ export function initLetterInteraction() {
     el.textContent = "";
     let i = 0;
     function type() {
+      if (!isBookOpen) return; // Abort typing if book was closed
       if (i < text.length) {
         el!.textContent += text.charAt(i);
         i++;
@@ -54,6 +61,8 @@ export function initLetterInteraction() {
   if (cover && content && wrapper && strap) {
     strap.addEventListener("click", (e) => {
       e.stopPropagation(); // prevent bubbling
+      if (isBookOpen) return;
+      isBookOpen = true;
 
       // Slide the entire book container to the center
       wrapper.classList.remove("-translate-x-1/4");
@@ -96,17 +105,17 @@ export function initLetterInteraction() {
       if (leftDayBox) leftDayBox.classList.remove("opacity-0");
 
       // Add stamps after cover opens (1500ms)
-      setTimeout(() => {
+      stampTimeoutId = setTimeout(() => {
         document.querySelectorAll(".stamp-element").forEach((el) => {
           el.classList.add("animate-stamp");
         });
       }, 1500);
 
       // Start typing sequence for handwritten text after stamps finish (4000ms total)
-      setTimeout(() => {
+      textTimeoutId = setTimeout(() => {
         // 1. Main Message (Right Page)
         typeElement(msgText, 25, 45, () => {
-          setTimeout(() => {
+          signatureTimeoutId = setTimeout(() => {
             // 2. Signature
             typeElement(rightSignature, 40, 60, () => {
               if (rightSignatureLine)
@@ -124,6 +133,48 @@ export function initLetterInteraction() {
           }, 500);
         });
       }, 4000);
+    });
+  }
+
+  if (cover && content && wrapper && closeStrap) {
+    closeStrap.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!isBookOpen) return;
+      isBookOpen = false;
+
+      // Cancel any ongoing timeouts
+      clearTimeout(stampTimeoutId);
+      clearTimeout(textTimeoutId);
+      clearTimeout(signatureTimeoutId);
+
+      // Reset DOM elements so reopening is clean
+      document.querySelectorAll(".stamp-element").forEach((el) => {
+        el.classList.remove("animate-stamp");
+      });
+      if (msgText) msgText.textContent = "";
+      if (rightSignature) rightSignature.textContent = "";
+      if (leftDayBox) leftDayBox.classList.add("opacity-0");
+      if (rightSignatureLine) rightSignatureLine.classList.add("opacity-0");
+      if (cursor) {
+        cursor.style.display = "inline-block";
+        cursor.style.opacity = "0";
+      }
+
+      const turnPageBtn = document.getElementById("turn-page-btn");
+      if (turnPageBtn) {
+        turnPageBtn.classList.add("opacity-0", "pointer-events-none");
+      }
+
+      // Reverse 3D book open effect
+      cover.style.transform = "perspective(1200px) rotateY(0deg)";
+      cover.style.opacity = "1";
+      cover.style.pointerEvents = "auto";
+      content.classList.add("pointer-events-none");
+      content.style.opacity = "0"; // fade out content
+
+      // Slide the entire book container back
+      wrapper.classList.remove("translate-x-0");
+      wrapper.classList.add("-translate-x-1/4");
     });
   }
 
