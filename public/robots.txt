@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /*maria*
 
 Sitemap: https://losperris.dev/sitemap-index.xml
