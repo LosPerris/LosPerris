@@ -19,10 +19,19 @@ function initLenis() {
   rafId = requestAnimationFrame(raf);
 }
 
+function scrollToTop() {
+  lenis?.scrollTo(0, { immediate: true });
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
 // Inicializar en la carga principal
 initLenis();
+scrollToTop();
 
-// Re-inicializar si Astro usa View Transitions
+// Re-inicializar si Astro usa View Transitions (y subir al inicio de la página)
 document.addEventListener("astro:page-load", () => {
   initLenis();
+  scrollToTop();
 });
