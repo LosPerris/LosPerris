@@ -120,14 +120,20 @@ export const apis = [
     icon: "fas fa-qrcode",
     color: "text-[#22C55E]",
     hoverColor: "group-hover:text-[#22C55E]",
-    link: "/api/qr",
+    link: "https://qr.losperris.dev/",
     linkText: "Crear QR",
     endpoints: [
       {
         method: "WEB",
-        path: "/api/qr",
+        path: "https://qr.losperris.dev/",
         description: "Interfaz gráfica para generación de QR.",
-        example: `${siteUrl}/api/qr`,
+        example: "https://qr.losperris.dev/",
+      },
+      {
+        method: "POST",
+        path: "https://qr.losperris.dev/api/generate",
+        description: "Genera un código QR (imagen binaria).",
+        example: "https://qr.losperris.dev/api/generate",
       },
     ],
     previewCode: `<!-- Preview Tool -->
