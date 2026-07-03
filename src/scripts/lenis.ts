@@ -1,9 +1,10 @@
 import Lenis from "lenis";
 
 let lenis: Lenis | null = null;
-let rafId: number;
+let rafId = 0;
+let listenersBound = false;
 
-/** Compensa el header fijo (h-16) + un poco de aire */
+/** Compensa el header fijo (h-16) */
 const HEADER_OFFSET = -96;
 
 function initLenis() {
@@ -14,33 +15,52 @@ function initLenis() {
 
   lenis = new Lenis();
 
-  function raf(time: number) {
+  const raf = (time: number) => {
     lenis?.raf(time);
     rafId = requestAnimationFrame(raf);
-  }
-
+  };
   rafId = requestAnimationFrame(raf);
 }
 
-function scrollToHash(immediate = true): boolean {
-  const hash = window.location.hash;
-  if (!hash || hash === "#") return false;
+/** Scroll a un elemento por id (hash) o a Y=0. Una sola API para todo el sitio. */
+export function scrollPageTo(
+  target: number | string | HTMLElement,
+  options: { immediate?: boolean } = {},
+): boolean {
+  const immediate = options.immediate ?? false;
 
-  const id = decodeURIComponent(hash.slice(1));
-  const el = document.getElementById(id);
-  if (!el || !lenis) return false;
+  if (!lenis) {
+    if (typeof target === "number") {
+      window.scrollTo(0, target);
+      return true;
+    }
+    const el =
+      typeof target === "string" ? document.getElementById(target) : target;
+    el?.scrollIntoView();
+    return !!el;
+  }
+
+  if (typeof target === "number") {
+    lenis.scrollTo(target, { immediate });
+    return true;
+  }
+
+  const el =
+    typeof target === "string" ? document.getElementById(target) : target;
+  if (!el) return false;
 
   lenis.scrollTo(el, { offset: HEADER_OFFSET, immediate });
   return true;
 }
 
-function scrollToTop(immediate = true) {
-  if (scrollToHash(immediate)) return;
-
-  lenis?.scrollTo(0, { immediate });
-  window.scrollTo(0, 0);
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
+/** Arriba del todo, o a la ancla de la URL si existe (#updates, #apis, …). */
+export function scrollPageToTop(immediate = true) {
+  const hash = window.location.hash;
+  if (hash && hash !== "#") {
+    const id = decodeURIComponent(hash.slice(1));
+    if (scrollPageTo(id, { immediate })) return;
+  }
+  scrollPageTo(0, { immediate });
 }
 
 function isModifiedClick(e: MouseEvent): boolean {
@@ -48,8 +68,7 @@ function isModifiedClick(e: MouseEvent): boolean {
 }
 
 /**
- * Intercepta anclas del mismo sitio antes que ClientRouter.
- * Evita la barra de carga y el “segundo clic” en /#updates, /#apis, etc.
+ * Anclas en la home: scroll con Lenis, sin View Transitions ni segundo clic.
  */
 function onNavClick(e: MouseEvent) {
   if (isModifiedClick(e)) return;
@@ -67,49 +86,42 @@ function onNavClick(e: MouseEvent) {
   } catch {
     return;
   }
-
   if (url.origin !== window.location.origin) return;
 
   const onHome =
     window.location.pathname === "/" || window.location.pathname === "";
   const targetHome = url.pathname === "/" || url.pathname === "";
+  if (!onHome || !targetHome) return;
 
-  // Ya en home + ancla → solo scroll (sin transición de página)
-  if (onHome && targetHome && url.hash) {
+  if (url.hash) {
     const id = decodeURIComponent(url.hash.slice(1));
-    const el = document.getElementById(id);
-    if (!el) return;
+    if (!document.getElementById(id)) return;
 
     e.preventDefault();
     e.stopPropagation();
     history.pushState(null, "", url.hash);
-    lenis?.scrollTo(el, { offset: HEADER_OFFSET, immediate: false });
+    scrollPageTo(id, { immediate: false });
     return;
   }
 
-  // Ya en home + Inicio (/) → subir arriba sin recargar
-  if (onHome && targetHome && !url.hash) {
-    e.preventDefault();
-    e.stopPropagation();
-    history.pushState(null, "", "/");
-    lenis?.scrollTo(0, { immediate: false });
-  }
+  e.preventDefault();
+  e.stopPropagation();
+  history.pushState(null, "", "/");
+  scrollPageTo(0, { immediate: false });
 }
 
-// Inicializar en la carga principal
-initLenis();
-scrollToTop(true);
-document.addEventListener("click", onNavClick, true);
-
-// Re-inicializar con View Transitions
-document.addEventListener("astro:page-load", () => {
+function onPageLoad() {
   initLenis();
-  // Esperar un frame: el DOM de la nueva página ya está montado
-  requestAnimationFrame(() => {
-    scrollToTop(true);
-    // Segundo intento por si el hash apunta a contenido que pinta tarde
-    if (window.location.hash) {
-      requestAnimationFrame(() => scrollToHash(true));
-    }
-  });
-});
+  // Un frame: el DOM de la nueva página ya está listo (View Transitions)
+  requestAnimationFrame(() => scrollPageToTop(true));
+}
+
+function bindListeners() {
+  if (listenersBound) return;
+  listenersBound = true;
+  document.addEventListener("click", onNavClick, true);
+  document.addEventListener("astro:page-load", onPageLoad);
+}
+
+bindListeners();
+onPageLoad();

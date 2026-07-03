@@ -177,9 +177,8 @@ const emojiToIcon: Record<string, string> = {
     }
   }
 
-  document.addEventListener("astro:page-load", () => {
-    // Forzar scroll arriba al entrar a la página (corrige el bug de Lenis)
-    window.scrollTo(0, 0);
+  document.addEventListener("astro:page-load", async () => {
+    const { scrollPageTo } = await import("../../scripts/lenis");
 
     const contentArea = document.getElementById("content-area");
 
@@ -200,7 +199,7 @@ const emojiToIcon: Record<string, string> = {
         currentActiveBtn.classList.contains("border-[#f97316]")
       ) {
         // Si tocaste la misma sección en la que ya estás, solo sube
-        window.scrollTo(0, 0);
+        scrollPageTo(0, { immediate: false });
         return;
       }
 
@@ -226,8 +225,8 @@ const emojiToIcon: Record<string, string> = {
       void contentArea.offsetWidth;
       contentArea.style.animation = "fadeInUp 0.4s ease-out forwards";
 
-      // Hacer scroll suave hacia arriba al cambiar de sección
-      window.scrollTo(0, 0);
+      // Subir al cambiar de guía (misma API que el resto del sitio)
+      scrollPageTo(0, { immediate: false });
 
       document.querySelectorAll(".guide-btn").forEach((btn) => {
         const button = btn as HTMLElement;
