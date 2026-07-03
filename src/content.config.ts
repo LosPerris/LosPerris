@@ -10,6 +10,8 @@ const updatesCollection = defineCollection({
     tag: z.string(),
     api: z.enum(["Twitch", "Valorant", "Transcripts", "Códigos QR", "General"]),
     description: z.string(),
+    /** published = ya aplicado; planned = en camino (avisos, migraciones, etc.) */
+    status: z.enum(["published", "planned"]).default("published"),
   }),
 });
 

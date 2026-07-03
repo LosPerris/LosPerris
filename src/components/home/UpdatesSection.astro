@@ -4,11 +4,11 @@ import Button from "../ui/Button.astro";
 import SectionHeader from "../ui/SectionHeader.astro";
 import Card from "../ui/Card.astro";
 
-// Obtenemos de la colección y ordenamos por fecha
+// Solo publicadas (no “Próximamente”) en la home
 const allUpdates = await getCollection("updates");
-const sortedUpdates = allUpdates.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const sortedUpdates = allUpdates
+  .filter((u) => (u.data.status ?? "published") === "published")
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latestUpdates = sortedUpdates.slice(0, 3);
 ---
 

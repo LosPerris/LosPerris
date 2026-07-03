@@ -1,0 +1,113 @@
+---
+import { socialIcons } from "../../data/icons";
+
+interface Props {
+  title: string;
+  dateString: string;
+  tag: string;
+  api: string;
+  description: string;
+  dateMs: number;
+  variant?: "published" | "planned";
+}
+
+const {
+  title,
+  dateString,
+  tag,
+  api,
+  description,
+  dateMs,
+  variant = "published",
+} = Astro.props;
+
+const tagStyle: Record<string, string> = {
+  Fix: "text-red-400 bg-red-500/10 border-red-500/20",
+  Feature: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+  "Fix & Feat": "text-amber-400 bg-amber-500/10 border-amber-500/20",
+  A11y: "text-sky-400 bg-sky-500/10 border-sky-500/20",
+  Infra: "text-violet-400 bg-violet-500/10 border-violet-500/20",
+  Optimización: "text-teal-400 bg-teal-500/10 border-teal-500/20",
+};
+const defaultTagStyle = "text-[#f97316] bg-[#f97316]/10 border-[#f97316]/20";
+
+const apiStyle: Record<string, { cls: string; iconHtml: string }> = {
+  Twitch: {
+    cls: "text-[#9146ff] bg-[#9146ff]/10 border-[#9146ff]/25",
+    iconHtml: socialIcons.twitch.replace("w-8 h-8", "w-3 h-3"),
+  },
+  Valorant: {
+    cls: "text-[#ff4655] bg-[#ff4655]/10 border-[#ff4655]/25",
+    iconHtml: socialIcons.valorant.replace("w-8 h-8", "w-3 h-3"),
+  },
+  Transcripts: {
+    cls: "text-[#3b82f6] bg-[#3b82f6]/10 border-[#3b82f6]/25",
+    iconHtml: `<i class="fas fa-file-lines text-[10px]"></i>`,
+  },
+  "Códigos QR": {
+    cls: "text-[#22c55e] bg-[#22c55e]/10 border-[#22c55e]/25",
+    iconHtml: `<i class="fas fa-qrcode text-[10px]"></i>`,
+  },
+};
+const defaultApiStyle = {
+  cls: "text-zinc-300 bg-zinc-800 border-zinc-700",
+  iconHtml: `<i class="fas fa-circle text-[10px]"></i>`,
+};
+
+const tc = tagStyle[tag] ?? defaultTagStyle;
+const ac = apiStyle[api] ?? defaultApiStyle;
+const isPlanned = variant === "planned";
+---
+
+<div
+  data-api={api}
+  data-date={dateMs}
+  data-status={variant}
+  class:list={[
+    "update-card p-8 border bg-[#0a0a0a]/80 backdrop-blur-sm rounded-2xl relative overflow-hidden group transition-all duration-500",
+    isPlanned
+      ? "border-sky-500/25 hover:border-sky-500/50"
+      : "border-[#27272a] hover:border-[#f97316]/50",
+  ]}
+>
+  <div
+    class:list={[
+      "absolute top-0 left-0 w-1 h-full transition-opacity duration-300 opacity-50 group-hover:opacity-100",
+      isPlanned ? "bg-sky-500" : "bg-[#f97316]",
+    ]}
+  >
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3 mb-4">
+    <span
+      class="text-xs font-black tracking-wider text-white uppercase bg-white/5 px-3 py-1.5 rounded-lg border border-white/10"
+    >
+      {dateString}
+    </span>
+    {
+      isPlanned && (
+        <span class="px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border text-sky-300 bg-sky-500/10 border-sky-500/25">
+          En camino
+        </span>
+      )
+    }
+    <span
+      class={`px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border ${tc}`}
+    >
+      {tag}
+    </span>
+    <span
+      class={`px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border flex items-center gap-1.5 ml-auto sm:ml-0 ${ac.cls}`}
+    >
+      <Fragment set:html={ac.iconHtml} />
+      {api}
+    </span>
+  </div>
+
+  <h2 class="text-2xl font-bold text-white mb-3 tracking-tight">
+    {title}
+  </h2>
+  <p class="text-base text-zinc-400 leading-relaxed">
+    {description}
+  </p>
+</div>
