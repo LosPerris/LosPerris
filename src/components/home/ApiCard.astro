@@ -20,6 +20,8 @@ interface Props {
     hoverColor?: string;
     link: string;
     linkText?: string;
+    baseUrl?: string;
+    private?: boolean;
     endpoints?: ApiEndpoint[];
   };
   index: number;
@@ -32,9 +34,9 @@ const { api, index, showTestedBadge = false } = Astro.props;
 <Card
   class="api-card p-8 bg-none border border-[#27272a] transition-all duration-500 shadow-lg backdrop-blur-sm"
 >
-  <div class="flex items-start justify-between mb-6">
+  <div class="flex items-start justify-between mb-6 gap-3">
     <div
-      class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl transition-transform ${api.color || "text-white"}`}
+      class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl transition-transform shrink-0 ${api.color || "text-white"}`}
     >
       {
         api.iconId && socialIcons[api.iconId] ? (
@@ -47,13 +49,22 @@ const { api, index, showTestedBadge = false } = Astro.props;
         )
       }
     </div>
-    {
-      showTestedBadge && (
-        <span class="bg-[#f97316]/20 px-3 py-1 rounded-full text-xs text-[#f97316] font-bold border border-[#f97316]/50 shadow-[0_0_10px_rgba(249,115,22,0.2)] tracking-wider">
-          TESTED
-        </span>
-      )
-    }
+    <div class="flex flex-wrap items-center justify-end gap-2">
+      {
+        api.private && (
+          <span class="bg-[#5865F2]/15 px-3 py-1 rounded-full text-xs text-[#5865F2] font-bold border border-[#5865F2]/40 tracking-wider">
+            PRIVADA
+          </span>
+        )
+      }
+      {
+        showTestedBadge && (
+          <span class="bg-[#f97316]/20 px-3 py-1 rounded-full text-xs text-[#f97316] font-bold border border-[#f97316]/50 shadow-[0_0_10px_rgba(249,115,22,0.2)] tracking-wider">
+            TESTED
+          </span>
+        )
+      }
+    </div>
   </div>
 
   <h3
@@ -68,27 +79,37 @@ const { api, index, showTestedBadge = false } = Astro.props;
   <div class="mt-auto space-y-4">
     <div class="hidden" id={`docs-${index}`}>
       <div
-        class="bg-[#0f0f0f] rounded-lg p-4 border border-[#333] mb-4 text-left"
+        class="bg-[#0f0f0f] rounded-lg p-4 border border-[#333] mb-4 text-left overflow-hidden"
       >
         <h4 class="text-white font-semibold mb-3 text-sm uppercase">
           Endpoints
         </h4>
+        {
+          api.baseUrl && (
+            <p
+              class="text-xs text-zinc-500 mb-4 font-mono truncate"
+              title={api.baseUrl}
+            >
+              Base: <span class="text-zinc-300">{api.baseUrl}</span>
+            </p>
+          )
+        }
         <div class="space-y-4">
           {
             api.endpoints?.map((endpoint) => (
-              <div>
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="text-xs font-bold bg-secondary text-green-400 px-2 py-0.5 rounded uppercase">
+              <div class="min-w-0">
+                <div class="flex items-start gap-2 mb-1 min-w-0">
+                  <span class="text-xs font-bold bg-secondary text-green-400 px-2 py-0.5 rounded uppercase shrink-0">
                     {endpoint.method}
                   </span>
-                  <code class="text-xs md:text-sm text-gray-300 font-mono break-all">
+                  <code class="text-xs md:text-sm text-gray-300 font-mono break-all min-w-0">
                     {endpoint.path}
                   </code>
                 </div>
                 <p class="text-xs text-[#666] mb-2">{endpoint.description}</p>
                 {endpoint.example && (
-                  <div class="bg-primary p-2 rounded border border-secondary">
-                    <code class="text-xs text-text-muted block font-mono break-all">
+                  <div class="bg-primary p-2 rounded border border-secondary overflow-x-auto">
+                    <code class="text-xs text-text-muted block font-mono whitespace-nowrap">
                       {endpoint.example}
                     </code>
                   </div>

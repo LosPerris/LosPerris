@@ -5,5 +5,5 @@ dateString: "3 Julio 2026"
 tag: "Infra"
 api: "Transcripts"
 status: published
-description: "Discord Transcripts ya vive en dc.losperris.dev, independiente del proxy. Paths cortos: POST /api/transcripts, vistas en /t/.... API privada (API key): landing pública, docs y generación autenticadas. El subdominio queda abierto a más herramientas relacionadas con Discord. Las rutas antiguas en losperris.dev ya no se usan. No forma parte de la status page pública."
+description: "Transcripts se mueve a dc.losperris.dev (API privada). Paths cortos: POST /api/transcripts y vistas en /t/…. Sin proxy en losperris.dev y fuera de la status page pública."
 ---

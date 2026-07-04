@@ -79,6 +79,7 @@ export const apis = [
   {
     title: "Discord Transcripts",
     popular: false,
+    private: true,
     description:
       "API privada para generar y visualizar transcripts de canales de Discord en HTML. Requiere API key.",
     icon: "fab fa-discord",
@@ -86,18 +87,19 @@ export const apis = [
     hoverColor: "group-hover:text-[#5865F2]",
     link: "https://dc.losperris.dev/",
     linkText: "Visitar Web",
+    baseUrl: "https://dc.losperris.dev",
     endpoints: [
       {
         method: "POST",
-        path: "https://dc.losperris.dev/api/transcripts",
-        description: "Genera un transcript del canal (autenticado).",
-        example: "https://dc.losperris.dev/api/transcripts",
+        path: "/api/transcripts",
+        description: "Genera un transcript del canal (API key).",
+        example: "POST /api/transcripts",
       },
       {
         method: "GET",
-        path: "https://dc.losperris.dev/t/:guildId/:file",
-        description: "Visualiza el transcript generado.",
-        example: "https://dc.losperris.dev/t/guild/canal.html",
+        path: "/t/:guildId/:file",
+        description: "Visualiza el transcript generado (público con el link).",
+        example: "GET /t/guild/canal.html",
       },
     ],
     previewCode: `{
