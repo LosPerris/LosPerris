@@ -46,7 +46,6 @@ const today = new Date().toLocaleDateString("es-ES", {
         id="diary-cover"
         class="absolute inset-y-0 right-0 w-1/2 z-40 group origin-left transition-all duration-[1200ms] ease-in-out outline-none focus:outline-none"
       >
-        <!-- Realistic Paper Stack Under Leather Cover (Pushed back in 3D space) -->
         <div
           class="absolute top-2.5 bottom-1 -right-2.5 left-2 rounded-r-sm rounded-bl-sm"
           style="background-color: #e8dec3; box-shadow: 1px 1px 0 #dfd4b6, 2px 2px 0 #d1c5a5, 3px 3px 0 #c4b591, inset 5px 5px 15px rgba(0,0,0,0.6);"
@@ -61,18 +60,15 @@ const today = new Date().toLocaleDateString("es-ES", {
           </div>
         </div>
 
-        <!-- The actual leather cover background layer -->
         <div
           class="absolute inset-0 rounded-r-lg rounded-l-md"
           style="background-color: #442312; box-shadow: inset 0 0 100px rgba(0,0,0,0.9), inset 0 2px 3px rgba(255,255,255,0.1), 0 30px 60px -15px rgba(0,0,0,0.8);"
         >
-          <!-- Leather Texture Overlay -->
           <div
             class="absolute inset-0 rounded-r-lg rounded-l-md pointer-events-none opacity-[0.8] mix-blend-multiply leather-texture"
           >
           </div>
 
-          <!-- Real Thread Stitching -->
           <div
             class="absolute inset-2 border-[2px] border-dashed border-[#8b6b43] rounded-r-md pointer-events-none opacity-60"
             style="filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.8));"
@@ -83,15 +79,13 @@ const today = new Date().toLocaleDateString("es-ES", {
             style="filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.8));"
           >
           </div>
-          <!-- Spine crease stitching -->
+
           <div
             class="absolute top-0 bottom-0 left-4 md:left-8 w-[2px] bg-gradient-to-r from-black/40 to-transparent pointer-events-none"
           >
           </div>
-          <!-- Spine indentation -->
         </div>
 
-        <!-- Leather Strap Wrapping from back to front -->
         <div
           id="snap-strap"
           class="absolute top-1/2 -translate-y-1/2 right-0 w-10 h-8 md:w-24 md:h-14 rounded-l-full z-50 flex items-center justify-start pl-2 md:pl-4 cursor-pointer origin-right group/strap outline-none focus:outline-none"
@@ -106,7 +100,7 @@ const today = new Date().toLocaleDateString("es-ES", {
             style="filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.8));"
           >
           </div>
-          <!-- Antique Bronze Snap Button -->
+
           <div
             class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-[#4a3a2a] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.8),inset_0_2px_4px_rgba(255,255,255,0.2),0_4px_6px_rgba(0,0,0,0.6)] border border-[#1a110a] flex items-center justify-center group-hover/strap:shadow-[0_8px_12px_rgba(0,0,0,0.7)] group-hover/strap:scale-110 transition-all duration-300"
             style="will-change: transform, box-shadow;"
@@ -118,11 +112,9 @@ const today = new Date().toLocaleDateString("es-ES", {
           </div>
         </div>
 
-        <!-- Center Content (Gold Foil Embossed look) -->
         <div
           class="relative z-20 flex flex-col items-center justify-center h-full w-full pl-2 pr-6 md:pl-8 md:pr-0 pb-16 md:pb-64 text-center pointer-events-none"
         >
-          <!-- Gold Logo (Sunflower) -->
           <div
             class="text-[#d4af37] mb-4 md:mb-6 opacity-90"
             style="filter: drop-shadow(0px -1px 1px rgba(0,0,0,0.9)) drop-shadow(0px 1px 1px rgba(255,255,255,0.2));"
@@ -150,20 +142,17 @@ const today = new Date().toLocaleDateString("es-ES", {
         class="absolute inset-0 z-10 opacity-0 pointer-events-none transition-all duration-1000 ease-in-out flex w-full h-full rounded-lg py-2 px-2 md:py-10 md:px-8 invisible"
         style="background-color: #3a1e10; box-shadow: inset 0 0 100px rgba(0,0,0,0.9), inset 0 1px 2px rgba(255,255,255,0.1), 0 30px 60px -15px rgba(0,0,0,1);"
       >
-        <!-- Leather Texture for inside cover -->
         <div
           class="absolute inset-0 rounded-lg pointer-events-none opacity-[0.8] mix-blend-multiply leather-texture"
         >
         </div>
 
-        <!-- Outer Stitching (Thread) -->
         <div
           class="absolute inset-1.5 border-[2px] border-dashed border-[#8b6b43] rounded-md pointer-events-none z-10 opacity-60"
           style="filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.8));"
         >
         </div>
 
-        <!-- Long Strap extending from the right (Male side) -->
         <div
           id="close-strap"
           class="flex absolute top-1/2 -translate-y-1/2 -right-8 md:-right-20 w-10 md:w-24 h-8 md:h-14 rounded-r-full shadow-[8px_8px_20px_rgba(0,0,0,0.7)] z-0 items-center justify-end pr-1.5 md:pr-4 cursor-pointer origin-right group/close outline-none focus:outline-none"
@@ -178,7 +167,7 @@ const today = new Date().toLocaleDateString("es-ES", {
             style="filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.8));"
           >
           </div>
-          <!-- Male Snap Button (Underneath side) -->
+
           <div
             class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#4a3a2a] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.8),0_4px_6px_rgba(0,0,0,0.6)] border border-[#1a110a] flex items-center justify-center group-hover/close:shadow-[0_8px_12px_rgba(0,0,0,0.7)] transition-all duration-300"
             style="will-change: transform, box-shadow;"
@@ -190,7 +179,6 @@ const today = new Date().toLocaleDateString("es-ES", {
           </div>
         </div>
 
-        <!-- Female Snap embedded in the left cover (Front cover opened) -->
         <div
           class="hidden md:flex absolute top-1/2 -translate-y-1/2 left-3 w-8 h-8 rounded-full z-20 items-center justify-center"
         >
@@ -204,23 +192,19 @@ const today = new Date().toLocaleDateString("es-ES", {
           </div>
         </div>
 
-        <!-- The Paper Notebook Insert (Aged Cream Paper with Stack Effect) -->
         <div
           class="relative w-full h-full rounded-sm flex z-20 overflow-hidden"
           style="background: linear-gradient(to right, #ded0af, #e6dbc3 2%, #e6dbc3 98%, #ded0af); box-shadow: 0px 1px 0px #e1d3b9, 0px 2px 0px #dccba9, 0px 3px 0px #e1d3b9, 0px 4px 0px #dccba9, -1px 0px 0px #e1d3b9, -2px 0px 0px #dccba9, -3px 0px 0px #e1d3b9, -4px 0px 0px #dccba9, 1px 0px 0px #e1d3b9, 2px 0px 0px #dccba9, 3px 0px 0px #e1d3b9, 4px 0px 0px #dccba9, 0 15px 30px rgba(0,0,0,0.6), inset 0 0 40px rgba(139,107,67,0.12);"
         >
-          <!-- Paper Texture Overlay -->
           <div
             class="absolute inset-0 pointer-events-none opacity-[0.4] mix-blend-multiply z-30"
             style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%221.5%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"
           >
           </div>
 
-          <!-- Spine Crease (Stitched Center Fold) -->
           <div
             class="absolute top-0 bottom-0 left-1/2 w-[1px] -translate-x-1/2 bg-[#5c4a3d]/10 z-40 shadow-[0_0_8px_rgba(0,0,0,0.15)] flex flex-col items-center"
           >
-            <!-- Real Thread Stitching for Binding -->
             <div
               class="absolute inset-y-0 border-l-[2px] border-dashed border-[#8b6b43] pointer-events-none opacity-60"
               style="filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.4));"
@@ -228,7 +212,6 @@ const today = new Date().toLocaleDateString("es-ES", {
             </div>
           </div>
 
-          <!-- Spine Inner Shadows (The dip into the spine) -->
           <div
             class="absolute top-0 bottom-0 left-1/2 w-12 bg-gradient-to-r from-[rgba(0,0,0,0.08)] to-transparent pointer-events-none z-30"
           >
@@ -238,7 +221,6 @@ const today = new Date().toLocaleDateString("es-ES", {
           >
           </div>
 
-          <!-- Page Curve Highlights (The paper rising out of the spine) -->
           <div
             class="absolute top-0 bottom-0 left-1/2 ml-4 w-12 bg-gradient-to-r from-[rgba(255,255,255,0.25)] to-transparent pointer-events-none z-30"
           >
@@ -248,7 +230,6 @@ const today = new Date().toLocaleDateString("es-ES", {
           >
           </div>
 
-          <!-- Outer Edge Shadows (Paper curving down at the edges) -->
           <div
             class="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-[rgba(0,0,0,0.08)] to-transparent pointer-events-none z-30"
           >
@@ -258,11 +239,9 @@ const today = new Date().toLocaleDateString("es-ES", {
           >
           </div>
 
-          <!-- Static Left Page (Page 1 Left) -->
           <div
             class="absolute left-0 w-1/2 h-full flex flex-col items-center justify-center pt-8 md:pt-12 border-r border-[#c4b599]/60 z-10 px-1 md:px-4"
           >
-            <!-- Logo Stamp (Faded Red) -->
             <div
               class="border-[2.5px] border-[#8b3a3a] rounded-full p-2 mb-12 flex items-center justify-center stamp-element opacity-0"
               style="--rotate: rotate(-15deg); --final-opacity: 0.4; animation-delay: 0.5s;"
@@ -275,7 +254,6 @@ const today = new Date().toLocaleDateString("es-ES", {
               />
             </div>
 
-            <!-- Text Stamps -->
             <div class="flex flex-col items-center gap-6">
               <div
                 class="border-2 border-[#8b3a3a] px-2 py-1 md:px-4 md:py-2 stamp-element opacity-0"
@@ -309,18 +287,15 @@ const today = new Date().toLocaleDateString("es-ES", {
             </div>
           </div>
 
-          <!-- Flipping Page Container -->
           <div
             id="page-turner"
             class="absolute right-0 w-1/2 h-full z-20 origin-left transition-transform duration-[1500ms] ease-in-out"
             style="transform-style: preserve-3d;"
           >
-            <!-- Front Face: Page 1 Right (Daily Message) -->
             <div
               class="absolute inset-0 w-full h-full flex flex-col pt-6 pb-4 pl-3 pr-4 md:pt-16 md:pb-10 md:pl-12 md:pr-16 overflow-hidden"
               style="backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(225deg, transparent 35.5px, #e4d8c0 35.5px);"
             >
-              <!-- Folded Corner Turn Page Button -->
               <div
                 id="turn-page-btn"
                 class="absolute top-0 right-0 w-[35px] h-[35px] md:w-[50px] md:h-[50px] cursor-pointer group z-50 opacity-0 transition-opacity duration-500 pointer-events-none"
@@ -376,23 +351,20 @@ const today = new Date().toLocaleDateString("es-ES", {
               </footer>
             </div>
 
-            <!-- Back Face: Page 2 Left (Reasons 1-5) -->
             <div
               class="absolute inset-0 w-full h-full flex flex-col pt-4 px-3 md:pt-16 md:px-12 overflow-hidden"
               style="backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); background: linear-gradient(135deg, transparent 35.5px, #e1d3b9 35.5px);"
             >
-              <!-- Folded Corner Back Button -->
               <div
                 id="turn-back-btn"
                 class="absolute top-0 left-0 w-[35px] h-[35px] md:w-[50px] md:h-[50px] cursor-pointer group z-50"
               >
-                <!-- The fold flap (inverse logic for the back of the page) -->
                 <div
                   class="absolute inset-0 bg-[#d2c3aa] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.2)] transition-colors duration-300 group-hover:bg-[#c6b394]"
                   style="clip-path: polygon(0 0, 100% 0, 0 100%);"
                 >
                 </div>
-                <!-- Arrow Icon -->
+
                 <svg
                   class="absolute bottom-2 right-2 w-4 h-4 text-[#8b3a3a] opacity-60 group-hover:opacity-100 transition-opacity duration-300"
                   viewBox="0 0 24 24"
@@ -440,7 +412,6 @@ const today = new Date().toLocaleDateString("es-ES", {
             </div>
           </div>
 
-          <!-- Static Right Page (Page 2 Right - Reasons 6-10) -->
           <div
             class="absolute right-0 w-1/2 h-full flex flex-col pt-6 pb-4 pl-3 pr-4 md:pt-8 md:pl-12 md:pr-16 z-10 overflow-hidden"
           >

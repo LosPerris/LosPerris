@@ -7,7 +7,6 @@
   class="bg-transparent m-auto p-0 outline-none"
   style="width: 90vw; max-width: 640px; max-height: 90vh; overflow: hidden;"
 >
-  <!-- Letter Paper -->
   <div
     class="relative flex flex-col rounded-sm"
     style="
@@ -18,7 +17,6 @@
     transform: rotate(-1deg);
   "
   >
-    <!-- Close button -->
     <button
       id="modal-close-btn"
       aria-label="Cerrar"
@@ -39,7 +37,6 @@
       </svg>
     </button>
 
-    <!-- Top Letter Detail (Heart and Line) -->
     <div
       class="relative z-10 w-full flex justify-between items-center px-6 pt-6 mb-2"
     >
@@ -53,9 +50,7 @@
       <div class="w-16 h-[2px] bg-[#1a1510]/15"></div>
     </div>
 
-    <!-- Main content -->
     <div class="relative z-10 flex flex-col px-8 pb-10 flex-1 mt-6">
-      <!-- Date / Intro -->
       <p
         class="text-[11px] tracking-[0.2em] uppercase opacity-40 text-[#1a1510] mb-2"
         style="font-family: 'Special Elite', monospace;"
@@ -63,7 +58,6 @@
         Pregunta del día
       </p>
 
-      <!-- The question -->
       <p
         id="question-text"
         class="text-[#1a1510] opacity-90 leading-relaxed text-center"
@@ -73,7 +67,6 @@
         ti?
       </p>
 
-      <!-- Typed response area (hidden until answer) -->
       <div id="typed-response-wrapper" class="hidden mt-6">
         <p
           id="typed-response"
@@ -83,10 +76,8 @@
         </p>
       </div>
 
-      <!-- Spacer -->
       <div class="flex-1"></div>
 
-      <!-- Signature -->
       <p
         class="text-right italic opacity-60 text-[#1a1510] mt-6"
         style="font-family: 'Caveat', cursive; font-size: 1.3rem;"
@@ -95,7 +86,6 @@
         <span style="font-size: 1.5rem;">— Ponss</span>
       </p>
 
-      <!-- Buttons -->
       <div id="answer-buttons" class="flex gap-4 justify-center mt-10">
         <button
           id="btn-yes"

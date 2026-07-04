@@ -7,7 +7,7 @@ interface Props {
 const { songId, question } = Astro.props;
 ---
 
-<!-- Envelope Widget — slides in from bottom-left -->{
+{
   question && (
     <div
       id="interactive-envelope"
@@ -84,13 +84,11 @@ const { songId, question } = Astro.props;
   )
 }
 
-<!-- Polaroid Promise Widget — slides in from top-right -->
 <div
   id="polaroid-widget"
   class="fixed top-2 right-2 md:top-0 md:right-12 z-[85] w-24 md:w-44 select-none animate-desk-polaroid"
   style="cursor: pointer;"
 >
-  <!-- Tilt + flip target -->
   <div
     id="polaroid-tilt"
     style="
@@ -99,7 +97,6 @@ const { songId, question } = Astro.props;
       position: relative;
     "
   >
-    <!-- Tape strip -->
     <div
       id="polaroid-tape"
       style="
@@ -115,10 +112,7 @@ const { songId, question } = Astro.props;
     >
     </div>
 
-    <!-- Size reference: aspect-ratio 3/4 gives consistent height.
-         Both faces are absolute inset-0 on this, so they always match. -->
     <div style="width:100%; aspect-ratio:3/4; position:relative;">
-      <!-- FRONT face -->
       <div
         id="polaroid-front"
         style="
@@ -131,7 +125,6 @@ const { songId, question } = Astro.props;
         flex-direction: column;
       "
       >
-        <!-- Photo: aspect-ratio:1 directly — no flex dependency -->
         <div
           style="width:100%; aspect-ratio:1; overflow:hidden; position:relative; background:#1a0f05;"
         >
@@ -394,14 +387,14 @@ const { songId, question } = Astro.props;
           >
           </div>
         </div>
-        <!-- Caption row -->
+
         <p
           class="text-[10px] md:text-[17px]"
           style="display:block; padding:7px 0 9px; text-align:center; font-family:'Caveat',cursive; color:#1a1510; opacity:0.70; font-weight:bold;"
         >
           Nuestra promesa
         </p>
-      </div><!-- /polaroid-front -->
+      </div>
 
       <div
         id="polaroid-back"
@@ -414,7 +407,6 @@ const { songId, question } = Astro.props;
         box-sizing: border-box;
       "
       >
-        <!-- inner area matches photo aspect-ratio so total height = front -->
         <div
           style="display:flex; flex-direction:column; justify-content:center; gap:8px; width:100%; aspect-ratio:1;"
         >
@@ -442,15 +434,14 @@ const { songId, question } = Astro.props;
           >
             — Yo
           </p>
-        </div><!-- /inner -->
-        <!-- spacer matches caption height -->
-        <div style="height:36px;"></div>
-      </div><!-- /polaroid-back -->
-    </div><!-- /size-reference -->
-  </div><!-- /polaroid-tilt -->
-</div><!-- /polaroid-widget -->
+        </div>
 
-<!-- Spotify — aged paper note, slides in from bottom-right -->
+        <div style="height:36px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {
   songId && (
     <a

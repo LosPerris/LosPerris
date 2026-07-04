@@ -15,7 +15,6 @@ const navItems = [
   <div
     class="h-full container mx-auto px-6 max-w-6xl flex items-center justify-between"
   >
-    <!-- Logo -->
     <a href="/" class="flex items-center gap-3 group">
       <img
         src="/LosPerris-minimal.svg"
@@ -28,7 +27,6 @@ const navItems = [
       >
     </a>
 
-    <!-- Navegación Desktop -->
     <nav class="hidden md:flex items-center gap-8">
       {
         navItems.map((item) => (
@@ -43,7 +41,6 @@ const navItems = [
       }
     </nav>
 
-    <!-- Botón Status Desktop -->
     <div class="hidden md:flex items-center">
       <a
         href="https://status.losperris.dev"
@@ -58,7 +55,6 @@ const navItems = [
       </a>
     </div>
 
-    <!-- Menú Hamburguesa Móvil -->
     <button
       id="menu-btn"
       class="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"

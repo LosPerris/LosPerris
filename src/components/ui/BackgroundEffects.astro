@@ -6,20 +6,17 @@
   class="absolute inset-0 pointer-events-none overflow-hidden z-0"
   id="hero-grid-container"
 >
-  <!-- Spotlight central estático muy suave -->
   <div
     class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#f97316]/15 rounded-full blur-[130px]"
   >
   </div>
 
-  <!-- Patrón de Grid que siempre está visible, pero brilla más con el mouse -->
   <div
     class="absolute inset-0 opacity-[0.8] bg-[linear-gradient(to_right,rgba(249,115,22,0.6)_1px,transparent_1px),linear-gradient(to_bottom,rgba(249,115,22,0.6)_1px,transparent_1px)] bg-[size:32px_32px] transition-opacity duration-300"
     style="mask-image: radial-gradient(circle 200px at var(--mouse-x, 50%) var(--mouse-y, 20%), black 0%, rgba(0,0,0,0.4) 100%); -webkit-mask-image: radial-gradient(circle 200px at var(--mouse-x, 50%) var(--mouse-y, 20%), black 0%, rgba(0,0,0,0.4) 100%);"
   >
   </div>
 
-  <!-- Fade out at the bottom ultra suave -->
   <div
     class="absolute bottom-0 inset-x-0 h-full bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent pointer-events-none"
   >
