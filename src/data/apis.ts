@@ -49,16 +49,17 @@ export const apis = [
     hoverColor: "group-hover:text-[#FF4655]",
     link: "https://vlr.losperris.dev/",
     linkText: "Visitar Web",
+    baseUrl: "https://vlr.losperris.dev",
     endpoints: [
       {
         method: "GET",
-        path: "https://vlr.losperris.dev/api/rank/:region/:name/:tag",
+        path: "/api/rank/:region/:name/:tag",
         description: "Obtiene el rango y ELO actual de un jugador.",
         example: "https://vlr.losperris.dev/api/rank/na/user/tag",
       },
       {
         method: "GET",
-        path: "https://vlr.losperris.dev/api/match/last/:region/:name/:tag",
+        path: "/api/match/last/:region/:name/:tag",
         description: "Última partida competitiva del jugador.",
         example: "https://vlr.losperris.dev/api/match/last/na/user/tag",
       },
