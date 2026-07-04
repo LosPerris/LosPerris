@@ -5,14 +5,21 @@ import Dropdown from "../components/ui/Dropdown.astro";
 import UpdateCard from "../components/updates/UpdateCard.astro";
 import { getCollection } from "astro:content";
 import { socialIcons } from "../data/icons";
+import { fetchGithubUpdates } from "../lib/githubUpdates";
 
-const allUpdates = await getCollection("updates");
+const [manualUpdates, githubUpdates] = await Promise.all([
+  getCollection("updates"),
+  fetchGithubUpdates(),
+]);
 
-const publishedUpdates = allUpdates
-  .filter((u) => (u.data.status ?? "published") === "published")
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const allPublished = [
+  ...manualUpdates.filter(
+    (u) => (u.data.status ?? "published") === "published",
+  ),
+  ...githubUpdates,
+].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const plannedUpdates = allUpdates
+const plannedUpdates = manualUpdates
   .filter((u) => u.data.status === "planned")
   .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
 ---
@@ -177,7 +184,7 @@ const plannedUpdates = allUpdates
           style="view-transition-name: updates-list;"
         >
           {
-            publishedUpdates.map((update) => (
+            allPublished.map((update) => (
               <UpdateCard
                 title={update.data.title}
                 dateString={update.data.dateString}
@@ -186,6 +193,9 @@ const plannedUpdates = allUpdates
                 description={update.data.description}
                 dateMs={update.data.date.valueOf()}
                 variant="published"
+                commitUrl={
+                  "commitUrl" in update.data ? update.data.commitUrl : undefined
+                }
               />
             ))
           }

@@ -1,0 +1,31 @@
+name: Sincronizar novedades desde repos privados
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sync-updates]
+  schedule:
+    # Respaldo diario por si no disparó un push
+    - cron: "0 12 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Leer commits (repos privados)
+        env:
+          UPDATE_SYNC_TOKEN: ${{ secrets.UPDATE_SYNC_TOKEN }}
+        run: node scripts/sync-github-updates.mjs
+
+      - name: Guardar caché en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/github-updates-cache.json
+          git diff --staged --quiet || git commit -m "chore: sincronizar novedades desde commits de APIs"
+          git push

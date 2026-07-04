@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
+    "sync:updates": "node scripts/sync-github-updates.mjs",
     "format": "prettier --write .",
     "prepare": "husky"
   },
