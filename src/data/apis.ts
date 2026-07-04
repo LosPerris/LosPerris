@@ -47,20 +47,20 @@ export const apis = [
     iconId: "valorant",
     color: "text-[#FF4655]",
     hoverColor: "group-hover:text-[#FF4655]",
-    link: "/api/valorant",
+    link: "https://vlr.losperris.dev/",
     linkText: "Visitar Web",
     endpoints: [
       {
         method: "GET",
-        path: "/api/valorant/v1/mmr/:region/:name/:tag",
+        path: "https://vlr.losperris.dev/api/rank/:region/:name/:tag",
         description: "Obtiene el rango y ELO actual de un jugador.",
-        example: `${siteUrl}/api/valorant/v1/mmr/na/user/tag`,
+        example: "https://vlr.losperris.dev/api/rank/na/user/tag",
       },
       {
         method: "GET",
-        path: "/valorant/v1/account/:name/:tag",
-        description: "Información general de la cuenta (Nivel, tarjeta, etc).",
-        example: `${siteUrl}/api/valorant/v1/account/nombre/tag`,
+        path: "https://vlr.losperris.dev/api/match/last/:region/:name/:tag",
+        description: "Última partida competitiva del jugador.",
+        example: "https://vlr.losperris.dev/api/match/last/na/user/tag",
       },
     ],
     previewCode: `{

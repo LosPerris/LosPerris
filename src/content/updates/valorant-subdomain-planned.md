@@ -1,9 +1,9 @@
 ---
 title: "Valorant API en vlr.losperris.dev"
-date: 2026-08-01
-dateString: "Agosto 2026"
+date: 2026-07-03
+dateString: "3 Julio 2026"
 tag: "Infra"
 api: "Valorant"
-status: planned
-description: "La API de Valorant pasará a su propio subdominio (vlr.losperris.dev). Las rutas antiguas en losperris.dev/api/valorant redirigirán durante un periodo anunciado; después solo valdrá la URL nueva. Actualiza comandos y bookmarks a tiempo."
+status: published
+description: "La API de Valorant ya vive en vlr.losperris.dev, independiente del proxy. Rutas nuevas: / (landing), /docs y /api/rank|match|today|stats|summary|system/stats. La URL antigua /api/valorant ya no se usa."
 ---

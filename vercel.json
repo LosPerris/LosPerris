@@ -33,22 +33,9 @@
       "source": "/api/twitch",
       "destination": "/api/twitch/",
       "permanent": true
-    },
-    {
-      "source": "/api/valorant",
-      "destination": "/api/valorant/",
-      "permanent": true
     }
   ],
   "rewrites": [
-    {
-      "source": "/api/valorant/",
-      "destination": "https://los-perris-valorant-api.vercel.app/"
-    },
-    {
-      "source": "/api/valorant/:match*",
-      "destination": "https://los-perris-valorant-api.vercel.app/api/valorant/:match*"
-    },
     {
       "source": "/api/twitch/_astro/:match*",
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/_astro/:match*"
