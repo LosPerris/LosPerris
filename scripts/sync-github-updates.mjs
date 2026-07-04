@@ -32,7 +32,7 @@ async function main() {
   writeCache(entries);
 
   console.log(
-    `[sync-updates] ${stats.published}/${stats.fetched} commits publicables → ${entries.length} entradas`,
+    `[sync-updates] ${stats.published}/${stats.total} commits publicables → ${entries.length} entradas`,
   );
   if (stats.skipped > 0) {
     console.log(`[sync-updates] ${stats.skipped} commits omitidos (mantenimiento/ruido)`);

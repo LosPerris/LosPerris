@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const CACHE_PATH = path.join(
   __dirname,
-  "../src/data/github-updates-cache.json",
+  "../../src/data/github-updates-cache.json",
 );
 
 export const MONTHS_ES = [
