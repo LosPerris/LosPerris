@@ -5,11 +5,6 @@
   "outputDirectory": "dist",
   "redirects": [
     {
-      "source": "/apis",
-      "destination": "/api",
-      "permanent": true
-    },
-    {
       "source": "/api/twitch/dashboard/",
       "destination": "/api/twitch/dashboard",
       "permanent": true

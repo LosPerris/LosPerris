@@ -84,25 +84,25 @@ export const apis = [
     icon: "fab fa-discord",
     color: "text-[#5865F2]",
     hoverColor: "group-hover:text-[#5865F2]",
-    link: "https://transcripts.losperris.dev/",
+    link: "https://dc.losperris.dev/",
     linkText: "Visitar Web",
     endpoints: [
       {
         method: "POST",
-        path: "https://transcripts.losperris.dev/api/discord/transcripts",
+        path: "https://dc.losperris.dev/api/transcripts",
         description: "Genera un transcript del canal (autenticado).",
-        example: "https://transcripts.losperris.dev/api/discord/transcripts",
+        example: "https://dc.losperris.dev/api/transcripts",
       },
       {
         method: "GET",
-        path: "https://transcripts.losperris.dev/transcripts/:guildId/:file",
+        path: "https://dc.losperris.dev/t/:guildId/:file",
         description: "Visualiza el transcript generado.",
-        example: "https://transcripts.losperris.dev/v/ae13d1a01566f2ce",
+        example: "https://dc.losperris.dev/t/guild/canal.html",
       },
     ],
     previewCode: `{
   "success": true,
-  "url": "https://transcripts.losperris.dev/transcripts/guild/canal.html",
+  "url": "https://dc.losperris.dev/t/guild/canal.html",
   "path": "transcripts/guild/canal.html"
 }`,
   },
