@@ -80,36 +80,30 @@ export const apis = [
     title: "Discord Transcripts",
     popular: false,
     description:
-      "Genera, almacena y visualiza transcripciones de canales de Discord en formato HTML de manera rápida y sencilla.",
+      "API privada para generar y visualizar transcripts de canales de Discord en HTML. Requiere API key.",
     icon: "fab fa-discord",
     color: "text-[#5865F2]",
     hoverColor: "group-hover:text-[#5865F2]",
-    link: "/api/discord",
-    linkText: "Documentación",
+    link: "https://transcripts.losperris.dev/",
+    linkText: "Visitar Web",
     endpoints: [
       {
         method: "POST",
-        path: "/api/discord/transcripts",
-        description:
-          "Crea una nueva transcripción a partir de un JSON de mensajes de Discord.",
-        example: `${siteUrl}/api/discord/transcripts`,
+        path: "https://transcripts.losperris.dev/api/discord/transcripts",
+        description: "Genera un transcript del canal (autenticado).",
+        example: "https://transcripts.losperris.dev/api/discord/transcripts",
       },
       {
         method: "GET",
-        path: "/api/discord/transcripts/:id",
-        description: "Visualiza o recupera la transcripción generada.",
-        example: `${siteUrl}/api/discord/transcripts/123456`,
+        path: "https://transcripts.losperris.dev/transcripts/:guildId/:file",
+        description: "Visualiza el transcript generado.",
+        example: "https://transcripts.losperris.dev/v/ae13d1a01566f2ce",
       },
     ],
     previewCode: `{
   "success": true,
-  "transcript_url": "https://losperris.com/t/abc123xyz",
-  "metadata": {
-    "channel_id": "10023456789",
-    "message_count": 145,
-    "participants": 4,
-    "generated_at": "2026-06-21T18:45:00Z"
-  }
+  "url": "https://transcripts.losperris.dev/transcripts/guild/canal.html",
+  "path": "transcripts/guild/canal.html"
 }`,
   },
   {

@@ -71,30 +71,6 @@
     {
       "source": "/api/twitch/:match*",
       "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match*"
-    },
-    {
-      "source": "/api/transcript",
-      "destination": "https://transcripts-five.vercel.app/api/transcript"
-    },
-    {
-      "source": "/api/discord",
-      "destination": "https://transcripts-five.vercel.app/"
-    },
-    {
-      "source": "/api/discord/transcripts",
-      "destination": "https://transcripts-five.vercel.app/api/discord/transcripts"
-    },
-    {
-      "source": "/api/discord/transcripts/:match*",
-      "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
-    },
-    {
-      "source": "/api/transcripts/:match*",
-      "destination": "https://transcripts-five.vercel.app/transcripts/:match*"
-    },
-    {
-      "source": "/transcripts/:match*",
-      "destination": "/api/transcripts/:match*"
     }
   ],
   "headers": [
