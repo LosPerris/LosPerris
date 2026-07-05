@@ -85,14 +85,14 @@ export function parseCommitMessage(message) {
     const title = cc[3].trim();
     return {
       title: title.slice(0, 120),
-      description: (body || title).slice(0, 400),
+      description: body ? body.slice(0, 400) : "",
       tag: tagMap[type] ?? "Infra",
     };
   }
 
   return {
     title: subject.slice(0, 120),
-    description: (body || subject).slice(0, 400),
+    description: body ? body.slice(0, 400) : "",
     tag: "Infra",
   };
 }

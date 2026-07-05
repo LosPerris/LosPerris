@@ -4,7 +4,7 @@
     {
       "id": "gh-qr-e27dfd9",
       "title": "corregir vista previa del QR cuando el logo supera el tamaño máximo",
-      "description": "corregir vista previa del QR cuando el logo supera el tamaño máximo",
+      "description": "",
       "tag": "Fix",
       "api": "Códigos QR",
       "status": "published",
@@ -15,7 +15,7 @@
     {
       "id": "gh-valorant-d1db6a7",
       "title": "Añadir región BR al selector y mostrar 6 regiones.",
-      "description": "Añadir región BR al selector y mostrar 6 regiones.",
+      "description": "",
       "tag": "Infra",
       "api": "Valorant",
       "status": "published",

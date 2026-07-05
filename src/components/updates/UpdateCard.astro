@@ -69,6 +69,9 @@ const defaultApiStyle = {
 const tc = tagStyle[tag] ?? defaultTagStyle;
 const ac = apiStyle[api] ?? defaultApiStyle;
 const isPlanned = variant === "planned";
+const showDescription =
+  description.trim().length > 0 &&
+  description.trim().toLowerCase() !== title.trim().toLowerCase();
 ---
 
 <div
@@ -119,9 +122,11 @@ const isPlanned = variant === "planned";
   <h2 class="text-2xl font-bold text-white mb-3 tracking-tight">
     {title}
   </h2>
-  <p class="text-base text-zinc-400 leading-relaxed">
-    {description}
-  </p>
+  {
+    showDescription && (
+      <p class="text-base text-zinc-400 leading-relaxed">{description}</p>
+    )
+  }
   {
     projectUrl && (
       <div class="mt-3 flex flex-wrap items-center gap-3">
