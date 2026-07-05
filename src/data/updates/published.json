@@ -1,13 +1,12 @@
 {
-  "syncedAt": "2026-07-05T00:37:07.626Z",
+  "syncedAt": "2026-07-05T02:59:32.618Z",
   "entries": [
     {
       "id": "gh-qr-e27dfd9",
-      "title": "corregir vista previa del QR cuando el logo supera el tamaño máximo",
+      "title": "Corregir vista previa del QR cuando el logo supera el tamaño máximo",
       "description": "",
       "tag": "Fix",
       "api": "Códigos QR",
-      "status": "published",
       "date": "2026-07-04T23:50:53.000Z",
       "dateString": "4 Julio 2026",
       "commitSha": "e27dfd9"
@@ -16,12 +15,21 @@
       "id": "gh-valorant-d1db6a7",
       "title": "Añadir región BR al selector y mostrar 6 regiones.",
       "description": "",
-      "tag": "Infra",
+      "tag": "Feature",
       "api": "Valorant",
-      "status": "published",
       "date": "2026-07-04T04:52:28.000Z",
       "dateString": "4 Julio 2026",
       "commitSha": "d1db6a7"
+    },
+    {
+      "id": "gh-qr-b94a0e0",
+      "title": "Move QR routes to subdomain-ready paths at the project root.",
+      "description": "Serve /, /docs, and /api/generate natively, keep temporary /api/qr redirects for compatibility, and document how to remove them later.",
+      "tag": "Infra",
+      "api": "Códigos QR",
+      "date": "2026-07-03T19:37:46.000Z",
+      "dateString": "3 Julio 2026",
+      "commitSha": "b94a0e0"
     },
     {
       "id": "manual-transcripts-subdomain",
@@ -122,5 +130,10 @@
       "date": "2026-06-08T00:00:00.000Z",
       "dateString": "8 Junio 2026"
     }
-  ]
+  ],
+  "syncHealth": {
+    "consecutiveNoPublish": 0,
+    "lastFetched": 24,
+    "lastPublished": 3
+  }
 }
