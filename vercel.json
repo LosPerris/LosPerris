@@ -8,71 +8,9 @@
       "source": "/api",
       "destination": "/apis",
       "permanent": true
-    },
-    {
-      "source": "/api/twitch/dashboard/",
-      "destination": "/api/twitch/dashboard",
-      "permanent": true
-    },
-    {
-      "source": "/api/twitch/docs/",
-      "destination": "/api/twitch/docs",
-      "permanent": true
-    },
-    {
-      "source": "/api/twitch/dashboard/:tab(followage|clips|shoutout|trends|stalker|magic8|roulette|russian|duel|profile|feedback)/",
-      "destination": "/api/twitch/dashboard/:tab",
-      "permanent": true
-    },
-    {
-      "source": "/twitch",
-      "destination": "/api/twitch/",
-      "permanent": true
-    },
-    {
-      "source": "/api/twitch",
-      "destination": "/api/twitch/",
-      "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/api/twitch/_astro/:match*",
-      "destination": "https://twitch-api-modern.vercel.app/api/twitch/_astro/:match*"
-    },
-    {
-      "source": "/2f7a780e1a8ef1cf/:match*",
-      "destination": "https://twitch-api-modern.vercel.app/2f7a780e1a8ef1cf/:match*"
-    },
-    {
-      "source": "/_vercel/speed-insights/:match*",
-      "destination": "https://twitch-api-modern.vercel.app/_vercel/speed-insights/:match*"
-    },
-    {
-      "source": "/api/twitch/img/:match*",
-      "destination": "https://twitch-api-modern.vercel.app/api/twitch/img/:match*"
-    },
-    {
-      "source": "/api/twitch/sw.js",
-      "destination": "https://twitch-api-modern.vercel.app/api/twitch/sw.js"
-    },
-    {
-      "source": "/api/twitch/manifest.json",
-      "destination": "https://twitch-api-modern.vercel.app/api/twitch/manifest.json"
-    },
-    {
-      "source": "/api/twitch/",
-      "destination": "https://twitch-api-modern.vercel.app/api/twitch/"
-    },
-    {
-      "source": "/api/twitch/:match+/",
-      "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match+/"
-    },
-    {
-      "source": "/api/twitch/:match*",
-      "destination": "https://twitch-api-modern.vercel.app/api/twitch/:match*"
-    }
-  ],
+  "rewrites": [],
   "headers": [
     {
       "source": "/maria",
