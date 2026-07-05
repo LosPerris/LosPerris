@@ -4,8 +4,9 @@
  * Incluir siempre:  [update] o [novedad] en el mensaje
  * Omitir siempre:   [skip update] o merge / chore / lint / deps / wip
  *
- * También entran:   feat:, fix:, perf:, a11y:, infra:, refactor:
- * O mensajes largos con verbos de cambio (Mejorar, Corregir, Migrar…)
+ * También entran:   feat:, fix:, perf:, a11y:, refactor:
+ * O mensajes con verbos visibles (Mejorar, Corregir, Migrar…)
+ * NO entran:        CI, engines, workflows, Jest, dispatch, Node 22, etc.
  */
 
 const CONVENTIONAL_RE =
@@ -17,7 +18,6 @@ const PUBLISH_TYPES = new Set([
   "fix",
   "perf",
   "a11y",
-  "infra",
   "refactor",
   "revert",
 ]);
@@ -63,11 +63,35 @@ const SKIP_SUBJECT_PATTERNS = [
   /^dependabot/i,
   /^sincronizar novedades/i,
   /^chore:/i,
+  /^disparar\b/i,
+  /^declarar\b/i,
+  /^restaurar\b/i,
+  /^reemplazar\b/i,
+  /^usar node/i,
+  /^actualizar engines/i,
+  /\bengines?\b/i,
+  /\bnode\s*22\b/i,
+  /\bnode\s*>=/i,
+  /\bjest\b/i,
+  /\bworkflow\b/i,
+  /\bsync de novedades/i,
+  /\bdispatch\b/i,
+  /\bgithub actions?\b/i,
+  /\bpnpm\b/i,
+  /\bastro 6\b/i,
+  /\bci obsoleto/i,
+  /\btests unitarios\b/i,
+  /\blint-staged\b/i,
+  /^probar (dispatch|flujo)/i,
 ];
 
-/** Verbos de cambio visible (español / inglés). */
+/** Ruido técnico aunque use feat:/fix: en el asunto. */
+const DEVOPS_SUBJECT_RE =
+  /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de novedades|losperris al pushear|ci obsoleto|tests unitarios|caché de novedades|trigger-losperris)\b/i;
+
+/** Verbos de cambio visible para usuarios (español / inglés). */
 const ACTION_VERB_RE =
-  /^(mejorar|corregir|añadir|agregar|migrar|mover|quitar|actualizar|implementar|refactor|escalar|servir|usar|arreglar|fix|feat|add|remove|update|migrate|deploy|release|hotfix|revert|añadir)/i;
+  /^(mejorar|corregir|añadir|agregar|migrar|mover|quitar|implementar|arreglar|fix|feat|add|remove|migrate|hotfix|revert)/i;
 
 export function shouldPublishCommit(message) {
   if (!message?.trim()) return false;
@@ -88,6 +112,7 @@ export function shouldPublishCommit(message) {
   if (subject.length < 10) return false;
 
   if (SKIP_SUBJECT_PATTERNS.some((re) => re.test(subject))) return false;
+  if (DEVOPS_SUBJECT_RE.test(subject)) return false;
 
   const cc = subject.match(CONVENTIONAL_RE);
   if (cc) {
@@ -99,10 +124,18 @@ export function shouldPublishCommit(message) {
   if (ACTION_VERB_RE.test(subject)) return true;
 
   // Commit con cuerpo explicativo = suele ser intencional
-  if (body.length >= 24 && subject.length >= 18) return true;
+  if (body.length >= 24 && subject.length >= 18 && ACTION_VERB_RE.test(subject)) {
+    return true;
+  }
 
   // Mensaje descriptivo largo sin prefijo (tus commits en español)
-  if (subject.length >= 36 && !/^chore/i.test(subject)) return true;
+  if (
+    subject.length >= 36 &&
+    !/^chore/i.test(subject) &&
+    ACTION_VERB_RE.test(subject)
+  ) {
+    return true;
+  }
 
   return false;
 }
