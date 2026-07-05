@@ -1,21 +1,18 @@
 ---
-import { getCollection } from "astro:content";
 import Button from "../ui/Button.astro";
 import SectionHeader from "../ui/SectionHeader.astro";
 import Card from "../ui/Card.astro";
 import { fetchGithubUpdates } from "../../lib/githubUpdates";
+import { fetchManualUpdates } from "../../lib/manualUpdates";
 
-const [manualUpdates, githubUpdates] = await Promise.all([
-  getCollection("updates"),
+const [githubUpdates, manualUpdates] = await Promise.all([
   fetchGithubUpdates(),
+  Promise.resolve(fetchManualUpdates()),
 ]);
 
-const sortedUpdates = [
-  ...manualUpdates.filter(
-    (u) => (u.data.status ?? "published") === "published",
-  ),
-  ...githubUpdates,
-].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const sortedUpdates = [...manualUpdates, ...githubUpdates].sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 
 const latestUpdates = sortedUpdates.slice(0, 3);
 ---

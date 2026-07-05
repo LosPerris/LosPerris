@@ -17,9 +17,9 @@ export interface GithubUpdateEntry {
     api: UpdateApi;
     description: string;
     status: "published";
-    commitUrl: string;
-    commitSha: string;
-    repoLabel: string;
+    commitUrl?: string;
+    commitSha?: string;
+    repoLabel?: string;
   };
 }
 
@@ -32,9 +32,9 @@ interface CachedEntry {
   status: "published";
   date: string;
   dateString: string;
-  commitUrl: string;
-  commitSha: string;
-  repoLabel: string;
+  commitUrl?: string;
+  commitSha?: string;
+  repoLabel?: string;
 }
 
 interface UpdatesCache {

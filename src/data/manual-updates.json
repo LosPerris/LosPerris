@@ -1,0 +1,103 @@
+{
+  "entries": [
+    {
+      "id": "manual-transcripts-subdomain",
+      "title": "Transcripts en dc.losperris.dev",
+      "description": "Transcripts se mueve a dc.losperris.dev (API privada). Paths cortos: POST /api/transcripts y vistas en /t/…. Sin proxy en losperris.dev y fuera de la status page pública.",
+      "tag": "Infra",
+      "api": "Transcripts",
+      "date": "2026-07-03T00:00:00.000Z",
+      "dateString": "3 Julio 2026"
+    },
+    {
+      "id": "manual-valorant-subdomain",
+      "title": "Valorant API en vlr.losperris.dev",
+      "description": "La API de Valorant ya vive en vlr.losperris.dev, independiente del proxy. Rutas nuevas: / (landing), /docs y /api/rank|match|today|stats|summary|system/stats. La URL antigua /api/valorant ya no se usa.",
+      "tag": "Infra",
+      "api": "Valorant",
+      "date": "2026-07-03T00:00:00.000Z",
+      "dateString": "3 Julio 2026"
+    },
+    {
+      "id": "manual-qr-subdomain",
+      "title": "Generador QR en subdominio propio",
+      "description": "El generador de códigos QR ahora vive en qr.losperris.dev, independiente del proxy de losperris.dev. Nuevas rutas: / (generador), /docs y POST /api/generate. La URL antigua /api/qr ya no se usa.",
+      "tag": "Infra",
+      "api": "Códigos QR",
+      "date": "2026-07-03T00:00:00.000Z",
+      "dateString": "3 Julio 2026"
+    },
+    {
+      "id": "manual-twitch-overlays-beta",
+      "title": "Overlays OBS en beta (Ruleta y Tendencias)",
+      "description": "Nuevos overlays para OBS: Ruleta y Tendencias, con enlace seguro, guía de configuración en el panel y visibilidad inteligente (se ocultan en reposo). Función en beta: puede recibir ajustes mientras la probamos.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-01T00:00:00.000Z",
+      "dateString": "1 Julio 2026"
+    },
+    {
+      "id": "manual-twitch-landing",
+      "title": "Mejoras en Landing de Twitch",
+      "description": "Detección de sesión activa para cambiar automáticamente el botón a 'Ir al Panel'. Se agregaron etiquetas de comando a la sección de minijuegos.",
+      "tag": "Fix & Feat",
+      "api": "Twitch",
+      "date": "2026-06-29T00:00:00.000Z",
+      "dateString": "29 Junio 2026"
+    },
+    {
+      "id": "manual-twitch-a11y",
+      "title": "Correcciones de Accesibilidad (A11y)",
+      "description": "Arreglos finales de contraste y subrayado en el footer, logrando una puntuación perfecta de 100 en Google Lighthouse.",
+      "tag": "A11y",
+      "api": "Twitch",
+      "date": "2026-06-27T00:00:00.000Z",
+      "dateString": "27 Junio 2026"
+    },
+    {
+      "id": "manual-valorant-text",
+      "title": "Nuevo formato Text-Plain para Bots",
+      "description": "Se agregó el parámetro '?format=text' a las URLs generadas para que la API pueda retornar texto plano, facilitando la integración con bots.",
+      "tag": "Feature",
+      "api": "Valorant",
+      "date": "2026-06-19T00:00:00.000Z",
+      "dateString": "19 Junio 2026"
+    },
+    {
+      "id": "manual-valorant-sync",
+      "title": "Sincronización de Generador Valorant",
+      "description": "Se resolvieron solapamientos de z-index en los dropdowns, se sincronizaron los textos de ejemplo y se invirtió el orden de formatos (Rango + Puntos por defecto).",
+      "tag": "Fix",
+      "api": "Valorant",
+      "date": "2026-06-19T00:00:00.000Z",
+      "dateString": "19 Junio 2026"
+    },
+    {
+      "id": "manual-valorant-regions",
+      "title": "Mapeo de Regiones en Valorant",
+      "description": "Las regiones LATAM y BR ahora se mapean correctamente a NA para el historial de MMR. Se reparó el comando de estadísticas del día.",
+      "tag": "Fix",
+      "api": "Valorant",
+      "date": "2026-06-15T00:00:00.000Z",
+      "dateString": "15 Junio 2026"
+    },
+    {
+      "id": "manual-transcripts-proxy",
+      "title": "Optimización de Proxy en Transcripts",
+      "description": "Se implementó el uso de placeholders en base64 en todo el HTML generado para evitar errores 404 en sistemas de proxy estricto.",
+      "tag": "Optimización",
+      "api": "Transcripts",
+      "date": "2026-06-14T00:00:00.000Z",
+      "dateString": "14 Junio 2026"
+    },
+    {
+      "id": "manual-qr-infra",
+      "title": "Optimizaciones de Seguridad y Build",
+      "description": "Se optimizó el maxDuration de las peticiones, se añadieron headers de seguridad estrictos y se solucionaron conflictos del build de Astro en Vercel.",
+      "tag": "Infra",
+      "api": "Códigos QR",
+      "date": "2026-06-08T00:00:00.000Z",
+      "dateString": "8 Junio 2026"
+    }
+  ]
+}

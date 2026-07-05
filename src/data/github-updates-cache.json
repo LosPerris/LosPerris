@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-04T23:59:31.364Z",
+  "syncedAt": "2026-07-05T00:11:27.310Z",
   "entries": [
     {
       "id": "gh-qr-e27dfd9",
@@ -13,136 +13,6 @@
       "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/e27dfd94aba7f38536c057708c91bbc4f732eabe",
       "commitSha": "e27dfd9",
       "repoLabel": "GeneradorQR"
-    },
-    {
-      "id": "gh-valorant-79b6860",
-      "title": "Disparar sync de novedades en LosPerris al pushear a main.",
-      "description": "Disparar sync de novedades en LosPerris al pushear a main.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T23:40:06.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/79b68600d1e3d1045c5a70c0594cd960d82ab21c",
-      "commitSha": "79b6860",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-qr-af1c640",
-      "title": "Disparar sync de novedades en LosPerris al pushear a main.",
-      "description": "Disparar sync de novedades en LosPerris al pushear a main.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "status": "published",
-      "date": "2026-07-04T23:40:05.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/af1c640368a0a8a00af524f8175a44d0a02e2548",
-      "commitSha": "af1c640",
-      "repoLabel": "GeneradorQR"
-    },
-    {
-      "id": "gh-qr-be41b2a",
-      "title": "Actualizar engines a Node >=22.12.0 para Astro 6.",
-      "description": "Actualizar engines a Node >=22.12.0 para Astro 6.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "status": "published",
-      "date": "2026-07-04T23:22:35.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/be41b2a52fb183452de4efd8e1770a811843da0f",
-      "commitSha": "be41b2a",
-      "repoLabel": "GeneradorQR"
-    },
-    {
-      "id": "gh-valorant-0860d42",
-      "title": "Declarar Node >=22.12.0 en engines para Astro 6.",
-      "description": "Declarar Node >=22.12.0 en engines para Astro 6.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T23:22:34.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/0860d42299c5eb53f898c578fe919f7c2d715ad0",
-      "commitSha": "0860d42",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-valorant-7121e73",
-      "title": "Usar Node 22 en CI porque Astro 6 requiere >=22.12.0.",
-      "description": "Usar Node 22 en CI porque Astro 6 requiere >=22.12.0.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T23:15:49.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/7121e736683994c3062243a44b53f0761ebef1ee",
-      "commitSha": "7121e73",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-valorant-0ca816d",
-      "title": "Restaurar Jest con tests unitarios para formatters, validación y comandos de bots.",
-      "description": "Restaurar Jest con tests unitarios para formatters, validación y comandos de bots.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T23:14:27.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/0ca816ddd77ccff12e63caa4aef1ffe766cba5fe",
-      "commitSha": "0ca816d",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-valorant-603dd85",
-      "title": "Reemplazar CI obsoleto de npm/jest por build con pnpm y Astro.",
-      "description": "Reemplazar CI obsoleto de npm/jest por build con pnpm y Astro.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T23:04:46.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/603dd850cac6bbdedebf49aea117403a88b6f6b0",
-      "commitSha": "603dd85",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-valorant-2266ea0",
-      "title": "Evitar reflow del modal sobre HenrikDev al abrirlo.",
-      "description": "Evitar reflow del modal sobre HenrikDev al abrirlo.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T22:56:52.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/2266ea010055d60827d8c7650fe8d36c23e48ca2",
-      "commitSha": "2266ea0",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-transcripts-19a1d65",
-      "title": "adaptación del servicio de base de datos al nuevo esquema",
-      "description": "adaptación del servicio de base de datos al nuevo esquema",
-      "tag": "Optimización",
-      "api": "Transcripts",
-      "status": "published",
-      "date": "2026-07-04T18:47:11.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/transcripts/commit/19a1d657a617e4b0b3ed5d8c377e6a4fa8be0bda",
-      "commitSha": "19a1d65",
-      "repoLabel": "transcripts"
-    },
-    {
-      "id": "gh-transcripts-9ca1ede",
-      "title": "Usar markdown extended en componentes para enlaces [texto](url).",
-      "description": "Los TEXT_DISPLAY de bots como Koya mostraban el markdown crudo porque el parser corría en modo normal.",
-      "tag": "Infra",
-      "api": "Transcripts",
-      "status": "published",
-      "date": "2026-07-04T18:06:42.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/transcripts/commit/9ca1eded011c5895bc5f3bff8442d9049b92a336",
-      "commitSha": "9ca1ede",
-      "repoLabel": "transcripts"
     },
     {
       "id": "gh-transcripts-0bd1fea",
@@ -184,19 +54,6 @@
       "repoLabel": "transcripts"
     },
     {
-      "id": "gh-transcripts-9cbb0dc",
-      "title": "Escalar preview del demo a ancho de escritorio para mantener proporciones.",
-      "description": "Escalar preview del demo a ancho de escritorio para mantener proporciones.",
-      "tag": "Infra",
-      "api": "Transcripts",
-      "status": "published",
-      "date": "2026-07-04T17:01:47.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/transcripts/commit/9cbb0dcf2b24f1f3399a1038590934915fb6e2d1",
-      "commitSha": "9cbb0dc",
-      "repoLabel": "transcripts"
-    },
-    {
       "id": "gh-transcripts-af271a3",
       "title": "Quitar línea de paths técnicos del footer de la landing.",
       "description": "Quitar línea de paths técnicos del footer de la landing.",
@@ -220,58 +77,6 @@
       "dateString": "4 Julio 2026",
       "commitUrl": "https://github.com/Ponss17/transcripts/commit/af3ed46f87d3297f40d0c0e68da11de8a8c4b5bc",
       "commitSha": "af3ed46",
-      "repoLabel": "transcripts"
-    },
-    {
-      "id": "gh-transcripts-b93a272",
-      "title": "Servir favicon en rutas reales para el icono de Vercel.",
-      "description": "Servir favicon en rutas reales para el icono de Vercel.",
-      "tag": "Infra",
-      "api": "Transcripts",
-      "status": "published",
-      "date": "2026-07-04T16:50:45.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/transcripts/commit/b93a272f24ed0f59f5fbb320d7ec764c5a606cfe",
-      "commitSha": "b93a272",
-      "repoLabel": "transcripts"
-    },
-    {
-      "id": "gh-transcripts-f2bd5dd",
-      "title": "Refactor del generador: HTML seguro, tipos y agrupación de mensajes.",
-      "description": "Refactor del generador: HTML seguro, tipos y agrupación de mensajes.",
-      "tag": "Infra",
-      "api": "Transcripts",
-      "status": "published",
-      "date": "2026-07-04T06:20:25.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/transcripts/commit/f2bd5dd9c9cc1ca438a45769e37ab52aac0f9e77",
-      "commitSha": "f2bd5dd",
-      "repoLabel": "transcripts"
-    },
-    {
-      "id": "gh-transcripts-2e86f43",
-      "title": "Pulir landing y ventana demo de Transcripts.",
-      "description": "Pulir landing y ventana demo de Transcripts.",
-      "tag": "Infra",
-      "api": "Transcripts",
-      "status": "published",
-      "date": "2026-07-04T06:15:18.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/transcripts/commit/2e86f43fe0bfac434b66715c4dce5237c48e63b0",
-      "commitSha": "2e86f43",
-      "repoLabel": "transcripts"
-    },
-    {
-      "id": "gh-transcripts-32a2bb9",
-      "title": "Acortar paths en dc: /api/transcripts y vistas en /t/.",
-      "description": "Acortar paths en dc: /api/transcripts y vistas en /t/.",
-      "tag": "Infra",
-      "api": "Transcripts",
-      "status": "published",
-      "date": "2026-07-04T06:05:01.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/transcripts/commit/32a2bb92d3ef8c6a764c6fca083dd904c925d06d",
-      "commitSha": "32a2bb9",
       "repoLabel": "transcripts"
     },
     {
@@ -301,45 +106,6 @@
       "repoLabel": "LosPerrisValorantApi"
     },
     {
-      "id": "gh-valorant-ad58f4b",
-      "title": "Mostrar la latencia media también en segundos entre comillas.",
-      "description": "Mostrar la latencia media también en segundos entre comillas.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T05:01:42.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/ad58f4bc4d7eb97dc093b11273206ef02d360da6",
-      "commitSha": "ad58f4b",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-valorant-0a3f9d2",
-      "title": "Calcular latencia media real (suma/muestras) en lugar de solo la última.",
-      "description": "Calcular latencia media real (suma/muestras) en lugar de solo la última.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T05:00:49.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/0a3f9d26ee44566a09a09c8993cf5a2955f88e38",
-      "commitSha": "0a3f9d2",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-valorant-739a04e",
-      "title": "Guardar métricas con await para que la latencia llegue a Redis en Vercel.",
-      "description": "Guardar métricas con await para que la latencia llegue a Redis en Vercel.",
-      "tag": "Infra",
-      "api": "Valorant",
-      "status": "published",
-      "date": "2026-07-04T04:57:03.000Z",
-      "dateString": "4 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/739a04e93a6e02919fc9f9b078c7ddc575cf7a01",
-      "commitSha": "739a04e",
-      "repoLabel": "LosPerrisValorantApi"
-    },
-    {
       "id": "gh-valorant-d1db6a7",
       "title": "Añadir región BR al selector y mostrar 6 regiones.",
       "description": "Añadir región BR al selector y mostrar 6 regiones.",
@@ -351,32 +117,6 @@
       "commitUrl": "https://github.com/Ponss17/LosPerrisValorantApi/commit/d1db6a777c8d5618fc1feb02d69219031f0a17c3",
       "commitSha": "d1db6a7",
       "repoLabel": "LosPerrisValorantApi"
-    },
-    {
-      "id": "gh-qr-83c4a78",
-      "title": "Set 404 page title to 404 | CodigoQR.",
-      "description": "Set 404 page title to 404 | CodigoQR.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "status": "published",
-      "date": "2026-07-03T20:14:25.000Z",
-      "dateString": "3 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/83c4a785cdf2ade6a7e50ae02ba77627b26f3e02",
-      "commitSha": "83c4a78",
-      "repoLabel": "GeneradorQR"
-    },
-    {
-      "id": "gh-qr-5fe46a6",
-      "title": "Drop legacy /api/qr redirects and simplify the 404 page title.",
-      "description": "Drop legacy /api/qr redirects and simplify the 404 page title.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "status": "published",
-      "date": "2026-07-03T20:12:29.000Z",
-      "dateString": "3 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/5fe46a6cf147afc40dd6bfe19aad89b34adcbc24",
-      "commitSha": "5fe46a6",
-      "repoLabel": "GeneradorQR"
     },
     {
       "id": "gh-qr-48e9863",
@@ -392,19 +132,6 @@
       "repoLabel": "GeneradorQR"
     },
     {
-      "id": "gh-qr-fbc56a7",
-      "title": "Use plain language on the QR 404 page.",
-      "description": "Use plain language on the QR 404 page.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "status": "published",
-      "date": "2026-07-03T19:56:38.000Z",
-      "dateString": "3 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/fbc56a7fc19792938a440f1d76cc23fc6f43dd4a",
-      "commitSha": "fbc56a7",
-      "repoLabel": "GeneradorQR"
-    },
-    {
       "id": "gh-qr-af16123",
       "title": "Add legacy path middleware redirects and custom 404 page.",
       "description": "Ensure /api/qr routes redirect in Astro SSR and replace the default Astro 404 with the LosPerris layout.",
@@ -415,19 +142,6 @@
       "dateString": "3 Julio 2026",
       "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/af16123e4eaac47342998a41b0d341e752510eae",
       "commitSha": "af16123",
-      "repoLabel": "GeneradorQR"
-    },
-    {
-      "id": "gh-qr-b94a0e0",
-      "title": "Move QR routes to subdomain-ready paths at the project root.",
-      "description": "Serve /, /docs, and /api/generate natively, keep temporary /api/qr redirects for compatibility, and document how to remove them later.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "status": "published",
-      "date": "2026-07-03T19:37:46.000Z",
-      "dateString": "3 Julio 2026",
-      "commitUrl": "https://github.com/Ponss17/GeneradorQR/commit/b94a0e0092857e208a52a52d7fe6fc70b069972c",
-      "commitSha": "b94a0e0",
       "repoLabel": "GeneradorQR"
     },
     {

@@ -6,20 +6,19 @@ import UpdateCard from "../components/updates/UpdateCard.astro";
 import { getCollection } from "astro:content";
 import { socialIcons } from "../data/icons";
 import { fetchGithubUpdates } from "../lib/githubUpdates";
+import { fetchManualUpdates } from "../lib/manualUpdates";
 
-const [manualUpdates, githubUpdates] = await Promise.all([
+const [plannedFromContent, githubUpdates, manualUpdates] = await Promise.all([
   getCollection("updates"),
   fetchGithubUpdates(),
+  Promise.resolve(fetchManualUpdates()),
 ]);
 
-const allPublished = [
-  ...manualUpdates.filter(
-    (u) => (u.data.status ?? "published") === "published",
-  ),
-  ...githubUpdates,
-].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const allPublished = [...manualUpdates, ...githubUpdates].sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 
-const plannedUpdates = manualUpdates
+const plannedUpdates = plannedFromContent
   .filter((u) => u.data.status === "planned")
   .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
 ---
@@ -194,7 +193,10 @@ const plannedUpdates = manualUpdates
                 dateMs={update.data.date.valueOf()}
                 variant="published"
                 commitSha={
-                  "commitSha" in update.data ? update.data.commitSha : undefined
+                  "commitSha" in update.data &&
+                  typeof update.data.commitSha === "string"
+                    ? update.data.commitSha
+                    : undefined
                 }
               />
             ))
