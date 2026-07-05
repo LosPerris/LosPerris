@@ -1,5 +1,6 @@
 ---
 import { socialIcons } from "../../data/icons";
+import { siteUrl } from "../../data/community";
 
 interface Props {
   title: string;
@@ -28,7 +29,7 @@ const projectUrls: Record<string, string> = {
   Valorant: "https://vlr.losperris.dev/",
   "Códigos QR": "https://qr.losperris.dev/",
   Transcripts: "https://dc.losperris.dev/",
-  Twitch: "https://www.losperris.dev/api/twitch/",
+  Twitch: `${siteUrl}/api/twitch/`,
 };
 
 const projectUrl = projectUrls[api];

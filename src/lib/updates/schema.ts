@@ -20,10 +20,6 @@ export const updateEntrySchema = z.object({
     .refine((v) => !Number.isNaN(new Date(v).valueOf()), "date ISO inválida"),
   dateString: z.string().min(1).max(80),
   commitSha: z.string().max(40).optional(),
-  adminModified: z.boolean().optional(),
-  adminModifiedAt: z.string().optional(),
-  originalTitle: z.string().max(200).optional(),
-  originalDescription: z.string().max(2000).optional(),
 });
 
 export const updatesJsonFileSchema = z.object({
@@ -32,7 +28,6 @@ export const updatesJsonFileSchema = z.object({
 
 export const publishedUpdatesFileSchema = updatesJsonFileSchema.extend({
   syncedAt: z.string().nullable(),
-  suppressedIds: z.array(z.string()).optional(),
   syncHealth: z
     .object({
       consecutiveNoPublish: z.number().int().nonnegative(),
@@ -43,10 +38,6 @@ export const publishedUpdatesFileSchema = updatesJsonFileSchema.extend({
 });
 
 export type UpdateEntryParsed = z.infer<typeof updateEntrySchema>;
-
-export function parseUpdateEntry(raw: unknown) {
-  return updateEntrySchema.safeParse(raw);
-}
 
 export function parseUpdatesFile(raw: unknown) {
   return updatesJsonFileSchema.safeParse(raw);

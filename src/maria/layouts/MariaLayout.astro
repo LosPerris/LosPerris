@@ -5,11 +5,14 @@ interface Props {
 }
 
 import "../styles/maria.css";
+import { siteUrl } from "../../data/community";
 
 const {
   title = "Para el amor de mi vida ❤️",
   description = "Todo lo que siento por ti",
 } = Astro.props;
+
+const ogImage = `${siteUrl}/LosPerris-minimal.svg`;
 ---
 
 <!doctype html>
@@ -28,7 +31,7 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://losperris.dev/icon.webp" />
+    <meta property="og:image" content={ogImage} />
 
     <link
       rel="icon"

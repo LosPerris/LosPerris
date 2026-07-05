@@ -7,7 +7,6 @@
       "description": "",
       "tag": "Fix",
       "api": "Códigos QR",
-      "status": "published",
       "date": "2026-07-04T23:50:53.000Z",
       "dateString": "4 Julio 2026",
       "commitSha": "e27dfd9"
@@ -18,7 +17,6 @@
       "description": "",
       "tag": "Infra",
       "api": "Valorant",
-      "status": "published",
       "date": "2026-07-04T04:52:28.000Z",
       "dateString": "4 Julio 2026",
       "commitSha": "d1db6a7"

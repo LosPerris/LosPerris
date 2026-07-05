@@ -1,5 +1,5 @@
 /**
- * Lógica de novedades: infiere si un commit es para usuarios y qué etiqueta lleva.
+ * Lógica de actualizaciones: infiere si un commit es para usuarios y qué etiqueta lleva.
  * Umbrales en filters.config.json; analyzeCommit devuelve `reason` para depurar.
  */
 import fs from "fs";
@@ -88,7 +88,7 @@ const SKIP_SUBJECT_PATTERNS = [
   /^husky/i,
   /^pre-commit/i,
   /^dependabot/i,
-  /^sincronizar novedades/i,
+  /^sincronizar actualizaciones/i,
   /^chore:/i,
   /^disparar\b/i,
   /^declarar\b/i,
@@ -101,7 +101,7 @@ const SKIP_SUBJECT_PATTERNS = [
   /\bnode\s*>=/i,
   /\bjest\b/i,
   /\bworkflow\b/i,
-  /\bsync de novedades/i,
+  /\bsync de actualizaciones/i,
   /\bdispatch\b/i,
   /\bgithub actions?\b/i,
   /\bpnpm\b/i,
@@ -128,7 +128,7 @@ const SKIP_SUBJECT_PATTERNS = [
 ];
 
 const DEVOPS_SUBJECT_RE =
-  /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de novedades|losperris al pushear|ci obsoleto|tests unitarios|caché de novedades|trigger-losperris|vercel\.json|legacy path|custom 404|hover animation|footer de la landing|badge de api privada|paths técnicos)\b/i;
+  /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de actualizaciones|losperris al pushear|ci obsoleto|tests unitarios|caché de actualizaciones|trigger-losperris|vercel\.json|legacy path|custom 404|hover animation|footer de la landing|badge de api privada|paths técnicos)\b/i;
 
 const USER_FACING_RE =
   /\b(vista previa|preview|selector|modal|página|pagina|export|región|region|usuario|dashboard|logo|imagen|gif|avatar|qr|código|codigo|panel|comando|botón|boton|formulario|descarga|subdominio|transcript|embed|reacción|reaccion|documento|generador|latencia|api key|perfil|clip|stream|chat)\b/gi;

@@ -5,6 +5,7 @@ interface Props {
   class?: string;
   onclick?: string;
   target?: string;
+  rel?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
 }
@@ -15,6 +16,7 @@ const {
   class: className,
   onclick,
   target,
+  rel,
   type = "button",
   ...rest
 } = Astro.props;
@@ -37,7 +39,14 @@ const styles = `${baseStyles} ${variants[variant]} ${className || ""}`;
 
 {
   href ? (
-    <a href={href} class={styles} onclick={onclick} target={target} {...rest}>
+    <a
+      href={href}
+      class={styles}
+      onclick={onclick}
+      target={target}
+      rel={rel}
+      {...rest}
+    >
       <slot />
     </a>
   ) : (

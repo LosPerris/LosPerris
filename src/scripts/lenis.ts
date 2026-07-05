@@ -53,7 +53,7 @@ export function scrollPageTo(
   return true;
 }
 
-/** Arriba del todo, o a la ancla de la URL si existe (#updates, #apis, …). */
+/** Arriba del todo, o a la ancla de la URL si existe (#actualizaciones, #apis, …). */
 export function scrollPageToTop(immediate = true) {
   const hash = window.location.hash;
   if (hash && hash !== "#") {

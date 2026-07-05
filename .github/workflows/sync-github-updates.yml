@@ -1,4 +1,4 @@
-name: Sincronizar novedades desde repos privados
+name: Sincronizar actualizaciones desde repos privados
 
 concurrency:
   group: sync-updates
@@ -38,7 +38,7 @@ jobs:
               echo "Sin cambios en published.json"
               exit 0
             fi
-            git commit -m "chore: sincronizar novedades desde commits de APIs"
+            git commit -m "chore: sincronizar actualizaciones desde commits de APIs"
             if git push; then
               exit 0
             fi
@@ -53,4 +53,4 @@ jobs:
         env:
           UPDATES_ALERT_WEBHOOK: ${{ secrets.UPDATES_ALERT_WEBHOOK }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: node scripts/updates/notify-failure.mjs "Falló el workflow de sync de novedades en ${{ github.repository }}."
+        run: node scripts/updates/notify-failure.mjs "Falló el workflow de sync de actualizaciones en ${{ github.repository }}."

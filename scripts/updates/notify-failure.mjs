@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Notifica fallo del sync de novedades (Discord webhook opcional). */
+/** Notifica fallo del sync de actualizaciones (Discord webhook opcional). */
 const webhook =
   process.env.UPDATES_ALERT_WEBHOOK ||
   process.env.DISCORD_WEBHOOK_URL ||
@@ -14,7 +14,7 @@ async function main() {
   }
 
   const body = {
-    content: `⚠️ **LosPerris — sync de novedades**\n${reason}\nRevisa: Actions → Sincronizar novedades desde repos privados`,
+    content: `⚠️ **LosPerris — sync de actualizaciones**\n${reason}\nRevisa: Actions → Sincronizar actualizaciones desde repos privados`,
   };
 
   const res = await fetch(webhook, {

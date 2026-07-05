@@ -1,32 +1,19 @@
 /**
- * Novedades — módulo del sitio
+ * Actualizaciones — lectura en build + sync de commits en CI.
  *
- * Datos (JSON en repo):
- *   src/data/updates/published.json  → /actualizaciones (publicadas)
- *   src/data/updates/planned.json    → sección Próximamente
+ * Datos:
+ *   src/data/updates/published.json  → /actualizaciones
+ *   src/data/updates/planned.json    → Próximamente (editar a mano en git)
  *
- * Runtime (build):
- *   sources.ts  — lee y valida JSON
- *   schema.ts   — Zod
- *   sanitize.ts — texto seguro
- *
- * Admin (Vercel):
- *   admin/      — panel /admin/novedades + API /api/admin/updates
- *
- * CI / local:
- *   scripts/updates/sync.mjs  — commits Valorant/QR → published.json
+ * CI: scripts/updates/sync.mjs
  */
 export type {
-  GithubCacheFile,
   PlannedUpdateEntry,
   PublishedUpdateEntry,
   PublishedUpdatesFile,
   UpdateApi,
-  UpdateCollection,
   UpdateEntryRaw,
   UpdatesJsonFile,
 } from "./types";
-
-export { UPDATE_DATA_PATHS } from "./types";
 
 export { fetchPlannedUpdates, fetchPublishedUpdates } from "./sources";

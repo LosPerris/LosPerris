@@ -15,7 +15,6 @@
     "prune:updates": "node scripts/updates/prune.mjs",
     "test:updates": "node --test scripts/updates/test/intent.test.mjs",
     "updates:verify": "pnpm test:updates && pnpm check",
-    "updates:smoke": "node --env-file=.env scripts/updates/smoke.mjs",
     "format": "prettier --write .",
     "prepare": "husky"
   },

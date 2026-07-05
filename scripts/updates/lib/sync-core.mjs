@@ -1,5 +1,6 @@
 import { analyzeCommit, filterStats } from "./filters.mjs";
-import { sanitizeUpdateText } from "./sanitize.mjs";import fs from "fs";
+import { sanitizeUpdateText } from "./sanitize.mjs";
+import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -180,7 +181,6 @@ export function writePublished(store) {
   const payload = {
     syncedAt: store.syncedAt ?? new Date().toISOString(),
     entries: store.entries ?? [],
-    ...(store.suppressedIds?.length ? { suppressedIds: store.suppressedIds } : {}),
     ...(store.syncHealth ? { syncHealth: store.syncHealth } : {}),
   };
   fs.mkdirSync(path.dirname(PUBLISHED_PATH), { recursive: true });
@@ -188,20 +188,7 @@ export function writePublished(store) {
   return payload;
 }
 
-export function pruneSuppressedIds(suppressedIds, fetchedEntries) {
-  const stillRelevant = new Set(fetchedEntries.map((e) => e.id));
-  return (suppressedIds ?? []).filter((id) => stillRelevant.has(id));
-}
-
-/**
- * Fusiona commits sin tocar entradas del admin.
- * Detecta reescritura de historia (mismo título+api, distinto sha).
- */
 export function mergePublishedSync(store, fetchedEntries) {
-  const suppressed = new Set(
-    pruneSuppressedIds(store.suppressedIds, fetchedEntries),
-  );
-  const existingById = new Map((store.entries ?? []).map((e) => [e.id, e]));
   const merged = [];
   const seen = new Set();
   const dedupeKeys = new Map();
@@ -217,36 +204,24 @@ export function mergePublishedSync(store, fetchedEntries) {
   }
 
   for (const fetched of fetchedEntries) {
-    if (suppressed.has(fetched.id)) continue;
     if (seen.has(fetched.id)) continue;
 
     const key = entryDedupeKey(fetched);
     const duplicateId = dedupeKeys.get(key);
     if (duplicateId && duplicateId !== fetched.id) {
-      const dup = existingById.get(duplicateId);
-      if (dup?.adminModified) {
-        seen.add(fetched.id);
-        continue;
-      }
-      suppressed.add(duplicateId);
       const dupIdx = merged.findIndex((e) => e.id === duplicateId);
       if (dupIdx >= 0) merged.splice(dupIdx, 1);
       seen.delete(duplicateId);
       rewrites.push({ from: duplicateId, to: fetched.id });
     }
 
-    const existing = existingById.get(fetched.id);
-    if (existing?.adminModified) {
-      merged.push(existing);
-    } else {
-      merged.push(fetched);
-    }
+    merged.push(fetched);
     seen.add(fetched.id);
     dedupeKeys.set(key, fetched.id);
   }
 
   for (const entry of store.entries ?? []) {
-    if (isSyncedEntry(entry.id) && entry.adminModified && !seen.has(entry.id)) {
+    if (isSyncedEntry(entry.id) && !seen.has(entry.id)) {
       merged.push(entry);
       seen.add(entry.id);
     }
@@ -257,7 +232,6 @@ export function mergePublishedSync(store, fetchedEntries) {
   return {
     syncedAt: new Date().toISOString(),
     entries: merged,
-    suppressedIds: [...suppressed],
     rewrites,
   };
 }

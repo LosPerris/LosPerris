@@ -21,9 +21,7 @@ export default defineConfig({
   integrations: [sitemap({
     filter: (page) =>
       !page.includes("/maria") &&
-      !page.includes("/api/maria") &&
-      !page.includes("/admin") &&
-      !page.includes("/api/admin"),
+      !page.includes("/api/maria"),
   })],
   image: {
     domains: [

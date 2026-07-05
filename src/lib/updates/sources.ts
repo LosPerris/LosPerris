@@ -38,7 +38,7 @@ function mapPublished(entries: UpdateEntryRaw[]): PublishedUpdateEntry[] {
   }));
 }
 
-/** Todo lo publicado en /actualizaciones (admin + commits sync). */
+/** Todo lo publicado en /actualizaciones (commits sync + entradas manuales en git). */
 export function fetchPublishedUpdates(): PublishedUpdateEntry[] {
   if (import.meta.env.SKIP_GITHUB_UPDATES === "true") {
     return [];

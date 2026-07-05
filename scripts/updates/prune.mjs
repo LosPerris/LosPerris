@@ -16,7 +16,6 @@ const store = readPublished();
 const before = store.entries?.length ?? 0;
 const kept = (store.entries ?? []).filter((e) => {
   if (!isSyncedEntry(e.id)) return true;
-  if (e.adminModified) return true;
   const repoId = e.id?.match(/^gh-([^-]+)-/)?.[1];
   if (repoId && !enabledRepoIds.has(repoId)) return false;
   return analyzeCommit(e.title).publish;

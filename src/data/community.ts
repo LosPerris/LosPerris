@@ -7,4 +7,3 @@ export const discordHelpApisLink =
 
 export const domain = "losperris.dev";
 export const siteUrl = "https://losperris.dev";
-export const contactEmail = "contacto@losperris.dev";

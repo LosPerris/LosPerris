@@ -30,6 +30,7 @@ interface Props {
 
 const { api, index, showTestedBadge = false } = Astro.props;
 const docsId = `docs-${index}`;
+const isExternalLink = api.link.startsWith("http");
 ---
 
 <Card
@@ -141,7 +142,8 @@ const docsId = `docs-${index}`;
       </button>
       <Button
         href={api.link}
-        target="_blank"
+        target={isExternalLink ? "_blank" : undefined}
+        rel={isExternalLink ? "noopener noreferrer" : undefined}
         class="flex-1 justify-center text-sm"
       >
         {api.linkText || "Ver más"}{" "}

@@ -1,5 +1,5 @@
 /**
- * Filtros de novedades — reexporta la lógica de update-intent.mjs.
+ * Filtros de actualizaciones — reexporta la lógica de intent.mjs.
  *
  * Marcas manuales:
  *   [novedad] / [update]  → siempre publica
