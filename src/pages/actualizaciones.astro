@@ -193,8 +193,8 @@ const plannedUpdates = manualUpdates
                 description={update.data.description}
                 dateMs={update.data.date.valueOf()}
                 variant="published"
-                commitUrl={
-                  "commitUrl" in update.data ? update.data.commitUrl : undefined
+                commitSha={
+                  "commitSha" in update.data ? update.data.commitSha : undefined
                 }
               />
             ))
