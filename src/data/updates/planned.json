@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "id": "planned-twitch-subdomain",
+      "title": "Twitch API en subdominio propio",
+      "description": "La Twitch API y su panel se moverán a un subdominio dedicado (nombre por definir). Es el cambio más grande del ecosistema: OAuth, comandos de bots y panel. Cuando haya URL definitiva, se anunciará aquí junto al periodo de redirects desde /api/twitch.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-31T00:00:00.000Z",
+      "dateString": "Finales de julio 2026"
+    }
+  ]
+}

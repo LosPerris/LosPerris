@@ -11,6 +11,7 @@ interface Props {
   showHeader?: boolean;
   showFooter?: boolean;
   showBackgroundEffects?: boolean;
+  noindex?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   showHeader = true,
   showFooter = true,
   showBackgroundEffects = true,
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -29,6 +31,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#f97316" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={`https://losperris.dev${Astro.url.pathname}`} />
@@ -52,8 +55,6 @@ const {
       rel="stylesheet"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-      media="print"
-      onload="this.media='all'"
     />
     <noscript
       ><link

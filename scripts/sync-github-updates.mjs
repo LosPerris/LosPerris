@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sincroniza commits de repos privados → data/github-updates-cache.json
+ * Sincroniza commits de repos privados → src/data/updates/github-cache.json
  * Requiere GITHUB_TOKEN o UPDATE_SYNC_TOKEN con acceso de lectura a los repos.
  */
 import {

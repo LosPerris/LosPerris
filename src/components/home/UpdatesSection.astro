@@ -2,19 +2,9 @@
 import Button from "../ui/Button.astro";
 import SectionHeader from "../ui/SectionHeader.astro";
 import Card from "../ui/Card.astro";
-import { fetchGithubUpdates } from "../../lib/githubUpdates";
-import { fetchManualUpdates } from "../../lib/manualUpdates";
+import { fetchPublishedUpdates } from "../../lib/updates";
 
-const [githubUpdates, manualUpdates] = await Promise.all([
-  fetchGithubUpdates(),
-  Promise.resolve(fetchManualUpdates()),
-]);
-
-const sortedUpdates = [...manualUpdates, ...githubUpdates].sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
-
-const latestUpdates = sortedUpdates.slice(0, 3);
+const sortedUpdates = (await fetchPublishedUpdates()).slice(0, 3);
 ---
 
 <section
@@ -33,7 +23,7 @@ const latestUpdates = sortedUpdates.slice(0, 3);
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
       {
-        latestUpdates.map((update) => (
+        sortedUpdates.map((update) => (
           <Card
             hoverEffect={true}
             class="p-6 border border-[#27272a] bg-[#0a0a0a]/50 flex flex-col h-full"

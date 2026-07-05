@@ -3,24 +3,19 @@ import Layout from "../layouts/Layout.astro";
 import BackButton from "../components/ui/BackButton.astro";
 import Dropdown from "../components/ui/Dropdown.astro";
 import UpdateCard from "../components/updates/UpdateCard.astro";
-import { getCollection } from "astro:content";
 import { socialIcons } from "../data/icons";
-import { fetchGithubUpdates } from "../lib/githubUpdates";
-import { fetchManualUpdates } from "../lib/manualUpdates";
+import { fetchPlannedUpdates, fetchPublishedUpdates } from "../lib/updates";
 
-const [plannedFromContent, githubUpdates, manualUpdates] = await Promise.all([
-  getCollection("updates"),
-  fetchGithubUpdates(),
-  Promise.resolve(fetchManualUpdates()),
+const [publishedUpdates, plannedUpdates] = await Promise.all([
+  fetchPublishedUpdates(),
+  Promise.resolve(fetchPlannedUpdates()),
 ]);
 
-const allPublished = [...manualUpdates, ...githubUpdates].sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const PAGE_SIZE = 10;
 
-const plannedUpdates = plannedFromContent
-  .filter((u) => u.data.status === "planned")
-  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+const plannedSorted = [...plannedUpdates].sort(
+  (a, b) => a.data.date.valueOf() - b.data.date.valueOf(),
+);
 ---
 
 <Layout title="Actualizaciones | LosPerris" showBackgroundEffects={false}>
@@ -130,7 +125,7 @@ const plannedUpdates = plannedFromContent
       </div>
 
       {
-        plannedUpdates.length > 0 && (
+        plannedSorted.length > 0 && (
           <section
             id="planned-section"
             class="mb-14 animate-[fadeInUp_1s_ease-out_0.35s_both]"
@@ -148,7 +143,7 @@ const plannedUpdates = plannedFromContent
               </p>
             </div>
             <div class="space-y-6" id="planned-list">
-              {plannedUpdates.map((update) => (
+              {plannedSorted.map((update) => (
                 <UpdateCard
                   title={update.data.title}
                   dateString={update.data.dateString}
@@ -183,7 +178,7 @@ const plannedUpdates = plannedFromContent
           style="view-transition-name: updates-list;"
         >
           {
-            allPublished.map((update) => (
+            publishedUpdates.map((update) => (
               <UpdateCard
                 title={update.data.title}
                 dateString={update.data.dateString}
@@ -202,6 +197,36 @@ const plannedUpdates = plannedFromContent
             ))
           }
         </div>
+
+        <nav
+          id="updates-pagination"
+          class="hidden mt-10 flex flex-col items-center gap-4 animate-[fadeInUp_1s_ease-out_0.5s_both]"
+          aria-label="Paginación del historial"
+        >
+          <p id="pagination-summary" class="text-sm text-zinc-500"></p>
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <button
+              type="button"
+              id="page-prev"
+              class="px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-40 disabled:pointer-events-none"
+            >
+              <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>
+              Anterior
+            </button>
+            <span
+              id="page-indicator"
+              class="px-4 py-2 text-sm font-bold text-zinc-300 tabular-nums"
+            ></span>
+            <button
+              type="button"
+              id="page-next"
+              class="px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-40 disabled:pointer-events-none"
+            >
+              Siguiente
+              <i class="fas fa-chevron-right ml-1" aria-hidden="true"></i>
+            </button>
+          </div>
+        </nav>
       </section>
 
       <div id="no-results" class="hidden text-center py-20">
@@ -213,12 +238,16 @@ const plannedUpdates = plannedFromContent
   </main>
 </Layout>
 
-<script>
+<script is:inline define:vars={{ pageSize: PAGE_SIZE }}>
+  let activeApi = "all";
+  let activeDate = "all";
+  let currentPage = 1;
+
   const applyFilters = (
-    apiFilter: string,
-    dateFilter: string,
-    cards: NodeListOf<Element>,
-    apiButtons: NodeListOf<Element>,
+    apiFilter,
+    dateFilter,
+    cards,
+    apiButtons,
     skipTransition = false,
   ) => {
     const now = Date.now();
@@ -237,35 +266,86 @@ const plannedUpdates = plannedFromContent
 
     const updateDOM = () => {
       let visible = 0;
+      const matchingPublished = [];
+
       cards.forEach((card) => {
         const api = card.getAttribute("data-api");
         const dateMs = parseInt(card.getAttribute("data-date") || "0", 10);
         const status = card.getAttribute("data-status");
-        const element = card as HTMLElement;
+        const element = card;
         const apiMatch = apiFilter === "all" || apiFilter === api;
         const dateMatch =
           status === "planned" ||
           dateFilter === "all" ||
           now - dateMs <= parseInt(dateFilter, 10) * msInDay;
-        const show = apiMatch && dateMatch;
-        element.style.display = show ? "block" : "none";
-        if (show) visible++;
+        const filterMatch = apiMatch && dateMatch;
+
+        if (status === "planned") {
+          element.style.display = filterMatch ? "block" : "none";
+          if (filterMatch) visible++;
+        } else if (filterMatch) {
+          matchingPublished.push(element);
+        } else {
+          element.style.display = "none";
+        }
+      });
+
+      const totalPages = Math.max(
+        1,
+        Math.ceil(matchingPublished.length / pageSize),
+      );
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      matchingPublished.forEach((card, index) => {
+        const page = Math.floor(index / pageSize) + 1;
+        const onPage = page === currentPage;
+        card.style.display = onPage ? "block" : "none";
+        if (onPage) visible++;
       });
 
       const plannedSection = document.getElementById("planned-section");
       if (plannedSection) {
         const plannedVisible = [
           ...document.querySelectorAll('.update-card[data-status="planned"]'),
-        ].some((c) => (c as HTMLElement).style.display !== "none");
+        ].some((c) => c.style.display !== "none");
         plannedSection.style.display = plannedVisible ? "" : "none";
       }
 
       const publishedSection = document.getElementById("published-section");
+      const pagination = document.getElementById("updates-pagination");
+      const pagePrev = document.getElementById("page-prev");
+      const pageNext = document.getElementById("page-next");
+      const pageIndicator = document.getElementById("page-indicator");
+      const paginationSummary = document.getElementById("pagination-summary");
+
       if (publishedSection) {
-        const publishedVisible = [
-          ...document.querySelectorAll('.update-card[data-status="published"]'),
-        ].some((c) => (c as HTMLElement).style.display !== "none");
+        const publishedVisible = matchingPublished.length > 0;
         publishedSection.style.display = publishedVisible ? "" : "none";
+      }
+
+      if (
+        pagination &&
+        pagePrev &&
+        pageNext &&
+        pageIndicator &&
+        paginationSummary
+      ) {
+        const showPagination = matchingPublished.length > pageSize;
+        pagination.classList.toggle("hidden", !showPagination);
+        pagination.classList.toggle("flex", showPagination);
+
+        if (showPagination) {
+          const start = (currentPage - 1) * pageSize + 1;
+          const end = Math.min(
+            currentPage * pageSize,
+            matchingPublished.length,
+          );
+          paginationSummary.textContent = `Mostrando ${start}–${end} de ${matchingPublished.length}`;
+          pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
+          pagePrev.disabled = currentPage <= 1;
+          pageNext.disabled = currentPage >= totalPages;
+        }
       }
 
       const noResults = document.getElementById("no-results");
@@ -279,32 +359,51 @@ const plannedUpdates = plannedFromContent
     }
   };
 
-  let activeApi = "all";
-  let activeDate = "all";
-
   const setupFilters = () => {
     const apiButtons = document.querySelectorAll(".filter-btn-api");
     const cards = document.querySelectorAll(".update-card");
     const dateDropdown = document.getElementById("date-filter");
+    const pagePrev = document.getElementById("page-prev");
+    const pageNext = document.getElementById("page-next");
     if (!document.getElementById("updates-list")) return;
 
     activeApi = "all";
     activeDate = "all";
+    currentPage = 1;
     applyFilters(activeApi, activeDate, cards, apiButtons, true);
 
     const filterGroup = document.querySelector(
       "[aria-label='Filtrar actualizaciones']",
     );
     filterGroup?.addEventListener("click", (e) => {
-      const btn = (e.target as Element).closest(".filter-btn-api");
+      const btn = e.target.closest(".filter-btn-api");
       if (!btn) return;
       activeApi = btn.getAttribute("data-filter-api") || "all";
+      currentPage = 1;
       applyFilters(activeApi, activeDate, cards, apiButtons);
     });
 
-    dateDropdown?.addEventListener("change", (e: any) => {
+    dateDropdown?.addEventListener("change", (e) => {
       activeDate = e.detail.value;
+      currentPage = 1;
       applyFilters(activeApi, activeDate, cards, apiButtons);
+    });
+
+    pagePrev?.addEventListener("click", () => {
+      if (currentPage <= 1) return;
+      currentPage -= 1;
+      applyFilters(activeApi, activeDate, cards, apiButtons);
+      document
+        .getElementById("published-heading")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    pageNext?.addEventListener("click", () => {
+      currentPage += 1;
+      applyFilters(activeApi, activeDate, cards, apiButtons);
+      document
+        .getElementById("published-heading")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   };
 

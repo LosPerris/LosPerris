@@ -19,7 +19,7 @@ export default defineConfig({
     defaultStrategy: "hover"
   },
   integrations: [sitemap({
-    filter: (page) => !page.includes("/maria"),
+    filter: (page) => !page.includes("/maria") && !page.includes("/admin"),
   })],
   image: {
     domains: [
@@ -33,6 +33,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   redirects: {
+    "/api": "/apis",
     "/guias": "/bots/documentacion",
     "/bots/guias": "/bots/documentacion",
   },

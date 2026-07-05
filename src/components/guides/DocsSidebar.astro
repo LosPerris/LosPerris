@@ -27,11 +27,7 @@ const groupedGuides = guides.reduce(
   {} as Record<string, typeof guides>,
 );
 
-interface Props {
-  activeId?: string;
-}
-
-const { activeId } = Astro.props;
+const { activeId } = Astro.props as { activeId?: string };
 const categories = Object.keys(groupedGuides);
 ---
 

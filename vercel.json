@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install",
   "outputDirectory": "dist",
   "redirects": [
+    {
+      "source": "/api",
+      "destination": "/apis",
+      "permanent": true
+    },
     {
       "source": "/api/twitch/dashboard/",
       "destination": "/api/twitch/dashboard",

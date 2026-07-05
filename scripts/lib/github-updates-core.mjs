@@ -1,4 +1,4 @@
-import { shouldPublishCommit, filterStats } from "./update-filters.mjs";
+import { shouldPublishCommit, filterStats, analyzeCommit } from "./update-filters.mjs";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const CACHE_PATH = path.join(
   __dirname,
-  "../../data/github-updates-cache.json",
+  "../../src/data/updates/github-cache.json",
 );
 
 export const MONTHS_ES = [
@@ -57,43 +57,11 @@ export function formatDateString(date) {
 }
 
 export function parseCommitMessage(message) {
-  const lines = message.split("\n");
-  const subject = lines[0]?.trim() ?? "Actualización";
-  const body = lines
-    .slice(1)
-    .map((l) => l.trim())
-    .filter(Boolean)
-    .join(" ");
-
-  const cc = subject.match(
-    /^(fix|feat|perf|docs|chore|refactor|a11y|infra)(\([^)]+\))?!?:\s*(.+)$/i,
-  );
-
-  const tagMap = {
-    fix: "Fix",
-    feat: "Feature",
-    perf: "Optimización",
-    docs: "Infra",
-    chore: "Infra",
-    refactor: "Optimización",
-    a11y: "A11y",
-    infra: "Infra",
-  };
-
-  if (cc) {
-    const type = cc[1].toLowerCase();
-    const title = cc[3].trim();
-    return {
-      title: title.slice(0, 120),
-      description: body ? body.slice(0, 400) : "",
-      tag: tagMap[type] ?? "Infra",
-    };
-  }
-
+  const { title, body, tag } = analyzeCommit(message);
   return {
-    title: subject.slice(0, 120),
+    title: title.slice(0, 120),
     description: body ? body.slice(0, 400) : "",
-    tag: "Infra",
+    tag,
   };
 }
 
