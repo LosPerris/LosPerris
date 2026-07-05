@@ -33,3 +33,5 @@ legacy_backup
 
 proyecto_LosPerris.code-workspace
 .vscode
+
+.agents/
