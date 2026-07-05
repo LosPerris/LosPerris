@@ -12,6 +12,7 @@
     "astro": "astro",
     "check": "astro check",
     "sync:updates": "node scripts/sync-github-updates.mjs",
+    "prune:updates": "node scripts/prune-github-cache.mjs",
     "format": "prettier --write .",
     "prepare": "husky"
   },

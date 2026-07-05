@@ -5,7 +5,7 @@ export type UpdateApi =
   | "Códigos QR"
   | "General";
 
-import cacheFile from "../data/github-updates-cache.json";
+import cacheFile from "../../data/github-updates-cache.json";
 
 export interface GithubUpdateEntry {
   id: string;
@@ -17,9 +17,7 @@ export interface GithubUpdateEntry {
     api: UpdateApi;
     description: string;
     status: "published";
-    commitUrl?: string;
     commitSha?: string;
-    repoLabel?: string;
   };
 }
 
@@ -32,9 +30,7 @@ interface CachedEntry {
   status: "published";
   date: string;
   dateString: string;
-  commitUrl?: string;
   commitSha?: string;
-  repoLabel?: string;
 }
 
 interface UpdatesCache {
@@ -42,7 +38,7 @@ interface UpdatesCache {
   entries: CachedEntry[];
 }
 
-/** Lee commits sincronizados desde repos privados (caché generada por GitHub Actions). */
+/** Lee novedades sincronizadas (caché en /data, solo build-time; no va a public/). */
 export async function fetchGithubUpdates(): Promise<GithubUpdateEntry[]> {
   if (import.meta.env.SKIP_GITHUB_UPDATES === "true") {
     return [];
@@ -68,17 +64,7 @@ export async function fetchGithubUpdates(): Promise<GithubUpdateEntry[]> {
       status: "published",
       date: new Date(e.date),
       dateString: e.dateString,
-      commitUrl: e.commitUrl,
       commitSha: e.commitSha,
-      repoLabel: e.repoLabel,
     },
   }));
-}
-
-export function mergeUpdates<
-  T extends { data: { date: Date; status?: string } },
->(manual: T[], github: GithubUpdateEntry[]): Array<T | GithubUpdateEntry> {
-  return [...manual, ...github].sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-  );
 }

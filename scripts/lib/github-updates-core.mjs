@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const CACHE_PATH = path.join(
   __dirname,
-  "../../src/data/github-updates-cache.json",
+  "../../data/github-updates-cache.json",
 );
 
 export const MONTHS_ES = [
@@ -45,6 +45,7 @@ export const UPDATE_REPOS = [
     repo: "transcripts",
     branch: "main",
     api: "Transcripts",
+    enabled: false,
   },
 ];
 
@@ -138,6 +139,7 @@ export async function fetchAllGithubEntries(token) {
   const stats = { fetched: 0, published: 0 };
 
   for (const cfg of UPDATE_REPOS) {
+    if (cfg.enabled === false) continue;
     try {
       const commits = await fetchRepoCommits(cfg, token);
       stats.fetched += commits.length;
@@ -157,9 +159,7 @@ export async function fetchAllGithubEntries(token) {
           status: "published",
           date: date.toISOString(),
           dateString: formatDateString(date),
-          commitUrl: c.html_url,
           commitSha: c.sha.slice(0, 7),
-          repoLabel: cfg.repo,
         });
       }
     } catch (err) {

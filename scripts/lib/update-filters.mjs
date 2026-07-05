@@ -83,15 +83,34 @@ const SKIP_SUBJECT_PATTERNS = [
   /\btests unitarios\b/i,
   /\blint-staged\b/i,
   /^probar (dispatch|flujo)/i,
+  /^quitar\b/i,
+  /^remove\b/i,
+  /^añadir página/i,
+  /^add legacy/i,
+  /^add custom 404/i,
+  /\bhover animation/i,
+  /\bfooter de la landing/i,
+  /\bbadge de api privada/i,
+  /\bpaths técnicos\b/i,
+  /\bvercel\.json\b/i,
+  /\b404 al estilo\b/i,
+  /\bcustom 404 page\b/i,
+  /\blatencia en segundos\b/i,
+  /\bfunctions de vercel\b/i,
+  /\blegacy path\b/i,
 ];
 
 /** Ruido técnico aunque use feat:/fix: en el asunto. */
 const DEVOPS_SUBJECT_RE =
-  /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de novedades|losperris al pushear|ci obsoleto|tests unitarios|caché de novedades|trigger-losperris)\b/i;
+  /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de novedades|losperris al pushear|ci obsoleto|tests unitarios|caché de novedades|trigger-losperris|vercel\.json|legacy path|custom 404|hover animation|footer de la landing|badge de api privada|paths técnicos)\b/i;
 
-/** Verbos de cambio visible para usuarios (español / inglés). */
+/** Verbos de cambio visible para usuarios (sin quitar/remove/añadir genéricos). */
 const ACTION_VERB_RE =
-  /^(mejorar|corregir|añadir|agregar|migrar|mover|quitar|implementar|arreglar|fix|feat|add|remove|migrate|hotfix|revert)/i;
+  /^(mejorar|corregir|migrar|mover|implementar|arreglar|fix|feat|migrate|hotfix|revert)/i;
+
+/** Excepciones: tweaks concretos que sí importan al usuario. */
+const ALLOW_SUBJECT_RE =
+  /\b(región br|regiones|format=text|subdominio|dc\.losperris|vlr\.losperris|qr\.losperris)\b/i;
 
 export function shouldPublishCommit(message) {
   if (!message?.trim()) return false;
@@ -113,6 +132,7 @@ export function shouldPublishCommit(message) {
 
   if (SKIP_SUBJECT_PATTERNS.some((re) => re.test(subject))) return false;
   if (DEVOPS_SUBJECT_RE.test(subject)) return false;
+  if (ALLOW_SUBJECT_RE.test(subject)) return true;
 
   const cc = subject.match(CONVENTIONAL_RE);
   if (cc) {
