@@ -6,10 +6,8 @@ import UpdateCard from "../components/updates/UpdateCard.astro";
 import { socialIcons } from "../data/icons";
 import { fetchPlannedUpdates, fetchPublishedUpdates } from "../lib/updates";
 
-const [publishedUpdates, plannedUpdates] = await Promise.all([
-  fetchPublishedUpdates(),
-  Promise.resolve(fetchPlannedUpdates()),
-]);
+const publishedUpdates = fetchPublishedUpdates();
+const plannedUpdates = fetchPlannedUpdates();
 
 const PAGE_SIZE = 10;
 

@@ -13,6 +13,10 @@ function githubHeaders(token: string) {
   };
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export async function readRepoJson<T>(path: string, token: string) {
   const res = await fetch(
     `https://api.github.com/repos/${REPO}/contents/${path}`,
@@ -57,10 +61,47 @@ export async function writeRepoJson(
 
   if (!res.ok) {
     const body = await res.text().catch(() => "");
-    throw new Error(
+    const err = new Error(
       `No se pudo guardar ${path} (${res.status})${body ? `: ${body.slice(0, 200)}` : ""}`,
-    );
+    ) as Error & { status?: number };
+    err.status = res.status;
+    throw err;
   }
+}
+
+/**
+ * Lee → aplica cambios → escribe con sha actual.
+ * Reintenta en 409 (otro proceso escribió primero): relee y vuelve a aplicar.
+ */
+export async function mutateRepoJson<T>(
+  path: string,
+  token: string,
+  message: string,
+  apply: (data: T) => void,
+  maxAttempts = 3,
+): Promise<T> {
+  let lastError: Error | undefined;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const { data, sha } = await readRepoJson<T>(path, token);
+    const draft = structuredClone(data);
+    apply(draft);
+
+    try {
+      await writeRepoJson(path, draft, sha, token, message);
+      return draft;
+    } catch (error) {
+      const err = error as Error & { status?: number };
+      lastError = err;
+      if (err.status === 409 && attempt < maxAttempts) {
+        await sleep(400 * attempt);
+        continue;
+      }
+      throw err;
+    }
+  }
+
+  throw lastError ?? new Error(`No se pudo guardar ${path}`);
 }
 
 export function getGithubToken() {

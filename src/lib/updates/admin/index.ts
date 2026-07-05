@@ -11,8 +11,21 @@ export {
   validateEntry,
   normalizeEntry,
   slugify,
+  isSyncedGithubEntry,
+  applySyncedEditMetadata,
+  buildRevertedSyncedEntry,
+  formatVisibleDate,
+  publishedIdFromPlanned,
   type UpdateEntryInput,
   type UpdatesFileShape,
 } from "./entry";
 
-export { readRepoJson, writeRepoJson, getGithubToken } from "./githubRepo";
+export { logAdminAction } from "./audit";
+export { checkAdminRateLimit, getClientIp } from "./rateLimit";
+
+export {
+  readRepoJson,
+  writeRepoJson,
+  mutateRepoJson,
+  getGithubToken,
+} from "./githubRepo";

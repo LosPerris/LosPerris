@@ -19,7 +19,11 @@ export default defineConfig({
     defaultStrategy: "hover"
   },
   integrations: [sitemap({
-    filter: (page) => !page.includes("/maria") && !page.includes("/admin"),
+    filter: (page) =>
+      !page.includes("/maria") &&
+      !page.includes("/api/maria") &&
+      !page.includes("/admin") &&
+      !page.includes("/api/admin"),
   })],
   image: {
     domains: [

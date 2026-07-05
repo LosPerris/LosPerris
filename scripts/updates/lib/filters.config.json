@@ -1,0 +1,10 @@
+{
+  "thresholds": {
+    "minSubjectLength": 10,
+    "descriptiveSubjectMinLength": 18,
+    "descriptiveSubjectMinWords": 3,
+    "clearSubjectMinLength": 14,
+    "bodyContextMinLength": 20,
+    "bodyContextSubjectMinLength": 12
+  }
+}

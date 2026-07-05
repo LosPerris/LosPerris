@@ -4,7 +4,7 @@ import SectionHeader from "../ui/SectionHeader.astro";
 import Card from "../ui/Card.astro";
 import { fetchPublishedUpdates } from "../../lib/updates";
 
-const sortedUpdates = (await fetchPublishedUpdates()).slice(0, 3);
+const sortedUpdates = fetchPublishedUpdates().slice(0, 3);
 ---
 
 <section

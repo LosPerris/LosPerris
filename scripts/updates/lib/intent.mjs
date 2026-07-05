@@ -1,7 +1,33 @@
 /**
  * Lógica de novedades: infiere si un commit es para usuarios y qué etiqueta lleva.
- * No hace falta conventional commit; basta un mensaje descriptivo en español.
+ * Umbrales en filters.config.json; analyzeCommit devuelve `reason` para depurar.
  */
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const CONFIG_PATH = path.join(__dirname, "filters.config.json");
+
+const DEFAULT_THRESHOLDS = {
+  minSubjectLength: 10,
+  descriptiveSubjectMinLength: 18,
+  descriptiveSubjectMinWords: 3,
+  clearSubjectMinLength: 14,
+  bodyContextMinLength: 20,
+  bodyContextSubjectMinLength: 12,
+};
+
+function loadThresholds() {
+  try {
+    const raw = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
+    return { ...DEFAULT_THRESHOLDS, ...raw.thresholds };
+  } catch {
+    return DEFAULT_THRESHOLDS;
+  }
+}
+
+export const FILTER_THRESHOLDS = loadThresholds();
 
 const CONVENTIONAL_RE =
   /^(fix|feat|perf|docs|chore|refactor|a11y|infra|style|test|ci|build|revert)(\([^)]+\))?!?:\s*(.+)$/i;
@@ -104,27 +130,25 @@ const SKIP_SUBJECT_PATTERNS = [
 const DEVOPS_SUBJECT_RE =
   /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de novedades|losperris al pushear|ci obsoleto|tests unitarios|caché de novedades|trigger-losperris|vercel\.json|legacy path|custom 404|hover animation|footer de la landing|badge de api privada|paths técnicos)\b/i;
 
-/** Palabras que suelen describir cambios visibles para quien usa la API/web. */
 const USER_FACING_RE =
-  /\b(vista previa|preview|selector|modal|página|pagina|export|región|region|usuario|dashboard|logo|imagen|gif|avatar|qr|código|codigo|panel|comando|botón|boton|formulario|descarga|subdominio|transcript|embed|reacción|reaccion|documento|generador|latencia|api key|perfil|clip|stream|chat)\b/i;
+  /\b(vista previa|preview|selector|modal|página|pagina|export|región|region|usuario|dashboard|logo|imagen|gif|avatar|qr|código|codigo|panel|comando|botón|boton|formulario|descarga|subdominio|transcript|embed|reacción|reaccion|documento|generador|latencia|api key|perfil|clip|stream|chat)\b/gi;
 
-/** Orden importa: la primera coincidencia define la etiqueta. */
 const INTENT_TAG_RULES = [
   {
     tag: "Fix",
-    re: /\b(fix|corregir|corrección|correccion|arreglar|arreglo|bug|error|errores|falla|fallo|roto|flixeo|fixeo|solucionar|hotfix|parche|reparar)\b/i,
+    re: /\b(fix|corregir|corrección|correccion|arreglar|arreglo|bug|error|errores|falla|fallo|roto|flixeo|fixeo|solucionar|hotfix|parche|reparar)\b/gi,
   },
   {
     tag: "Feature",
-    re: /\b(feat|añadir|agregar|nuevo|nueva|implementar|soportar|permitir|introducir|habilitar|integrar|lanzar)\b/i,
+    re: /\b(feat|añadir|agregar|nuevo|nueva|implementar|soportar|permitir|introducir|habilitar|integrar|lanzar)\b/gi,
   },
   {
     tag: "A11y",
-    re: /\b(a11y|accesibilidad|contraste|teclado|aria|lector de pantalla)\b/i,
+    re: /\b(a11y|accesibilidad|contraste|teclado|aria|lector de pantalla)\b/gi,
   },
   {
     tag: "Optimización",
-    re: /\b(perf|optimiz(ar|ación|acion)|rendimiento|más rápido|mas rapido|mejor(ar|é|e|ado)?|migrar|refactor)\b|mejoré/i,
+    re: /\b(perf|optimiz(ar|ación|acion)|rendimiento|más rápido|mas rapido|mejor(ar|é|e|ado)?|migrar|refactor)\b|mejoré/gi,
   },
 ];
 
@@ -143,7 +167,6 @@ export function splitCommitMessage(message) {
   return { full, subject, body };
 }
 
-/** Título limpio para la tarjeta (sin prefijos ni marcas). */
 export function cleanCommitTitle(subject) {
   let text = subject.trim().replace(/\[(update|novedad)\]\s*/gi, "");
   const cc = text.match(CONVENTIONAL_RE);
@@ -152,6 +175,7 @@ export function cleanCommitTitle(subject) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+/** Scoring: gana la etiqueta con más coincidencias (más explicable que primer match). */
 export function inferUpdateTag(text) {
   const cc = text.match(CONVENTIONAL_RE);
   if (cc) {
@@ -159,15 +183,26 @@ export function inferUpdateTag(text) {
     return TAG_FROM_TYPE[type] ?? "Infra";
   }
 
+  const scores = new Map();
   for (const { tag, re } of INTENT_TAG_RULES) {
-    if (re.test(text)) return tag;
+    const matches = text.match(re);
+    const count = matches?.length ?? 0;
+    if (count > 0) scores.set(tag, (scores.get(tag) ?? 0) + count);
   }
 
-  return "Infra";
+  let best = "Infra";
+  let bestScore = 0;
+  for (const [tag, score] of scores) {
+    if (score > bestScore) {
+      bestScore = score;
+      best = tag;
+    }
+  }
+  return best;
 }
 
 function isMaintenanceSubject(subject) {
-  if (subject.length < 10) return true;
+  if (subject.length < FILTER_THRESHOLDS.minSubjectLength) return true;
   if (SKIP_SUBJECT_PATTERNS.some((re) => re.test(subject))) return true;
   if (DEVOPS_SUBJECT_RE.test(subject)) return true;
   return false;
@@ -177,78 +212,87 @@ function wordCount(text) {
   return text.split(/\s+/).filter(Boolean).length;
 }
 
+function hasUserFacingContext(text) {
+  USER_FACING_RE.lastIndex = 0;
+  return USER_FACING_RE.test(text);
+}
+
 /**
- * Analiza un mensaje de commit y devuelve si publicar + metadatos para la tarjeta.
+ * @returns {{ publish: boolean, reason: string, tag: string, title: string, body: string }}
  */
 export function analyzeCommit(message) {
   const { full, subject, body } = splitCommitMessage(message);
+  const title = cleanCommitTitle(subject);
+  const tag = inferUpdateTag(`${subject} ${body}`);
+  const T = FILTER_THRESHOLDS;
 
   if (!full) {
-    return { publish: false, tag: "Infra", title: "Actualización", body: "" };
+    return { publish: false, reason: "empty-message", tag: "Infra", title: "Actualización", body: "" };
   }
 
   if (/\[skip updates?\]/i.test(full)) {
-    return { publish: false, tag: "Infra", title: cleanCommitTitle(subject), body };
+    return { publish: false, reason: "marker:skip-update", tag, title, body };
   }
 
   const forced = /\[(update|novedad)\]/i.test(full);
-  const title = cleanCommitTitle(subject);
-  const tag = inferUpdateTag(`${subject} ${body}`);
 
   if (forced) {
-    return { publish: true, tag, title, body };
+    return { publish: true, reason: "marker:forced", tag, title, body };
   }
 
   if (/BREAKING CHANGE/i.test(full)) {
-    return { publish: true, tag: "Feature", title, body };
+    return { publish: true, reason: "breaking-change", tag: "Feature", title, body };
   }
 
   if (isMaintenanceSubject(subject)) {
-    return { publish: false, tag, title, body };
-  }
-
-  if (ALLOW_SUBJECT_RE.test(subject)) {
-    return { publish: true, tag, title, body };
+    return { publish: false, reason: "maintenance-subject", tag, title, body };
   }
 
   const cc = subject.match(CONVENTIONAL_RE);
   if (cc) {
     const type = cc[1].toLowerCase();
     if (SKIP_TYPES.has(type)) {
-      return { publish: false, tag, title, body };
+      return { publish: false, reason: `conventional:skip:${type}`, tag, title, body };
     }
     if (PUBLISH_TYPES.has(type)) {
-      return { publish: true, tag, title, body };
+      return { publish: true, reason: `conventional:publish:${type}`, tag, title, body };
     }
+  }
+
+  if (ALLOW_SUBJECT_RE.test(subject)) {
+    return { publish: true, reason: "allowlist-subject", tag, title, body };
   }
 
   const combined = `${subject} ${body}`;
 
-  // Mensaje descriptivo sobre la app (español libre, sin prefijo)
   if (
-    USER_FACING_RE.test(combined) &&
-    subject.length >= 18 &&
-    wordCount(subject) >= 3 &&
+    hasUserFacingContext(combined) &&
+    subject.length >= T.descriptiveSubjectMinLength &&
+    wordCount(subject) >= T.descriptiveSubjectMinWords &&
     tag !== "Infra"
   ) {
-    return { publish: true, tag, title, body };
+    return { publish: true, reason: "user-facing:descriptive-subject", tag, title, body };
   }
 
-  // Verbo de intención claro al inicio o en el texto
-  if (tag !== "Infra" && subject.length >= 14) {
-    return { publish: true, tag, title, body };
+  if (tag !== "Infra" && subject.length >= T.clearSubjectMinLength) {
+    return { publish: true, reason: "intent-tag:clear-subject", tag, title, body };
   }
 
-  // Cuerpo explicativo + contexto de producto
   if (
-    body.length >= 20 &&
-    USER_FACING_RE.test(combined) &&
-    subject.length >= 12
+    body.length >= T.bodyContextMinLength &&
+    hasUserFacingContext(combined) &&
+    subject.length >= T.bodyContextSubjectMinLength
   ) {
-    return { publish: true, tag: inferUpdateTag(combined), title, body };
+    return {
+      publish: true,
+      reason: "user-facing:body-context",
+      tag: inferUpdateTag(combined),
+      title,
+      body,
+    };
   }
 
-  return { publish: false, tag, title, body };
+  return { publish: false, reason: "no-match", tag, title, body };
 }
 
 export function shouldPublishCommit(message) {

@@ -14,4 +14,4 @@ export {
   inferUpdateTag,
   cleanCommitTitle,
   splitCommitMessage,
-} from "./update-intent.mjs";
+} from "./intent.mjs";

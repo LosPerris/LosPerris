@@ -1,47 +1,80 @@
-import manualFile from "../../data/updates/manual.json";
+import publishedFile from "../../data/updates/published.json";
 import plannedFile from "../../data/updates/planned.json";
-import githubFile from "../../data/updates/github-cache.json";
+import { parsePublishedFile, parseUpdatesFile } from "./schema";
+import { sanitizeUpdateText } from "./sanitize";
 import type {
-  GithubCacheFile,
   PlannedUpdateEntry,
   PublishedUpdateEntry,
+  UpdateEntryRaw,
   UpdatesJsonFile,
 } from "./types";
 
-function mapPublished(
-  file: UpdatesJsonFile,
-  extra?: (
-    raw: UpdatesJsonFile["entries"][number],
-  ) => Partial<PublishedUpdateEntry["data"]>,
-): PublishedUpdateEntry[] {
-  return (file.entries ?? []).map((e) => ({
+function safeEntries(file: UpdatesJsonFile, label: string): UpdateEntryRaw[] {
+  const parsed = parseUpdatesFile(file);
+  if (!parsed.success) {
+    console.error(`[updates] ${label} inválido:`, parsed.error.issues);
+    return [];
+  }
+  return parsed.data.entries.filter((entry) => {
+    const title = sanitizeUpdateText(entry.title, 200);
+    const description = sanitizeUpdateText(entry.description, 2000);
+    return title.length >= 4 && description.length >= 0;
+  });
+}
+
+function mapPublished(entries: UpdateEntryRaw[]): PublishedUpdateEntry[] {
+  return entries.map((e) => ({
     id: e.id,
     data: {
-      title: e.title,
-      description: e.description,
+      title: sanitizeUpdateText(e.title, 200),
+      description: sanitizeUpdateText(e.description, 2000),
       tag: e.tag,
       api: e.api,
       status: "published" as const,
       date: new Date(e.date),
       dateString: e.dateString,
-      ...extra?.(e),
+      commitSha: e.commitSha,
     },
   }));
 }
 
-/** Historial escrito a mano — no lo pisa el sync de GitHub. */
-export function fetchManualUpdates(): PublishedUpdateEntry[] {
-  return mapPublished(manualFile as UpdatesJsonFile);
+/** Todo lo publicado en /actualizaciones (admin + commits sync). */
+export function fetchPublishedUpdates(): PublishedUpdateEntry[] {
+  if (import.meta.env.SKIP_GITHUB_UPDATES === "true") {
+    return [];
+  }
+
+  const parsed = parsePublishedFile(publishedFile);
+  if (!parsed.success) {
+    console.error("[updates] published.json inválido:", parsed.error.issues);
+    return [];
+  }
+
+  const entries = safeEntries(parsed.data, "published.json");
+  if (!entries.length && import.meta.env.DEV) {
+    console.warn(
+      "[updates] published.json vacío. Ejecuta sync-published en CI o: UPDATE_SYNC_TOKEN=... pnpm sync:updates",
+    );
+  }
+
+  return mapPublished(entries).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
 }
 
-/** Avisos «Próximamente» — no los pisa el sync de GitHub. */
+/** Avisos «Próximamente». */
 export function fetchPlannedUpdates(): PlannedUpdateEntry[] {
-  const file = plannedFile as UpdatesJsonFile;
-  return (file.entries ?? []).map((e) => ({
+  const parsed = parseUpdatesFile(plannedFile);
+  if (!parsed.success) {
+    console.error("[updates] planned.json inválido:", parsed.error.issues);
+    return [];
+  }
+
+  return safeEntries(parsed.data, "planned.json").map((e) => ({
     id: e.id,
     data: {
-      title: e.title,
-      description: e.description,
+      title: sanitizeUpdateText(e.title, 200),
+      description: sanitizeUpdateText(e.description, 2000),
       tag: e.tag,
       api: e.api,
       status: "planned" as const,
@@ -49,35 +82,4 @@ export function fetchPlannedUpdates(): PlannedUpdateEntry[] {
       dateString: e.dateString,
     },
   }));
-}
-
-/** Commits sincronizados desde repos de APIs (caché de CI). */
-export async function fetchGithubUpdates(): Promise<PublishedUpdateEntry[]> {
-  if (import.meta.env.SKIP_GITHUB_UPDATES === "true") {
-    return [];
-  }
-
-  const cache = githubFile as GithubCacheFile;
-  if (!cache.entries?.length) {
-    if (import.meta.env.DEV) {
-      console.warn(
-        "[updates] Caché vacía. Ejecuta sync-github-updates en GitHub o: UPDATE_SYNC_TOKEN=... pnpm sync:updates",
-      );
-    }
-    return [];
-  }
-
-  return mapPublished(cache, (e) => ({
-    commitSha: e.commitSha,
-  }));
-}
-
-export async function fetchPublishedUpdates(): Promise<PublishedUpdateEntry[]> {
-  const [manual, github] = await Promise.all([
-    Promise.resolve(fetchManualUpdates()),
-    fetchGithubUpdates(),
-  ]);
-  return [...manual, ...github].sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-  );
 }

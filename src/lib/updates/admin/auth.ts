@@ -11,16 +11,18 @@ export function isAuthorized(request: Request) {
   return match?.[1] === secret;
 }
 
+const PRIVATE_HEADERS = { "X-Robots-Tag": "noindex, nofollow" };
+
 export function unauthorizedResponse() {
   return new Response(JSON.stringify({ error: "No autorizado" }), {
     status: 401,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...PRIVATE_HEADERS },
   });
 }
 
 export function badRequest(message: string) {
   return new Response(JSON.stringify({ error: message }), {
     status: 400,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...PRIVATE_HEADERS },
   });
 }

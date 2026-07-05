@@ -20,8 +20,8 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
         </p>
         <h1 class="text-3xl font-black tracking-tight">Novedades</h1>
         <p class="text-sm text-zinc-500 mt-2">
-          Edita historial manual y próximamente. Las automáticas vienen de los
-          commits (solo lectura).
+          Publicadas y próximamente. Los commits de Valorant/QR entran solos al
+          sync; todo lo demás lo gestionas aquí.
         </p>
       </header>
 
@@ -56,10 +56,10 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
         <div class="flex flex-wrap gap-2 mb-6">
           <button
             type="button"
-            data-tab="manual"
+            data-tab="published"
             class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-[#f97316] text-[#050505]"
           >
-            Historial manual
+            Publicadas
           </button>
           <button
             type="button"
@@ -67,13 +67,6 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
             class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-white/5 text-zinc-400"
           >
             Próximamente
-          </button>
-          <button
-            type="button"
-            data-tab="github"
-            class="tab-btn px-4 py-2 rounded-xl text-sm font-bold bg-white/5 text-zinc-400"
-          >
-            Automáticas (solo lectura)
           </button>
           <button
             id="logout-btn"
@@ -196,12 +189,11 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
 <script is:inline>
   const STORAGE_KEY = "losperris-updates-admin-secret";
 
-  let activeTab = "manual";
+  let activeTab = "published";
   let editingId = null;
   let store = {
-    manual: { entries: [] },
+    published: { entries: [] },
     planned: { entries: [] },
-    github: { entries: [] },
   };
 
   const $ = (id) => document.getElementById(id);
@@ -239,15 +231,13 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
 
   function renderEntries() {
     const list = $("entries-list");
-    const isReadonly = activeTab === "github";
     const entries = store[activeTab]?.entries ?? [];
 
-    $("editor-actions").classList.toggle("hidden", isReadonly);
-    $("tab-hint").textContent = isReadonly
-      ? "Generadas por commits en Valorant/QR. Edítalas con mensajes de commit o bórralas con prune en LosPerris."
-      : activeTab === "planned"
-        ? "Avisos de la sección Próximamente."
-        : "Historial publicado que no viene del sync automático.";
+    $("editor-actions").classList.remove("hidden");
+    $("tab-hint").textContent =
+      activeTab === "published"
+        ? "Lo que se ve en /actualizaciones. Commits nuevos entran con el sync; borrar uno gh-* no lo restaura."
+        : "Avisos de la sección Próximamente.";
 
     if (!entries.length) {
       list.innerHTML = `<p class="text-sm text-zinc-500 py-8 text-center">No hay entradas.</p>`;
@@ -265,9 +255,19 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
           <p class="text-xs text-zinc-600 font-mono mt-2">${e.id}</p>
         </div>
         ${
-          isReadonly
-            ? ""
-            : `<div class="flex gap-2 shrink-0">
+          activeTab === "planned"
+            ? `<div class="flex gap-2 shrink-0 flex-wrap justify-end">
+          <button type="button" data-promote="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-[#f97316]/20 text-[#f97316] hover:bg-[#f97316]/30">Publicar ahora</button>
+          <button type="button" data-edit="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white/5 hover:bg-white/10">Editar</button>
+          <button type="button" data-delete="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20">Borrar</button>
+        </div>`
+            : activeTab === "published" && e.adminModified
+              ? `<div class="flex gap-2 shrink-0 flex-wrap justify-end">
+          <button type="button" data-revert="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500/10 text-amber-300 hover:bg-amber-500/20">Revertir commit</button>
+          <button type="button" data-edit="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white/5 hover:bg-white/10">Editar</button>
+          <button type="button" data-delete="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20">Borrar</button>
+        </div>`
+              : `<div class="flex gap-2 shrink-0">
           <button type="button" data-edit="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white/5 hover:bg-white/10">Editar</button>
           <button type="button" data-delete="${e.id}" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20">Borrar</button>
         </div>`
@@ -284,6 +284,16 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
     list.querySelectorAll("[data-delete]").forEach((btn) => {
       btn.addEventListener("click", () =>
         removeEntry(btn.getAttribute("data-delete")),
+      );
+    });
+    list.querySelectorAll("[data-promote]").forEach((btn) => {
+      btn.addEventListener("click", () =>
+        promoteEntry(btn.getAttribute("data-promote")),
+      );
+    });
+    list.querySelectorAll("[data-revert]").forEach((btn) => {
+      btn.addEventListener("click", () =>
+        revertEntry(btn.getAttribute("data-revert")),
       );
     });
   }
@@ -328,6 +338,24 @@ import { UPDATE_APIS, UPDATE_TAGS } from "../../lib/updates/admin/entry";
   async function removeEntry(id) {
     if (!confirm("¿Eliminar esta entrada? Se commitea en GitHub.")) return;
     await api("DELETE", { collection: activeTab, id });
+    await loadData();
+  }
+
+  async function promoteEntry(id) {
+    if (
+      !confirm(
+        "¿Mover a Publicadas con la fecha de hoy? Se quitará de Próximamente.",
+      )
+    )
+      return;
+    await api("POST", { action: "promote", id });
+    await loadData();
+    setActiveTab("published");
+  }
+
+  async function revertEntry(id) {
+    if (!confirm("¿Restaurar el texto original del commit?")) return;
+    await api("POST", { action: "revert", id });
     await loadData();
   }
 
