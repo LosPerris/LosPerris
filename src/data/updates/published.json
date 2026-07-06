@@ -2,16 +2,6 @@
   "syncedAt": "2026-07-06T01:21:47.958Z",
   "entries": [
     {
-      "id": "gh-twitch-84ea85a",
-      "title": "Mover ruta de health check antes de middlewares de autenticacion",
-      "description": "",
-      "tag": "Fix",
-      "api": "Twitch",
-      "date": "2026-07-06T01:21:22.000Z",
-      "dateString": "6 Julio 2026",
-      "commitSha": "84ea85a"
-    },
-    {
       "id": "gh-twitch-dccf834",
       "title": "Soporta titulos personalizados y añade reproductor modal",
       "description": "La lectura de títulos desde Nightbot ahora se envía directamente a la API oficial de Twitch. Además, hemos rediseñado la vista web: los clips ya no abren una nueva pestaña, sino que se reproducen in situ dentro de una ventana flotante Modal.",
@@ -50,26 +40,6 @@
       "date": "2026-07-04T04:52:28.000Z",
       "dateString": "4 Julio 2026",
       "commitSha": "d1db6a7"
-    },
-    {
-      "id": "gh-qr-b94a0e0",
-      "title": "Move QR routes to subdomain-ready paths at the project root.",
-      "description": "Serve /, /docs, and /api/generate natively, keep temporary /api/qr redirects for compatibility, and document how to remove them later.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "date": "2026-07-03T19:37:46.000Z",
-      "dateString": "3 Julio 2026",
-      "commitSha": "b94a0e0"
-    },
-    {
-      "id": "gh-twitch-8dc746c",
-      "title": "Tighten dashboard cap and add abuse protections",
-      "description": "Lower OAuth dashboard sessions to 500 req/min and add per-IP limits for public HTML pages (300) and unauthorized scan attempts (60), without changing custom API key rate limits.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-03T17:54:53.000Z",
-      "dateString": "3 Julio 2026",
-      "commitSha": "8dc746c"
     },
     {
       "id": "manual-qr-b9a4a8e",

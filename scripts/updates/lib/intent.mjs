@@ -34,7 +34,6 @@ const CONVENTIONAL_RE =
 
 const PUBLISH_TYPES = new Set([
   "feat",
-  "fix",
   "perf",
   "a11y",
   "refactor",
@@ -48,6 +47,7 @@ const SKIP_TYPES = new Set([
   "test",
   "ci",
   "build",
+  "fix",
 ]);
 
 const TAG_FROM_TYPE = {
