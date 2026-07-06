@@ -1,13 +1,3 @@
 {
-  "entries": [
-    {
-      "id": "planned-twitch-dashboard",
-      "title": "Mejoras al panel de Twitch",
-      "description": "Nuevas herramientas y ajustes de UX en el dashboard bajo /api/twitch/. Los comandos de bot y OAuth siguen en la misma URL del hub.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-08-31T00:00:00.000Z",
-      "dateString": "Agosto 2026"
-    }
-  ]
+  "entries": []
 }
