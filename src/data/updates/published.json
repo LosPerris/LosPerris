@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-07-06T00:55:42.631Z",
+  "syncedAt": "2026-07-06T01:07:48.369Z",
   "entries": [
+    {
+      "id": "gh-twitch-312238b",
+      "title": "Migración a subdominio ttv.losperris.dev y limpieza de rutas legacy",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-05T21:48:29.000Z",
+      "dateString": "5 Julio 2026",
+      "commitSha": "312238b"
+    },
     {
       "id": "gh-qr-e27dfd9",
       "title": "Corregir vista previa del QR cuando el logo supera el tamaño máximo",
@@ -32,6 +42,16 @@
       "commitSha": "b94a0e0"
     },
     {
+      "id": "gh-twitch-8dc746c",
+      "title": "Tighten dashboard cap and add abuse protections",
+      "description": "Lower OAuth dashboard sessions to 500 req/min and add per-IP limits for public HTML pages (300) and unauthorized scan attempts (60), without changing custom API key rate limits.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-03T17:54:53.000Z",
+      "dateString": "3 Julio 2026",
+      "commitSha": "8dc746c"
+    },
+    {
       "id": "manual-transcripts-subdomain",
       "title": "Transcripts en dc.losperris.dev",
       "description": "Transcripts se mueve a dc.losperris.dev (API privada). Paths cortos: POST /api/transcripts y vistas en /t/…. Sin proxy en losperris.dev y fuera de la status page pública.",
@@ -57,6 +77,46 @@
       "api": "Códigos QR",
       "date": "2026-07-03T00:00:00.000Z",
       "dateString": "3 Julio 2026"
+    },
+    {
+      "id": "gh-twitch-057b050",
+      "title": "Igualar altura del panel Recursos y rellenar espacio interno",
+      "description": "",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-02T21:31:17.000Z",
+      "dateString": "2 Julio 2026",
+      "commitSha": "057b050"
+    },
+    {
+      "id": "gh-twitch-bbca297",
+      "title": "Corregir tipos de activityLogFilter en type-check",
+      "description": "Reemplaza Object.fromEntries con un Record explícito para que astro check y tsc pasen en CI sin cast inválido.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-02T21:21:08.000Z",
+      "dateString": "2 Julio 2026",
+      "commitSha": "bbca297"
+    },
+    {
+      "id": "gh-twitch-b31f146",
+      "title": "Mejorar filtros y tooltip del historial en Inicio",
+      "description": "Chips menos redondeados y agrupados en caja; el InfoTooltip abre hacia abajo para no tapar las tarjetas del hero.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-02T21:15:43.000Z",
+      "dateString": "2 Julio 2026",
+      "commitSha": "b31f146"
+    },
+    {
+      "id": "gh-twitch-121987d",
+      "title": "Quitar Estadísticas y centrar uso en Inicio",
+      "description": "Elimina la pestaña stats y código muerto asociado; el historial de Inicio gana filtros por categoría/recurso y hora en formato 12h. El panel en vivo solo monta en Home, el sync Perfil→Inicio queda para reinicio de datos y el polling del perfil baja a 60s para reducir carga en Vercel.",
+      "tag": "Optimización",
+      "api": "Twitch",
+      "date": "2026-07-02T21:09:14.000Z",
+      "dateString": "2 Julio 2026",
+      "commitSha": "121987d"
     },
     {
       "id": "manual-twitch-overlays-beta",
@@ -133,7 +193,7 @@
   ],
   "syncHealth": {
     "consecutiveNoPublish": 0,
-    "lastFetched": 24,
-    "lastPublished": 1
+    "lastFetched": 36,
+    "lastPublished": 7
   }
 }
