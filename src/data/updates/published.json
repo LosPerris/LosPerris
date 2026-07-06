@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-07-06T01:07:48.369Z",
+  "syncedAt": "2026-07-06T01:13:01.219Z",
   "entries": [
+    {
+      "id": "gh-twitch-dccf834",
+      "title": "Soporta titulos personalizados y añade reproductor modal",
+      "description": "La lectura de títulos desde Nightbot ahora se envía directamente a la API oficial de Twitch. Además, hemos rediseñado la vista web: los clips ya no abren una nueva pestaña, sino que se reproducen in situ dentro de una ventana flotante Modal.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-06T00:55:02.000Z",
+      "dateString": "6 Julio 2026",
+      "commitSha": "dccf834"
+    },
     {
       "id": "gh-twitch-312238b",
       "title": "Migración a subdominio ttv.losperris.dev y limpieza de rutas legacy",
@@ -194,6 +204,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 7
+    "lastPublished": 8
   }
 }
