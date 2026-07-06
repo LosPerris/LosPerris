@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-06T01:21:47.958Z",
+  "syncedAt": "2026-07-06T01:45:59.867Z",
   "entries": [
     {
       "id": "gh-twitch-dccf834",
@@ -40,6 +40,16 @@
       "date": "2026-07-04T04:52:28.000Z",
       "dateString": "4 Julio 2026",
       "commitSha": "d1db6a7"
+    },
+    {
+      "id": "gh-twitch-8dc746c",
+      "title": "Tighten dashboard cap and add abuse protections",
+      "description": "Lower OAuth dashboard sessions to 500 req/min and add per-IP limits for public HTML pages (300) and unauthorized scan attempts (60), without changing custom API key rate limits.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-03T17:54:53.000Z",
+      "dateString": "3 Julio 2026",
+      "commitSha": "8dc746c"
     },
     {
       "id": "manual-qr-b9a4a8e",
@@ -204,6 +214,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 8
+    "lastPublished": 3
   }
 }
