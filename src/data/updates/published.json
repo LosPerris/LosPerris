@@ -62,6 +62,26 @@
       "commitSha": "8dc746c"
     },
     {
+      "id": "manual-qr-b9a4a8e",
+      "title": "Migrar rutas de QR a subdominio en la raíz del proyecto",
+      "description": "Sirve nativamente las rutas principales, manteniendo redirecciones temporales en /api/qr por compatibilidad y documentando cómo removerlas en el futuro.",
+      "tag": "Infra",
+      "api": "Códigos QR",
+      "date": "2026-07-03T12:00:00.000Z",
+      "dateString": "3 Julio 2026",
+      "commitSha": "b9a4a8e"
+    },
+    {
+      "id": "manual-twitch-8dc746c",
+      "title": "Reforzar límites del dashboard y protecciones contra abuso",
+      "description": "Reduce el límite de sesiones OAuth a 500 req/min y añade límites por IP para páginas HTML públicas (300) e intentos de escaneo no autorizados (60), sin afectar los límites de las API keys personalizadas.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-03T11:00:00.000Z",
+      "dateString": "3 Julio 2026",
+      "commitSha": "8dc746c"
+    },
+    {
       "id": "manual-transcripts-subdomain",
       "title": "Transcripts en dc.losperris.dev",
       "description": "Transcripts se mueve a dc.losperris.dev (API privada). Paths cortos: POST /api/transcripts y vistas en /t/…. Sin proxy en losperris.dev y fuera de la status page pública.",
