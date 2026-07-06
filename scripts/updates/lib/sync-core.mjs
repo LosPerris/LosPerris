@@ -57,6 +57,13 @@ export const UPDATE_REPOS = [
     api: "Códigos QR",
   },
   {
+    id: "twitch",
+    owner: "Ponss17",
+    repo: "twitch_api",
+    branch: "master",
+    api: "Twitch",
+  },
+  {
     id: "transcripts",
     owner: "Ponss17",
     repo: "transcripts",
