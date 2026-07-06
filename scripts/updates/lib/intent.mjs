@@ -115,6 +115,8 @@ const SKIP_SUBJECT_PATTERNS = [
   /^añadir página/i,
   /^add legacy/i,
   /^add custom 404/i,
+  /^Move QR routes/i,
+  /^Tighten dashboard cap/i,
   /\bhover animation/i,
   /\bfooter de la landing/i,
   /\bbadge de api privada/i,

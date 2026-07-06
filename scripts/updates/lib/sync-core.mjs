@@ -10,7 +10,7 @@ export const PUBLISHED_PATH = path.join(
   "../../../src/data/updates/published.json",
 );
 
-const SYNCED_ENTRY_ID = /^gh-(valorant|qr|transcripts)-/;
+const SYNCED_ENTRY_ID = /^gh-(valorant|qr|transcripts|twitch)-/;
 
 export function isSyncedEntry(id) {
   return SYNCED_ENTRY_ID.test(id ?? "");
