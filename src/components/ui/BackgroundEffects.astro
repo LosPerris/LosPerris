@@ -12,7 +12,7 @@
   </div>
 
   <div
-    class="absolute inset-0 opacity-[0.8] bg-[linear-gradient(to_right,rgba(249,115,22,0.6)_1px,transparent_1px),linear-gradient(to_bottom,rgba(249,115,22,0.6)_1px,transparent_1px)] bg-[size:32px_32px] transition-opacity duration-300"
+    class="absolute inset-0 opacity-[0.8] animate-grid bg-[linear-gradient(to_right,rgba(249,115,22,0.6)_1px,transparent_1px),linear-gradient(to_bottom,rgba(249,115,22,0.6)_1px,transparent_1px)] bg-[size:32px_32px] transition-opacity duration-300"
     style="mask-image: radial-gradient(circle 200px at var(--mouse-x, 50%) var(--mouse-y, 20%), black 0%, rgba(0,0,0,0.4) 100%); -webkit-mask-image: radial-gradient(circle 200px at var(--mouse-x, 50%) var(--mouse-y, 20%), black 0%, rgba(0,0,0,0.4) 100%);"
   >
   </div>
@@ -22,6 +22,21 @@
   >
   </div>
 </div>
+
+<style>
+  @keyframes gridMovement {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 32px 32px;
+    }
+  }
+
+  .animate-grid {
+    animation: gridMovement 2s linear infinite;
+  }
+</style>
 
 <script>
   const updateMousePosition = (e: MouseEvent) => {
