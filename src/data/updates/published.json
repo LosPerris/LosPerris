@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-07-07T19:06:29.394Z",
+  "syncedAt": "2026-07-07T20:32:05.705Z",
   "entries": [
+    {
+      "id": "gh-twitch-7978843",
+      "title": "Migrar activity_logs a metadata JSONB y fixes varios",
+      "description": "",
+      "tag": "Optimización",
+      "api": "Twitch",
+      "date": "2026-07-07T20:19:23.000Z",
+      "dateString": "7 Julio 2026",
+      "commitSha": "7978843"
+    },
     {
       "id": "gh-twitch-195a087",
       "title": "Incluir el rol del usuario en el embed de Discord",
@@ -284,6 +294,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 1
+    "lastPublished": 2
   }
 }
