@@ -1,6 +1,26 @@
 {
-  "syncedAt": "2026-07-07T04:37:17.722Z",
+  "syncedAt": "2026-07-07T05:09:47.522Z",
   "entries": [
+    {
+      "id": "gh-twitch-5f9ec1c",
+      "title": "Añadir parametro user automatico al comando clip del dashboard",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-07T05:08:33.000Z",
+      "dateString": "7 Julio 2026",
+      "commitSha": "5f9ec1c"
+    },
+    {
+      "id": "gh-twitch-c0a56e0",
+      "title": "Rastrear nombre del usuario y guardar link del clip en el registro de actividad",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-07T04:56:29.000Z",
+      "dateString": "7 Julio 2026",
+      "commitSha": "c0a56e0"
+    },
     {
       "id": "gh-twitch-10ec7b1",
       "title": "Migrar a matriz de cache estatica por endpoint y rol",
@@ -254,6 +274,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 1
+    "lastPublished": 2
   }
 }
