@@ -12,16 +12,6 @@
       "commitSha": "9f80870"
     },
     {
-      "id": "gh-twitch-3e2dab5",
-      "title": "Auditoría y limpieza de endpoints sin uso y código muerto",
-      "description": "Este commit incluye múltiples correcciones y limpiezas en el monorepo: - fix(e2e): resuelve el timeout de playwright ajustando la detección de inicio del server local en tsx - test: actualiza regex en smoke test para validar correctamente la URL raíz - refactor: elimina endpoints huérfanos (HEALTH, TIMEZONE) y rutas sin uso - refactor: elimina clase BoundedSet y exports muertos en auth y userRoles",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-06T21:42:39.000Z",
-      "dateString": "6 Julio 2026",
-      "commitSha": "3e2dab5"
-    },
-    {
       "id": "gh-twitch-9a24efb",
       "title": "Legal unificado, header y export HTML alineado con la landing",
       "description": "Consolida privacidad, términos y cookies en /legal con redirects; enlaza el estado del servicio a Better Stack; rediseña el reporte exportado del dashboard y limpia exports muertos, sitemap y referencias obsoletas.",
@@ -30,16 +20,6 @@
       "date": "2026-07-06T17:09:30.000Z",
       "dateString": "6 Julio 2026",
       "commitSha": "9a24efb"
-    },
-    {
-      "id": "gh-twitch-a8a67ca",
-      "title": "Optimización por capas (backend, dashboard y build)",
-      "description": "Reduce latencia del bot, carga KV/DB y bundle sin romper Realtime; rate limit HTML público sigue en KV global entre réplicas.",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-06T04:43:21.000Z",
-      "dateString": "6 Julio 2026",
-      "commitSha": "a8a67ca"
     },
     {
       "id": "gh-twitch-dccf834",
@@ -82,16 +62,6 @@
       "commitSha": "d1db6a7"
     },
     {
-      "id": "gh-twitch-8dc746c",
-      "title": "Tighten dashboard cap and add abuse protections",
-      "description": "Lower OAuth dashboard sessions to 500 req/min and add per-IP limits for public HTML pages (300) and unauthorized scan attempts (60), without changing custom API key rate limits.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-03T17:54:53.000Z",
-      "dateString": "3 Julio 2026",
-      "commitSha": "8dc746c"
-    },
-    {
       "id": "manual-qr-b9a4a8e",
       "title": "Migrar rutas de QR a subdominio en la raíz del proyecto",
       "description": "Sirve nativamente las rutas principales, manteniendo redirecciones temporales en /api/qr por compatibilidad y documentando cómo removerlas en el futuro.",
@@ -100,16 +70,6 @@
       "date": "2026-07-03T12:00:00.000Z",
       "dateString": "3 Julio 2026",
       "commitSha": "b9a4a8e"
-    },
-    {
-      "id": "manual-twitch-8dc746c",
-      "title": "Reforzar límites del dashboard y protecciones contra abuso",
-      "description": "Reduce el límite de sesiones OAuth a 500 req/min y añade límites por IP para páginas HTML públicas (300) e intentos de escaneo no autorizados (60), sin afectar los límites de las API keys personalizadas.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-03T11:00:00.000Z",
-      "dateString": "3 Julio 2026",
-      "commitSha": "8dc746c"
     },
     {
       "id": "manual-transcripts-subdomain",
@@ -137,26 +97,6 @@
       "api": "Códigos QR",
       "date": "2026-07-03T00:00:00.000Z",
       "dateString": "3 Julio 2026"
-    },
-    {
-      "id": "gh-twitch-057b050",
-      "title": "Igualar altura del panel Recursos y rellenar espacio interno",
-      "description": "",
-      "tag": "Fix",
-      "api": "Twitch",
-      "date": "2026-07-02T21:31:17.000Z",
-      "dateString": "2 Julio 2026",
-      "commitSha": "057b050"
-    },
-    {
-      "id": "gh-twitch-bbca297",
-      "title": "Corregir tipos de activityLogFilter en type-check",
-      "description": "Reemplaza Object.fromEntries con un Record explícito para que astro check y tsc pasen en CI sin cast inválido.",
-      "tag": "Fix",
-      "api": "Twitch",
-      "date": "2026-07-02T21:21:08.000Z",
-      "dateString": "2 Julio 2026",
-      "commitSha": "bbca297"
     },
     {
       "id": "gh-twitch-b31f146",
@@ -231,24 +171,6 @@
       "api": "Valorant",
       "date": "2026-06-15T00:00:00.000Z",
       "dateString": "15 Junio 2026"
-    },
-    {
-      "id": "manual-transcripts-proxy",
-      "title": "Optimización de Proxy en Transcripts",
-      "description": "Se implementó el uso de placeholders en base64 en todo el HTML generado para evitar errores 404 en sistemas de proxy estricto.",
-      "tag": "Optimización",
-      "api": "Transcripts",
-      "date": "2026-06-14T00:00:00.000Z",
-      "dateString": "14 Junio 2026"
-    },
-    {
-      "id": "manual-qr-infra",
-      "title": "Optimizaciones de Seguridad y Build",
-      "description": "Se optimizó el maxDuration de las peticiones, se añadieron headers de seguridad estrictos y se solucionaron conflictos del build de Astro en Vercel.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "date": "2026-06-08T00:00:00.000Z",
-      "dateString": "8 Junio 2026"
     }
   ],
   "syncHealth": {
