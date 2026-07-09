@@ -2,66 +2,6 @@
   "syncedAt": "2026-07-09T17:16:52.949Z",
   "entries": [
     {
-      "id": "gh-twitch-f3a172c",
-      "title": "Migrar documentación a Starlight y corregir rutas legacy",
-      "description": "Reemplaza la SPA React de /docs por Starlight con contenido MDX, componentes Astro y tema LosPerris. Ajusta vercel.json (settings vs profile), aclara el prefijo legacy /twitch/ y deja de ignorar src/content/docs en git.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-09T04:37:40.000Z",
-      "dateString": "9 Julio 2026",
-      "commitSha": "f3a172c"
-    },
-    {
-      "id": "gh-twitch-4ba6c0c",
-      "title": "Dividir auth.ts en modulos por responsabilidad",
-      "description": "Nuevo paquete src/core/auth con storage, cache, validate, oauth y apiFetch. Splash del dashboard en splashFlags.ts. auth.ts queda como barrel de compatibilidad.",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-08T17:35:39.000Z",
-      "dateString": "8 Julio 2026",
-      "commitSha": "4ba6c0c"
-    },
-    {
-      "id": "gh-twitch-080bafd",
-      "title": "Unificar tipos DashboardProfile y activity FE/BE",
-      "description": "Fuente unica en backend/src/core/schemas/dashboardContracts.ts con alias @contracts; FE solo import type. Reduce drift (timezone/cacheTtl).",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-08T12:57:37.000Z",
-      "dateString": "8 Julio 2026",
-      "commitSha": "080bafd"
-    },
-    {
-      "id": "gh-twitch-3c33447",
-      "title": "Implementar refresh proactivo de token - programar renovacion 35min antes de expirar",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-08T11:16:52.000Z",
-      "dateString": "8 Julio 2026",
-      "commitSha": "3c33447"
-    },
-    {
-      "id": "gh-twitch-32d30b6",
-      "title": "Agregar tooltips informativos a kpis principales",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-08T05:20:37.000Z",
-      "dateString": "8 Julio 2026",
-      "commitSha": "32d30b6"
-    },
-    {
-      "id": "gh-twitch-cecfa27",
-      "title": "Agregar subtitulos de 7 dias a tablas y graficos de analytics",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-08T05:11:23.000Z",
-      "dateString": "8 Julio 2026",
-      "commitSha": "cecfa27"
-    },
-    {
       "id": "gh-twitch-9f80870",
       "title": "Rediseño de la Landing Page y simulación interactiva de consola",
       "description": "Mejoramos la estética de nuestra página principal con animaciones fluidas y un diseño mucho más moderno. Además, añadimos un botón para que puedas simular respuestas de la API directamente en la terminal sin necesidad de registrarte. También reorganizamos las configuraciones de tu cuenta en el dashboard bajo la nueva pestaña de 'Ajustes' para mayor claridad.",
