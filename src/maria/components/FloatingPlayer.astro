@@ -445,6 +445,7 @@ const { songId, question } = Astro.props;
 {
   songId && (
     <a
+      id="spotify-note"
       href={`https://open.spotify.com/track/${songId}`}
       target="_blank"
       rel="noopener noreferrer"
@@ -474,6 +475,97 @@ const { songId, question } = Astro.props;
 }
 
 <script>
+  // ── Make Desk Objects Draggable ──────────────────────────────
+  function makeDraggable(el: HTMLElement) {
+    let isDragging = false;
+    let startX = 0,
+      startY = 0,
+      initialX = 0,
+      initialY = 0;
+    let hasMoved = false;
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+
+      isDragging = true;
+      hasMoved = false;
+      startX = e.clientX;
+      startY = e.clientY;
+
+      const rect = el.getBoundingClientRect();
+
+      if (el.dataset.dragInitialized !== "true") {
+        el.style.left = rect.left + "px";
+        el.style.top = rect.top + "px";
+        el.style.bottom = "auto";
+        el.style.right = "auto";
+
+        el.classList.remove(
+          "bottom-0",
+          "right-6",
+          "md:bottom-0",
+          "md:right-24",
+          "right-2",
+          "md:right-12",
+          "left-4",
+          "md:left-8",
+          "top-2",
+          "md:top-0",
+        );
+        el.dataset.dragInitialized = "true";
+      }
+
+      initialX = parseFloat(el.style.left) || rect.left;
+      initialY = parseFloat(el.style.top) || rect.top;
+
+      el.style.cursor = "grabbing";
+      el.style.zIndex = "1000";
+      el.setPointerCapture(e.pointerId);
+
+      el.addEventListener("pointermove", onPointerMove);
+      el.addEventListener("pointerup", onPointerUp);
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+        hasMoved = true;
+      }
+
+      el.style.left = initialX + dx + "px";
+      el.style.top = initialY + dy + "px";
+    };
+
+    const onPointerUp = (e: PointerEvent) => {
+      if (!isDragging) return;
+      isDragging = false;
+      el.style.cursor = "pointer";
+
+      el.releasePointerCapture(e.pointerId);
+      el.removeEventListener("pointermove", onPointerMove);
+      el.removeEventListener("pointerup", onPointerUp);
+
+      if (hasMoved) {
+        const preventClick = (ev: Event) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          el.removeEventListener("click", preventClick, true);
+        };
+        el.addEventListener("click", preventClick, true);
+        setTimeout(
+          () => el.removeEventListener("click", preventClick, true),
+          100,
+        );
+      }
+    };
+
+    el.addEventListener("pointerdown", onPointerDown);
+    el.style.touchAction = "none";
+  }
+
   // ── Envelope click → open modal ──────────────────────────────
   const envelope = document.getElementById("interactive-envelope");
   const questionModal = document.getElementById(
@@ -552,4 +644,10 @@ const { songId, question } = Astro.props;
       }, 220);
     });
   }
+
+  // ── Initialize Dragging ──────────────────────────────
+  const spotifyNoteEl = document.getElementById("spotify-note");
+  if (envelope) makeDraggable(envelope);
+  if (polaroidWidget) makeDraggable(polaroidWidget);
+  if (spotifyNoteEl) makeDraggable(spotifyNoteEl);
 </script>
