@@ -1,6 +1,106 @@
 {
-  "syncedAt": "2026-07-09T17:16:52.949Z",
+  "syncedAt": "2026-07-10T21:34:19.616Z",
   "entries": [
+    {
+      "id": "gh-twitch-c063b7b",
+      "title": "Soporte nativo para Streamlabs y Botrix en el generador de comandos",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-10T20:54:01.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "c063b7b"
+    },
+    {
+      "id": "gh-twitch-4606317",
+      "title": "Rediseño de AboutPage a estilo modular y limpio, eliminando componentes recargados",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-10T19:10:01.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "4606317"
+    },
+    {
+      "id": "gh-twitch-6daa8b5",
+      "title": "Rediseño bento box para sobre la api y ajuste de color en analiticas",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-10T18:28:25.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "6daa8b5"
+    },
+    {
+      "id": "gh-twitch-598ede9",
+      "title": "Limpieza final de carpetas y correccion de tests",
+      "description": "",
+      "tag": "Optimización",
+      "api": "Twitch",
+      "date": "2026-07-10T06:26:48.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "598ede9"
+    },
+    {
+      "id": "gh-twitch-221b8a1",
+      "title": "Dividir y optimizar módulo de RealtimeService",
+      "description": "",
+      "tag": "Optimización",
+      "api": "Twitch",
+      "date": "2026-07-10T05:58:23.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "221b8a1"
+    },
+    {
+      "id": "gh-twitch-854b54f",
+      "title": "Migrar backend a upstash redis, refactor de analytics y ajustes ui",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-10T05:24:42.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "854b54f"
+    },
+    {
+      "id": "gh-twitch-61a97ed",
+      "title": "Mejoras visuales en dashboard, modals, barra lateral y solucion a bug de zona horaria",
+      "description": "",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-10T04:54:15.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "61a97ed"
+    },
+    {
+      "id": "gh-twitch-c00cba7",
+      "title": "Desacopla isLive de la cache del perfil para actualizaciones rapidas (30s)",
+      "description": "",
+      "tag": "Optimización",
+      "api": "Twitch",
+      "date": "2026-07-10T03:56:57.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "c00cba7"
+    },
+    {
+      "id": "gh-twitch-86eb6f9",
+      "title": "Añade indicador en vivo/desconectado al avatar usando Twitch API",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-10T00:55:27.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "86eb6f9"
+    },
+    {
+      "id": "gh-twitch-36fad51",
+      "title": "Switch Hoy/7Días ahora cambia todos los gráficos y tablas de la página",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-09T18:54:47.000Z",
+      "dateString": "9 Julio 2026",
+      "commitSha": "36fad51"
+    },
     {
       "id": "gh-twitch-9f80870",
       "title": "Rediseño de la Landing Page y simulación interactiva de consola",
@@ -174,8 +274,8 @@
     }
   ],
   "syncHealth": {
-    "consecutiveNoPublish": 1,
+    "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 0
+    "lastPublished": 4
   }
 }
