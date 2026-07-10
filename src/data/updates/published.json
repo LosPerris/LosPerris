@@ -1,6 +1,26 @@
 {
-  "syncedAt": "2026-07-10T03:58:14.095Z",
+  "syncedAt": "2026-07-10T05:26:33.019Z",
   "entries": [
+    {
+      "id": "gh-twitch-854b54f",
+      "title": "Migrar backend a upstash redis, refactor de analytics y ajustes ui",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-10T05:24:42.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "854b54f"
+    },
+    {
+      "id": "gh-twitch-61a97ed",
+      "title": "Mejoras visuales en dashboard, modals, barra lateral y solucion a bug de zona horaria",
+      "description": "",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-10T04:54:15.000Z",
+      "dateString": "10 Julio 2026",
+      "commitSha": "61a97ed"
+    },
     {
       "id": "gh-twitch-c00cba7",
       "title": "Desacopla isLive de la cache del perfil para actualizaciones rapidas (30s)",
@@ -206,6 +226,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 2
+    "lastPublished": 4
   }
 }
