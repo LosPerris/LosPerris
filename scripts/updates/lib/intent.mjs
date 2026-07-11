@@ -136,13 +136,28 @@ const SKIP_SUBJECT_PATTERNS = [
   /\blatencia en segundos\b/i,
   /\bfunctions de vercel\b/i,
   /\blegacy path\b/i,
+  /\blimpieza\b.*\b(carpetas|tests?)\b/i,
+  /\bcorrecci[oó]n de tests?\b/i,
+  /\brealtimeservice\b/i,
+  /\bupstash\b/i,
+  /\bmigrar backend\b/i,
+  /\blocalstorage\b/i,
+  /\bapi key\b.*\b(localstorage|memoria|reveal)\b/i,
+  /\bopc[ií]on 2\b/i,
+  /\bworker-src\b/i,
+  /\bservice worker\b/i,
+  /\bhttponly\b/i,
+  /\bsession cookie\b/i,
+  /\breveal-api-key\b/i,
+  /\be2e\b/i,
+  /\bsmoke\.spec\b/i,
 ];
 
 const DEVOPS_SUBJECT_RE =
   /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de actualizaciones|losperris al pushear|ci obsoleto|tests unitarios|caché de actualizaciones|trigger-losperris|vercel\.json|legacy path|custom 404|hover animation|footer de la landing|badge de api privada|paths técnicos)\b/i;
 
 const USER_FACING_RE =
-  /\b(vista previa|preview|selector|modal|página|pagina|export|región|region|usuario|dashboard|logo|imagen|gif|avatar|qr|código|codigo|panel|comando|botón|boton|formulario|descarga|subdominio|transcript|embed|reacción|reaccion|documento|generador|latencia|api key|perfil|clip|stream|chat)\b/gi;
+  /\b(vista previa|preview|selector|modal|página|pagina|export|región|region|usuario|dashboard|logo|imagen|gif|avatar|qr|código|codigo|panel|comando|botón|boton|formulario|descarga|subdominio|transcript|embed|reacción|reaccion|documento|generador|latencia|perfil|clip|stream|chat|landing|rediseño|redisen|streamlabs|botrix|nightbot|fossabot|bento|consola|overlay|ruleta|tendencias|minijuego|shoutout|followage)\b/gi;
 
 const INTENT_TAG_RULES = [
   {
@@ -151,7 +166,7 @@ const INTENT_TAG_RULES = [
   },
   {
     tag: "Feature",
-    re: /\b(feat|añadir|agregar|nuevo|nueva|implementar|soportar|permitir|introducir|habilitar|integrar|lanzar)\b/gi,
+    re: /\b(feat|añadir|agregar|nuevo|nueva|implementar|soportar|soporte|permitir|introducir|habilitar|integrar|lanzar|rediseñ)\b/gi,
   },
   {
     tag: "A11y",
@@ -266,6 +281,11 @@ export function analyzeCommit(message) {
       return { publish: false, reason: `conventional:skip:${type}`, tag, title, body };
     }
     if (PUBLISH_TYPES.has(type)) {
+      const scope = cc[2] ? cc[2].slice(1, -1).toLowerCase() : "";
+      const SKIP_SCOPES = new Set(["security", "ci", "deps", "devops", "test", "e2e"]);
+      if (SKIP_SCOPES.has(scope)) {
+        return { publish: false, reason: `conventional:skip-scope:${scope}`, tag, title, body };
+      }
       return { publish: true, reason: `conventional:publish:${type}`, tag, title, body };
     }
   }
@@ -285,7 +305,11 @@ export function analyzeCommit(message) {
     return { publish: true, reason: "user-facing:descriptive-subject", tag, title, body };
   }
 
-  if (tag !== "Infra" && subject.length >= T.clearSubjectMinLength) {
+  if (
+    tag !== "Infra" &&
+    subject.length >= T.clearSubjectMinLength &&
+    hasUserFacingContext(combined)
+  ) {
     return { publish: true, reason: "intent-tag:clear-subject", tag, title, body };
   }
 

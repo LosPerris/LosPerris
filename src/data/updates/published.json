@@ -2,16 +2,6 @@
   "syncedAt": "2026-07-11T22:38:10.233Z",
   "entries": [
     {
-      "id": "gh-twitch-c55d976",
-      "title": "API Key deja de vivir en localStorage (Opción 2)",
-      "description": "Move API key out of persistent localStorage; reveal on demand via dashboard endpoint with rate limiting and audit logging. Includes HttpOnly session cookie (lp_sess) and panel updates. Legal pages still describe key in localStorage until a follow-up change after production deploy.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-11T21:47:09.000Z",
-      "dateString": "11 Julio 2026",
-      "commitSha": "c55d976"
-    },
-    {
       "id": "gh-twitch-4939dab",
       "title": "Rediseño moderno de filtros en el historial de actividad",
       "description": "",
@@ -30,16 +20,6 @@
       "date": "2026-07-11T07:19:24.000Z",
       "dateString": "11 Julio 2026",
       "commitSha": "cc5afce"
-    },
-    {
-      "id": "gh-twitch-411f1ce",
-      "title": "Quitar Botrix/Streamlabs y restaurar generador pre-c063b7b",
-      "description": "Vuelve el generador de comandos al estado anterior al soporte de Botrix y Streamlabs: solo Nightbot, StreamElements, Fossabot y Wizebot, con la logica original de !clip.",
-      "tag": "Fix",
-      "api": "Twitch",
-      "date": "2026-07-11T05:58:45.000Z",
-      "dateString": "11 Julio 2026",
-      "commitSha": "411f1ce"
     },
     {
       "id": "gh-twitch-c063b7b",
@@ -72,36 +52,6 @@
       "commitSha": "6daa8b5"
     },
     {
-      "id": "gh-twitch-598ede9",
-      "title": "Limpieza final de carpetas y correccion de tests",
-      "description": "",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-10T06:26:48.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "598ede9"
-    },
-    {
-      "id": "gh-twitch-221b8a1",
-      "title": "Dividir y optimizar módulo de RealtimeService",
-      "description": "",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-10T05:58:23.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "221b8a1"
-    },
-    {
-      "id": "gh-twitch-854b54f",
-      "title": "Migrar backend a upstash redis, refactor de analytics y ajustes ui",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-10T05:24:42.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "854b54f"
-    },
-    {
       "id": "gh-twitch-61a97ed",
       "title": "Mejoras visuales en dashboard, modals, barra lateral y solucion a bug de zona horaria",
       "description": "",
@@ -112,36 +62,6 @@
       "commitSha": "61a97ed"
     },
     {
-      "id": "gh-twitch-c00cba7",
-      "title": "Desacopla isLive de la cache del perfil para actualizaciones rapidas (30s)",
-      "description": "",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-10T03:56:57.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "c00cba7"
-    },
-    {
-      "id": "gh-twitch-86eb6f9",
-      "title": "Añade indicador en vivo/desconectado al avatar usando Twitch API",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-10T00:55:27.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "86eb6f9"
-    },
-    {
-      "id": "gh-twitch-36fad51",
-      "title": "Switch Hoy/7Días ahora cambia todos los gráficos y tablas de la página",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-09T18:54:47.000Z",
-      "dateString": "9 Julio 2026",
-      "commitSha": "36fad51"
-    },
-    {
       "id": "gh-twitch-9f80870",
       "title": "Rediseño de la Landing Page y simulación interactiva de consola",
       "description": "Mejoramos la estética de nuestra página principal con animaciones fluidas y un diseño mucho más moderno. Además, añadimos un botón para que puedas simular respuestas de la API directamente en la terminal sin necesidad de registrarte. También reorganizamos las configuraciones de tu cuenta en el dashboard bajo la nueva pestaña de 'Ajustes' para mayor claridad.",
@@ -150,26 +70,6 @@
       "date": "2026-07-08T04:29:33.000Z",
       "dateString": "8 Julio 2026",
       "commitSha": "9f80870"
-    },
-    {
-      "id": "gh-twitch-9a24efb",
-      "title": "Legal unificado, header y export HTML alineado con la landing",
-      "description": "Consolida privacidad, términos y cookies en /legal con redirects; enlaza el estado del servicio a Better Stack; rediseña el reporte exportado del dashboard y limpia exports muertos, sitemap y referencias obsoletas.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-06T17:09:30.000Z",
-      "dateString": "6 Julio 2026",
-      "commitSha": "9a24efb"
-    },
-    {
-      "id": "gh-twitch-dccf834",
-      "title": "Soporta titulos personalizados y añade reproductor modal",
-      "description": "La lectura de títulos desde Nightbot ahora se envía directamente a la API oficial de Twitch. Además, hemos rediseñado la vista web: los clips ya no abren una nueva pestaña, sino que se reproducen in situ dentro de una ventana flotante Modal.",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-06T00:55:02.000Z",
-      "dateString": "6 Julio 2026",
-      "commitSha": "dccf834"
     },
     {
       "id": "gh-twitch-312238b",
@@ -237,26 +137,6 @@
       "api": "Códigos QR",
       "date": "2026-07-03T00:00:00.000Z",
       "dateString": "3 Julio 2026"
-    },
-    {
-      "id": "gh-twitch-b31f146",
-      "title": "Mejorar filtros y tooltip del historial en Inicio",
-      "description": "Chips menos redondeados y agrupados en caja; el InfoTooltip abre hacia abajo para no tapar las tarjetas del hero.",
-      "tag": "Fix",
-      "api": "Twitch",
-      "date": "2026-07-02T21:15:43.000Z",
-      "dateString": "2 Julio 2026",
-      "commitSha": "b31f146"
-    },
-    {
-      "id": "gh-twitch-121987d",
-      "title": "Quitar Estadísticas y centrar uso en Inicio",
-      "description": "Elimina la pestaña stats y código muerto asociado; el historial de Inicio gana filtros por categoría/recurso y hora en formato 12h. El panel en vivo solo monta en Home, el sync Perfil→Inicio queda para reinicio de datos y el polling del perfil baja a 60s para reducir carga en Vercel.",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-02T21:09:14.000Z",
-      "dateString": "2 Julio 2026",
-      "commitSha": "121987d"
     },
     {
       "id": "manual-twitch-overlays-beta",
