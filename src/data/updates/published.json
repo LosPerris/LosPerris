@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-07-11T05:54:15.968Z",
+  "syncedAt": "2026-07-11T06:00:33.236Z",
   "entries": [
+    {
+      "id": "gh-twitch-411f1ce",
+      "title": "Quitar Botrix/Streamlabs y restaurar generador pre-c063b7b",
+      "description": "Vuelve el generador de comandos al estado anterior al soporte de Botrix y Streamlabs: solo Nightbot, StreamElements, Fossabot y Wizebot, con la logica original de !clip.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-11T05:58:45.000Z",
+      "dateString": "11 Julio 2026",
+      "commitSha": "411f1ce"
+    },
     {
       "id": "gh-twitch-c063b7b",
       "title": "Soporte nativo para Streamlabs y Botrix en el generador de comandos",
@@ -274,8 +284,8 @@
     }
   ],
   "syncHealth": {
-    "consecutiveNoPublish": 2,
+    "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 0
+    "lastPublished": 1
   }
 }
