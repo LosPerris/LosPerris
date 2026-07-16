@@ -90,6 +90,14 @@ export function parseCommitMessage(message) {
   };
 }
 
+const TRANSIENT_HTTP = new Set([429, 500, 502, 503, 504]);
+const FETCH_RETRIES = 4;
+const FETCH_RETRY_BASE_MS = 1500;
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function fetchRepoCommits(cfg, token) {
   const since = new Date();
   since.setDate(since.getDate() - MAX_AGE_DAYS);
@@ -101,29 +109,47 @@ async function fetchRepoCommits(cfg, token) {
   url.searchParams.set("per_page", String(MAX_PER_REPO));
   url.searchParams.set("since", since.toISOString());
 
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      "User-Agent": "LosPerris-Updates",
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  let lastError = null;
 
-  if (!res.ok) {
+  for (let attempt = 1; attempt <= FETCH_RETRIES; attempt++) {
+    const res = await fetch(url, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "LosPerris-Updates",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (res.ok) return res.json();
+
     const body = await res.text().catch(() => "");
-    throw new Error(
+    lastError = new Error(
       `${cfg.owner}/${cfg.repo}: HTTP ${res.status} ${res.statusText}${body ? ` — ${body.slice(0, 120)}` : ""}`,
     );
+
+    if (!TRANSIENT_HTTP.has(res.status) || attempt === FETCH_RETRIES) {
+      throw lastError;
+    }
+
+    const retryAfter = Number(res.headers.get("retry-after"));
+    const waitMs = Number.isFinite(retryAfter) && retryAfter > 0
+      ? retryAfter * 1000
+      : FETCH_RETRY_BASE_MS * 2 ** (attempt - 1);
+
+    console.warn(
+      `[sync-published] ${cfg.owner}/${cfg.repo}: HTTP ${res.status}, reintento ${attempt}/${FETCH_RETRIES} en ${waitMs}ms`,
+    );
+    await sleep(waitMs);
   }
 
-  return res.json();
+  throw lastError;
 }
 
-/** @param {string} token PAT con acceso de lectura a repos privados */
+/** @param {string} token PAT con acceso de lectura a repos privados (UPDATE_SYNC_TOKEN) */
 export async function fetchCommitEntries(token) {
   if (!token) {
     throw new Error(
-      "Falta GITHUB_TOKEN. Los repos son privados: crea un PAT (scope repo) y configúralo en GitHub Secrets como UPDATE_SYNC_TOKEN.",
+      "Falta UPDATE_SYNC_TOKEN. Los repos son privados: crea un PAT (scope repo) y configúralo en GitHub Secrets como UPDATE_SYNC_TOKEN.",
     );
   }
 

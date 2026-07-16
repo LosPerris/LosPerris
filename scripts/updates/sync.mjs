@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Importa commits de repos privados → src/data/updates/published.json
- * Requiere GITHUB_TOKEN o UPDATE_SYNC_TOKEN con acceso de lectura a los repos.
+ * Requiere UPDATE_SYNC_TOKEN (PAT con lectura a repos privados).
+ * No usar el GITHUB_TOKEN automático de Actions: solo cubre este repo.
  */
 import {
   fetchCommitEntries,
@@ -11,7 +12,7 @@ import {
   writePublished,
 } from "./lib/sync-core.mjs";
 
-const token = process.env.GITHUB_TOKEN || process.env.UPDATE_SYNC_TOKEN;
+const token = process.env.UPDATE_SYNC_TOKEN || process.env.GITHUB_TOKEN;
 
 async function main() {
   if (!token) {

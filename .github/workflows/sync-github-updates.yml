@@ -26,8 +26,14 @@ jobs:
 
       - name: Sincronizar y guardar published.json
         env:
+          # PAT con lectura a repos privados. No usar GITHUB_TOKEN (solo este repo).
           UPDATE_SYNC_TOKEN: ${{ secrets.UPDATE_SYNC_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.UPDATE_SYNC_TOKEN }}
         run: |
+          if [ -z "$UPDATE_SYNC_TOKEN" ]; then
+            echo "Falta el secret UPDATE_SYNC_TOKEN (PAT con acceso a los repos de APIs)."
+            exit 1
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for attempt in 1 2 3; do
