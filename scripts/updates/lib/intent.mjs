@@ -161,6 +161,9 @@ const SKIP_SUBJECT_PATTERNS = [
   /\beliminando componentes\b/i,
   /\bestilo modular\b/i,
   /\baboutpage\b/i,
+  /\bbotrix\b/i,
+  /\bsoporte nativo para streamlabs\b/i,
+  /\bstreamlabs y botrix\b/i,
 ];
 
 const DEVOPS_SUBJECT_RE =

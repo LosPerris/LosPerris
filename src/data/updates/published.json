@@ -32,23 +32,13 @@
     },
     {
       "id": "gh-twitch-cc5afce",
-      "title": "Corregir variables de bots y añadir Streamlabs",
-      "description": "Alinea variables con la documentación oficial de Fossabot, StreamElements y Wizebot, añade soporte para Streamlabs Cloudbot, excluye Wizebot/Fossabot del generador de !clip y actualiza docs y tests.",
+      "title": "Corregir variables de bots en el generador de comandos",
+      "description": "Alinea variables con la documentación oficial de Fossabot, StreamElements y Wizebot, excluye Wizebot/Fossabot del generador de !clip y actualiza docs y tests.",
       "tag": "Feature",
       "api": "Twitch",
       "date": "2026-07-11T07:19:24.000Z",
       "dateString": "11 Julio 2026",
       "commitSha": "cc5afce"
-    },
-    {
-      "id": "gh-twitch-c063b7b",
-      "title": "Soporte nativo para Streamlabs y Botrix en el generador de comandos",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-10T20:54:01.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "c063b7b"
     },
     {
       "id": "gh-twitch-6daa8b5",
