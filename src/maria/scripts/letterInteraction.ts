@@ -65,7 +65,7 @@ export function initLetterInteraction() {
       isBookOpen = true;
 
       // Slide the entire book container to the center
-      wrapper.classList.remove("-translate-x-1/4");
+      wrapper.classList.remove("-translate-x-1/4", "-translate-x-[18%]");
       wrapper.classList.add("translate-x-0");
 
       // 3D book open effect
@@ -82,16 +82,18 @@ export function initLetterInteraction() {
         const fullText = msgText.getAttribute("data-text") || "";
         msgText.textContent = fullText; // temporarily fill
 
-        let currentSize = window.innerWidth < 768 ? 20 : 28;
+        const isMobile = window.innerWidth < 768;
+        let currentSize = isMobile ? 18 : 28;
+        const minSize = isMobile ? 12 : 14;
         msgText.style.fontSize = currentSize + "px";
 
-        // Shrink until wrapper fits inside container, checking both height and width, with a minimum size of 14px
+        // Shrink until wrapper fits inside container, checking both height and width
         while (
           (msgWrapper.scrollHeight > msgContainer.clientHeight ||
             msgWrapper.scrollWidth > msgContainer.clientWidth) &&
-          currentSize > 14
+          currentSize > minSize
         ) {
-          currentSize -= 1;
+          currentSize -= 0.5;
           msgText.style.fontSize = currentSize + "px";
         }
 
@@ -161,9 +163,22 @@ export function initLetterInteraction() {
         cursor.style.opacity = "0";
       }
 
-      const turnPageBtn = document.getElementById("turn-page-btn");
-      if (turnPageBtn) {
-        turnPageBtn.classList.add("opacity-0", "pointer-events-none");
+      const turnPageBtnEl = document.getElementById("turn-page-btn");
+      if (turnPageBtnEl) {
+        turnPageBtnEl.classList.add("opacity-0", "pointer-events-none");
+      }
+
+      const pageTurnerEl = document.getElementById("page-turner");
+      const mobilePanel = document.getElementById("mobile-reasons-panel");
+      if (mobilePanel) {
+        mobilePanel.classList.remove("is-open");
+        mobilePanel.setAttribute("aria-hidden", "true");
+      }
+      if (pageTurnerEl) {
+        pageTurnerEl.style.opacity = "1";
+        pageTurnerEl.style.pointerEvents = "auto";
+        pageTurnerEl.style.transition = "";
+        pageTurnerEl.style.transform = "rotateY(0deg)";
       }
 
       // Reverse 3D book open effect
@@ -176,7 +191,9 @@ export function initLetterInteraction() {
 
       // Slide the entire book container back
       wrapper.classList.remove("translate-x-0");
-      wrapper.classList.add("-translate-x-1/4");
+      wrapper.classList.add(
+        window.innerWidth < 768 ? "-translate-x-[18%]" : "-translate-x-1/4",
+      );
     });
   }
 
@@ -186,11 +203,79 @@ export function initLetterInteraction() {
   const reasonNumbers = document.querySelectorAll(".reason-number");
   const reasonsTitle = document.getElementById("reasons-title");
   const reasonsTitleLine = document.getElementById("reasons-title-line");
+  const mobileReasonsPanel = document.getElementById("mobile-reasons-panel");
+  const mobileReasonsBack = document.getElementById("mobile-reasons-back");
+
+  const isMobileViewport = () => window.innerWidth < 768;
+
+  function showMobileReasonsPanel() {
+    if (!mobileReasonsPanel || !isMobileViewport()) return;
+    mobileReasonsPanel.classList.add("is-open");
+    mobileReasonsPanel.setAttribute("aria-hidden", "false");
+    const scroll = document.getElementById("mobile-reasons-scroll");
+    if (scroll) scroll.scrollTop = 0;
+  }
+
+  function hideMobileReasonsPanel() {
+    if (!mobileReasonsPanel) return;
+    mobileReasonsPanel.classList.remove("is-open");
+    mobileReasonsPanel.setAttribute("aria-hidden", "true");
+  }
 
   // Clear reason texts on load so they don't appear before typing
   reasonTexts.forEach((el) => (el.textContent = ""));
   reasonNumbers.forEach((el) => (el.textContent = ""));
   if (reasonsTitle) reasonsTitle.textContent = "";
+
+  /** Reduce tipografía de razones hasta que quepan (desktop / tablets). */
+  function fitReasonsToPages() {
+    if (isMobileViewport()) return; // móvil usa panel plano
+
+    const lists = [
+      document.getElementById("reasons-left-list"),
+      document.getElementById("reasons-right-list"),
+    ].filter(Boolean) as HTMLElement[];
+
+    if (!lists.length) return;
+
+    reasonTexts.forEach((el) => {
+      const node = el as HTMLElement;
+      node.textContent = node.getAttribute("data-text") || "";
+    });
+    reasonNumbers.forEach((el) => {
+      const node = el as HTMLElement;
+      node.textContent = node.getAttribute("data-text") || "";
+    });
+    if (reasonsTitle) {
+      reasonsTitle.textContent = reasonsTitle.getAttribute("data-text") || "";
+    }
+
+    let size = 20;
+    const minSize = 14;
+
+    const applySize = (px: number) => {
+      reasonTexts.forEach((el) => {
+        (el as HTMLElement).style.fontSize = `${px}px`;
+        (el as HTMLElement).style.lineHeight = "1.12";
+      });
+      reasonNumbers.forEach((el) => {
+        (el as HTMLElement).style.fontSize = `${px}px`;
+      });
+    };
+
+    applySize(size);
+    while (
+      size > minSize &&
+      lists.some((list) => list.scrollHeight > list.clientHeight + 1)
+    ) {
+      size -= 0.5;
+      applySize(size);
+    }
+
+    reasonTexts.forEach((el) => (el.textContent = ""));
+    reasonNumbers.forEach((el) => (el.textContent = ""));
+    if (reasonsTitle) reasonsTitle.textContent = "";
+  }
 
   let reasonsTyped = false;
 
@@ -199,19 +284,31 @@ export function initLetterInteraction() {
       e.stopPropagation();
       turnPageBtn.classList.add("opacity-0", "pointer-events-none");
 
-      // Rotate the page
+      if (isMobileViewport()) {
+        // Safari/iOS: evitar leer texto dentro de rotateY (se corta).
+        // Animación corta + panel plano scrolleable.
+        pageTurner.style.transition = "opacity 400ms ease";
+        pageTurner.style.opacity = "0";
+        pageTurner.style.pointerEvents = "none";
+        setTimeout(() => {
+          showMobileReasonsPanel();
+        }, 280);
+        reasonsTyped = true;
+        return;
+      }
+
+      // Desktop: flip 3D clásico
       pageTurner.style.transform = "rotateY(-180deg)";
 
       if (!reasonsTyped) {
         reasonsTyped = true;
-        // Start typing the reasons sequentially after the animation completes (1500ms)
         setTimeout(() => {
-          // 1. First type the title
+          fitReasonsToPages();
+
           typeElement(reasonsTitle, 30, 50, () => {
             if (reasonsTitleLine)
               reasonsTitleLine.classList.remove("opacity-0");
 
-            // 2. Then start the loop for reasons
             setTimeout(() => {
               let index = 0;
               function typeNextReason() {
@@ -219,19 +316,16 @@ export function initLetterInteraction() {
                   const numEl = reasonNumbers[index] as HTMLElement;
                   const textEl = reasonTexts[index] as HTMLElement;
 
-                  // First type the number
                   typeElement(numEl, 30, 40, () => {
-                    // Then type the reason text
                     typeElement(textEl, 15, 20, () => {
                       index++;
-                      // Short pause before the next reason starts typing
                       setTimeout(typeNextReason, 300);
                     });
                   });
                 }
               }
               typeNextReason();
-            }, 500); // Wait half a second after title
+            }, 500);
           });
         }, 1500);
       }
@@ -239,20 +333,39 @@ export function initLetterInteraction() {
   }
 
   const turnBackBtn = document.getElementById("turn-back-btn");
+  function turnPageBack() {
+    hideMobileReasonsPanel();
+
+    if (pageTurner) {
+      pageTurner.style.opacity = "1";
+      pageTurner.style.pointerEvents = "auto";
+      pageTurner.style.transition = "";
+      pageTurner.style.transform = "rotateY(0deg)";
+    }
+
+    if (turnPageBtn) {
+      setTimeout(
+        () => {
+          turnPageBtn.style.opacity = "1";
+          turnPageBtn.style.pointerEvents = "auto";
+          turnPageBtn.classList.remove("opacity-0", "pointer-events-none");
+        },
+        isMobileViewport() ? 200 : 1500,
+      );
+    }
+  }
+
   if (turnBackBtn && pageTurner) {
     turnBackBtn.addEventListener("click", (e) => {
       e.stopPropagation();
+      turnPageBack();
+    });
+  }
 
-      // Rotate the page back to the front
-      pageTurner.style.transform = "rotateY(0deg)";
-
-      // Show the folded corner again after animation
-      if (turnPageBtn) {
-        setTimeout(() => {
-          turnPageBtn.style.opacity = "1";
-          turnPageBtn.style.pointerEvents = "auto";
-        }, 1500);
-      }
+  if (mobileReasonsBack) {
+    mobileReasonsBack.addEventListener("click", (e) => {
+      e.stopPropagation();
+      turnPageBack();
     });
   }
 

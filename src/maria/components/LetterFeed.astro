@@ -21,23 +21,29 @@ interface Props {
 
 const { message, dayNumber } = Astro.props;
 
-const today = new Date().toLocaleDateString("es-ES", {
+const todayFull = new Date().toLocaleDateString("es-ES", {
   weekday: "long",
   year: "numeric",
   month: "long",
   day: "numeric",
+});
+const todayShort = new Date().toLocaleDateString("es-ES", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
 });
 ---
 
 <div class="w-full flex flex-col gap-12 md:gap-24 pb-72 md:pb-48">
   {/* The Main Letter (Leather Notebook Style) */}
   <section
-    class="relative w-[95%] max-w-[900px] mx-auto flex items-center justify-center mb-12 animate-fade-in-up"
-    style="perspective: 2000px; aspect-ratio: 1.4;"
+    id="maria-diary-stage"
+    class="relative w-full max-w-[900px] mx-auto flex items-center justify-center mb-8 md:mb-12 animate-fade-in-up md:w-[95%] md:aspect-[1.4]"
+    style="perspective: 2000px;"
   >
     <div
       id="book-wrapper"
-      class="relative w-full h-full transition-transform duration-[1200ms] ease-in-out -translate-x-1/4"
+      class="relative w-full h-full transition-transform duration-[1200ms] ease-in-out -translate-x-[18%] md:-translate-x-1/4"
     >
       {
         /* Interactive Cover State (Closed Rustic Leather Journal - Photorealistic) */
@@ -155,7 +161,7 @@ const today = new Date().toLocaleDateString("es-ES", {
 
         <div
           id="close-strap"
-          class="flex absolute top-1/2 -translate-y-1/2 -right-8 md:-right-20 w-10 md:w-24 h-8 md:h-14 rounded-r-full shadow-[8px_8px_20px_rgba(0,0,0,0.7)] z-0 items-center justify-end pr-1.5 md:pr-4 cursor-pointer origin-right group/close outline-none focus:outline-none"
+          class="flex absolute top-1/2 -translate-y-1/2 -right-5 md:-right-20 w-8 md:w-24 h-7 md:h-14 rounded-r-full shadow-[8px_8px_20px_rgba(0,0,0,0.7)] z-0 items-center justify-end pr-1 md:pr-4 cursor-pointer origin-right group/close outline-none focus:outline-none"
           style="background-color: #3a1d0f; box-shadow: inset 0 0 15px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.1), 8px 8px 20px rgba(0,0,0,0.7); outline: 1px solid transparent;"
         >
           <div
@@ -240,10 +246,10 @@ const today = new Date().toLocaleDateString("es-ES", {
           </div>
 
           <div
-            class="absolute left-0 w-1/2 h-full flex flex-col items-center justify-center pt-8 md:pt-12 border-r border-[#c4b599]/60 z-10 px-1 md:px-4"
+            class="absolute left-0 w-1/2 h-full flex flex-col items-center justify-center pt-4 md:pt-12 border-r border-[#c4b599]/60 z-10 px-1 md:px-4"
           >
             <div
-              class="border-[2.5px] border-[#8b3a3a] rounded-full p-2 mb-12 flex items-center justify-center stamp-element opacity-0"
+              class="border-[2.5px] border-[#8b3a3a] rounded-full p-1.5 md:p-2 mb-4 md:mb-12 flex items-center justify-center stamp-element opacity-0"
               style="--rotate: rotate(-15deg); --final-opacity: 0.4; animation-delay: 0.5s;"
             >
               <SunflowerLogo
@@ -254,31 +260,32 @@ const today = new Date().toLocaleDateString("es-ES", {
               />
             </div>
 
-            <div class="flex flex-col items-center gap-6">
+            <div class="flex flex-col items-center gap-3 md:gap-6">
               <div
-                class="border-2 border-[#8b3a3a] px-2 py-1 md:px-4 md:py-2 stamp-element opacity-0"
+                class="border-2 border-[#8b3a3a] px-1.5 py-0.5 md:px-4 md:py-2 stamp-element opacity-0"
                 style="--rotate: rotate(5deg); --final-opacity: 0.6; animation-delay: 1.2s;"
               >
                 <p
-                  class="font-bold tracking-widest text-[#8b3a3a] text-[8px] md:text-xs uppercase"
+                  class="font-bold tracking-widest text-[#8b3a3a] text-[7px] md:text-xs uppercase"
                   style="font-family: 'Special Elite', monospace;"
                 >
                   Libreta de Girasoles
                 </p>
                 <p
-                  class="text-[#8b3a3a] text-[8px] md:text-xs mt-1"
+                  class="text-[#8b3a3a] text-[7px] md:text-xs mt-0.5 md:mt-1"
                   style="font-family: 'Special Elite', monospace;"
                 >
-                  {today}
+                  <span class="md:hidden">{todayShort}</span>
+                  <span class="hidden md:inline">{todayFull}</span>
                 </p>
               </div>
 
               <div
-                class="border-2 border-[#8b3a3a] px-3 py-1 md:px-6 md:py-1.5 stamp-element opacity-0"
+                class="border-2 border-[#8b3a3a] px-2 py-0.5 md:px-6 md:py-1.5 stamp-element opacity-0"
                 style="--rotate: rotate(-3deg); --final-opacity: 0.6; animation-delay: 1.9s;"
               >
                 <p
-                  class="font-bold tracking-widest text-[#8b3a3a] text-xs md:text-sm uppercase"
+                  class="font-bold tracking-widest text-[#8b3a3a] text-[10px] md:text-sm uppercase"
                   style="font-family: 'Special Elite', monospace;"
                 >
                   Día {dayNumber}
@@ -293,8 +300,8 @@ const today = new Date().toLocaleDateString("es-ES", {
             style="transform-style: preserve-3d;"
           >
             <div
-              class="absolute inset-0 w-full h-full flex flex-col pt-6 pb-4 pl-3 pr-4 md:pt-16 md:pb-10 md:pl-12 md:pr-16 overflow-hidden"
-              style="backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(225deg, transparent 35.5px, #e4d8c0 35.5px);"
+              class="absolute inset-0 w-full h-full flex flex-col pt-4 pb-3 pl-2.5 pr-2.5 md:pt-16 md:pb-10 md:pl-12 md:pr-16 overflow-hidden"
+              style="backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(225deg, transparent 28px, #e4d8c0 28px);"
             >
               <div
                 id="turn-page-btn"
@@ -323,7 +330,7 @@ const today = new Date().toLocaleDateString("es-ES", {
                 <div id="message-wrapper">
                   <blockquote
                     class="text-[#1a1510] leading-relaxed inline opacity-90 min-h-[1em]"
-                    style="font-size: 28px; font-family: 'Caveat', cursive;"
+                    style="font-size: clamp(15px, 4.2vw, 28px); font-family: 'Caveat', cursive;"
                     id="daily-message-text"
                     data-text={message}
                   >
@@ -336,24 +343,24 @@ const today = new Date().toLocaleDateString("es-ES", {
               </div>
 
               <footer
-                class="w-full flex flex-col items-end gap-2 mt-4 opacity-80"
+                class="w-full flex flex-col items-end gap-1 md:gap-2 mt-2 md:mt-4 opacity-80 shrink-0"
               >
                 <span
                   id="right-signature"
                   data-text="Siempre tuyo, Ponss"
-                  class="text-[#1a1510] text-lg md:text-3xl min-h-[1.5em] whitespace-nowrap"
+                  class="text-[#1a1510] text-sm md:text-3xl min-h-[1.2em] md:min-h-[1.5em] whitespace-nowrap"
                   style="font-family: 'Caveat', cursive;"></span>
                 <div
                   id="right-signature-line"
-                  class="w-32 md:w-40 h-[1px] bg-[#1a1510]/20 mt-1 opacity-0 transition-opacity duration-500"
+                  class="w-24 md:w-40 h-[1px] bg-[#1a1510]/20 mt-0.5 md:mt-1 opacity-0 transition-opacity duration-500"
                 >
                 </div>
               </footer>
             </div>
 
             <div
-              class="absolute inset-0 w-full h-full flex flex-col pt-4 px-3 md:pt-16 md:px-12 overflow-hidden"
-              style="backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); background: linear-gradient(135deg, transparent 35.5px, #e1d3b9 35.5px);"
+              class="absolute inset-0 w-full h-full flex flex-col pt-4 px-2 pb-2.5 md:pt-16 md:px-12 md:pb-4 overflow-hidden"
+              style="backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); background: linear-gradient(135deg, transparent 28px, #e1d3b9 28px);"
             >
               <div
                 id="turn-back-btn"
@@ -376,10 +383,10 @@ const today = new Date().toLocaleDateString("es-ES", {
                 >
               </div>
 
-              <div class="text-center mb-2 md:mb-6">
+              <div class="text-center mb-1.5 md:mb-6 shrink-0">
                 <h2
                   id="reasons-title"
-                  class="text-[#1a1510] text-xl md:text-4xl opacity-90 min-h-[1em]"
+                  class="text-[#1a1510] text-base md:text-4xl opacity-90 min-h-[1em] leading-tight"
                   style="font-family: 'Caveat', cursive;"
                   data-text="Por qué te amo..."
                   aria-label="Por qué te amo..."
@@ -387,21 +394,24 @@ const today = new Date().toLocaleDateString("es-ES", {
                 </h2>
                 <div
                   id="reasons-title-line"
-                  class="w-16 h-[1px] bg-[#8b3a3a]/30 mx-auto mt-2 opacity-0 transition-opacity duration-500"
+                  class="w-12 md:w-16 h-[1px] bg-[#8b3a3a]/30 mx-auto mt-1 md:mt-2 opacity-0 transition-opacity duration-500"
                 >
                 </div>
               </div>
 
-              <div class="w-full flex flex-col gap-1 md:gap-3 mt-1 md:mt-2">
+              <div
+                id="reasons-left-list"
+                class="w-full flex-1 min-h-0 flex flex-col justify-start gap-0.5 md:gap-3 mt-0.5 md:mt-2 overflow-y-auto overscroll-contain custom-scrollbar"
+              >
                 {
                   reasons.slice(0, 5).map((reason, index) => (
                     <div class="flex items-start gap-1 md:gap-3">
                       <span
-                        class="reason-number text-[#8b3a3a] font-bold font-serif opacity-70 text-[11px] md:text-[20px] mt-1 w-3 md:w-8 flex-shrink-0"
+                        class="reason-number text-[#8b3a3a] font-bold font-serif opacity-70 text-[10px] md:text-[20px] mt-0.5 md:mt-1 w-3 md:w-8 flex-shrink-0"
                         data-text={`${index + 1}.`}
                       />
                       <p
-                        class="reason-text text-[#1a1510] text-[11px] md:text-[20px] min-h-[1.2em] leading-tight opacity-90"
+                        class="reason-text text-[#1a1510] text-[10px] md:text-[20px] min-h-[1.15em] leading-[1.15] md:leading-tight opacity-90"
                         style="font-family: 'Caveat', cursive;"
                         data-text={reason}
                       />
@@ -413,24 +423,78 @@ const today = new Date().toLocaleDateString("es-ES", {
           </div>
 
           <div
-            class="absolute right-0 w-1/2 h-full flex flex-col pt-6 pb-4 pl-3 pr-4 md:pt-8 md:pl-12 md:pr-16 z-10 overflow-hidden"
+            class="absolute right-0 w-1/2 h-full flex flex-col pt-5 pb-3 pl-2.5 pr-3 md:pt-8 md:pb-4 md:pl-12 md:pr-16 z-10 overflow-hidden"
           >
-            <div class="w-full flex flex-col gap-1 md:gap-3 mt-2 md:mt-6">
+            <div
+              id="reasons-right-list"
+              class="w-full flex-1 min-h-0 flex flex-col justify-start gap-0.5 md:gap-3 mt-1 md:mt-6 overflow-y-auto overscroll-contain custom-scrollbar"
+            >
               {
                 reasons.slice(5, 10).map((reason, index) => (
                   <div class="flex items-start gap-1 md:gap-3">
                     <span
-                      class="reason-number text-[#8b3a3a] font-bold font-serif opacity-70 text-[11px] md:text-[20px] mt-1 w-3 md:w-8 flex-shrink-0"
+                      class="reason-number text-[#8b3a3a] font-bold font-serif opacity-70 text-[10px] md:text-[20px] mt-0.5 md:mt-1 w-3 md:w-8 flex-shrink-0"
                       data-text={`${index + 6}.`}
                     />
                     <p
-                      class="reason-text text-[#1a1510] text-[11px] md:text-[20px] min-h-[1.2em] leading-tight opacity-90"
+                      class="reason-text text-[#1a1510] text-[10px] md:text-[20px] min-h-[1.15em] leading-[1.15] md:leading-tight opacity-90"
                       style="font-family: 'Caveat', cursive;"
                       data-text={reason}
                     />
                   </div>
                 ))
               }
+            </div>
+          </div>
+
+          {
+            /* Safari/iOS: panel plano (sin rotateY) para que "Por qué te amo" no se corte */
+          }
+          <div
+            id="mobile-reasons-panel"
+            class="absolute inset-0 z-[60] hidden flex-col px-3 pt-4 pb-3 md:hidden"
+            style="background: linear-gradient(180deg, #e6dbc3 0%, #e1d3b9 100%); -webkit-overflow-scrolling: touch;"
+            aria-hidden="true"
+          >
+            <button
+              id="mobile-reasons-back"
+              type="button"
+              class="absolute top-2 left-2 z-10 px-2 py-1 text-[#8b3a3a] opacity-70"
+              style="font-family: 'Special Elite', monospace; font-size: 10px; letter-spacing: 0.12em;"
+            >
+              ← Volver
+            </button>
+            <div class="text-center mb-3 mt-5 shrink-0">
+              <h2
+                class="text-[#1a1510] text-[1.35rem] opacity-90 leading-tight"
+                style="font-family: 'Caveat', cursive;"
+              >
+                Por qué te amo...
+              </h2>
+              <div class="w-14 h-[1px] bg-[#8b3a3a]/30 mx-auto mt-2"></div>
+            </div>
+            <div
+              id="mobile-reasons-scroll"
+              class="flex-1 min-h-0 overflow-y-auto overscroll-contain pr-1 custom-scrollbar"
+              style="-webkit-overflow-scrolling: touch;"
+            >
+              <div class="flex flex-col gap-2.5 pb-2">
+                {
+                  reasons.map((reason, index) => (
+                    <div class="flex items-start gap-2">
+                      <span class="text-[#8b3a3a] font-bold font-serif opacity-70 text-[13px] mt-0.5 w-5 flex-shrink-0">
+                        {index + 1}.
+                      </span>
+                      <p
+                        class="text-[#1a1510] text-[15px] leading-snug opacity-90"
+                        style="font-family: 'Caveat', cursive;"
+                      >
+                        {reason}
+                      </p>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>

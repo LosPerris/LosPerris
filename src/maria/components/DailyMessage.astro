@@ -21,27 +21,27 @@ const dayNumber = getDaysSinceStart();
 ---
 
 <div
-  class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row relative z-10 pt-8 md:pt-16 lg:pt-24 px-4"
+  class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row relative z-10 pt-4 md:pt-16 lg:pt-24 px-2 sm:px-4"
 >
   {/* Left Sidebar (Sticky in Desktop, normal in Mobile) */}
   <aside
-    class="w-full lg:w-1/3 lg:sticky lg:top-24 h-fit flex flex-col gap-6 mb-12 lg:mb-0 lg:pr-8"
+    class="w-full lg:w-1/3 lg:sticky lg:top-24 h-fit flex flex-col gap-6 mb-6 md:mb-12 lg:mb-0 lg:pr-8"
   >
     <div class="animate-fade-in-up">
       <h1
-        class="font-serif italic text-5xl md:text-6xl lg:text-7xl text-amber-200/90 drop-shadow-[0_0_15px_rgba(251,191,36,0.3)] leading-tight tracking-tight animate-fade-in-up"
+        class="font-serif italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-amber-200/90 drop-shadow-[0_0_15px_rgba(251,191,36,0.3)] leading-tight tracking-tight animate-fade-in-up"
         style="animation-delay: 0.1s; animation-fill-mode: both;"
       >
         Tu Diario
       </h1>
       <div
-        class="mt-8 w-32 h-[1px] bg-gradient-to-r from-amber-400/80 via-amber-600/30 to-transparent animate-fade-in-up"
+        class="mt-5 md:mt-8 w-32 h-[1px] bg-gradient-to-r from-amber-400/80 via-amber-600/30 to-transparent animate-fade-in-up"
         style="animation-delay: 0.55s; animation-fill-mode: both;"
       >
       </div>
 
       <p
-        class="mt-8 font-sans text-lg text-white/60 font-light leading-relaxed max-w-sm animate-fade-in-up"
+        class="mt-5 md:mt-8 font-sans text-base md:text-lg text-white/60 font-light leading-relaxed max-w-sm animate-fade-in-up"
         style="animation-delay: 0.85s; animation-fill-mode: both;"
       >
         Un lugar hecho solo para ti. Donde cada pagina te recuerda lo mucho que
@@ -51,7 +51,7 @@ const dayNumber = getDaysSinceStart();
       <button
         id="bloom-btn"
         type="button"
-        class="mt-10 group relative animate-fade-in-up outline-none focus:outline-none"
+        class="mt-7 md:mt-10 group relative animate-fade-in-up outline-none focus:outline-none"
         style="background: transparent; border: none; padding: 0; animation-delay: 1.2s; animation-fill-mode: both;"
       >
         <div

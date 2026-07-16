@@ -21,12 +21,18 @@ const ogImage = `${siteUrl}/LosPerris-minimal.svg`;
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#0a0704" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -52,7 +58,7 @@ const ogImage = `${siteUrl}/LosPerris-minimal.svg`;
     />
   </head>
   <body
-    class="relative min-h-screen w-full overflow-hidden flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-100"
+    class="relative min-h-[100dvh] w-full overflow-x-hidden overflow-y-auto flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-100"
   >
     <div class="fixed inset-0 pointer-events-none z-[-2]">
       <div class="absolute inset-0 bg-[#070503]"></div>
@@ -116,7 +122,7 @@ const ogImage = `${siteUrl}/LosPerris-minimal.svg`;
     </style>
 
     <main
-      class="relative z-10 flex-grow flex flex-col items-center justify-center min-h-screen w-full px-4 py-8 overflow-y-auto overflow-x-hidden custom-scrollbar"
+      class="relative z-10 flex-grow flex flex-col items-center justify-start md:justify-center min-h-[100dvh] w-full px-3 sm:px-4 py-6 md:py-8 overflow-x-hidden custom-scrollbar"
     >
       <slot />
     </main>
