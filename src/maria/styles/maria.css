@@ -128,13 +128,24 @@ html.maria-html, html.maria-html body {
     position: absolute;
     top: 2.75rem;
     left: max(2rem, calc(50% - 600px));
-    z-index: 30;
+    /* Debajo del diario: al abrir, el libro lo tapa */
+    z-index: 5;
     max-width: 22rem;
     margin-bottom: 0;
     padding-right: 0;
+    transition: opacity 0.55s ease, visibility 0.55s ease;
+  }
+
+  /* Diario abierto: el título no debe asomar por los lados */
+  .maria-page:has(#maria-diary-stage.is-open) .maria-hero {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .maria-stage {
+    position: relative;
+    z-index: 20;
     min-height: 100dvh;
     align-items: center;
   }
