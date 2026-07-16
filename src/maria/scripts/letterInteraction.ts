@@ -278,12 +278,52 @@ export function initLetterInteraction() {
     ".mobile-reason-number",
   );
 
+  function fitMobileReasonsToPanel() {
+    const scroll = document.getElementById("mobile-reasons-scroll");
+    if (!scroll || !mobileReasonTexts.length) return;
+
+    // Rellenar temporalmente para medir
+    mobileReasonTexts.forEach((el) => {
+      const node = el as HTMLElement;
+      node.textContent = node.getAttribute("data-text") || "";
+    });
+    mobileReasonNumbers.forEach((el) => {
+      const node = el as HTMLElement;
+      node.textContent = node.getAttribute("data-text") || "";
+    });
+    if (mobileReasonsTitle) {
+      mobileReasonsTitle.textContent =
+        mobileReasonsTitle.getAttribute("data-text") || "";
+    }
+
+    let size = 13;
+    const minSize = 10;
+    const applySize = (px: number) => {
+      mobileReasonTexts.forEach((el) => {
+        (el as HTMLElement).style.fontSize = `${px}px`;
+        (el as HTMLElement).style.lineHeight = "1.18";
+      });
+      mobileReasonNumbers.forEach((el) => {
+        (el as HTMLElement).style.fontSize = `${Math.max(px - 1, 9)}px`;
+      });
+    };
+
+    applySize(size);
+    while (size > minSize && scroll.scrollHeight > scroll.clientHeight + 1) {
+      size -= 0.5;
+      applySize(size);
+    }
+
+    // Vaciar de nuevo para tipografía progresiva
+    mobileReasonTexts.forEach((el) => (el.textContent = ""));
+    mobileReasonNumbers.forEach((el) => (el.textContent = ""));
+    if (mobileReasonsTitle) mobileReasonsTitle.textContent = "";
+  }
+
   function showMobileReasonsPanel() {
     if (!mobileReasonsPanel || !isMobileViewport()) return;
     mobileReasonsPanel.classList.add("is-open");
     mobileReasonsPanel.setAttribute("aria-hidden", "false");
-    const scroll = document.getElementById("mobile-reasons-scroll");
-    if (scroll) scroll.scrollTop = 0;
 
     if (mobileReasonsTyped) {
       // Ya se escribió: mostrar todo de golpe al volver a entrar
@@ -305,43 +345,34 @@ export function initLetterInteraction() {
     }
 
     mobileReasonsTyped = true;
-    if (mobileReasonsTitle) mobileReasonsTitle.textContent = "";
-    mobileReasonNumbers.forEach((el) => (el.textContent = ""));
-    mobileReasonTexts.forEach((el) => (el.textContent = ""));
-    if (mobileReasonsTitleLine)
-      mobileReasonsTitleLine.classList.add("opacity-0");
+    requestAnimationFrame(() => {
+      fitMobileReasonsToPanel();
 
-    mobileReasonsTimeoutId = setTimeout(() => {
-      typeElement(mobileReasonsTitle, 30, 45, () => {
-        if (mobileReasonsTitleLine)
-          mobileReasonsTitleLine.classList.remove("opacity-0");
+      mobileReasonsTimeoutId = setTimeout(() => {
+        typeElement(mobileReasonsTitle, 30, 45, () => {
+          if (mobileReasonsTitleLine)
+            mobileReasonsTitleLine.classList.remove("opacity-0");
 
-        setTimeout(() => {
-          let index = 0;
-          function typeNextMobileReason() {
-            if (!isBookOpen) return;
-            if (index < mobileReasonTexts.length) {
-              const numEl = mobileReasonNumbers[index] as HTMLElement;
-              const textEl = mobileReasonTexts[index] as HTMLElement;
-              typeElement(numEl, 28, 35, () => {
-                typeElement(textEl, 14, 18, () => {
-                  index++;
-                  // Auto-scroll mientras escribe
-                  const scrollEl = document.getElementById(
-                    "mobile-reasons-scroll",
-                  );
-                  if (scrollEl) {
-                    scrollEl.scrollTop = scrollEl.scrollHeight;
-                  }
-                  setTimeout(typeNextMobileReason, 220);
+          setTimeout(() => {
+            let index = 0;
+            function typeNextMobileReason() {
+              if (!isBookOpen) return;
+              if (index < mobileReasonTexts.length) {
+                const numEl = mobileReasonNumbers[index] as HTMLElement;
+                const textEl = mobileReasonTexts[index] as HTMLElement;
+                typeElement(numEl, 28, 35, () => {
+                  typeElement(textEl, 14, 18, () => {
+                    index++;
+                    setTimeout(typeNextMobileReason, 220);
+                  });
                 });
-              });
+              }
             }
-          }
-          typeNextMobileReason();
-        }, 350);
-      });
-    }, 280);
+            typeNextMobileReason();
+          }, 350);
+        });
+      }, 280);
+    });
   }
 
   function hideMobileReasonsPanel() {
