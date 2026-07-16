@@ -113,16 +113,59 @@ html.maria-html, html.maria-html body {
   backface-visibility: hidden;
 }
 
-/* Diario móvil + Safari: altura con fallback vh (dvh falla/anda raro en Safari viejo) */
+/*
+ * Móvil: cerrado = libreta con proporción normal (no franja alta).
+ * Abierto (.is-open) = más ancho/alto para leer + panel de razones.
+ */
 @media (max-width: 767px) {
   #maria-diary-stage {
-    aspect-ratio: unset !important;
-    width: calc(100% - 0.5rem) !important;
+    width: min(82vw, 320px) !important;
+    max-width: 320px !important;
+    aspect-ratio: 0.68 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin-inline: auto;
+  }
+
+  /* Cerrado: portada a ancho completo (se ve libro, no media página flaca) */
+  #maria-diary-stage:not(.is-open) #book-wrapper {
+    transform: none !important;
+  }
+
+  #maria-diary-stage:not(.is-open) #diary-cover {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  #maria-diary-stage:not(.is-open) #diary-cover h3 {
+    font-size: 1.35rem !important;
+    letter-spacing: 0.18em !important;
+  }
+
+  #maria-diary-stage:not(.is-open) #diary-cover .maria-cover-mark {
+    transform: scale(1.4);
+    margin-bottom: 1.25rem !important;
+  }
+
+  #maria-diary-stage:not(.is-open) #diary-cover .maria-cover-vol {
+    font-size: 0.65rem !important;
+    margin-top: 1.5rem !important;
+  }
+
+  #maria-diary-stage.is-open {
+    width: calc(100vw - 1.25rem) !important;
     max-width: 100% !important;
-    height: 78vh !important;
-    height: 78dvh !important;
-    max-height: 640px !important;
-    min-height: 520px !important;
+    aspect-ratio: unset !important;
+    height: 70vh !important;
+    height: 70dvh !important;
+    max-height: 580px !important;
+    min-height: 440px !important;
+  }
+
+  #maria-diary-stage.is-open #book-wrapper {
+    transform: none !important;
   }
 
   #daily-message-text {
@@ -134,7 +177,6 @@ html.maria-html, html.maria-html body {
     font-size: clamp(12px, 3.2vw, 15px) !important;
   }
 
-  /* En móvil el panel plano reemplaza las páginas 3D de razones */
   #mobile-reasons-panel.is-open {
     display: flex !important;
     width: 100%;
@@ -152,15 +194,6 @@ html.maria-html, html.maria-html body {
 
   #diary-content {
     overflow: visible;
-  }
-}
-
-@media (max-width: 390px) {
-  #maria-diary-stage {
-    min-height: 560px !important;
-    height: 82vh !important;
-    height: 82dvh !important;
-    max-height: 680px !important;
   }
 }
 

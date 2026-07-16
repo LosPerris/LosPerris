@@ -58,11 +58,13 @@ export function initLetterInteraction() {
     if (el) el.textContent = "";
   });
 
+  const stage = document.getElementById("maria-diary-stage");
+
   if (cover && content && wrapper && strap) {
-    strap.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent bubbling
+    const openBook = () => {
       if (isBookOpen) return;
       isBookOpen = true;
+      stage?.classList.add("is-open");
 
       // Slide the entire book container to the center
       wrapper.classList.remove("-translate-x-1/4", "-translate-x-[18%]");
@@ -83,21 +85,25 @@ export function initLetterInteraction() {
         msgText.textContent = fullText; // temporarily fill
 
         const isMobile = window.innerWidth < 768;
-        let currentSize = isMobile ? 18 : 28;
-        const minSize = isMobile ? 12 : 14;
-        msgText.style.fontSize = currentSize + "px";
-
-        // Shrink until wrapper fits inside container, checking both height and width
-        while (
-          (msgWrapper.scrollHeight > msgContainer.clientHeight ||
-            msgWrapper.scrollWidth > msgContainer.clientWidth) &&
-          currentSize > minSize
-        ) {
-          currentSize -= 0.5;
+        // Esperar un frame para que .is-open aplique el nuevo tamaño
+        requestAnimationFrame(() => {
+          let currentSize = isMobile ? 18 : 28;
+          const minSize = isMobile ? 12 : 14;
           msgText.style.fontSize = currentSize + "px";
-        }
 
-        msgText.textContent = ""; // clear for typing effect
+          while (
+            (msgWrapper.scrollHeight > msgContainer.clientHeight ||
+              msgWrapper.scrollWidth > msgContainer.clientWidth) &&
+            currentSize > minSize
+          ) {
+            currentSize -= 0.5;
+            msgText.style.fontSize = currentSize + "px";
+          }
+
+          msgText.textContent = "";
+        });
+      } else if (msgText) {
+        msgText.textContent = "";
       }
 
       // Show content and position cursor
@@ -136,6 +142,18 @@ export function initLetterInteraction() {
           }, 500);
         });
       }, 4000);
+    };
+
+    strap.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openBook();
+    });
+
+    // Móvil: tocar la portada también abre (el strap es chico)
+    cover.addEventListener("click", (e) => {
+      if (isBookOpen) return;
+      if ((e.target as HTMLElement).closest("#snap-strap")) return;
+      openBook();
     });
   }
 
@@ -144,6 +162,7 @@ export function initLetterInteraction() {
       e.stopPropagation();
       if (!isBookOpen) return;
       isBookOpen = false;
+      stage?.classList.remove("is-open");
 
       // Cancel any ongoing timeouts
       clearTimeout(stampTimeoutId);
