@@ -151,6 +151,16 @@ const SKIP_SUBJECT_PATTERNS = [
   /\breveal-api-key\b/i,
   /\be2e\b/i,
   /\bsmoke\.spec\b/i,
+  // Refactors internos / commits sin valor para usuarios
+  /\bsimplificar archivo\b/i,
+  /\bextraer m[oó]dulos?\b/i,
+  /\bdataexporter\b/i,
+  /\bdividir\b.*\bcontroller\b/i,
+  /\barquitectura de (dos|2) capas\b/i,
+  /\bmigrar provider\b/i,
+  /\beliminando componentes\b/i,
+  /\bestilo modular\b/i,
+  /\baboutpage\b/i,
 ];
 
 const DEVOPS_SUBJECT_RE =

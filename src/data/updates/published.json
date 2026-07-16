@@ -2,34 +2,13 @@
   "syncedAt": "2026-07-16T19:16:35.599Z",
   "entries": [
     {
-      "id": "gh-twitch-477aee4",
-      "title": "Simplificar archivo original dataExporter tras extraer modulos",
-      "description": "",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-16T02:38:04.000Z",
-      "dateString": "16 Julio 2026",
-      "commitSha": "477aee4"
-    },
-    {
-      "id": "gh-twitch-c4aee94",
-      "title": "Migrar a autenticacion segura con cookies en todo el ecosistema",
-      "description": "",
+      "id": "manual-twitch-cookie-auth",
+      "title": "Inicio de sesión más seguro con cookies",
+      "description": "La sesión del panel ahora usa cookies HttpOnly en lugar de guardar secretos en el navegador. Si tenías sesión antigua, tendrás que volver a conectar tu cuenta de Twitch una vez.",
       "tag": "Optimización",
       "api": "Twitch",
       "date": "2026-07-16T02:34:24.000Z",
-      "dateString": "16 Julio 2026",
-      "commitSha": "c4aee94"
-    },
-    {
-      "id": "gh-twitch-ecb0712",
-      "title": "Dividir dashboard.controller y migrar provider a arquitectura de dos capas",
-      "description": "",
-      "tag": "Optimización",
-      "api": "Twitch",
-      "date": "2026-07-16T02:34:21.000Z",
-      "dateString": "16 Julio 2026",
-      "commitSha": "ecb0712"
+      "dateString": "16 Julio 2026"
     },
     {
       "id": "gh-twitch-01dfff8",
@@ -70,16 +49,6 @@
       "date": "2026-07-10T20:54:01.000Z",
       "dateString": "10 Julio 2026",
       "commitSha": "c063b7b"
-    },
-    {
-      "id": "gh-twitch-4606317",
-      "title": "Rediseño de AboutPage a estilo modular y limpio, eliminando componentes recargados",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-10T19:10:01.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "4606317"
     },
     {
       "id": "gh-twitch-6daa8b5",
