@@ -210,9 +210,9 @@ export function initLetterInteraction() {
 
       // Slide the entire book container back
       wrapper.classList.remove("translate-x-0");
-      wrapper.classList.add(
-        window.innerWidth < 768 ? "-translate-x-[18%]" : "-translate-x-1/4",
-      );
+      if (window.innerWidth >= 768) {
+        wrapper.classList.add("-translate-x-1/4");
+      }
     });
   }
 

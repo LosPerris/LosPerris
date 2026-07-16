@@ -34,16 +34,16 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
 });
 ---
 
-<div class="w-full flex flex-col gap-12 md:gap-24 pb-72 md:pb-48">
+<div class="w-full flex flex-col items-center gap-10 md:gap-24 pb-40 md:pb-48">
   {/* The Main Letter (Leather Notebook Style) */}
   <section
     id="maria-diary-stage"
-    class="relative w-full max-w-[900px] mx-auto flex items-center justify-center mb-8 md:mb-12 animate-fade-in-up md:w-[95%] md:aspect-[1.4]"
+    class="relative w-full max-w-[900px] mx-auto flex items-center justify-center mb-6 md:mb-12 animate-fade-in-up md:w-[95%] md:aspect-[1.4]"
     style="perspective: 2000px;"
   >
     <div
       id="book-wrapper"
-      class="relative w-full h-full transition-transform duration-[1200ms] ease-in-out -translate-x-[18%] md:-translate-x-1/4"
+      class="relative w-full h-full transition-transform duration-[1200ms] ease-in-out md:-translate-x-1/4"
     >
       {
         /* Interactive Cover State (Closed Rustic Leather Journal - Photorealistic) */
@@ -209,7 +209,7 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
           </div>
 
           <div
-            class="absolute top-0 bottom-0 left-1/2 w-[1px] -translate-x-1/2 bg-[#5c4a3d]/10 z-40 shadow-[0_0_8px_rgba(0,0,0,0.15)] flex flex-col items-center"
+            class="maria-fold-line absolute top-0 bottom-0 left-1/2 w-[1px] -translate-x-1/2 bg-[#5c4a3d]/10 z-40 shadow-[0_0_8px_rgba(0,0,0,0.15)] flex flex-col items-center"
           >
             <div
               class="absolute inset-y-0 border-l-[2px] border-dashed border-[#8b6b43] pointer-events-none opacity-60"
@@ -219,20 +219,20 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
           </div>
 
           <div
-            class="absolute top-0 bottom-0 left-1/2 w-12 bg-gradient-to-r from-[rgba(0,0,0,0.08)] to-transparent pointer-events-none z-30"
+            class="maria-fold-line absolute top-0 bottom-0 left-1/2 w-12 bg-gradient-to-r from-[rgba(0,0,0,0.08)] to-transparent pointer-events-none z-30"
           >
           </div>
           <div
-            class="absolute top-0 bottom-0 right-1/2 w-12 bg-gradient-to-l from-[rgba(0,0,0,0.08)] to-transparent pointer-events-none z-30"
+            class="maria-fold-line absolute top-0 bottom-0 right-1/2 w-12 bg-gradient-to-l from-[rgba(0,0,0,0.08)] to-transparent pointer-events-none z-30"
           >
           </div>
 
           <div
-            class="absolute top-0 bottom-0 left-1/2 ml-4 w-12 bg-gradient-to-r from-[rgba(255,255,255,0.25)] to-transparent pointer-events-none z-30"
+            class="maria-fold-line absolute top-0 bottom-0 left-1/2 ml-4 w-12 bg-gradient-to-r from-[rgba(255,255,255,0.25)] to-transparent pointer-events-none z-30"
           >
           </div>
           <div
-            class="absolute top-0 bottom-0 right-1/2 mr-4 w-12 bg-gradient-to-l from-[rgba(255,255,255,0.25)] to-transparent pointer-events-none z-30"
+            class="maria-fold-line absolute top-0 bottom-0 right-1/2 mr-4 w-12 bg-gradient-to-l from-[rgba(255,255,255,0.25)] to-transparent pointer-events-none z-30"
           >
           </div>
 
@@ -246,6 +246,7 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
           </div>
 
           <div
+            id="diary-left-page"
             class="absolute left-0 w-1/2 h-full flex flex-col items-center justify-center pt-4 md:pt-12 border-r border-[#c4b599]/60 z-10 px-1 md:px-4"
           >
             <div
@@ -300,7 +301,8 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
             style="transform-style: preserve-3d;"
           >
             <div
-              class="absolute inset-0 w-full h-full flex flex-col pt-4 pb-3 pl-2.5 pr-2.5 md:pt-16 md:pb-10 md:pl-12 md:pr-16 overflow-hidden"
+              id="message-face"
+              class="absolute inset-0 w-full h-full flex flex-col pt-4 pb-3 pl-3 pr-3 md:pt-16 md:pb-10 md:pl-12 md:pr-16 overflow-hidden"
               style="backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(225deg, transparent 28px, #e4d8c0 28px);"
             >
               <div
@@ -423,6 +425,7 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
           </div>
 
           <div
+            id="diary-right-reasons"
             class="absolute right-0 w-1/2 h-full flex flex-col pt-5 pb-3 pl-2.5 pr-3 md:pt-8 md:pb-4 md:pl-12 md:pr-16 z-10 overflow-hidden"
           >
             <div

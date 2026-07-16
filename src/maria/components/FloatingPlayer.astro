@@ -11,7 +11,7 @@ const { songId, question } = Astro.props;
   question && (
     <div
       id="interactive-envelope"
-      class="fixed bottom-0 left-4 md:bottom-0 md:left-8 z-[90] group w-52 h-32 md:w-80 md:h-48 cursor-pointer pointer-events-auto animate-desk-envelope"
+      class="fixed bottom-3 left-3 md:bottom-0 md:left-8 z-[90] group w-36 h-24 md:w-80 md:h-48 cursor-pointer pointer-events-auto animate-desk-envelope"
       style="perspective: 1200px; filter: drop-shadow(0 8px 8px rgba(0,0,0,0.55)) drop-shadow(0 18px 28px rgba(0,0,0,0.35)); transition: scale 0.5s, rotate 0.5s;"
       onmouseover="this.style.scale='1.01'; this.style.rotate='-4deg';"
       onmouseout="this.style.scale='1'; this.style.rotate='-5deg';"
@@ -44,7 +44,7 @@ const { songId, question } = Astro.props;
       {/* Envelope Label */}
       <div
         id="envelope-label"
-        class="absolute bottom-3 md:bottom-5 left-1/2 -translate-x-1/2 z-20 opacity-75 text-[#2a2015] text-xl md:text-2xl rotate-[-2deg] whitespace-nowrap pointer-events-none drop-shadow-sm"
+        class="absolute bottom-2 md:bottom-5 left-1/2 -translate-x-1/2 z-20 opacity-75 text-[#2a2015] text-sm md:text-2xl rotate-[-2deg] whitespace-nowrap pointer-events-none drop-shadow-sm"
         style="font-family: 'Caveat', cursive;"
       >
         Pregunta del día
@@ -86,7 +86,7 @@ const { songId, question } = Astro.props;
 
 <div
   id="polaroid-widget"
-  class="fixed top-2 right-2 md:top-0 md:right-12 z-[85] w-24 md:w-44 select-none animate-desk-polaroid"
+  class="fixed top-3 right-3 md:top-0 md:right-12 z-[85] w-[4.5rem] md:w-44 select-none animate-desk-polaroid"
   style="cursor: pointer;"
 >
   <div
@@ -449,7 +449,7 @@ const { songId, question } = Astro.props;
       href={`https://open.spotify.com/track/${songId}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="fixed bottom-0 right-6 md:bottom-0 md:right-24 z-[80] animate-desk-note"
+      class="fixed bottom-3 right-3 md:bottom-0 md:right-24 z-[80] animate-desk-note"
       style="text-decoration: none;"
       title="Escuchar en Spotify"
     >

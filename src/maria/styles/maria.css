@@ -114,21 +114,54 @@ html.maria-html, html.maria-html body {
 }
 
 /*
- * Móvil: cerrado = libreta con proporción normal (no franja alta).
- * Abierto (.is-open) = más ancho/alto para leer + panel de razones.
+ * Móvil: hero sin polaroid encima, diario centrado,
+ * abierto = una sola página legible + panel de razones.
  */
 @media (max-width: 767px) {
+  .maria-hero {
+    padding-right: 5.25rem; /* hueco para polaroid */
+  }
+
+  .maria-hero-copy {
+    max-width: 100%;
+  }
+
+  .maria-hero-copy p {
+    max-width: 100%;
+  }
+
+  #polaroid-widget {
+    top: 0.65rem !important;
+    right: 0.65rem !important;
+  }
+
+  #interactive-envelope {
+    bottom: 0.75rem !important;
+    left: 0.65rem !important;
+  }
+
+  #spotify-note {
+    bottom: 0.75rem !important;
+    right: 0.65rem !important;
+  }
+
+  #spotify-note > div {
+    min-width: 64px !important;
+    padding: 0.45rem 0.55rem !important;
+  }
+
   #maria-diary-stage {
-    width: min(82vw, 320px) !important;
-    max-width: 320px !important;
-    aspect-ratio: 0.68 !important;
+    width: min(78vw, 280px) !important;
+    max-width: 280px !important;
+    aspect-ratio: 0.7 !important;
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
-    margin-inline: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
-  /* Cerrado: portada a ancho completo (se ve libro, no media página flaca) */
+  /* Cerrado: portada completa, sin translate fantasma */
   #maria-diary-stage:not(.is-open) #book-wrapper {
     transform: none !important;
   }
@@ -140,41 +173,63 @@ html.maria-html, html.maria-html body {
   }
 
   #maria-diary-stage:not(.is-open) #diary-cover h3 {
-    font-size: 1.35rem !important;
-    letter-spacing: 0.18em !important;
+    font-size: 1.25rem !important;
+    letter-spacing: 0.16em !important;
   }
 
   #maria-diary-stage:not(.is-open) #diary-cover .maria-cover-mark {
-    transform: scale(1.4);
-    margin-bottom: 1.25rem !important;
+    transform: scale(1.25);
+    margin-bottom: 1rem !important;
   }
 
   #maria-diary-stage:not(.is-open) #diary-cover .maria-cover-vol {
-    font-size: 0.65rem !important;
-    margin-top: 1.5rem !important;
+    font-size: 0.6rem !important;
+    margin-top: 1.25rem !important;
   }
 
+  /* Abierto: ancho completo, una sola página de mensaje */
   #maria-diary-stage.is-open {
-    width: calc(100vw - 1.25rem) !important;
+    width: calc(100% - 1rem) !important;
     max-width: 100% !important;
     aspect-ratio: unset !important;
-    height: 70vh !important;
-    height: 70dvh !important;
-    max-height: 580px !important;
-    min-height: 440px !important;
+    height: 58vh !important;
+    height: 58dvh !important;
+    max-height: 480px !important;
+    min-height: 380px !important;
   }
 
   #maria-diary-stage.is-open #book-wrapper {
     transform: none !important;
   }
 
-  #daily-message-text {
-    font-size: clamp(13px, 3.6vw, 17px) !important;
-    line-height: 1.2 !important;
+  #maria-diary-stage.is-open #diary-left-page,
+  #maria-diary-stage.is-open #diary-right-reasons {
+    display: none !important;
   }
 
-  #right-signature {
-    font-size: clamp(12px, 3.2vw, 15px) !important;
+  #maria-diary-stage.is-open #page-turner {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  #maria-diary-stage.is-open #message-face {
+    padding: 1.25rem 1.1rem 1rem !important;
+    background: #e4d8c0 !important;
+  }
+
+  #maria-diary-stage.is-open #daily-message-text {
+    font-size: clamp(16px, 4.4vw, 20px) !important;
+    line-height: 1.35 !important;
+  }
+
+  #maria-diary-stage.is-open #right-signature {
+    font-size: clamp(15px, 4vw, 18px) !important;
+  }
+
+  /* Ocultar pliegue central en modo página única */
+  #maria-diary-stage.is-open .maria-fold-line {
+    display: none !important;
   }
 
   #mobile-reasons-panel.is-open {
@@ -192,8 +247,13 @@ html.maria-html, html.maria-html body {
     -webkit-overflow-scrolling: touch;
   }
 
+  #mobile-reasons-scroll p {
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+  }
+
   #diary-content {
-    overflow: visible;
+    overflow: hidden;
   }
 }
 
