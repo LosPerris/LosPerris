@@ -81,12 +81,14 @@ export function initLetterInteraction() {
       const isMobile = isMobileViewport();
 
       if (isMobile) {
-        // Móvil: apertura suave (sin flip 3D feo ni salto de tamaño)
-        cover.style.transition = "opacity 420ms ease, transform 420ms ease";
-        cover.style.transform = "scale(0.97)";
+        // Móvil: portada se abre como hoja (mismo tamaño, sin salto)
+        cover.style.transformOrigin = "left center";
+        cover.style.transition =
+          "transform 0.72s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease";
+        cover.style.transform = "perspective(900px) rotateY(-108deg)";
         cover.style.opacity = "0";
         cover.style.pointerEvents = "none";
-        content.style.transition = "opacity 480ms ease 80ms";
+        content.style.transition = "opacity 0.45s ease 0.12s";
       } else {
         // Desktop: flip 3D de portada
         cover.style.transition = "";
@@ -99,17 +101,16 @@ export function initLetterInteraction() {
       content.classList.remove("invisible");
       content.classList.remove("pointer-events-none");
 
-      // Auto-scale text based on actual physical dimensions to guarantee it fits!
+      // Auto-scale solo en PC (móvil usa tipografía CSS fija grande)
       const msgContainer = document.getElementById("message-container");
       const msgWrapper = document.getElementById("message-wrapper");
-      if (msgText && msgContainer && msgWrapper) {
+      if (msgText && msgContainer && msgWrapper && !isMobile) {
         const fullText = msgText.getAttribute("data-text") || "";
-        msgText.textContent = fullText; // temporarily fill
+        msgText.textContent = fullText;
 
-        // Esperar un frame para que .is-open aplique el nuevo tamaño
         requestAnimationFrame(() => {
-          let currentSize = isMobile ? 18 : 28;
-          const minSize = isMobile ? 12 : 14;
+          let currentSize = 28;
+          const minSize = 14;
           msgText.style.fontSize = currentSize + "px";
 
           while (
@@ -125,6 +126,7 @@ export function initLetterInteraction() {
         });
       } else if (msgText) {
         msgText.textContent = "";
+        if (isMobile) msgText.style.fontSize = "";
       }
 
       // Show content and position cursor
@@ -234,24 +236,26 @@ export function initLetterInteraction() {
       }
 
       if (pageTurnerEl) {
-        pageTurnerEl.style.opacity = "1";
+        pageTurnerEl.classList.remove("is-turning-away");
+        pageTurnerEl.style.opacity = "";
         pageTurnerEl.style.pointerEvents = "auto";
         pageTurnerEl.style.transition = "";
-        pageTurnerEl.style.transform = "rotateY(0deg)";
+        pageTurnerEl.style.transform = "";
       }
 
       // Reverse open effect
+      cover.style.transformOrigin = isMobileViewport() ? "left center" : "";
       cover.style.transition = isMobileViewport()
-        ? "opacity 380ms ease, transform 380ms ease"
+        ? "transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease"
         : "";
       cover.style.transform = isMobileViewport()
-        ? "scale(1)"
+        ? "perspective(900px) rotateY(0deg)"
         : "perspective(1200px) rotateY(0deg)";
       cover.style.opacity = "1";
       cover.style.pointerEvents = "auto";
       content.classList.add("pointer-events-none");
       content.classList.add("invisible");
-      content.style.opacity = "0"; // fade out content
+      content.style.opacity = "0";
 
       // Slide the entire book container back
       wrapper.classList.remove("translate-x-0", "translate-x-[12%]");
@@ -278,55 +282,15 @@ export function initLetterInteraction() {
     ".mobile-reason-number",
   );
 
-  function fitMobileReasonsToPanel() {
-    const scroll = document.getElementById("mobile-reasons-scroll");
-    if (!scroll || !mobileReasonTexts.length) return;
-
-    // Rellenar temporalmente para medir
-    mobileReasonTexts.forEach((el) => {
-      const node = el as HTMLElement;
-      node.textContent = node.getAttribute("data-text") || "";
-    });
-    mobileReasonNumbers.forEach((el) => {
-      const node = el as HTMLElement;
-      node.textContent = node.getAttribute("data-text") || "";
-    });
-    if (mobileReasonsTitle) {
-      mobileReasonsTitle.textContent =
-        mobileReasonsTitle.getAttribute("data-text") || "";
-    }
-
-    let size = 13;
-    const minSize = 10;
-    const applySize = (px: number) => {
-      mobileReasonTexts.forEach((el) => {
-        (el as HTMLElement).style.fontSize = `${px}px`;
-        (el as HTMLElement).style.lineHeight = "1.18";
-      });
-      mobileReasonNumbers.forEach((el) => {
-        (el as HTMLElement).style.fontSize = `${Math.max(px - 1, 9)}px`;
-      });
-    };
-
-    applySize(size);
-    while (size > minSize && scroll.scrollHeight > scroll.clientHeight + 1) {
-      size -= 0.5;
-      applySize(size);
-    }
-
-    // Vaciar de nuevo para tipografía progresiva
-    mobileReasonTexts.forEach((el) => (el.textContent = ""));
-    mobileReasonNumbers.forEach((el) => (el.textContent = ""));
-    if (mobileReasonsTitle) mobileReasonsTitle.textContent = "";
-  }
-
   function showMobileReasonsPanel() {
     if (!mobileReasonsPanel || !isMobileViewport()) return;
+    // Forzar reflow para que la transición de entrada se note
+    mobileReasonsPanel.classList.remove("is-open");
+    void mobileReasonsPanel.offsetWidth;
     mobileReasonsPanel.classList.add("is-open");
     mobileReasonsPanel.setAttribute("aria-hidden", "false");
 
     if (mobileReasonsTyped) {
-      // Ya se escribió: mostrar todo de golpe al volver a entrar
       if (mobileReasonsTitle) {
         mobileReasonsTitle.textContent =
           mobileReasonsTitle.getAttribute("data-text") || "";
@@ -345,34 +309,36 @@ export function initLetterInteraction() {
     }
 
     mobileReasonsTyped = true;
-    requestAnimationFrame(() => {
-      fitMobileReasonsToPanel();
+    if (mobileReasonsTitle) mobileReasonsTitle.textContent = "";
+    mobileReasonNumbers.forEach((el) => (el.textContent = ""));
+    mobileReasonTexts.forEach((el) => (el.textContent = ""));
+    if (mobileReasonsTitleLine)
+      mobileReasonsTitleLine.classList.add("opacity-0");
 
-      mobileReasonsTimeoutId = setTimeout(() => {
-        typeElement(mobileReasonsTitle, 30, 45, () => {
-          if (mobileReasonsTitleLine)
-            mobileReasonsTitleLine.classList.remove("opacity-0");
+    mobileReasonsTimeoutId = setTimeout(() => {
+      typeElement(mobileReasonsTitle, 30, 45, () => {
+        if (mobileReasonsTitleLine)
+          mobileReasonsTitleLine.classList.remove("opacity-0");
 
-          setTimeout(() => {
-            let index = 0;
-            function typeNextMobileReason() {
-              if (!isBookOpen) return;
-              if (index < mobileReasonTexts.length) {
-                const numEl = mobileReasonNumbers[index] as HTMLElement;
-                const textEl = mobileReasonTexts[index] as HTMLElement;
-                typeElement(numEl, 28, 35, () => {
-                  typeElement(textEl, 14, 18, () => {
-                    index++;
-                    setTimeout(typeNextMobileReason, 220);
-                  });
+        setTimeout(() => {
+          let index = 0;
+          function typeNextMobileReason() {
+            if (!isBookOpen) return;
+            if (index < mobileReasonTexts.length) {
+              const numEl = mobileReasonNumbers[index] as HTMLElement;
+              const textEl = mobileReasonTexts[index] as HTMLElement;
+              typeElement(numEl, 28, 35, () => {
+                typeElement(textEl, 14, 18, () => {
+                  index++;
+                  setTimeout(typeNextMobileReason, 220);
                 });
-              }
+              });
             }
-            typeNextMobileReason();
-          }, 350);
-        });
-      }, 280);
-    });
+          }
+          typeNextMobileReason();
+        }, 350);
+      });
+    }, 420);
   }
 
   function hideMobileReasonsPanel() {
@@ -451,14 +417,12 @@ export function initLetterInteraction() {
       turnPageBtn.classList.add("opacity-0", "pointer-events-none");
 
       if (isMobileViewport()) {
-        // Safari/iOS: evitar leer texto dentro de rotateY (se corta).
-        // Animación corta + panel plano scrolleable.
-        pageTurner.style.transition = "opacity 400ms ease";
-        pageTurner.style.opacity = "0";
+        // Móvil: la hoja se desliza y entra la de razones (sin resize feo)
+        pageTurner.classList.add("is-turning-away");
         pageTurner.style.pointerEvents = "none";
         setTimeout(() => {
           showMobileReasonsPanel();
-        }, 280);
+        }, 220);
         return;
       }
 
@@ -502,10 +466,11 @@ export function initLetterInteraction() {
     hideMobileReasonsPanel();
 
     if (pageTurner) {
-      pageTurner.style.opacity = "1";
+      pageTurner.classList.remove("is-turning-away");
+      pageTurner.style.opacity = "";
       pageTurner.style.pointerEvents = "auto";
       pageTurner.style.transition = "";
-      pageTurner.style.transform = "rotateY(0deg)";
+      pageTurner.style.transform = isMobileViewport() ? "" : "rotateY(0deg)";
     }
 
     if (turnPageBtn) {
@@ -515,7 +480,7 @@ export function initLetterInteraction() {
           turnPageBtn.style.pointerEvents = "auto";
           turnPageBtn.classList.remove("opacity-0", "pointer-events-none");
         },
-        isMobileViewport() ? 200 : 1500,
+        isMobileViewport() ? 280 : 1500,
       );
     }
   }

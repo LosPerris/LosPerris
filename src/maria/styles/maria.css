@@ -223,11 +223,11 @@ html.maria-html, html.maria-html body {
     margin-top: 1.25rem !important;
   }
 
-  /* Abierto: misma proporción de libreta (una hoja / mitad doblada), no full-bleed */
+  /* Abierto: una hoja (mitad doblada), tipografía grande y fija */
   #maria-diary-stage.is-open {
-    width: min(84vw, 310px) !important;
-    max-width: 310px !important;
-    aspect-ratio: 0.68 !important;
+    width: min(86vw, 320px) !important;
+    max-width: 320px !important;
+    aspect-ratio: 0.62 !important;
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
@@ -246,45 +246,72 @@ html.maria-html, html.maria-html body {
     width: 100% !important;
     left: 0 !important;
     right: 0 !important;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease !important;
   }
 
-  /* Contenedor de cuero: lomo visible a la izquierda (libreta doblada) */
+  #maria-diary-stage.is-open #page-turner.is-turning-away {
+    transform: translateX(-26%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Contenedor de cuero: lomo a la izquierda */
   #maria-diary-stage.is-open #diary-content {
-    padding: 0.45rem 0.45rem 0.45rem 0.85rem !important;
+    padding: 0.45rem 0.45rem 0.45rem 0.9rem !important;
     overflow: visible !important;
-    transition: opacity 0.45s ease !important;
+  }
+
+  #maria-diary-stage.is-open #diary-cover {
+    transform-origin: left center;
+    transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.55s ease !important;
   }
 
   #maria-diary-stage.is-open #message-face {
-    padding: 1.1rem 0.95rem 0.9rem 1.15rem !important;
+    padding: 1.35rem 1rem 1.1rem 1.2rem !important;
     background: linear-gradient(
       90deg,
       #d4c4a0 0%,
-      #e4d8c0 12%,
+      #e4d8c0 14%,
       #e4d8c0 100%
     ) !important;
     box-shadow: inset 10px 0 14px -12px rgba(40, 25, 10, 0.45);
+    justify-content: center;
   }
 
-  /* Pliegue del lomo a la izquierda (no el centro de PC) */
+  #maria-diary-stage.is-open #message-container {
+    justify-content: center !important;
+    flex-grow: 1 !important;
+  }
+
   #maria-diary-stage.is-open .maria-fold-line {
     display: none !important;
   }
 
+  /* Mensaje diario grande: una hoja no debe verse vacía */
   #maria-diary-stage.is-open #daily-message-text {
-    font-size: clamp(15px, 4.2vw, 19px) !important;
-    line-height: 1.35 !important;
+    font-size: clamp(22px, 6.5vw, 28px) !important;
+    line-height: 1.28 !important;
   }
 
   #maria-diary-stage.is-open #right-signature {
-    font-size: clamp(14px, 3.8vw, 17px) !important;
+    font-size: clamp(18px, 5.2vw, 22px) !important;
   }
 
-  /* Strap de cierre más compacto en móvil */
   #maria-diary-stage.is-open #close-strap {
     width: 2.25rem !important;
     height: 2rem !important;
     right: -0.85rem !important;
+  }
+
+  /* Panel razones: tamaño fijo, sin scroll ni reflow dinámico */
+  #mobile-reasons-panel {
+    opacity: 0;
+    transform: translateX(22%);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease;
+    pointer-events: none;
   }
 
   #mobile-reasons-panel.is-open {
@@ -293,37 +320,38 @@ html.maria-html, html.maria-html body {
     height: 100%;
     flex-direction: column;
     overflow: hidden;
-    padding: 0.65rem 0.7rem 0.55rem 0.85rem !important;
+    padding: 0.7rem 0.75rem 0.55rem 0.9rem !important;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
   }
 
   #mobile-reasons-scroll {
     flex: 1 1 auto;
     min-height: 0;
     overflow: hidden !important;
-    -webkit-overflow-scrolling: auto;
   }
 
   #mobile-reasons-scroll > div {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 0.15rem !important;
+    justify-content: flex-start;
+    gap: 0.28rem !important;
     padding-bottom: 0 !important;
+    height: auto !important;
   }
 
   #mobile-reasons-scroll .mobile-reason-text {
-    font-size: 13px !important;
-    line-height: 1.2 !important;
+    font-size: 12.5px !important;
+    line-height: 1.22 !important;
   }
 
   #mobile-reasons-scroll .mobile-reason-number {
     font-size: 11px !important;
-    margin-top: 0.1rem !important;
   }
 
   #mobile-reasons-title {
-    font-size: 1.15rem !important;
+    font-size: 1.2rem !important;
   }
 
   #diary-content {
