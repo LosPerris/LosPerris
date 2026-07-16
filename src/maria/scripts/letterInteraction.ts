@@ -4,6 +4,8 @@ export function initLetterInteraction() {
   let stampTimeoutId: any = null;
   let textTimeoutId: any = null;
   let signatureTimeoutId: any = null;
+  let mobileReasonsTyped = false;
+  let mobileReasonsTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
   const wrapper = document.getElementById("book-wrapper");
   const cover = document.getElementById("diary-cover");
@@ -59,6 +61,7 @@ export function initLetterInteraction() {
   });
 
   const stage = document.getElementById("maria-diary-stage");
+  const isMobileViewport = () => window.innerWidth < 768;
 
   if (cover && content && wrapper && strap) {
     const openBook = () => {
@@ -75,10 +78,24 @@ export function initLetterInteraction() {
       );
       wrapper.classList.add("translate-x-0");
 
-      // 3D book open effect
-      cover.style.transform = "perspective(1200px) rotateY(-110deg)";
-      cover.style.opacity = "0";
-      cover.style.pointerEvents = "none";
+      const isMobile = isMobileViewport();
+
+      if (isMobile) {
+        // Móvil: apertura suave (sin flip 3D feo ni salto de tamaño)
+        cover.style.transition = "opacity 420ms ease, transform 420ms ease";
+        cover.style.transform = "scale(0.97)";
+        cover.style.opacity = "0";
+        cover.style.pointerEvents = "none";
+        content.style.transition = "opacity 480ms ease 80ms";
+      } else {
+        // Desktop: flip 3D de portada
+        cover.style.transition = "";
+        cover.style.transform = "perspective(1200px) rotateY(-110deg)";
+        cover.style.opacity = "0";
+        cover.style.pointerEvents = "none";
+        content.style.transition = "";
+      }
+
       content.classList.remove("invisible");
       content.classList.remove("pointer-events-none");
 
@@ -89,7 +106,6 @@ export function initLetterInteraction() {
         const fullText = msgText.getAttribute("data-text") || "";
         msgText.textContent = fullText; // temporarily fill
 
-        const isMobile = window.innerWidth < 768;
         // Esperar un frame para que .is-open aplique el nuevo tamaño
         requestAnimationFrame(() => {
           let currentSize = isMobile ? 18 : 28;
@@ -118,14 +134,16 @@ export function initLetterInteraction() {
       // Instantly reveal the day stamp box
       if (leftDayBox) leftDayBox.classList.remove("opacity-0");
 
-      // Add stamps after cover opens (1500ms)
+      // Add stamps after cover opens
+      const stampDelay = isMobile ? 500 : 1500;
+      const typeDelay = isMobile ? 900 : 4000;
       stampTimeoutId = setTimeout(() => {
         document.querySelectorAll(".stamp-element").forEach((el) => {
           el.classList.add("animate-stamp");
         });
-      }, 1500);
+      }, stampDelay);
 
-      // Start typing sequence for handwritten text after stamps finish (4000ms total)
+      // Start typing sequence for handwritten text
       textTimeoutId = setTimeout(() => {
         // 1. Main Message (Right Page)
         typeElement(msgText, 25, 45, () => {
@@ -146,7 +164,7 @@ export function initLetterInteraction() {
             });
           }, 500);
         });
-      }, 4000);
+      }, typeDelay);
     };
 
     strap.addEventListener("click", (e) => {
@@ -198,6 +216,23 @@ export function initLetterInteraction() {
         mobilePanel.classList.remove("is-open");
         mobilePanel.setAttribute("aria-hidden", "true");
       }
+      document
+        .querySelectorAll(
+          ".mobile-reason-text, .mobile-reason-number, #mobile-reasons-title",
+        )
+        .forEach((el) => {
+          el.textContent = "";
+        });
+      const mobileTitleLine = document.getElementById(
+        "mobile-reasons-title-line",
+      );
+      if (mobileTitleLine) mobileTitleLine.classList.add("opacity-0");
+      mobileReasonsTyped = false;
+      if (mobileReasonsTimeoutId) {
+        clearTimeout(mobileReasonsTimeoutId);
+        mobileReasonsTimeoutId = null;
+      }
+
       if (pageTurnerEl) {
         pageTurnerEl.style.opacity = "1";
         pageTurnerEl.style.pointerEvents = "auto";
@@ -205,8 +240,13 @@ export function initLetterInteraction() {
         pageTurnerEl.style.transform = "rotateY(0deg)";
       }
 
-      // Reverse 3D book open effect
-      cover.style.transform = "perspective(1200px) rotateY(0deg)";
+      // Reverse open effect
+      cover.style.transition = isMobileViewport()
+        ? "opacity 380ms ease, transform 380ms ease"
+        : "";
+      cover.style.transform = isMobileViewport()
+        ? "scale(1)"
+        : "perspective(1200px) rotateY(0deg)";
       cover.style.opacity = "1";
       cover.style.pointerEvents = "auto";
       content.classList.add("pointer-events-none");
@@ -229,8 +269,14 @@ export function initLetterInteraction() {
   const reasonsTitleLine = document.getElementById("reasons-title-line");
   const mobileReasonsPanel = document.getElementById("mobile-reasons-panel");
   const mobileReasonsBack = document.getElementById("mobile-reasons-back");
-
-  const isMobileViewport = () => window.innerWidth < 768;
+  const mobileReasonsTitle = document.getElementById("mobile-reasons-title");
+  const mobileReasonsTitleLine = document.getElementById(
+    "mobile-reasons-title-line",
+  );
+  const mobileReasonTexts = document.querySelectorAll(".mobile-reason-text");
+  const mobileReasonNumbers = document.querySelectorAll(
+    ".mobile-reason-number",
+  );
 
   function showMobileReasonsPanel() {
     if (!mobileReasonsPanel || !isMobileViewport()) return;
@@ -238,18 +284,83 @@ export function initLetterInteraction() {
     mobileReasonsPanel.setAttribute("aria-hidden", "false");
     const scroll = document.getElementById("mobile-reasons-scroll");
     if (scroll) scroll.scrollTop = 0;
+
+    if (mobileReasonsTyped) {
+      // Ya se escribió: mostrar todo de golpe al volver a entrar
+      if (mobileReasonsTitle) {
+        mobileReasonsTitle.textContent =
+          mobileReasonsTitle.getAttribute("data-text") || "";
+      }
+      if (mobileReasonsTitleLine)
+        mobileReasonsTitleLine.classList.remove("opacity-0");
+      mobileReasonNumbers.forEach((el) => {
+        const node = el as HTMLElement;
+        node.textContent = node.getAttribute("data-text") || "";
+      });
+      mobileReasonTexts.forEach((el) => {
+        const node = el as HTMLElement;
+        node.textContent = node.getAttribute("data-text") || "";
+      });
+      return;
+    }
+
+    mobileReasonsTyped = true;
+    if (mobileReasonsTitle) mobileReasonsTitle.textContent = "";
+    mobileReasonNumbers.forEach((el) => (el.textContent = ""));
+    mobileReasonTexts.forEach((el) => (el.textContent = ""));
+    if (mobileReasonsTitleLine)
+      mobileReasonsTitleLine.classList.add("opacity-0");
+
+    mobileReasonsTimeoutId = setTimeout(() => {
+      typeElement(mobileReasonsTitle, 30, 45, () => {
+        if (mobileReasonsTitleLine)
+          mobileReasonsTitleLine.classList.remove("opacity-0");
+
+        setTimeout(() => {
+          let index = 0;
+          function typeNextMobileReason() {
+            if (!isBookOpen) return;
+            if (index < mobileReasonTexts.length) {
+              const numEl = mobileReasonNumbers[index] as HTMLElement;
+              const textEl = mobileReasonTexts[index] as HTMLElement;
+              typeElement(numEl, 28, 35, () => {
+                typeElement(textEl, 14, 18, () => {
+                  index++;
+                  // Auto-scroll mientras escribe
+                  const scrollEl = document.getElementById(
+                    "mobile-reasons-scroll",
+                  );
+                  if (scrollEl) {
+                    scrollEl.scrollTop = scrollEl.scrollHeight;
+                  }
+                  setTimeout(typeNextMobileReason, 220);
+                });
+              });
+            }
+          }
+          typeNextMobileReason();
+        }, 350);
+      });
+    }, 280);
   }
 
   function hideMobileReasonsPanel() {
     if (!mobileReasonsPanel) return;
     mobileReasonsPanel.classList.remove("is-open");
     mobileReasonsPanel.setAttribute("aria-hidden", "true");
+    if (mobileReasonsTimeoutId) {
+      clearTimeout(mobileReasonsTimeoutId);
+      mobileReasonsTimeoutId = null;
+    }
   }
 
   // Clear reason texts on load so they don't appear before typing
   reasonTexts.forEach((el) => (el.textContent = ""));
   reasonNumbers.forEach((el) => (el.textContent = ""));
   if (reasonsTitle) reasonsTitle.textContent = "";
+  mobileReasonTexts.forEach((el) => (el.textContent = ""));
+  mobileReasonNumbers.forEach((el) => (el.textContent = ""));
+  if (mobileReasonsTitle) mobileReasonsTitle.textContent = "";
 
   /** Reduce tipografía de razones hasta que quepan (desktop / tablets). */
   function fitReasonsToPages() {
@@ -317,7 +428,6 @@ export function initLetterInteraction() {
         setTimeout(() => {
           showMobileReasonsPanel();
         }, 280);
-        reasonsTyped = true;
         return;
       }
 

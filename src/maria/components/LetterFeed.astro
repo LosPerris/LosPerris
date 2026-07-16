@@ -450,15 +450,20 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
             </div>
           </div>
 
-          {
-            /* Safari/iOS: panel plano (sin rotateY) para que "Por qué te amo" no se corte */
-          }
+          {/* Safari/iOS: panel plano (sin rotateY) + tipografía progresiva */}
           <div
             id="mobile-reasons-panel"
             class="absolute inset-0 z-[60] hidden flex-col px-3 pt-4 pb-3 md:hidden"
-            style="background: linear-gradient(180deg, #e6dbc3 0%, #e1d3b9 100%); -webkit-overflow-scrolling: touch;"
+            style="background: linear-gradient(90deg, #d8c9a8 0%, #e6dbc3 10%, #e1d3b9 100%); -webkit-overflow-scrolling: touch;"
             aria-hidden="true"
           >
+            {/* Sombra de pliegue / lomo a la izquierda (hoja doblada) */}
+            <div
+              class="pointer-events-none absolute inset-y-0 left-0 w-5 z-[1]"
+              style="background: linear-gradient(to right, rgba(60,40,20,0.22), rgba(60,40,20,0.06) 55%, transparent);"
+              aria-hidden="true"
+            >
+            </div>
             <button
               id="mobile-reasons-back"
               type="button"
@@ -467,33 +472,38 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
             >
               ← Volver
             </button>
-            <div class="text-center mb-3 mt-5 shrink-0">
+            <div class="text-center mb-3 mt-5 shrink-0 relative z-[2]">
               <h2
-                class="text-[#1a1510] text-[1.35rem] opacity-90 leading-tight"
+                id="mobile-reasons-title"
+                class="text-[#1a1510] text-[1.35rem] opacity-90 leading-tight min-h-[1.4em]"
                 style="font-family: 'Caveat', cursive;"
+                data-text="Por qué te amo..."
               >
-                Por qué te amo...
               </h2>
-              <div class="w-14 h-[1px] bg-[#8b3a3a]/30 mx-auto mt-2"></div>
+              <div
+                id="mobile-reasons-title-line"
+                class="w-14 h-[1px] bg-[#8b3a3a]/30 mx-auto mt-2 opacity-0 transition-opacity duration-500"
+              >
+              </div>
             </div>
             <div
               id="mobile-reasons-scroll"
-              class="flex-1 min-h-0 overflow-y-auto overscroll-contain pr-1 custom-scrollbar"
+              class="flex-1 min-h-0 overflow-y-auto overscroll-contain pr-1 custom-scrollbar relative z-[2]"
               style="-webkit-overflow-scrolling: touch;"
             >
               <div class="flex flex-col gap-2.5 pb-2">
                 {
                   reasons.map((reason, index) => (
                     <div class="flex items-start gap-2">
-                      <span class="text-[#8b3a3a] font-bold font-serif opacity-70 text-[13px] mt-0.5 w-5 flex-shrink-0">
-                        {index + 1}.
-                      </span>
+                      <span
+                        class="mobile-reason-number text-[#8b3a3a] font-bold font-serif opacity-70 text-[13px] mt-0.5 w-5 flex-shrink-0 min-h-[1em]"
+                        data-text={`${index + 1}.`}
+                      />
                       <p
-                        class="text-[#1a1510] text-[15px] leading-snug opacity-90"
+                        class="mobile-reason-text text-[#1a1510] text-[15px] leading-snug opacity-90 min-h-[1.2em]"
                         style="font-family: 'Caveat', cursive;"
-                      >
-                        {reason}
-                      </p>
+                        data-text={reason}
+                      />
                     </div>
                   ))
                 }
