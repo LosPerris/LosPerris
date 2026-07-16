@@ -173,16 +173,12 @@ const dayNumber = getDaysSinceStart();
       bloomLabel.textContent = "Floreciendo...";
       (bloomBtn as HTMLButtonElement).style.pointerEvents = "none";
 
-      const btnRect = bloomBtn.getBoundingClientRect();
-      const burstX = btnRect.left + btnRect.width / 2;
-      const burstY = btnRect.top + btnRect.height / 2;
-
-      // Destello cálido suave
+      // Destello cálido suave desde abajo
       const flash = document.createElement("div");
       flash.style.cssText = `
         position:fixed;inset:0;pointer-events:none;z-index:9999;
-        background:radial-gradient(circle at ${burstX}px ${burstY}px,
-          rgba(251,191,36,0.45) 0%, rgba(251,191,36,0.12) 28%, transparent 62%);
+        background:radial-gradient(ellipse 90% 55% at 50% 100%,
+          rgba(251,191,36,0.4) 0%, rgba(251,191,36,0.12) 35%, transparent 70%);
         opacity:0;transition:opacity 1.6s ease-out;
       `;
       document.body.appendChild(flash);
@@ -199,7 +195,7 @@ const dayNumber = getDaysSinceStart();
       const totalSeeds = 18;
       let created = 0;
 
-      const spawnPetal = (fromButton: boolean) => {
+      const spawnPetal = () => {
         const svg = document.createElementNS(ns, "svg");
         const sizePx = 28 + Math.random() * 26;
         svg.setAttribute("width", String(sizePx));
@@ -249,21 +245,14 @@ const dayNumber = getDaysSinceStart();
         vein.setAttribute("stroke-linecap", "round");
         svg.appendChild(vein);
 
-        const startX = fromButton
-          ? burstX + (Math.random() - 0.5) * 40
-          : (Math.random() * 1.15 - 0.075) * window.innerWidth;
-        const startY = fromButton
-          ? burstY + (Math.random() - 0.5) * 20
-          : window.innerHeight + 10 + Math.random() * 40;
+        // Todos desde abajo, repartidos por el ancho
+        const startX = (Math.random() * 1.15 - 0.075) * window.innerWidth;
+        const startY = window.innerHeight + 12 + Math.random() * 50;
 
         const scale = 0.55 + Math.random() * 1.15;
-        const duration = fromButton
-          ? 2800 + Math.random() * 2200
-          : 3800 + Math.random() * 4200;
-        const sway = (Math.random() - 0.5) * (fromButton ? 280 : 520);
-        const liftPx = fromButton
-          ? -(window.innerHeight * (0.45 + Math.random() * 0.45))
-          : -(window.innerHeight * (1.05 + Math.random() * 0.25));
+        const duration = 3800 + Math.random() * 4200;
+        const sway = (Math.random() - 0.5) * 520;
+        const liftPx = -(window.innerHeight * (1.05 + Math.random() * 0.25));
         const spin =
           (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 540);
         const flutter = 18 + Math.random() * 28;
@@ -325,11 +314,11 @@ const dayNumber = getDaysSinceStart();
         seed.setAttribute("opacity", "0.85");
         svg.appendChild(seed);
 
-        const startX = burstX + (Math.random() - 0.5) * 60;
-        const startY = burstY + (Math.random() - 0.5) * 30;
-        const sway = (Math.random() - 0.5) * 200;
-        const liftPx = -(window.innerHeight * (0.35 + Math.random() * 0.4));
-        const duration = 2200 + Math.random() * 1800;
+        const startX = (Math.random() * 1.1 - 0.05) * window.innerWidth;
+        const startY = window.innerHeight + 8 + Math.random() * 30;
+        const sway = (Math.random() - 0.5) * 260;
+        const liftPx = -(window.innerHeight * (0.9 + Math.random() * 0.35));
+        const duration = 3200 + Math.random() * 2800;
         const spin = (Math.random() - 0.5) * 720;
 
         document.body.appendChild(svg);
@@ -359,21 +348,17 @@ const dayNumber = getDaysSinceStart();
         created++;
       };
 
-      // Estallido inicial desde el botón
-      for (let i = 0; i < 16; i++) {
-        setTimeout(() => spawnPetal(true), i * 28);
-      }
-      for (let i = 0; i < totalSeeds; i++) {
-        setTimeout(() => spawnSeed(), 40 + i * 35);
-      }
-
-      // Lluvia ascendente de pétalos por toda la pantalla
+      // Todo sale desde abajo
       const interval = setInterval(() => {
-        for (let i = 0; i < 5 && created < totalPetals + totalSeeds; i++) {
-          spawnPetal(false);
+        for (let i = 0; i < 5 && created < totalPetals; i++) {
+          spawnPetal();
         }
-        if (created >= totalPetals + totalSeeds) clearInterval(interval);
+        if (created >= totalPetals) clearInterval(interval);
       }, 55);
+
+      for (let i = 0; i < totalSeeds; i++) {
+        setTimeout(() => spawnSeed(), 80 + i * 45);
+      }
 
       setTimeout(() => {
         blooming = false;
