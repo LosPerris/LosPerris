@@ -10,12 +10,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONFIG_PATH = path.join(__dirname, "filters.config.json");
 
 const DEFAULT_THRESHOLDS = {
-  minSubjectLength: 10,
-  descriptiveSubjectMinLength: 18,
-  descriptiveSubjectMinWords: 3,
-  clearSubjectMinLength: 14,
-  bodyContextMinLength: 20,
-  bodyContextSubjectMinLength: 12,
+  minSubjectLength: 12,
+  descriptiveSubjectMinLength: 22,
+  descriptiveSubjectMinWords: 4,
+  clearSubjectMinLength: 18,
+  bodyContextMinLength: 40,
+  bodyContextSubjectMinLength: 14,
 };
 
 function loadThresholds() {
@@ -36,7 +36,6 @@ const PUBLISH_TYPES = new Set([
   "feat",
   "perf",
   "a11y",
-  "refactor",
   "revert",
 ]);
 
@@ -48,6 +47,7 @@ const SKIP_TYPES = new Set([
   "ci",
   "build",
   "fix",
+  "refactor",
 ]);
 
 const TAG_FROM_TYPE = {
@@ -75,6 +75,7 @@ const SKIP_SUBJECT_PATTERNS = [
   /^test:/i,
   /^ci:/i,
   /^build:/i,
+  /^refactor:/i,
   /^sync\b/i,
   /^typo\b/i,
   /^rename\b/i,
@@ -90,23 +91,10 @@ const SKIP_SUBJECT_PATTERNS = [
   /^dependabot/i,
   /^sincronizar actualizaciones/i,
   /^chore:/i,
-  /^disparar\b/i,
-  /^declarar\b/i,
-  /^restaurar\b/i,
-  /^reemplazar\b/i,
   /^usar node/i,
   /^actualizar engines/i,
   /\bengines?\b/i,
   /\bnode\s*22\b/i,
-  /^rediseñar danger zone/i,
-  /^añadir componente profilesettingssection/i,
-  /^preservar la zona horaria/i,
-  /^escuchar actualizaciones de user_daily_stats/i,
-  /^migrar activity_logs/i,
-  /^incluir el rol del usuario/i,
-  /^añadir parametro user/i,
-  /^rastrear nombre del usuario/i,
-  /^migrar a matriz de cache/i,
   /\bnode\s*>=/i,
   /\bjest\b/i,
   /\bworkflow\b/i,
@@ -119,52 +107,39 @@ const SKIP_SUBJECT_PATTERNS = [
   /\btests unitarios\b/i,
   /\blint-staged\b/i,
   /^probar (dispatch|flujo)/i,
-  /^quitar\b/i,
-  /^remove\b/i,
-  /^añadir página/i,
-  /^add legacy/i,
-  /^add custom 404/i,
-  /^Move QR routes/i,
-  /^Tighten dashboard cap/i,
-  /\bhover animation/i,
-  /\bfooter de la landing/i,
-  /\bbadge de api privada/i,
-  /\bpaths técnicos\b/i,
   /\bvercel\.json\b/i,
-  /\b404 al estilo\b/i,
-  /\bcustom 404 page\b/i,
-  /\blatencia en segundos\b/i,
   /\bfunctions de vercel\b/i,
   /\blegacy path\b/i,
   /\blimpieza\b.*\b(carpetas|tests?)\b/i,
   /\bcorrecci[oó]n de tests?\b/i,
-  /\brealtimeservice\b/i,
-  /\bupstash\b/i,
-  /\bmigrar backend\b/i,
-  /\blocalstorage\b/i,
-  /\bapi key\b.*\b(localstorage|memoria|reveal)\b/i,
-  /\bopc[ií]on 2\b/i,
-  /\bworker-src\b/i,
-  /\bservice worker\b/i,
-  /\bhttponly\b/i,
-  /\bsession cookie\b/i,
-  /\breveal-api-key\b/i,
   /\be2e\b/i,
   /\bsmoke\.spec\b/i,
-  // Refactors internos / commits sin valor para usuarios
+  /\bupstash\b/i,
+  /\brealtimeservice\b/i,
+  /\bworker-src\b/i,
+  /\bservice worker\b/i,
+  // Ruido interno genérico (código/arquitectura, no producto)
   /\bsimplificar archivo\b/i,
   /\bextraer m[oó]dulos?\b/i,
-  /\bdataexporter\b/i,
-  /\bdividir\b.*\bcontroller\b/i,
-  /\barquitectura de (dos|2) capas\b/i,
-  /\bmigrar provider\b/i,
+  /\bdividir\b.*\b(controller|servicio|service|provider|archivo)\b/i,
+  /\barquitectura de (dos|2|\w+) capas?\b/i,
+  /\bmigrar (provider|backend|activity_logs|a matriz)\b/i,
   /\beliminando componentes\b/i,
   /\bestilo modular\b/i,
-  /\baboutpage\b/i,
+  /\b\w+\.controller\b/i,
+  /\b\w+\.service\b/i,
+  /\b\w+provider\b/i,
+  /\brefactors?\b/i,
+  /\btipos? (compartidos|internos)\b/i,
+  /\bbarrel exports?\b/i,
 ];
 
+/** Commits que suenan a producto pero son solo reorganización de código. */
+const INTERNAL_CODE_RE =
+  /\b(controller|provider|dataexporter|extraer m[oó]dulos?|simplificar archivo|arquitectura de|dos capas|estilo modular|eliminando componentes|\.controller\b|\.service\b|migrar provider)\b/i;
+
 const DEVOPS_SUBJECT_RE =
-  /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de actualizaciones|losperris al pushear|ci obsoleto|tests unitarios|caché de actualizaciones|trigger-losperris|vercel\.json|legacy path|custom 404|hover animation|footer de la landing|badge de api privada|paths técnicos)\b/i;
+  /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de actualizaciones|losperris al pushear|ci obsoleto|tests unitarios|caché de actualizaciones|trigger-losperris|vercel\.json|legacy path|custom 404|paths técnicos|lint-staged|github actions?)\b/i;
 
 const USER_FACING_RE =
   /\b(vista previa|preview|selector|modal|página|pagina|export|región|region|usuario|dashboard|logo|imagen|gif|avatar|qr|código|codigo|panel|comando|botón|boton|formulario|descarga|subdominio|transcript|embed|reacción|reaccion|documento|generador|latencia|perfil|clip|stream|chat|landing|rediseño|redisen|streamlabs|botrix|nightbot|fossabot|bento|consola|overlay|ruleta|tendencias|minijuego|shoutout|followage)\b/gi;
@@ -184,7 +159,7 @@ const INTENT_TAG_RULES = [
   },
   {
     tag: "Optimización",
-    re: /\b(perf|optimiz(ar|ación|acion)|rendimiento|más rápido|mas rapido|mejor(ar|é|e|ado)?|migrar|refactor)\b|mejoré/gi,
+    re: /\b(perf|optimiz(ar|ación|acion)|rendimiento|más rápido|mas rapido)\b/gi,
   },
 ];
 
@@ -241,6 +216,7 @@ function isMaintenanceSubject(subject) {
   if (subject.length < FILTER_THRESHOLDS.minSubjectLength) return true;
   if (SKIP_SUBJECT_PATTERNS.some((re) => re.test(subject))) return true;
   if (DEVOPS_SUBJECT_RE.test(subject)) return true;
+  if (INTERNAL_CODE_RE.test(subject)) return true;
   return false;
 }
 
@@ -305,19 +281,32 @@ export function analyzeCommit(message) {
   }
 
   const combined = `${subject} ${body}`;
+  const words = wordCount(subject);
 
+  // Feature/Fix/A11y con sujeto descriptivo + contexto de producto
   if (
+    (tag === "Feature" || tag === "Fix" || tag === "A11y") &&
     hasUserFacingContext(combined) &&
     subject.length >= T.descriptiveSubjectMinLength &&
-    wordCount(subject) >= T.descriptiveSubjectMinWords &&
-    tag !== "Infra"
+    words >= T.descriptiveSubjectMinWords
   ) {
     return { publish: true, reason: "user-facing:descriptive-subject", tag, title, body };
   }
 
+  // Optimización solo si el cuerpo explica el valor para el usuario
   if (
-    tag !== "Infra" &&
+    tag === "Optimización" &&
+    hasUserFacingContext(combined) &&
+    body.length >= T.bodyContextMinLength &&
+    subject.length >= T.bodyContextSubjectMinLength
+  ) {
+    return { publish: true, reason: "user-facing:perf-with-body", tag, title, body };
+  }
+
+  if (
+    (tag === "Feature" || tag === "Fix" || tag === "A11y") &&
     subject.length >= T.clearSubjectMinLength &&
+    words >= 4 &&
     hasUserFacingContext(combined)
   ) {
     return { publish: true, reason: "intent-tag:clear-subject", tag, title, body };
@@ -326,7 +315,8 @@ export function analyzeCommit(message) {
   if (
     body.length >= T.bodyContextMinLength &&
     hasUserFacingContext(combined) &&
-    subject.length >= T.bodyContextSubjectMinLength
+    subject.length >= T.bodyContextSubjectMinLength &&
+    (tag === "Feature" || tag === "Fix" || tag === "A11y" || tag === "Optimización")
   ) {
     return {
       publish: true,
