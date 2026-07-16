@@ -21,7 +21,7 @@ const dayNumber = getDaysSinceStart();
 ---
 
 <div
-  class="maria-page w-full max-w-7xl mx-auto flex flex-col relative z-10 pt-4 md:pt-10 lg:pt-14 px-3 sm:px-6"
+  class="maria-page w-full max-w-7xl mx-auto flex flex-col relative z-10 pt-4 md:pt-10 lg:pt-0 px-3 sm:px-6"
 >
   {/* Título arriba: en PC el diario abierto ya no lo tapa */}
   <header
@@ -136,7 +136,7 @@ const dayNumber = getDaysSinceStart();
     </div>
   </header>
 
-  <div class="w-full flex justify-center relative z-10">
+  <div class="maria-stage w-full flex justify-center relative z-10">
     <LetterFeed message={message} dayNumber={dayNumber} />
   </div>
 </div>

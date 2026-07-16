@@ -117,15 +117,31 @@ html.maria-html, html.maria-html body {
  * Móvil: hero sin polaroid encima, diario centrado,
  * abierto = una sola página legible + panel de razones.
  */
-/* Desktop: título siempre encima del diario (no se solapa al abrir) */
+/* Desktop: escena fija, sin scroll; el hero no empuja el documento */
 @media (min-width: 1024px) {
+  .maria-page {
+    min-height: 100dvh;
+    justify-content: center;
+  }
+
   .maria-hero {
+    position: absolute;
+    top: 2.75rem;
+    left: max(2rem, calc(50% - 600px));
+    z-index: 30;
+    max-width: 22rem;
+    margin-bottom: 0;
     padding-right: 0;
-    margin-bottom: 1.5rem;
+  }
+
+  .maria-stage {
+    min-height: 100dvh;
+    align-items: center;
   }
 
   #maria-diary-stage {
     max-width: 920px;
+    margin-top: 0;
   }
 }
 
