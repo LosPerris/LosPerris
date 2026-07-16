@@ -91,11 +91,97 @@ export function parseCommitMessage(message) {
 }
 
 const TRANSIENT_HTTP = new Set([429, 500, 502, 503, 504]);
-const FETCH_RETRIES = 4;
-const FETCH_RETRY_BASE_MS = 1500;
+const FETCH_RETRIES = 5;
+const FETCH_RETRY_BASE_MS = 2000;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function summarizeErrorBody(body) {
+  if (!body) return "";
+  if (body.includes("Hello future GitHubber") || body.trimStart().startsWith("<!DOCTYPE")) {
+    return " — (HTML de error de GitHub; suele ser 5xx/gateway o token inválido)";
+  }
+  try {
+    const json = JSON.parse(body);
+    if (json?.message) return ` — ${String(json.message).slice(0, 160)}`;
+  } catch {
+    /* ignore */
+  }
+  return ` — ${body.slice(0, 120)}`;
+}
+
+function githubHeaders(token) {
+  return {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "LosPerris-Updates",
+    "X-GitHub-Api-Version": "2022-11-28",
+    Authorization: `Bearer ${token}`,
+  };
+}
+
+/** Comprueba que el token autentique; no valida acceso a repos concretos. */
+export async function probeGithubToken(token) {
+  const res = await fetch("https://api.github.com/rate_limit", {
+    headers: githubHeaders(token),
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    return {
+      ok: false,
+      status: res.status,
+      detail: summarizeErrorBody(body),
+    };
+  }
+  const data = await res.json();
+  return {
+    ok: true,
+    status: res.status,
+    remaining: data?.resources?.core?.remaining,
+    limit: data?.resources?.core?.limit,
+  };
+}
+
+/**
+ * PAT (UPDATE_SYNC_TOKEN) si autentica; si no, GITHUB_TOKEN de Actions
+ * (puede leer otros repos privados si el repo tiene "Access" configurado).
+ */
+export async function resolveSyncToken() {
+  const pat = (process.env.UPDATE_SYNC_TOKEN || "").trim();
+  const actionsToken = (process.env.GITHUB_TOKEN || "").trim();
+
+  if (pat) {
+    const probe = await probeGithubToken(pat);
+    if (probe.ok) {
+      console.log(
+        `[sync-published] Token: UPDATE_SYNC_TOKEN (rate ${probe.remaining}/${probe.limit})`,
+      );
+      return pat;
+    }
+    console.warn(
+      `[sync-published] UPDATE_SYNC_TOKEN falló HTTP ${probe.status}${probe.detail}; probando GITHUB_TOKEN de Actions`,
+    );
+  } else {
+    console.warn("[sync-published] Sin UPDATE_SYNC_TOKEN; usando GITHUB_TOKEN de Actions");
+  }
+
+  if (actionsToken && actionsToken !== pat) {
+    const probe = await probeGithubToken(actionsToken);
+    if (probe.ok) {
+      console.log(
+        `[sync-published] Token: GITHUB_TOKEN (rate ${probe.remaining}/${probe.limit})`,
+      );
+      return actionsToken;
+    }
+    throw new Error(
+      `Ningún token válido. UPDATE_SYNC_TOKEN y GITHUB_TOKEN fallaron (último HTTP ${probe.status}${probe.detail}). Revisa el secret o Actions → Access a repos privados.`,
+    );
+  }
+
+  throw new Error(
+    "Falta token. Configura UPDATE_SYNC_TOKEN (PAT con lectura a los repos de APIs) o permite Access del GITHUB_TOKEN a esos repos.",
+  );
 }
 
 async function fetchRepoCommits(cfg, token) {
@@ -113,20 +199,17 @@ async function fetchRepoCommits(cfg, token) {
 
   for (let attempt = 1; attempt <= FETCH_RETRIES; attempt++) {
     const res = await fetch(url, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "LosPerris-Updates",
-        Authorization: `Bearer ${token}`,
-      },
+      headers: githubHeaders(token),
     });
 
     if (res.ok) return res.json();
 
     const body = await res.text().catch(() => "");
     lastError = new Error(
-      `${cfg.owner}/${cfg.repo}: HTTP ${res.status} ${res.statusText}${body ? ` — ${body.slice(0, 120)}` : ""}`,
+      `${cfg.owner}/${cfg.repo}: HTTP ${res.status} ${res.statusText}${summarizeErrorBody(body)}`,
     );
 
+    // 401/403/404 no se reintentan: suelen ser token/permisos.
     if (!TRANSIENT_HTTP.has(res.status) || attempt === FETCH_RETRIES) {
       throw lastError;
     }
@@ -145,11 +228,15 @@ async function fetchRepoCommits(cfg, token) {
   throw lastError;
 }
 
-/** @param {string} token PAT con acceso de lectura a repos privados (UPDATE_SYNC_TOKEN) */
+function isTransientSyncError(message) {
+  return /\bHTTP (429|500|502|503|504)\b/.test(message || "");
+}
+
+/** @param {string} token PAT o GITHUB_TOKEN con lectura a los repos */
 export async function fetchCommitEntries(token) {
   if (!token) {
     throw new Error(
-      "Falta UPDATE_SYNC_TOKEN. Los repos son privados: crea un PAT (scope repo) y configúralo en GitHub Secrets como UPDATE_SYNC_TOKEN.",
+      "Falta token. Configura UPDATE_SYNC_TOKEN o GITHUB_TOKEN con acceso a los repos de APIs.",
     );
   }
 
@@ -196,7 +283,10 @@ export async function fetchCommitEntries(token) {
   }
 
   if (entries.length === 0 && errors.length > 0) {
-    throw new Error(errors.join("\n"));
+    const allTransient = errors.every(isTransientSyncError);
+    const err = new Error(errors.join("\n"));
+    err.transient = allTransient;
+    throw err;
   }
 
   entries.sort((a, b) => new Date(b.date) - new Date(a.date));
