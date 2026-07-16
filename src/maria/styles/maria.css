@@ -117,6 +117,18 @@ html.maria-html, html.maria-html body {
  * Móvil: hero sin polaroid encima, diario centrado,
  * abierto = una sola página legible + panel de razones.
  */
+/* Desktop: título siempre encima del diario (no se solapa al abrir) */
+@media (min-width: 1024px) {
+  .maria-hero {
+    padding-right: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  #maria-diary-stage {
+    max-width: 920px;
+  }
+}
+
 @media (max-width: 767px) {
   .maria-hero {
     padding-right: 5.25rem; /* hueco para polaroid */
