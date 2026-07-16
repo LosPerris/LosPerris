@@ -127,20 +127,12 @@ html.maria-html, html.maria-html body {
   .maria-hero {
     position: absolute;
     top: 2.75rem;
-    left: max(2rem, calc(50% - 600px));
-    /* Debajo del diario: al abrir, el libro lo tapa */
-    z-index: 5;
-    max-width: 22rem;
+    left: max(1.5rem, calc(50% - 620px));
+    /* Encima del stage vacío para poder clickear "Hacer Florecer" */
+    z-index: 30;
+    max-width: 18rem;
     margin-bottom: 0;
     padding-right: 0;
-    transition: opacity 0.55s ease, visibility 0.55s ease;
-  }
-
-  /* Diario abierto: el título no debe asomar por los lados */
-  .maria-page:has(#maria-diary-stage.is-open) .maria-hero {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
   }
 
   .maria-stage {
@@ -153,6 +145,11 @@ html.maria-html, html.maria-html body {
   #maria-diary-stage {
     max-width: 920px;
     margin-top: 0;
+  }
+
+  /* Abierto: corre el libro a la derecha (deja el hero + florecer libres) */
+  #maria-diary-stage.is-open #book-wrapper {
+    transform: translateX(12%) !important;
   }
 }
 

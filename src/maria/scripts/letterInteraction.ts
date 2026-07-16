@@ -66,8 +66,13 @@ export function initLetterInteraction() {
       isBookOpen = true;
       stage?.classList.add("is-open");
 
-      // Slide the entire book container to the center
-      wrapper.classList.remove("-translate-x-1/4", "-translate-x-[18%]");
+      // PC: el CSS mueve el libro a la derecha (.is-open).
+      // Móvil/tablet: centrado.
+      wrapper.classList.remove(
+        "-translate-x-1/4",
+        "-translate-x-[18%]",
+        "translate-x-[12%]",
+      );
       wrapper.classList.add("translate-x-0");
 
       // 3D book open effect
@@ -209,7 +214,7 @@ export function initLetterInteraction() {
       content.style.opacity = "0"; // fade out content
 
       // Slide the entire book container back
-      wrapper.classList.remove("translate-x-0");
+      wrapper.classList.remove("translate-x-0", "translate-x-[12%]");
       if (window.innerWidth >= 768) {
         wrapper.classList.add("-translate-x-1/4");
       }
