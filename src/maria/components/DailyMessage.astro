@@ -144,12 +144,28 @@ const dayNumber = getDaysSinceStart();
 <FloatingPlayer songId={songId} question={question} />
 
 <script>
-  // ── Enhanced Petal & Magic Bloom Animation ─────────────────────────────
+  // ── Pétalos de girasol — Hacer Florecer ─────────────────────────────
   const bloomBtn = document.getElementById("bloom-btn");
   const bloomLabel = document.getElementById("bloom-label");
 
   if (bloomBtn && bloomLabel) {
     let blooming = false;
+
+    // Forma real de pétalo de girasol: punta afilada + base redondeada
+    const petalPaths = [
+      "M0,-16 C4.2,-14 6.5,-6 5.2,2 C4.2,8 2.2,12 0,14 C-2.2,12 -4.2,8 -5.2,2 C-6.5,-6 -4.2,-14 0,-16Z",
+      "M0,-18 C3.6,-15 5.8,-7 4.6,1 C3.5,8 1.8,13 0,15.5 C-1.8,13 -3.5,8 -4.6,1 C-5.8,-7 -3.6,-15 0,-18Z",
+      "M0,-14 C5,-12 7.2,-5 5.5,3 C4,9 2,12.5 0,13.5 C-2,12.5 -4,9 -5.5,3 C-7.2,-5 -5,-12 0,-14Z",
+      "M0,-17 C4.8,-14.5 6.2,-5.5 4.8,3 C3.6,9.5 1.6,13.5 0,15 C-1.6,13.5 -3.6,9.5 -4.8,3 C-6.2,-5.5 -4.8,-14.5 0,-17Z",
+    ];
+
+    const petalFills = [
+      ["#ffe566", "#f5b800", "#e8920a"],
+      ["#ffd54a", "#f0a020", "#d97808"],
+      ["#fff08a", "#f5c842", "#e8a030"],
+      ["#ffec70", "#fbbf24", "#c9770a"],
+      ["#ffe9a0", "#f0b429", "#d4821a"],
+    ];
 
     bloomBtn.addEventListener("click", () => {
       if (blooming) return;
@@ -157,147 +173,213 @@ const dayNumber = getDaysSinceStart();
       bloomLabel.textContent = "Floreciendo...";
       (bloomBtn as HTMLButtonElement).style.pointerEvents = "none";
 
-      // Magic Screen Flash
-      const flash = document.createElement("div");
-      flash.style.position = "fixed";
-      flash.style.inset = "0";
-      flash.style.backgroundColor = "#fbbf24";
-      flash.style.mixBlendMode = "overlay";
-      flash.style.pointerEvents = "none";
-      flash.style.zIndex = "9999";
-      flash.style.opacity = "0";
-      flash.style.transition = "opacity 2s ease-out";
-      document.body.appendChild(flash);
+      const btnRect = bloomBtn.getBoundingClientRect();
+      const burstX = btnRect.left + btnRect.width / 2;
+      const burstY = btnRect.top + btnRect.height / 2;
 
-      // Trigger flash
+      // Destello cálido suave
+      const flash = document.createElement("div");
+      flash.style.cssText = `
+        position:fixed;inset:0;pointer-events:none;z-index:9999;
+        background:radial-gradient(circle at ${burstX}px ${burstY}px,
+          rgba(251,191,36,0.45) 0%, rgba(251,191,36,0.12) 28%, transparent 62%);
+        opacity:0;transition:opacity 1.6s ease-out;
+      `;
+      document.body.appendChild(flash);
       requestAnimationFrame(() => {
-        flash.style.opacity = "0.2";
+        flash.style.opacity = "1";
         setTimeout(() => {
           flash.style.opacity = "0";
-          setTimeout(() => flash.remove(), 2000);
-        }, 300);
+          setTimeout(() => flash.remove(), 1800);
+        }, 280);
       });
 
-      const totalParticles = 120; // More particles!
-      const colors = [
-        "#f5c842",
-        "#e8a030",
-        "#d4821a",
-        "#f0d060",
-        "#c8941a",
-        "#ffffff",
-      ];
+      const ns = "http://www.w3.org/2000/svg";
+      const totalPetals = 95;
+      const totalSeeds = 18;
       let created = 0;
 
-      // Different SVG paths for variety
-      const paths = [
-        "M0,-10 C4,-6 6,2 0,8 C-6,2 -4,-6 0,-10Z", // Normal petal
-        "M0,-12 C3,-5 4,3 0,10 C-4,3 -3,-5 0,-12Z", // Long petal
-        "M0,-8 C5,-4 7,4 0,6 C-7,4 -5,-4 0,-8Z", // Wide petal
-      ];
+      const spawnPetal = (fromButton: boolean) => {
+        const svg = document.createElementNS(ns, "svg");
+        const sizePx = 28 + Math.random() * 26;
+        svg.setAttribute("width", String(sizePx));
+        svg.setAttribute("height", String(sizePx));
+        svg.setAttribute("viewBox", "-10 -18 20 36");
+        svg.style.cssText = `
+          position:fixed;pointer-events:none;z-index:10000;
+          left:0;top:0;opacity:0;will-change:transform,opacity;
+          filter:drop-shadow(0 2px 3px rgba(80,40,0,0.25));
+        `;
 
-      const interval = setInterval(() => {
-        for (let i = 0; i < 6 && created < totalParticles; i++) {
-          const isMote = Math.random() > 0.75; // 25% chance to be a glowing mote of light
+        const defs = document.createElementNS(ns, "defs");
+        const gradId = `pg-${created}-${Math.random().toString(36).slice(2, 7)}`;
+        const grad = document.createElementNS(ns, "linearGradient");
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", "0");
+        grad.setAttribute("y1", "-16");
+        grad.setAttribute("x2", "0");
+        grad.setAttribute("y2", "14");
+        grad.setAttribute("gradientUnits", "userSpaceOnUse");
 
-          const ns = "http://www.w3.org/2000/svg";
-          const svg = document.createElementNS(ns, "svg");
-          svg.setAttribute("width", isMote ? "10" : "24");
-          svg.setAttribute("height", isMote ? "10" : "24");
-          svg.setAttribute("viewBox", "-12 -12 24 24");
-          svg.style.position = "fixed";
-          svg.style.pointerEvents = "none";
-          svg.style.zIndex = "10000";
-          svg.style.opacity = "0";
+        const fills = petalFills[Math.floor(Math.random() * petalFills.length)];
+        fills.forEach((color, idx) => {
+          const stop = document.createElementNS(ns, "stop");
+          stop.setAttribute("offset", `${idx * 50}%`);
+          stop.setAttribute("stop-color", color);
+          grad.appendChild(stop);
+        });
+        defs.appendChild(grad);
+        svg.appendChild(defs);
 
-          if (isMote) {
-            // Glowing light mote
-            const circle = document.createElementNS(ns, "circle");
-            circle.setAttribute("cx", "0");
-            circle.setAttribute("cy", "0");
-            circle.setAttribute("r", "4");
-            circle.setAttribute("fill", "#fbbf24");
-            circle.style.filter = "blur(2px)";
-            svg.appendChild(circle);
-          } else {
-            // Petal
-            const path = document.createElementNS(ns, "path");
-            path.setAttribute(
-              "d",
-              paths[Math.floor(Math.random() * paths.length)],
-            );
-            path.setAttribute(
-              "fill",
-              colors[Math.floor(Math.random() * (colors.length - 1))],
-            ); // Exclude white for petals
-            path.setAttribute(
-              "opacity",
-              (0.7 + Math.random() * 0.3).toString(),
-            );
-            svg.appendChild(path);
-          }
+        const path = document.createElementNS(ns, "path");
+        path.setAttribute(
+          "d",
+          petalPaths[Math.floor(Math.random() * petalPaths.length)],
+        );
+        path.setAttribute("fill", `url(#${gradId})`);
+        path.setAttribute("opacity", String(0.88 + Math.random() * 0.12));
+        svg.appendChild(path);
 
-          // Spread completely across the screen width (from slightly off-screen left to off-screen right)
-          const startX = (Math.random() * 1.2 - 0.1) * window.innerWidth;
-          const startY = window.innerHeight + 20;
+        // Nervadura central suave
+        const vein = document.createElementNS(ns, "path");
+        vein.setAttribute("d", "M0,-13 C0.4,-4 0.3,4 0,12");
+        vein.setAttribute("fill", "none");
+        vein.setAttribute("stroke", "rgba(180,90,10,0.28)");
+        vein.setAttribute("stroke-width", "0.7");
+        vein.setAttribute("stroke-linecap", "round");
+        svg.appendChild(vein);
 
-          svg.style.left = `${startX}px`;
-          svg.style.top = `${startY}px`;
+        const startX = fromButton
+          ? burstX + (Math.random() - 0.5) * 40
+          : (Math.random() * 1.15 - 0.075) * window.innerWidth;
+        const startY = fromButton
+          ? burstY + (Math.random() - 0.5) * 20
+          : window.innerHeight + 10 + Math.random() * 40;
 
-          const size = isMote
-            ? 0.5 + Math.random() * 1.5
-            : 0.6 + Math.random() * 1.6;
+        const scale = 0.55 + Math.random() * 1.15;
+        const duration = fromButton
+          ? 2800 + Math.random() * 2200
+          : 3800 + Math.random() * 4200;
+        const sway = (Math.random() - 0.5) * (fromButton ? 280 : 520);
+        const liftPx = fromButton
+          ? -(window.innerHeight * (0.45 + Math.random() * 0.45))
+          : -(window.innerHeight * (1.05 + Math.random() * 0.25));
+        const spin =
+          (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 540);
+        const flutter = 18 + Math.random() * 28;
 
-          // 3D Tumbling physics setup
-          const duration = 3500 + Math.random() * 4500;
-          const swayX = -300 + Math.random() * 600; // Wider horizontal drift
+        document.body.appendChild(svg);
 
-          // Random 3D rotation axes
-          const rX = Math.random() > 0.5 ? 1 : -1;
-          const rY = Math.random() > 0.5 ? 1 : -1;
-          const rZ = Math.random() > 0.5 ? 1 : -1;
-          const endRot = 360 + Math.random() * 1080;
-
-          svg.animate(
-            [
-              {
-                transform: `scale(${size}) translate3d(0px, 0px, 0px) rotate3d(0, 0, 0, 0deg)`,
-                opacity: 0,
-              },
-              {
-                transform: `scale(${size}) translate3d(${swayX * 0.3}px, -30vh, 100px) rotate3d(${rX}, ${rY}, ${rZ}, ${endRot * 0.3}deg)`,
-                opacity: isMote ? 0.8 : 1,
-                offset: 0.15,
-              },
-              {
-                transform: `scale(${size}) translate3d(${swayX * 0.8}px, -80vh, -100px) rotate3d(${rX}, ${rY}, ${rZ}, ${endRot * 0.7}deg)`,
-                opacity: isMote ? 0.6 : 0.8,
-                offset: 0.75,
-              },
-              {
-                transform: `scale(${size}) translate3d(${swayX}px, -120vh, 200px) rotate3d(${rX}, ${rY}, ${rZ}, ${endRot}deg)`,
-                opacity: 0,
-              },
-            ],
+        svg.animate(
+          [
             {
-              duration,
-              easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)", // Smooth deceleration upwards
-              fill: "forwards",
+              transform: `translate(${startX}px, ${startY}px) scale(${scale * 0.4}) rotate(${Math.random() * 40 - 20}deg)`,
+              opacity: 0,
             },
-          );
+            {
+              transform: `translate(${startX + sway * 0.25}px, ${startY + liftPx * 0.28}px) scale(${scale}) rotate(${spin * 0.25}deg)`,
+              opacity: 1,
+              offset: 0.12,
+            },
+            {
+              transform: `translate(${startX + sway * 0.55 + flutter}px, ${startY + liftPx * 0.62}px) scale(${scale * 0.95}) rotate(${spin * 0.55}deg)`,
+              opacity: 0.95,
+              offset: 0.45,
+            },
+            {
+              transform: `translate(${startX + sway * 0.85 - flutter * 0.6}px, ${startY + liftPx * 0.88}px) scale(${scale * 0.85}) rotate(${spin * 0.85}deg)`,
+              opacity: 0.7,
+              offset: 0.78,
+            },
+            {
+              transform: `translate(${startX + sway}px, ${startY + liftPx}px) scale(${scale * 0.55}) rotate(${spin}deg)`,
+              opacity: 0,
+            },
+          ],
+          {
+            duration,
+            easing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
+            fill: "forwards",
+          },
+        );
 
-          document.body.appendChild(svg);
-          setTimeout(() => svg.remove(), duration);
-          created++;
+        setTimeout(() => svg.remove(), duration + 40);
+        created++;
+      };
+
+      const spawnSeed = () => {
+        const svg = document.createElementNS(ns, "svg");
+        svg.setAttribute("width", "10");
+        svg.setAttribute("height", "10");
+        svg.setAttribute("viewBox", "-5 -5 10 10");
+        svg.style.cssText = `
+          position:fixed;pointer-events:none;z-index:10000;
+          left:0;top:0;opacity:0;will-change:transform,opacity;
+        `;
+        const seed = document.createElementNS(ns, "ellipse");
+        seed.setAttribute("cx", "0");
+        seed.setAttribute("cy", "0");
+        seed.setAttribute("rx", "2.2");
+        seed.setAttribute("ry", "3.4");
+        seed.setAttribute("fill", Math.random() > 0.5 ? "#5c3a1a" : "#3d2410");
+        seed.setAttribute("opacity", "0.85");
+        svg.appendChild(seed);
+
+        const startX = burstX + (Math.random() - 0.5) * 60;
+        const startY = burstY + (Math.random() - 0.5) * 30;
+        const sway = (Math.random() - 0.5) * 200;
+        const liftPx = -(window.innerHeight * (0.35 + Math.random() * 0.4));
+        const duration = 2200 + Math.random() * 1800;
+        const spin = (Math.random() - 0.5) * 720;
+
+        document.body.appendChild(svg);
+        svg.animate(
+          [
+            {
+              transform: `translate(${startX}px, ${startY}px) scale(0.6) rotate(0deg)`,
+              opacity: 0,
+            },
+            {
+              transform: `translate(${startX + sway * 0.4}px, ${startY + liftPx * 0.45}px) scale(1) rotate(${spin * 0.4}deg)`,
+              opacity: 0.9,
+              offset: 0.2,
+            },
+            {
+              transform: `translate(${startX + sway}px, ${startY + liftPx}px) scale(0.5) rotate(${spin}deg)`,
+              opacity: 0,
+            },
+          ],
+          {
+            duration,
+            easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            fill: "forwards",
+          },
+        );
+        setTimeout(() => svg.remove(), duration + 40);
+        created++;
+      };
+
+      // Estallido inicial desde el botón
+      for (let i = 0; i < 16; i++) {
+        setTimeout(() => spawnPetal(true), i * 28);
+      }
+      for (let i = 0; i < totalSeeds; i++) {
+        setTimeout(() => spawnSeed(), 40 + i * 35);
+      }
+
+      // Lluvia ascendente de pétalos por toda la pantalla
+      const interval = setInterval(() => {
+        for (let i = 0; i < 5 && created < totalPetals + totalSeeds; i++) {
+          spawnPetal(false);
         }
-        if (created >= totalParticles) clearInterval(interval);
-      }, 50);
+        if (created >= totalPetals + totalSeeds) clearInterval(interval);
+      }, 55);
 
       setTimeout(() => {
         blooming = false;
         bloomLabel.textContent = "Hacer Florecer";
         (bloomBtn as HTMLButtonElement).style.pointerEvents = "auto";
-      }, 6500);
+      }, 7200);
     });
   }
 </script>
