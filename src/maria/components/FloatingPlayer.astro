@@ -475,7 +475,13 @@ const { songId, question } = Astro.props;
 }
 
 <script>
-  // ── Make Desk Objects Draggable ──────────────────────────────
+  // Arrastre solo en móvil/touch. En PC (mouse) los objetos no se arrastran:
+  // se usa click normal (abrir carta / voltear polaroid / abrir Spotify).
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    window.matchMedia("(pointer: coarse)").matches;
+
+  // ── Make Desk Objects Draggable (touch only) ─────────────────
   function makeDraggable(el: HTMLElement) {
     let isDragging = false;
     let startX = 0,
@@ -485,7 +491,8 @@ const { songId, question } = Astro.props;
     let hasMoved = false;
 
     const onPointerDown = (e: PointerEvent) => {
-      if (e.pointerType === "mouse" && e.button !== 0) return;
+      // PC: nunca arrastrar, dejar que el click abra normalmente.
+      if (e.pointerType === "mouse") return;
 
       isDragging = true;
       hasMoved = false;
@@ -645,9 +652,11 @@ const { songId, question } = Astro.props;
     });
   }
 
-  // ── Initialize Dragging ──────────────────────────────
+  // ── Initialize Dragging (solo móvil/touch) ──────────────────
   const spotifyNoteEl = document.getElementById("spotify-note");
-  if (envelope) makeDraggable(envelope);
-  if (polaroidWidget) makeDraggable(polaroidWidget);
-  if (spotifyNoteEl) makeDraggable(spotifyNoteEl);
+  if (isTouchDevice) {
+    if (envelope) makeDraggable(envelope);
+    if (polaroidWidget) makeDraggable(polaroidWidget);
+    if (spotifyNoteEl) makeDraggable(spotifyNoteEl);
+  }
 </script>
