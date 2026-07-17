@@ -24,6 +24,16 @@ const GOLDEN = [
     reason: "conventional:publish:feat",
   },
   {
+    message: "feat: mejorar tipado interno del cliente HTTP",
+    publish: false,
+    reason: "conventional:feat-no-product",
+  },
+  {
+    message: "feat: forzar re-login con apiKey en localStorage",
+    publish: false,
+    reason: "maintenance-subject",
+  },
+  {
     message:
       "corregir vista previa del QR cuando el logo supera el tamaño máximo",
     publish: true,

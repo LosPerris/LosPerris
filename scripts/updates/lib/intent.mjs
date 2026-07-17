@@ -132,17 +132,24 @@ const SKIP_SUBJECT_PATTERNS = [
   /\brefactors?\b/i,
   /\btipos? (compartidos|internos)\b/i,
   /\bbarrel exports?\b/i,
+  /\blocalstorage\b/i,
+  /\bapikey\b/i,
+  /\bbento\b/i,
+  /\bscrollbars?\b/i,
+  /\bp[aá]gina 404\b/i,
+  /\brutas? legacy\b/i,
 ];
 
 /** Commits que suenan a producto pero son solo reorganización de código. */
 const INTERNAL_CODE_RE =
-  /\b(controller|provider|dataexporter|extraer m[oó]dulos?|simplificar archivo|arquitectura de|dos capas|estilo modular|eliminando componentes|\.controller\b|\.service\b|migrar provider)\b/i;
+  /\b(controller|provider|dataexporter|extraer m[oó]dulos?|simplificar archivo|arquitectura de|dos capas|estilo modular|eliminando componentes|\.controller\b|\.service\b|migrar provider|localstorage|apiKey|bento box)\b/i;
 
 const DEVOPS_SUBJECT_RE =
   /\b(workflow|yaml|sintaxis|engines?|jest|pnpm|node\s*22|node\s*>=|dispatch|sync de actualizaciones|losperris al pushear|ci obsoleto|tests unitarios|caché de actualizaciones|trigger-losperris|vercel\.json|legacy path|custom 404|paths técnicos|lint-staged|github actions?)\b/i;
 
+/** Palabras de producto real (evitar jerga de UI/eng: bento, dashboard solo, modal solo). */
 const USER_FACING_RE =
-  /\b(vista previa|preview|selector|modal|página|pagina|export|región|region|usuario|dashboard|logo|imagen|gif|avatar|qr|código|codigo|panel|comando|botón|boton|formulario|descarga|subdominio|transcript|embed|reacción|reaccion|documento|generador|latencia|perfil|clip|stream|chat|landing|rediseño|redisen|streamlabs|botrix|nightbot|fossabot|bento|consola|overlay|ruleta|tendencias|minijuego|shoutout|followage)\b/gi;
+  /\b(vista previa|preview|selector de regi[oó]n|regi[oó]n br|export|usuario|logo|imagen|gif|avatar|qr|c[oó]digo qr|panel|comando|bot[oó]n|formulario|descarga|transcript|embed|generador|perfil|clip|stream|landing|streamlabs|botrix|nightbot|fossabot|streamelements|wizebot|overlay|ruleta|tendencias|minijuego|shoutout|followage|obs|cookies?|sesi[oó]n|twitch|valorant)\b/gi;
 
 const INTENT_TAG_RULES = [
   {
@@ -271,6 +278,16 @@ export function analyzeCommit(message) {
       const SKIP_SCOPES = new Set(["security", "ci", "deps", "devops", "test", "e2e"]);
       if (SKIP_SCOPES.has(scope)) {
         return { publish: false, reason: `conventional:skip-scope:${scope}`, tag, title, body };
+      }
+      // feat/perf/a11y sin contexto de producto → no publicar (usa [novedad] si importa).
+      if (type !== "revert" && !hasUserFacingContext(`${subject} ${body}`)) {
+        return {
+          publish: false,
+          reason: `conventional:${type}-no-product`,
+          tag,
+          title,
+          body,
+        };
       }
       return { publish: true, reason: `conventional:publish:${type}`, tag, title, body };
     }

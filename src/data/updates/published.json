@@ -2,16 +2,6 @@
   "syncedAt": "2026-07-16T22:15:20.725Z",
   "entries": [
     {
-      "id": "gh-twitch-24fa293",
-      "title": "Forzar re-login en sesiones legacy con apiKey en localStorage",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-16T19:00:44.000Z",
-      "dateString": "16 Julio 2026",
-      "commitSha": "24fa293"
-    },
-    {
       "id": "manual-twitch-cookie-auth",
       "title": "Inicio de sesión más seguro con cookies",
       "description": "La sesión del panel ahora usa cookies HttpOnly en lugar de guardar secretos en el navegador. Si tenías sesión antigua, tendrás que volver a conectar tu cuenta de Twitch una vez.",
@@ -21,29 +11,9 @@
       "dateString": "16 Julio 2026"
     },
     {
-      "id": "gh-twitch-01dfff8",
-      "title": "Rediseño a espectro de colores arcoiris y ocultar scrollbars en OBS",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-15T05:21:14.000Z",
-      "dateString": "15 Julio 2026",
-      "commitSha": "01dfff8"
-    },
-    {
-      "id": "gh-twitch-4939dab",
-      "title": "Rediseño moderno de filtros en el historial de actividad",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-11T10:04:06.000Z",
-      "dateString": "11 Julio 2026",
-      "commitSha": "4939dab"
-    },
-    {
       "id": "gh-twitch-cc5afce",
-      "title": "Corregir variables de bots y añadir Streamlabs",
-      "description": "Alinea variables con la documentación oficial de Fossabot, StreamElements y Wizebot, añade soporte para Streamlabs Cloudbot, excluye Wizebot/Fossabot del generador de !clip y actualiza docs y tests.",
+      "title": "Soporte nativo para Streamlabs en el generador de comandos",
+      "description": "Alinea variables con Fossabot, StreamElements y Wizebot, y añade soporte para Streamlabs Cloudbot en el generador.",
       "tag": "Feature",
       "api": "Twitch",
       "date": "2026-07-11T07:19:24.000Z",
@@ -51,44 +21,14 @@
       "commitSha": "cc5afce"
     },
     {
-      "id": "gh-twitch-6daa8b5",
-      "title": "Rediseño bento box para sobre la api y ajuste de color en analiticas",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-10T18:28:25.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "6daa8b5"
-    },
-    {
-      "id": "gh-twitch-61a97ed",
-      "title": "Mejoras visuales en dashboard, modals, barra lateral y solucion a bug de zona horaria",
-      "description": "",
-      "tag": "Fix",
-      "api": "Twitch",
-      "date": "2026-07-10T04:54:15.000Z",
-      "dateString": "10 Julio 2026",
-      "commitSha": "61a97ed"
-    },
-    {
       "id": "gh-twitch-9f80870",
-      "title": "Rediseño de la Landing Page y simulación interactiva de consola",
-      "description": "Mejoramos la estética de nuestra página principal con animaciones fluidas y un diseño mucho más moderno. Además, añadimos un botón para que puedas simular respuestas de la API directamente en la terminal sin necesidad de registrarte. También reorganizamos las configuraciones de tu cuenta en el dashboard bajo la nueva pestaña de 'Ajustes' para mayor claridad.",
+      "title": "Nueva landing de Twitch con consola interactiva",
+      "description": "Mejoramos la página principal con animaciones y un diseño más moderno. Además, puedes simular respuestas de la API en la terminal sin registrarte. Las configuraciones de cuenta quedan en la pestaña Ajustes.",
       "tag": "Feature",
       "api": "Twitch",
       "date": "2026-07-08T04:29:33.000Z",
       "dateString": "8 Julio 2026",
       "commitSha": "9f80870"
-    },
-    {
-      "id": "gh-twitch-312238b",
-      "title": "Migración a subdominio ttv.losperris.dev y limpieza de rutas legacy",
-      "description": "",
-      "tag": "Feature",
-      "api": "Twitch",
-      "date": "2026-07-05T21:48:29.000Z",
-      "dateString": "5 Julio 2026",
-      "commitSha": "312238b"
     },
     {
       "id": "gh-qr-e27dfd9",
@@ -101,34 +41,14 @@
       "commitSha": "e27dfd9"
     },
     {
-      "id": "gh-valorant-6088a63",
-      "title": "Añadir página 404 al estilo del panel de Valorant.",
-      "description": "",
-      "tag": "Feature",
-      "api": "Valorant",
-      "date": "2026-07-04T05:14:16.000Z",
-      "dateString": "4 Julio 2026",
-      "commitSha": "6088a63"
-    },
-    {
       "id": "gh-valorant-d1db6a7",
-      "title": "Añadir región BR al selector y mostrar 6 regiones.",
+      "title": "Añadir región BR al selector y mostrar 6 regiones",
       "description": "",
       "tag": "Feature",
       "api": "Valorant",
       "date": "2026-07-04T04:52:28.000Z",
       "dateString": "4 Julio 2026",
       "commitSha": "d1db6a7"
-    },
-    {
-      "id": "manual-qr-b9a4a8e",
-      "title": "Migrar rutas de QR a subdominio en la raíz del proyecto",
-      "description": "Sirve nativamente las rutas principales, manteniendo redirecciones temporales en /api/qr por compatibilidad y documentando cómo removerlas en el futuro.",
-      "tag": "Infra",
-      "api": "Códigos QR",
-      "date": "2026-07-03T12:00:00.000Z",
-      "dateString": "3 Julio 2026",
-      "commitSha": "b9a4a8e"
     },
     {
       "id": "manual-transcripts-subdomain",
