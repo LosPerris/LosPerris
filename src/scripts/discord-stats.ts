@@ -32,7 +32,7 @@ const setupDiscordStats = (): void => {
   if (!hero && !staticZone) return;
 
   const code =
-    hero?.dataset.inviteCode || staticZone?.dataset.inviteCode || "JKPUVf9aeU";
+    hero?.dataset.inviteCode || staticZone?.dataset.inviteCode || "PJbExZe7Tp";
 
   if (document.body.hasAttribute("data-discord-stats-loaded")) return;
 
