@@ -1,6 +1,26 @@
 {
-  "syncedAt": "2026-07-18T01:55:55.802Z",
+  "syncedAt": "2026-07-18T03:34:18.200Z",
   "entries": [
+    {
+      "id": "gh-twitch-e0a7112",
+      "title": "Avisos Discord de sesion: esperar el insert antes de responder",
+      "description": "En Vercel el void tras la respuesta se cortaba y el bot no recibía login/logout.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-18T03:28:32.000Z",
+      "dateString": "18 Julio 2026",
+      "commitSha": "e0a7112"
+    },
+    {
+      "id": "gh-twitch-8a2bea5",
+      "title": "Modales: el boton primario ya no queda marcado al abrir",
+      "description": "El foco va al panel en vez del CTA, igual que se evito con la X.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-18T02:38:07.000Z",
+      "dateString": "18 Julio 2026",
+      "commitSha": "8a2bea5"
+    },
     {
       "id": "gh-twitch-659c9b3",
       "title": "Aviso por Discord al iniciar o cerrar sesion en el panel",
