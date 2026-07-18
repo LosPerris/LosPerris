@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-07-18T13:38:30.761Z",
+  "syncedAt": "2026-07-18T16:36:52.714Z",
   "entries": [
+    {
+      "id": "gh-twitch-ff87078",
+      "title": "Roles con ventajas reales: cuota API, heavy y caché diferenciados.",
+      "description": "Cada rol escala req/min, endpoints pesados (clips/chatters) y frescura/retención de caché; docs y panel alineados.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-18T16:33:32.000Z",
+      "dateString": "18 Julio 2026",
+      "commitSha": "ff87078"
+    },
     {
       "id": "gh-twitch-e0a7112",
       "title": "Avisos Discord de sesion: esperar el insert antes de responder",
