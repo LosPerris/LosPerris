@@ -1,6 +1,126 @@
 {
-  "syncedAt": "2026-07-16T22:15:20.725Z",
+  "syncedAt": "2026-07-18T00:08:12.420Z",
   "entries": [
+    {
+      "id": "gh-twitch-3e4f6e4",
+      "title": "Corregir prueba de followage vacía y simplificar modal de overlay",
+      "description": "La prueba ya no muestra éxito sin texto, y el overlay solo pide copiar la URL sin la cajita enmascarada.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-18T00:05:03.000Z",
+      "dateString": "18 Julio 2026",
+      "commitSha": "3e4f6e4"
+    },
+    {
+      "id": "gh-twitch-5fc5a54",
+      "title": "Mostrar toasts por encima de los modales",
+      "description": "El toaster usa top layer (popover) para que no quede tapado por dialog showModal.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-17T22:48:39.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "5fc5a54"
+    },
+    {
+      "id": "gh-qr-9455fd1",
+      "title": "Nuevo Discord de LosPerris",
+      "description": "Actualiza el invite de la comunidad a https://discord.gg/PJbExZe7Tp.",
+      "tag": "Feature",
+      "api": "Códigos QR",
+      "date": "2026-07-17T22:46:05.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "9455fd1"
+    },
+    {
+      "id": "gh-twitch-735511c",
+      "title": "Nuevo Discord de LosPerris",
+      "description": "Actualiza el invite de la comunidad a https://discord.gg/PJbExZe7Tp en panel, landing, legal y docs.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-17T22:44:24.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "735511c"
+    },
+    {
+      "id": "gh-twitch-3d63d5c",
+      "title": "Feedback con identidad Twitch, Discord o anónimo",
+      "description": "Puedes enviar feedback anónimo, como Twitch, o como Discord si está vinculado. El modal ya no enfoca la X al abrirse.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-17T20:56:10.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "3d63d5c"
+    },
+    {
+      "id": "gh-twitch-f7457e2",
+      "title": "Mejorar modal de Discord vinculado: comandos, tickets y foco",
+      "description": "El aviso lista /cuenta /limite /status /ayuda y sugiere ticket para ayuda personalizada. Al abrir, el foco va a Entendido en lugar de la X.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-17T20:35:21.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "f7457e2"
+    },
+    {
+      "id": "gh-twitch-a057353",
+      "title": "Unificar Zona de Peligro en un solo bloque",
+      "description": "Reiniciar estadisticas y eliminar cuenta quedan en la misma tarjeta, separados por un divisor.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-17T17:13:00.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "a057353"
+    },
+    {
+      "id": "gh-twitch-af6284f",
+      "title": "Modales de Discord y API Key al estilo del aviso de login",
+      "description": "Misma estructura: texto claro, checklist con iconos y CTAs mas claros en vincular, desvincular, resultado y regenerar key.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-17T17:00:55.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "af6284f"
+    },
+    {
+      "id": "gh-twitch-1f19d42",
+      "title": "Desvincular Discord ya no cierra la sesion del panel",
+      "description": "invalidateUserCache revocaba la cookie lp_sess por defecto; Discord link/unlink lo disparaba y user-info devolvia 401. Ahora no revoca y limpia el flag auth:revoke si quedo activo.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-17T16:40:20.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "1f19d42"
+    },
+    {
+      "id": "gh-twitch-cc67991",
+      "title": "Vincular Discord ya no toca la sesion ni las caches de Twitch",
+      "description": "Al vincular o desvincular Discord solo se invalida el perfil/usuario. Antes se vaciaba Helix, overlay y stats, y eso podia tumbar el panel.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-07-17T16:33:11.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "cc67991"
+    },
+    {
+      "id": "gh-twitch-7916dba",
+      "title": "El panel ya no falla si Twitch no da seguidores o estado en vivo",
+      "description": "Los seguidores y el estado en directo son datos secundarios: si Twitch falla (por ejemplo, si al token le falta el permiso para leer seguidores) el perfil sigue cargando y muestra un guion en vez de romperse con error 401. Antes, al desvincular Discord se invalidaba la cache y el panel quedaba en bucle de error.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-07-17T16:28:16.000Z",
+      "dateString": "17 Julio 2026",
+      "commitSha": "7916dba"
+    },
+    {
+      "id": "gh-valorant-a7458a5",
+      "title": "Puente visual entre hero y stats en el landing",
+      "description": "Rellena el vacio del primer viewport con 3 pasos cortos y un hint para scrollear al flujo.",
+      "tag": "Feature",
+      "api": "Valorant",
+      "date": "2026-07-16T23:17:35.000Z",
+      "dateString": "16 Julio 2026",
+      "commitSha": "a7458a5"
+    },
     {
       "id": "manual-twitch-cookie-auth",
       "title": "Inicio de sesión más seguro con cookies",
@@ -135,6 +255,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 2
+    "lastPublished": 12
   }
 }
