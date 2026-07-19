@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-07-19T10:21:23.009Z",
+  "syncedAt": "2026-07-19T13:02:01.292Z",
   "entries": [
+    {
+      "id": "gh-twitch-bdbb70d",
+      "title": "Rediseño y mejoras visuales en panel, ajustes y modales",
+      "description": "- Implementación del componente Sheet para vistas detalladas (Historial de Actividad, Overlay). - Actualización de estilos globales en modales (bordes redondeados, sombras mejoradas). - Nuevas animaciones de carga (pulse) para los Skeletons. - Rediseño de tarjetas en la sección de Ajustes y Zona de Peligro. - Unificación del layout y espaciado del Dashboard para mejor integración del menú lateral.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-07-19T13:00:11.000Z",
+      "dateString": "19 Julio 2026",
+      "commitSha": "bdbb70d"
+    },
     {
       "id": "gh-twitch-922a59d",
       "title": "Configuracion en pestanas General, Seguridad y Conexiones",
