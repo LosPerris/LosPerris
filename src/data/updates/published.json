@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-07-19T06:02:38.650Z",
+  "syncedAt": "2026-07-19T07:39:05.770Z",
   "entries": [
+    {
+      "id": "gh-twitch-60ab8a3",
+      "title": "Historial y analytics se refrescan mas rapido en el panel",
+      "description": "Acorta el poll de seguridad del realtime, sincroniza actividad entre pestanas y evita borrar contadores por fecha obsoleta.",
+      "tag": "Optimización",
+      "api": "Twitch",
+      "date": "2026-07-19T07:35:05.000Z",
+      "dateString": "19 Julio 2026",
+      "commitSha": "60ab8a3"
+    },
     {
       "id": "gh-twitch-ff87078",
       "title": "Roles con ventajas reales: cuota API, heavy y caché diferenciados.",
