@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-22T23:06:17.668Z",
+  "syncedAt": "2026-07-22T23:21:20.122Z",
   "entries": [
     {
       "id": "gh-twitch-bdbb70d",
@@ -395,6 +395,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 3
+    "lastPublished": 2
   }
 }
