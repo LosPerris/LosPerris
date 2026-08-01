@@ -1,6 +1,76 @@
 {
-  "syncedAt": "2026-07-25T16:07:21.833Z",
+  "syncedAt": "2026-08-01T04:09:32.030Z",
   "entries": [
+    {
+      "id": "gh-qr-06b7536",
+      "title": "Optimizar memoria y accesibilidad del generador QR",
+      "description": "",
+      "tag": "Optimización",
+      "api": "Códigos QR",
+      "date": "2026-07-31T02:04:09.000Z",
+      "dateString": "31 Julio 2026",
+      "commitSha": "06b7536"
+    },
+    {
+      "id": "gh-qr-818966f",
+      "title": "Rediseñar formulario izquierdo en tarjeta unificada con personalización colapsable",
+      "description": "- SidebarForm: las dos tarjetas separadas ahora son una sola con secciones - Personalización oculta bajo un acordeón para no abrumar al usuario - Botón de descarga movido de vuelta al panel derecho debajo del QR - QRPreview: el canvas ocupa todo el ancho del panel en la parte superior - Diseño más limpio y organizado visualmente",
+      "tag": "Feature",
+      "api": "Códigos QR",
+      "date": "2026-07-31T00:44:10.000Z",
+      "dateString": "31 Julio 2026",
+      "commitSha": "818966f"
+    },
+    {
+      "id": "gh-qr-a9f09e8",
+      "title": "Añadir preview en vivo y optimizar generador QR",
+      "description": "- Implementado hook useQRPreview para renderizar el QR en tiempo real en el cliente sin consumir el servidor - Separada la lógica de preview (cliente) y descarga en alta resolución (servidor/rate limit) - Añadidos contadores de caracteres y vista previa de logo en el formulario - Solucionado problema de concurrencia en Redis (pipeline atómico INCR+TTL) para evitar rate limits huérfanos - Añadidos ",
+      "tag": "Feature",
+      "api": "Códigos QR",
+      "date": "2026-07-31T00:22:51.000Z",
+      "dateString": "31 Julio 2026",
+      "commitSha": "a9f09e8"
+    },
+    {
+      "id": "gh-valorant-d64c3a8",
+      "title": "Optimizacion exhaustiva, seguridad y correcciones de bugs",
+      "description": "",
+      "tag": "Fix",
+      "api": "Valorant",
+      "date": "2026-07-30T07:28:39.000Z",
+      "dateString": "30 Julio 2026",
+      "commitSha": "d64c3a8"
+    },
+    {
+      "id": "gh-valorant-77ad5ab",
+      "title": "Rediseñar y optimizar UI del simulador de chat en Generador de Comandos",
+      "description": "",
+      "tag": "Feature",
+      "api": "Valorant",
+      "date": "2026-07-29T13:34:23.000Z",
+      "dateString": "29 Julio 2026",
+      "commitSha": "77ad5ab"
+    },
+    {
+      "id": "gh-valorant-96af58e",
+      "title": "Agregar recomendación de tamaño de OBS dinámico en el generador",
+      "description": "",
+      "tag": "Feature",
+      "api": "Valorant",
+      "date": "2026-07-29T05:05:33.000Z",
+      "dateString": "29 Julio 2026",
+      "commitSha": "96af58e"
+    },
+    {
+      "id": "gh-valorant-05cc639",
+      "title": "Mejoras visuales en el generador de comandos y modal",
+      "description": "",
+      "tag": "Infra",
+      "api": "Valorant",
+      "date": "2026-07-27T15:23:20.000Z",
+      "dateString": "27 Julio 2026",
+      "commitSha": "05cc639"
+    },
     {
       "id": "gh-twitch-bdbb70d",
       "title": "Rediseño y mejoras visuales en panel, ajustes y modales",
@@ -395,6 +465,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 2
+    "lastPublished": 8
   }
 }
