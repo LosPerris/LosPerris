@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-08T02:23:05.618Z",
+  "syncedAt": "2026-08-08T03:02:14.921Z",
   "entries": [
+    {
+      "id": "gh-twitch-c5aaac7",
+      "title": "Integrar StreamElements API, limpiar logica vieja y agregar disclaimer en UI",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-08-08T03:00:49.000Z",
+      "dateString": "8 Agosto 2026",
+      "commitSha": "c5aaac7"
+    },
     {
       "id": "gh-qr-06b7536",
       "title": "Optimizar memoria y accesibilidad del generador QR",
@@ -465,6 +475,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 8
+    "lastPublished": 9
   }
 }
