@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-10T13:25:31.198Z",
+  "syncedAt": "2026-08-10T21:49:13.689Z",
   "entries": [
+    {
+      "id": "gh-twitch-953e05f",
+      "title": "Slots, Preguntas, seguridad del panel y UI por tema",
+      "description": "Minijuego Slots y herramienta Preguntas (sustituye Sorteos); hardenings (OAuth sin apiKey, SSRF Nightbot, XSS actividad, rate limit feedback); analíticas con colores por tema; footer alineado con la franja del sidebar; reorg FE/BE minigames/tools y caché L1 más segura.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-10T21:38:37.000Z",
+      "dateString": "10 Agosto 2026",
+      "commitSha": "953e05f"
+    },
     {
       "id": "gh-twitch-c5aaac7",
       "title": "Integrar StreamElements API, limpiar logica vieja y agregar disclaimer en UI",
