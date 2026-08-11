@@ -1,6 +1,46 @@
 {
-  "syncedAt": "2026-08-10T22:38:02.143Z",
+  "syncedAt": "2026-08-11T00:28:35.837Z",
   "entries": [
+    {
+      "id": "gh-twitch-ce82589",
+      "title": "Ruleta rusa, Nightbot y rate limiting más correctos",
+      "description": "Tambor atómico, límites Nightbot, plantillas con replaceAll y rate limit tras autenticar sin mensajes 500 filtrados.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-11T00:24:11.000Z",
+      "dateString": "11 Agosto 2026",
+      "commitSha": "ce82589"
+    },
+    {
+      "id": "gh-twitch-04a293a",
+      "title": "Overlays, clips y minijuegos más estables",
+      "description": "Publicación overlay latest-wins, TMI más robusto, keywords exactos, lang en pruebas y retries solo en métodos seguros.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-11T00:22:57.000Z",
+      "dateString": "11 Agosto 2026",
+      "commitSha": "04a293a"
+    },
+    {
+      "id": "gh-twitch-66f33e0",
+      "title": "Analíticas y borrado de datos más fiables",
+      "description": "KPIs desde stats diarias, timezones IANA válidas, leaderboard agregado y exportación sin filtrar la API key.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-11T00:21:27.000Z",
+      "dateString": "11 Agosto 2026",
+      "commitSha": "66f33e0"
+    },
+    {
+      "id": "gh-twitch-79153c7",
+      "title": "Login y sesiones más seguros",
+      "description": "OAuth state obligatorio, revocación de sesión más fiable y API keys hasheadas en almacenamiento.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-11T00:17:49.000Z",
+      "dateString": "11 Agosto 2026",
+      "commitSha": "79153c7"
+    },
     {
       "id": "gh-twitch-953e05f",
       "title": "Slots, Preguntas, seguridad del panel y UI por tema",
@@ -485,6 +525,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 9
+    "lastPublished": 12
   }
 }
