@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-11T18:20:45.270Z",
+  "syncedAt": "2026-08-11T18:29:26.503Z",
   "entries": [
+    {
+      "id": "gh-twitch-c579f3c",
+      "title": "Fix refresh 404 en rutas del dashboard",
+      "description": "Restaura /dashboard/(.*) → index.html; :path* no atrapaba nested paths con trailingSlash.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-08-11T18:28:01.000Z",
+      "dateString": "11 Agosto 2026",
+      "commitSha": "c579f3c"
+    },
     {
       "id": "gh-twitch-009f3c3",
       "title": "Restaurar dropdowns legibles en temas oscuros",
@@ -545,6 +555,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 14
+    "lastPublished": 15
   }
 }
