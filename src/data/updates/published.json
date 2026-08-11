@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-11T00:39:09.484Z",
+  "syncedAt": "2026-08-11T04:42:46.688Z",
   "entries": [
+    {
+      "id": "gh-twitch-86c74e0",
+      "title": "Fix Realtime: sub UUID y claim user_id Twitch",
+      "description": "Supabase apply_rls castea auth.uid() a uuid; el id de Twitch ya no va en sub.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-08-11T04:40:11.000Z",
+      "dateString": "11 Agosto 2026",
+      "commitSha": "86c74e0"
+    },
     {
       "id": "gh-twitch-ce82589",
       "title": "Ruleta rusa, Nightbot y rate limiting más correctos",
@@ -525,6 +535,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 12
+    "lastPublished": 13
   }
 }
