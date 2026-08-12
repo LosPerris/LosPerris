@@ -10,7 +10,6 @@ export function initLetterInteraction() {
   const wrapper = document.getElementById("book-wrapper");
   const cover = document.getElementById("diary-cover");
   const content = document.getElementById("diary-content");
-  const cursor = document.getElementById("typing-cursor");
   const strap = document.getElementById("snap-strap");
   const closeStrap = document.getElementById("close-strap");
 
@@ -90,12 +89,13 @@ export function initLetterInteraction() {
         cover.style.pointerEvents = "none";
         content.style.transition = "opacity 0.45s ease 0.12s";
       } else {
-        // Desktop: flip 3D de portada
+        // Desktop: flip 3D de portada + oculta el hero para no solapar
         cover.style.transition = "";
         cover.style.transform = "perspective(1200px) rotateY(-110deg)";
         cover.style.opacity = "0";
         cover.style.pointerEvents = "none";
         content.style.transition = "";
+        wrapper.style.transform = "translateX(28%)";
       }
 
       content.classList.remove("invisible");
@@ -131,7 +131,7 @@ export function initLetterInteraction() {
 
       // Show content and position cursor
       content.style.opacity = "1";
-      if (cursor) cursor.style.opacity = "1";
+      if (msgText) msgText.classList.add("is-typing");
 
       // Instantly reveal the day stamp box
       if (leftDayBox) leftDayBox.classList.remove("opacity-0");
@@ -154,7 +154,7 @@ export function initLetterInteraction() {
             typeElement(rightSignature, 40, 60, () => {
               if (rightSignatureLine)
                 rightSignatureLine.classList.remove("opacity-0");
-              if (cursor) cursor.style.display = "none";
+              if (msgText) msgText.classList.remove("is-typing");
 
               const turnPageBtn = document.getElementById("turn-page-btn");
               if (turnPageBtn) {
@@ -202,10 +202,7 @@ export function initLetterInteraction() {
       if (rightSignature) rightSignature.textContent = "";
       if (leftDayBox) leftDayBox.classList.add("opacity-0");
       if (rightSignatureLine) rightSignatureLine.classList.add("opacity-0");
-      if (cursor) {
-        cursor.style.display = "inline-block";
-        cursor.style.opacity = "0";
-      }
+      if (msgText) msgText.classList.remove("is-typing");
 
       const turnPageBtnEl = document.getElementById("turn-page-btn");
       if (turnPageBtnEl) {
@@ -258,6 +255,7 @@ export function initLetterInteraction() {
       content.style.opacity = "0";
 
       // Slide the entire book container back
+      wrapper.style.transform = ""; // Limpia inline style → deja actuar la clase CSS
       wrapper.classList.remove("translate-x-0", "translate-x-[12%]");
       if (window.innerWidth >= 768) {
         wrapper.classList.add("-translate-x-1/4");

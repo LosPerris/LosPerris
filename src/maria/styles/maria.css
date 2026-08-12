@@ -5,11 +5,14 @@
 @theme {
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
-  
-  --color-sunflower-light: #fcd34d; /* amber-300 */
-  --color-sunflower: #fbbf24; /* amber-400 */
-  --color-sunflower-dark: #b45309; /* amber-700 */
-  
+
+  --color-sunflower-light: #fcd34d;
+  /* amber-300 */
+  --color-sunflower: #fbbf24;
+  /* amber-400 */
+  --color-sunflower-dark: #b45309;
+  /* amber-700 */
+
   --color-bg-dark: #0a0704;
 }
 
@@ -18,7 +21,7 @@
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   border: 1px solid rgba(251, 191, 36, 0.15);
-  box-shadow: 
+  box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(251, 191, 36, 0.1);
 }
@@ -28,7 +31,7 @@
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   border: 1px solid rgba(251, 191, 36, 0.2);
-  box-shadow: 
+  box-shadow:
     0 30px 60px -15px rgba(0, 0, 0, 0.9),
     0 0 100px -20px rgba(251, 191, 36, 0.15),
     inset 0 1px 0 rgba(251, 191, 36, 0.15);
@@ -47,14 +50,17 @@
     width: 6px;
     height: 6px;
   }
+
   &::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
   }
+
   &::-webkit-scrollbar-thumb {
     background: rgba(251, 191, 36, 0.5);
     border-radius: 4px;
   }
+
   &::-webkit-scrollbar-thumb:hover {
     background: rgba(251, 191, 36, 0.8);
   }
@@ -64,9 +70,11 @@
 @utility preserve-3d {
   transform-style: preserve-3d;
 }
+
 @utility backface-hidden {
   backface-visibility: hidden;
 }
+
 @utility rotate-y-180 {
   transform: rotateY(180deg);
 }
@@ -77,7 +85,8 @@ html.maria-html {
   height: -webkit-fill-available;
 }
 
-html.maria-html, html.maria-html body {
+html.maria-html,
+html.maria-html body {
   background-color: var(--color-bg-dark);
   background-image: linear-gradient(rgba(10, 7, 4, 0.75), rgba(10, 7, 4, 0.95)), url('/images/wood-desk.webp');
   background-size: cover;
@@ -92,7 +101,9 @@ html.maria-html, html.maria-html body {
 }
 
 @media (min-width: 1024px) {
-  html.maria-html, html.maria-html body {
+
+  html.maria-html,
+  html.maria-html body {
     background-attachment: fixed;
   }
 }
@@ -108,7 +119,7 @@ html.maria-html, html.maria-html body {
   transform-style: preserve-3d;
 }
 
-#page-turner > div {
+#page-turner>div {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -117,45 +128,58 @@ html.maria-html, html.maria-html body {
  * Móvil: hero sin polaroid encima, diario centrado,
  * abierto = una sola página legible + panel de razones.
  */
-/* Desktop: escena fija, sin scroll; el hero no empuja el documento */
+/* Desktop: hero arriba-izquierda (absoluto) + diario centrado, abierto va a la derecha */
 @media (min-width: 1024px) {
   .maria-page {
+    display: block !important;
     min-height: 100dvh;
-    justify-content: center;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
+  /* Hero: posición arriba-izquierda, ajustado para no solapar con el diario */
   .maria-hero {
-    position: absolute;
+    position: absolute !important;
     top: 2.75rem;
-    left: max(1.5rem, calc(50% - 620px));
-    /* Encima del stage vacío para poder clickear "Hacer Florecer" */
+    left: -1rem;
     z-index: 30;
-    max-width: 18rem;
+    max-width: 16rem !important;
+    width: 16rem;
     margin-bottom: 0;
     padding-right: 0;
+    align-self: unset;
   }
 
+  /* Stage: ocupa toda la pantalla, centrado */
   .maria-stage {
     position: relative;
     z-index: 20;
     min-height: 100dvh;
+    display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   #maria-diary-stage {
-    max-width: 920px;
+    max-width: 780px;
+    width: 95%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 1.4 !important;
+    margin: 0 auto;
     margin-top: 0;
   }
 
-  /* Abierto: corre el libro a la derecha (deja el hero + florecer libres) */
+  /* Abierto: el JS aplica translateX(22%) inline — esto es backup */
   #maria-diary-stage.is-open #book-wrapper {
-    transform: translateX(12%) !important;
+    transform: translateX(24%) !important;
   }
 }
 
 @media (max-width: 767px) {
   .maria-hero {
-    padding-right: 5.25rem; /* hueco para polaroid */
+    padding-right: 5.25rem;
+    /* hueco para polaroid */
   }
 
   .maria-hero-copy {
@@ -181,7 +205,7 @@ html.maria-html, html.maria-html body {
     right: 0.65rem !important;
   }
 
-  #spotify-note > div {
+  #spotify-note>div {
     min-width: 64px !important;
     padding: 0.45rem 0.55rem !important;
   }
@@ -270,12 +294,10 @@ html.maria-html, html.maria-html body {
 
   #maria-diary-stage.is-open #message-face {
     padding: 1.35rem 1rem 1.1rem 1.2rem !important;
-    background: linear-gradient(
-      90deg,
-      #d4c4a0 0%,
-      #e4d8c0 14%,
-      #e4d8c0 100%
-    ) !important;
+    background: linear-gradient(90deg,
+        #d4c4a0 0%,
+        #e4d8c0 14%,
+        #e4d8c0 100%) !important;
     box-shadow: inset 10px 0 14px -12px rgba(40, 25, 10, 0.45);
     justify-content: center;
   }
@@ -332,7 +354,7 @@ html.maria-html, html.maria-html body {
     overflow: hidden !important;
   }
 
-  #mobile-reasons-scroll > div {
+  #mobile-reasons-scroll>div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -361,25 +383,59 @@ html.maria-html, html.maria-html body {
 
 /* Animations */
 @keyframes float-particle {
-  0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.8; }
-  100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+  0% {
+    transform: translateY(110vh) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-10vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes fade-in-up {
-  0%   { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scale-in {
-  0%   { opacity: 0; transform: scale(0.92); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @utility animate-float-particle {
@@ -403,14 +459,17 @@ html.maria-html, html.maria-html body {
     opacity: 0;
     transform: scale(3) var(--rotate, rotate(0deg));
   }
+
   15% {
     opacity: var(--final-opacity, 1);
     transform: scale(0.95) var(--rotate, rotate(0deg));
   }
+
   30% {
     opacity: var(--final-opacity, 1);
     transform: scale(1) var(--rotate, rotate(0deg));
   }
+
   100% {
     opacity: var(--final-opacity, 1);
     transform: scale(1) var(--rotate, rotate(0deg));
@@ -431,6 +490,7 @@ dialog {
   max-width: 100vw;
   max-height: 100vh;
 }
+
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
@@ -444,6 +504,7 @@ dialog::backdrop {
     opacity: 0;
     transform: rotate(-5deg) translate(-40px, 110px);
   }
+
   to {
     opacity: 1;
     transform: rotate(-5deg) translate(0, 0);
@@ -455,6 +516,7 @@ dialog::backdrop {
     opacity: 0;
     transform: rotate(4deg) translate(60px, -90px);
   }
+
   to {
     opacity: 1;
     transform: rotate(4deg) translate(0, 0);
@@ -466,6 +528,7 @@ dialog::backdrop {
     opacity: 0;
     transform: rotate(4deg) translate(80px, 60px);
   }
+
   to {
     opacity: 1;
     transform: rotate(4deg) translate(0, 0);
@@ -485,11 +548,52 @@ dialog::backdrop {
 }
 
 /* Staggered sidebar entries */
-@utility anim-delay-100 { animation-delay: 0.1s; }
-@utility anim-delay-200 { animation-delay: 0.2s; }
-@utility anim-delay-300 { animation-delay: 0.3s; }
-@utility anim-delay-500 { animation-delay: 0.5s; }
-@utility anim-delay-700 { animation-delay: 0.7s; }
+@utility anim-delay-100 {
+  animation-delay: 0.1s;
+}
+
+@utility anim-delay-200 {
+  animation-delay: 0.2s;
+}
+
+@utility anim-delay-300 {
+  animation-delay: 0.3s;
+}
+
+@utility anim-delay-500 {
+  animation-delay: 0.5s;
+}
+
+@utility anim-delay-700 {
+  animation-delay: 0.7s;
+}
+
+/* ── Cursor de escritura vía CSS ::after ─────────────────────────────────
+   El cursor es parte del propio elemento de texto → nunca aparece en línea
+   propia aunque el texto haga wrap. Se activa con la clase .is-typing.
+*/
+@keyframes cursor-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+#daily-message-text.is-typing::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 0.82em;
+  background: rgba(26, 21, 16, 0.6);
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: cursor-blink 1s step-end infinite;
+}
 
 /* Inline SVG noise textures — defined here to avoid " in JSX expressions */
 .spotify-note-texture {
