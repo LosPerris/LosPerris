@@ -105,9 +105,16 @@ export function getDailyMessageIndex(
   epoch: Date = new Date(2026, 2, 23),
 ): number {
   const now = new Date();
-  const daysSinceEpoch = Math.floor(
-    (now.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24),
+  // Usar UTC a la medianoche elimina errores por el horario de verano (DST)
+  const start = Date.UTC(
+    epoch.getFullYear(),
+    epoch.getMonth(),
+    epoch.getDate(),
   );
+  const current = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const daysSinceEpoch = Math.floor((current - start) / (1000 * 60 * 60 * 24));
+
   return (
     ((daysSinceEpoch % messages.length) + messages.length) % messages.length
   );
@@ -115,8 +122,13 @@ export function getDailyMessageIndex(
 
 export function getDaysSinceStart(epoch: Date = new Date(2026, 2, 23)): number {
   const now = new Date();
-  const diffDays = Math.floor(
-    (now.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24),
+  const start = Date.UTC(
+    epoch.getFullYear(),
+    epoch.getMonth(),
+    epoch.getDate(),
   );
+  const current = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const diffDays = Math.floor((current - start) / (1000 * 60 * 60 * 24));
   return Math.max(1, diffDays + 1);
 }

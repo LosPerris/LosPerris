@@ -276,8 +276,12 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
                   class="text-[#8b3a3a] text-[7px] md:text-xs mt-0.5 md:mt-1"
                   style="font-family: 'Special Elite', monospace;"
                 >
-                  <span class="md:hidden">{todayShort}</span>
-                  <span class="hidden md:inline">{todayFull}</span>
+                  <span id="today-short-date" class="md:hidden"
+                    >{todayShort}</span
+                  >
+                  <span id="today-full-date" class="hidden md:inline"
+                    >{todayFull}</span
+                  >
                 </p>
               </div>
 
@@ -286,6 +290,7 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
                 style="--rotate: rotate(-3deg); --final-opacity: 0.6; animation-delay: 1.9s;"
               >
                 <p
+                  id="day-number-text"
                   class="font-bold tracking-widest text-[#8b3a3a] text-[10px] md:text-sm uppercase"
                   style="font-family: 'Special Elite', monospace;"
                 >

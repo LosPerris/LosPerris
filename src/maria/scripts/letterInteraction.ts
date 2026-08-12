@@ -1,3 +1,9 @@
+import {
+  messages,
+  getDailyMessageIndex,
+  getDaysSinceStart,
+} from "../data/messages";
+
 // Interactive Cover & Sequential Typing Effect (3D Book Opening)
 export function initLetterInteraction() {
   let isBookOpen = false;
@@ -21,6 +27,34 @@ export function initLetterInteraction() {
   const msgText = document.getElementById("daily-message-text");
   const rightSignature = document.getElementById("right-signature");
   const rightSignatureLine = document.getElementById("right-signature-line");
+
+  // Client-side date and message calculation (overrides static build values)
+  const now = new Date();
+  const dayNumber = getDaysSinceStart();
+  const index = getDailyMessageIndex();
+  const currentMessage = messages[index];
+  const todayFull = now.toLocaleDateString("es-ES", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const todayShort = now.toLocaleDateString("es-ES", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const shortDateEl = document.getElementById("today-short-date");
+  if (shortDateEl) shortDateEl.textContent = todayShort;
+
+  const fullDateEl = document.getElementById("today-full-date");
+  if (fullDateEl) fullDateEl.textContent = todayFull;
+
+  const dayNumberEl = document.getElementById("day-number-text");
+  if (dayNumberEl) dayNumberEl.textContent = `Día ${dayNumber}`;
+
+  if (msgText) msgText.setAttribute("data-text", currentMessage);
 
   // Helper to type an element's data-text
   function typeElement(
