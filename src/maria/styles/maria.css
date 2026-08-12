@@ -132,8 +132,8 @@ html.maria-html, html.maria-html body {
     top: 2.75rem;
     left: -2rem; /* Lo empuja por fuera del padding del contenedor */
     z-index: 30;
-    max-width: 24rem !important;
-    width: 24rem;
+    max-width: 18rem !important;
+    width: 18rem;
     margin-bottom: 0;
     padding-right: 0;
     align-self: unset;
