@@ -329,18 +329,15 @@ const todayShort = new Date().toLocaleDateString("es-ES", {
                 id="message-container"
                 class="flex-grow overflow-hidden pr-2 flex flex-col justify-start"
               >
-                <div id="message-wrapper">
-                  <blockquote
-                    class="text-[#1a1510] leading-relaxed inline opacity-90 min-h-[1em]"
-                    style="font-size: clamp(15px, 4.2vw, 28px); font-family: 'Caveat', cursive;"
-                    id="daily-message-text"
-                    data-text={message}
-                  >
-                  </blockquote>
+                <div
+                  id="message-wrapper"
+                  style="overflow-wrap: break-word; word-break: break-word;"
+                >
                   <span
-                    id="typing-cursor"
-                    class="inline-block w-[2px] h-[1em] bg-[#1a1510]/60 ml-1 align-middle animate-pulse opacity-0"
-                  ></span>
+                    class="text-[#1a1510] leading-relaxed opacity-90"
+                    style="font-size: clamp(15px, 4.2vw, 28px); font-family: 'Caveat', cursive; white-space: pre-wrap;"
+                    id="daily-message-text"
+                    data-text={message}></span>
                 </div>
               </div>
 

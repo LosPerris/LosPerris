@@ -95,7 +95,7 @@ export function initLetterInteraction() {
         cover.style.opacity = "0";
         cover.style.pointerEvents = "none";
         content.style.transition = "";
-        wrapper.style.transform = "translateX(28%)";
+        wrapper.style.transform = "translateX(20%)";
       }
 
       content.classList.remove("invisible");

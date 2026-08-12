@@ -6,7 +6,7 @@ import MariaLayout from "../layouts/MariaLayout.astro";
 import DailyMessage from "../components/DailyMessage.astro";
 import AnniversaryModal from "../components/AnniversaryModal.astro";
 import QuestionModal from "../components/QuestionModal.astro";
-import NoteModal from "../components/NoteModal.astro";
+
 import { SPOTIFY_TRACK_IDS } from "../data/songs";
 import { QUESTIONS } from "../data/questions";
 
@@ -34,7 +34,6 @@ const isMay15th = dateInCR.getMonth() === 4 && dateInCR.getDate() === 15;
 ---
 
 <MariaLayout title="Tu Diario" description="Un lugar hecho solo para ti">
-  <NoteModal />
   {isMay15th && <AnniversaryModal />}
   <QuestionModal />
 
