@@ -1,5 +1,3 @@
-import { siteUrl } from "./community";
-
 export const apis = [
   {
     title: "Herramientas de Twitch",
@@ -61,33 +59,7 @@ export const apis = [
       },
     ],
   },
-  {
-    title: "Discord Transcripts",
-    popular: false,
-    private: true,
-    description:
-      "API privada para generar y visualizar transcripts de canales de Discord en HTML. Requiere API key.",
-    icon: "fab fa-discord",
-    color: "text-[#5865F2]",
-    hoverColor: "group-hover:text-[#5865F2]",
-    link: "https://dc.losperris.dev/",
-    linkText: "Visitar Web",
-    baseUrl: "https://dc.losperris.dev",
-    endpoints: [
-      {
-        method: "POST",
-        path: "/api/transcripts",
-        description: "Genera un transcript del canal (API key).",
-        example: "POST /api/transcripts",
-      },
-      {
-        method: "GET",
-        path: "/t/:guildId/:file",
-        description: "Visualiza el transcript generado (público con el link).",
-        example: "GET /t/guild/canal.html",
-      },
-    ],
-  },
+
   {
     title: "Generador de Códigos QR",
     popular: false,

@@ -28,17 +28,16 @@ interface Props {
   showTestedBadge?: boolean;
 }
 
-const { api, index, showTestedBadge = false } = Astro.props;
-const docsId = `docs-${index}`;
+const { api, showTestedBadge = false } = Astro.props;
 const isExternalLink = api.link.startsWith("http");
 ---
 
 <Card
-  class="api-card p-8 bg-none border border-[#27272a] shadow-lg backdrop-blur-sm transition-[border-color,box-shadow] duration-300"
+  class="api-card p-8 bg-none border border-white/6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-[#f97316]/25 hover:shadow-[0_0_30px_rgba(249,115,22,0.06)] rounded-3xl flex flex-col"
 >
   <div class="flex items-start justify-between mb-6 gap-3">
     <div
-      class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl transition-transform shrink-0 ${api.color || "text-white"}`}
+      class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl shrink-0 ${api.color || "text-white"}`}
     >
       {
         api.iconId && socialIcons[api.iconId] ? (
@@ -61,7 +60,7 @@ const isExternalLink = api.link.startsWith("http");
       }
       {
         showTestedBadge && (
-          <span class="bg-[#f97316]/20 px-3 py-1 rounded-full text-xs text-[#f97316] font-bold border border-[#f97316]/50 shadow-[0_0_10px_rgba(249,115,22,0.2)] tracking-wider">
+          <span class="bg-[#f97316]/20 px-3 py-1 rounded-full text-xs text-[#f97316] font-bold border border-[#f97316]/50 tracking-wider">
             TESTED
           </span>
         )
@@ -69,117 +68,22 @@ const isExternalLink = api.link.startsWith("http");
     </div>
   </div>
 
-  <h3
-    class={`text-2xl font-bold text-white mb-3 transition-colors ${api.hoverColor ? `hover:text-[${api.hoverColor}]` : ""}`}
-  >
+  <h3 class="text-2xl font-bold text-white mb-3">
     {api.title}
   </h3>
-  <p class="text-[#bdbdbd] leading-relaxed mb-6 grow min-h-[60px]">
+  <p class="text-zinc-400 leading-relaxed mb-8 grow">
     {api.description}
   </p>
 
-  <div class="mt-auto space-y-4">
-    <div
-      id={docsId}
-      class="api-docs-panel grid grid-rows-[0fr] opacity-0 motion-reduce:transition-none transition-[grid-template-rows,opacity] duration-300 ease-out"
-      aria-hidden="true"
+  <div class="mt-auto">
+    <Button
+      href={api.link}
+      target={isExternalLink ? "_blank" : undefined}
+      rel={isExternalLink ? "noopener noreferrer" : undefined}
+      class="w-full justify-center text-sm py-3 rounded-xl"
     >
-      <div class="overflow-hidden min-h-0">
-        <div
-          class="bg-[#0f0f0f] rounded-lg p-4 border border-[#333] mb-4 text-left"
-        >
-          <h4 class="text-white font-semibold mb-3 text-sm uppercase">
-            Endpoints
-          </h4>
-          {
-            api.baseUrl && (
-              <p class="text-xs text-zinc-500 mb-4 font-mono break-all">
-                Base: <span class="text-zinc-300">{api.baseUrl}</span>
-              </p>
-            )
-          }
-          <div class="space-y-4">
-            {
-              api.endpoints?.map((endpoint) => (
-                <div class="min-w-0">
-                  <div class="flex items-start gap-2 mb-1 min-w-0">
-                    <span class="text-xs font-bold bg-secondary text-green-400 px-2 py-0.5 rounded uppercase shrink-0">
-                      {endpoint.method}
-                    </span>
-                    <code class="text-xs md:text-sm text-gray-300 font-mono break-all min-w-0 leading-relaxed">
-                      {endpoint.path}
-                    </code>
-                  </div>
-                  <p class="text-xs text-[#666] mb-2 leading-relaxed">
-                    {endpoint.description}
-                  </p>
-                  {endpoint.example && (
-                    <div class="bg-primary p-2 rounded border border-secondary overflow-x-auto">
-                      <code class="text-xs text-text-muted block font-mono break-all leading-relaxed">
-                        {endpoint.example}
-                      </code>
-                    </div>
-                  )}
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-3">
-      <button
-        type="button"
-        class="api-docs-btn flex-1 py-3 px-4 rounded-xl font-semibold border border-[#404040] text-white hover:bg-secondary transition-colors text-sm cursor-pointer"
-        data-api-index={index}
-        data-docs-id={docsId}
-        aria-expanded="false"
-        aria-controls={docsId}
-        aria-label={`Ver documentación para ${api.title}`}
-      >
-        <i class="fas fa-book-open mr-2" aria-hidden="true"></i> Documentación
-      </button>
-      <Button
-        href={api.link}
-        target={isExternalLink ? "_blank" : undefined}
-        rel={isExternalLink ? "noopener noreferrer" : undefined}
-        class="flex-1 justify-center text-sm"
-      >
-        {api.linkText || "Ver más"}{" "}
-        <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
-      </Button>
-    </div>
+      {api.linkText || "Ver más"}{" "}
+      <i class="fas fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+    </Button>
   </div>
 </Card>
-
-<script>
-  const setupApiDocsToggle = () => {
-    document.querySelectorAll(".api-docs-btn").forEach((btn) => {
-      if (btn.hasAttribute("data-listener")) return;
-      btn.setAttribute("data-listener", "true");
-
-      btn.addEventListener("click", () => {
-        const docsId = btn.getAttribute("data-docs-id");
-        const docs = docsId ? document.getElementById(docsId) : null;
-        if (!docs) return;
-
-        const isOpen = docs.classList.contains("grid-rows-[1fr]");
-        if (isOpen) {
-          docs.classList.remove("grid-rows-[1fr]", "opacity-100");
-          docs.classList.add("grid-rows-[0fr]", "opacity-0");
-          docs.setAttribute("aria-hidden", "true");
-          btn.setAttribute("aria-expanded", "false");
-        } else {
-          docs.classList.remove("grid-rows-[0fr]", "opacity-0");
-          docs.classList.add("grid-rows-[1fr]", "opacity-100");
-          docs.setAttribute("aria-hidden", "false");
-          btn.setAttribute("aria-expanded", "true");
-        }
-      });
-    });
-  };
-
-  setupApiDocsToggle();
-  document.addEventListener("astro:page-load", setupApiDocsToggle);
-</script>

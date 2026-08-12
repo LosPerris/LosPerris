@@ -481,15 +481,6 @@
       "commitSha": "d1db6a7"
     },
     {
-      "id": "manual-transcripts-subdomain",
-      "title": "Transcripts en dc.losperris.dev",
-      "description": "Transcripts se mueve a dc.losperris.dev (API privada). Paths cortos: POST /api/transcripts y vistas en /t/…. Sin proxy en losperris.dev y fuera de la status page pública.",
-      "tag": "Infra",
-      "api": "Transcripts",
-      "date": "2026-07-03T00:00:00.000Z",
-      "dateString": "3 Julio 2026"
-    },
-    {
       "id": "manual-valorant-subdomain",
       "title": "Valorant API en vlr.losperris.dev",
       "description": "La API de Valorant ya vive en vlr.losperris.dev, independiente del proxy. Rutas nuevas: / (landing), /docs y /api/rank|match|today|stats|summary|system/stats. La URL antigua /api/valorant ya no se usa.",

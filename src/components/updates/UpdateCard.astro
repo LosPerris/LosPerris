@@ -1,6 +1,6 @@
 ---
 import { socialIcons } from "../../data/icons";
-import { siteUrl } from "../../data/community";
+import { domain } from "../../data/community";
 
 interface Props {
   title: string;
@@ -52,10 +52,6 @@ const apiStyle: Record<string, { cls: string; iconHtml: string }> = {
   Valorant: {
     cls: "text-[#ff4655] bg-[#ff4655]/10 border-[#ff4655]/25",
     iconHtml: socialIcons.valorant.replace("w-8 h-8", "w-3 h-3"),
-  },
-  Transcripts: {
-    cls: "text-[#3b82f6] bg-[#3b82f6]/10 border-[#3b82f6]/25",
-    iconHtml: `<i class="fas fa-file-lines text-[10px]"></i>`,
   },
   "Códigos QR": {
     cls: "text-[#22c55e] bg-[#22c55e]/10 border-[#22c55e]/25",

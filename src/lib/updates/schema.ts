@@ -3,7 +3,6 @@ import { z } from "zod";
 export const UPDATE_API_VALUES = [
   "Twitch",
   "Valorant",
-  "Transcripts",
   "Códigos QR",
   "General",
 ] as const;

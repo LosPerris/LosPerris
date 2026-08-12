@@ -2,7 +2,6 @@
 import {
   discordLink,
   inviteCode,
-  discordHelpBotsLink,
   discordHelpApisLink,
 } from "../../data/community";
 import Button from "../ui/Button.astro";
@@ -13,18 +12,6 @@ const links = [
     description: "Historial de cambios de cada servicio.",
     href: "/actualizaciones",
     icon: "fas fa-clock-rotate-left",
-  },
-  {
-    title: "Documentación",
-    description: "Guías y comandos de los bots.",
-    href: "/bots/documentacion",
-    icon: "fas fa-book-open",
-  },
-  {
-    title: "APIs",
-    description: "Listado de endpoints públicos.",
-    href: "/apis",
-    icon: "fas fa-code",
   },
   {
     title: "Discord",
@@ -40,99 +27,124 @@ const links = [
     icon: "fas fa-terminal",
     external: true,
   },
+  {
+    title: "Status",
+    description: "Estado actual de todos los servicios.",
+    href: "https://status.losperris.dev",
+    icon: "fas fa-circle-check",
+    external: true,
+  },
 ];
 ---
 
 <section
   id="comunidad"
-  class="static-zone relative z-10 bg-[#050505] border-t border-[#f97316]/20"
+  class="py-28 relative bg-[#070707]"
   data-discord-stats
   data-invite-code={inviteCode}
+  data-reveal
 >
-  <div class="max-w-7xl mx-auto px-6 py-20 lg:py-28">
-    <div
-      class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center mb-16"
-    >
-      <div>
-        <h2
-          class="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight uppercase"
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- CTA principal centrado -->
+    <div class="text-center mb-20">
+      <span
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#f97316]/30 bg-[#f97316]/8 text-[#f97316] text-xs font-bold tracking-widest uppercase mb-6"
+      >
+        03 · Comunidad
+      </span>
+      <h2
+        class="text-4xl md:text-6xl font-black text-white mb-5 leading-tight tracking-tight"
+      >
+        Úsalas. Compártelas.<br />
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c]"
         >
-          ENLACES <br /><span
-            class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.2)]"
-            >ÚTILES</span
-          >
-        </h2>
-        <p class="text-zinc-400 text-lg leading-relaxed mb-8 max-w-lg">
-          Enlaces directos y datos del servidor de Discord.
-        </p>
+          Mejóralas.
+        </span>
+      </h2>
+      <p
+        class="text-zinc-400 text-xl max-w-xl mx-auto font-normal leading-relaxed mb-10"
+      >
+        LosPerris es un proyecto de la comunidad. Cada sugerencia y reporte hace
+        que las APIs sean mejores para todos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button
+          href={discordLink}
+          target="_blank"
+          class="px-8 py-4 text-base rounded-2xl justify-center"
+        >
+          <i class="fab fa-discord mr-2"></i> Unirme al Discord
+        </Button>
+        <Button
+          href={discordHelpApisLink}
+          target="_blank"
+          variant="outline"
+          class="px-8 py-4 text-base rounded-2xl justify-center border-white/10"
+        >
+          Ayuda con APIs
+        </Button>
+      </div>
+    </div>
 
-        <div class="flex flex-wrap gap-6 mb-8">
+    <!-- Stats + links -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <!-- Stats Discord -->
+      <div
+        class="rounded-3xl bg-[#0c0c0c] border border-white/6 p-8 flex flex-col justify-between"
+      >
+        <p
+          class="text-xs text-zinc-600 uppercase tracking-widest font-bold mb-8"
+        >
+          Servidor de Discord
+        </p>
+        <div class="space-y-6">
           <div>
             <p
-              class="text-2xl font-black text-white"
+              class="text-5xl font-black text-white leading-none"
               id="community-member-count"
               data-stat="members"
             >
               —
             </p>
-            <p class="text-xs text-zinc-400 uppercase tracking-wider mt-1">
-              En el servidor
+            <p class="text-sm text-zinc-500 mt-2 uppercase tracking-wider">
+              Miembros totales
             </p>
           </div>
-          <div
-            class="w-px bg-gradient-to-b from-transparent via-[#f97316]/40 to-transparent self-stretch"
-          >
-          </div>
+          <div class="w-full h-px bg-white/5"></div>
           <div>
             <p
-              class="text-2xl font-black text-white"
+              class="text-5xl font-black text-[#22c55e] leading-none"
               id="community-online-count"
               data-stat="online"
             >
               —
             </p>
-            <p class="text-xs text-zinc-400 uppercase tracking-wider mt-1">
-              Conectados ahora
+            <p class="text-sm text-zinc-500 mt-2 uppercase tracking-wider">
+              En línea ahora
             </p>
           </div>
         </div>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <Button
-            href={discordLink}
-            target="_blank"
-            class="px-8 py-4 text-base justify-center"
-          >
-            <i class="fab fa-discord mr-2"></i> Discord
-          </Button>
-          <Button
-            href={discordHelpBotsLink}
-            target="_blank"
-            variant="outline"
-            class="px-8 py-4 text-base justify-center border-[#27272a]"
-          >
-            Ayuda con bots
-          </Button>
-        </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Links grid 2 cols -->
+      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {
           links.map((link) => (
             <a
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              class="group rounded-2xl bg-[#0a0a0a] border border-[#27272a] p-5 transition-all duration-300 hover:border-[#f97316]/40 hover:bg-[#0f0f0f] hover:shadow-[0_0_20px_rgba(249,115,22,0.05)]"
+              class="group rounded-3xl bg-[#0c0c0c] border border-white/6 p-6 transition-all duration-300 hover:border-[#f97316]/25 hover:bg-[#0f0f0f] hover:shadow-[0_0_25px_rgba(249,115,22,0.04)]"
             >
-              <div class="flex items-start justify-between mb-4">
-                <div class="w-10 h-10 rounded-xl bg-[#111111] border border-[#27272a] flex items-center justify-center text-[#f97316] group-hover:scale-110 group-hover:border-[#f97316]/30 transition-all duration-300">
+              <div class="flex items-start justify-between mb-5">
+                <div class="w-10 h-10 rounded-xl bg-[#f97316]/10 border border-[#f97316]/15 flex items-center justify-center text-[#f97316] group-hover:scale-110 transition-transform duration-300">
                   <i class={`${link.icon} text-sm`} />
                 </div>
                 <i class="fas fa-arrow-right text-zinc-700 text-xs mt-1 group-hover:text-[#f97316] group-hover:translate-x-0.5 transition-all duration-300" />
               </div>
-              <h3 class="font-bold text-white text-sm mb-1">{link.title}</h3>
-              <p class="text-sm text-zinc-400 leading-relaxed">
+              <h3 class="font-bold text-white text-sm mb-1.5">{link.title}</h3>
+              <p class="text-sm text-zinc-500 leading-relaxed">
                 {link.description}
               </p>
             </a>

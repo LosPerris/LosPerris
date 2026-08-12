@@ -1,5 +1,6 @@
 ---
 import { discordLink, domain } from "../data/community";
+
 const pathname = new URL(Astro.request.url).pathname;
 const isHome =
   pathname === "/" || pathname === "/index.html" || pathname === "/index";
@@ -10,139 +11,130 @@ const getLink = (hash: string) => {
   if (!hash.startsWith("#")) return hash;
   return isHome ? hash : `/${hash}`;
 };
+
+const year = new Date().getFullYear();
+
+const nav = [
+  {
+    heading: "Productos",
+    links: [
+      { label: "APIs Públicas", href: getLink("#apis") },
+      { label: "Actualizaciones", href: "/actualizaciones" },
+      {
+        label: "Estado del sistema",
+        href: "https://status.losperris.dev",
+        external: true,
+      },
+    ],
+  },
+  {
+    heading: "Comunidad",
+    links: [
+      { label: "Discord", href: discordLink, external: true },
+      {
+        label: "Canal de APIs",
+        href: "https://discord.com/channels/1158802490561667103/1447647406639288420",
+        external: true,
+      },
+    ],
+  },
+];
 ---
 
-<footer
-  class="bg-[#050505] border-t border-[#f97316]/40 py-10 mt-auto relative z-10"
->
-  <div class="max-w-6xl mx-auto px-6">
-    <div
-      class="flex flex-col md:flex-row justify-between items-start gap-10 mb-10"
-    >
-      <div class="md:w-1/3">
-        <div class="flex items-center gap-3 mb-6">
+<footer class="relative z-10 bg-[#050505] border-t border-white/6 mt-auto">
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <!-- Top: logo + nav -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <!-- Branding -->
+      <div class="md:col-span-1">
+        <a href="/" class="flex items-center gap-3 mb-5 group w-fit">
           <img
             src="/LosPerris-minimal.svg"
-            alt="LosPerris Logo"
-            class="w-8 h-8"
+            alt="LosPerris"
+            class="w-8 h-8 group-hover:scale-110 transition-transform duration-300"
             loading="lazy"
             decoding="async"
           />
-          <h3 class="text-xl font-bold text-white tracking-wide">LosPerris</h3>
-        </div>
+          <span class="text-lg font-bold text-white tracking-tight"
+            >LosPerris</span
+          >
+        </a>
         <p class="text-zinc-400 text-sm leading-relaxed">
-          Potenciando comunidades de Discord con herramientas, APIs y bots de
-          alto rendimiento diseñados para creadores y desarrolladores.
+          APIs públicas y gratuitas para streamers y desarrolladores.
         </p>
-      </div>
 
-      <div class="md:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div class="space-y-4">
-          <h3
-            class="text-sm font-semibold text-white uppercase tracking-wider mb-4"
+        <!-- Iconos sociales -->
+        <div class="flex items-center gap-3 mt-6">
+          <a
+            href={discordLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Discord"
+            class="w-9 h-9 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-200"
           >
-            Productos
-          </h3>
-          <ul class="space-y-3">
-            <li>
-              <a
-                href={getLink("#bots")}
-                class="text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
-                >Bots de Moderación</a
-              >
-            </li>
-            <li>
-              <a
-                href={getLink("#apis")}
-                class="text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
-                >APIs Públicas</a
-              >
-            </li>
-            <li>
-              <a
-                href="/actualizaciones"
-                class="text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
-                >Actualizaciones</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div class="space-y-4">
-          <h3
-            class="text-sm font-semibold text-white uppercase tracking-wider mb-4"
+            <i class="fab fa-discord text-sm"></i>
+          </a>
+          <a
+            href="https://status.losperris.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Status"
+            class="w-9 h-9 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 hover:text-[#22c55e] hover:border-[#22c55e]/30 hover:bg-[#22c55e]/5 transition-all duration-200"
           >
-            Soporte
-          </h3>
-          <ul class="space-y-3">
-            <li>
-              <a
-                href={discordLink}
-                class="text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
-                >Servidor de Discord</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://status.losperris.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
-                >Estado del Sistema</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div class="space-y-4">
-          <h3
-            class="text-sm font-semibold text-white uppercase tracking-wider mb-4"
-          >
-            Legal
-          </h3>
-          <ul class="space-y-3">
-            <li>
-              <a
-                href="/terminos"
-                class="text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
-                >Términos de Servicio</a
-              >
-            </li>
-            <li>
-              <a
-                href="/politica-privacidad"
-                class="text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
-                >Privacidad</a
-              >
-            </li>
-          </ul>
+            <i class="fas fa-circle-check text-sm"></i>
+          </a>
         </div>
       </div>
+
+      <!-- Nav columns -->
+      {
+        nav.map((col) => (
+          <div>
+            <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-5">
+              {col.heading}
+            </h4>
+            <ul class="space-y-3">
+              {col.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    class="text-sm text-zinc-400 hover:text-white transition-colors duration-200 flex items-center gap-1.5 group w-fit"
+                  >
+                    {link.label}
+                    {link.external && (
+                      <i class="fas fa-arrow-up-right-from-square text-[10px] opacity-0 group-hover:opacity-60 transition-opacity" />
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
 
+    <!-- Bottom: copyright + badge status -->
     <div
-      class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#f97316]/20"
+      class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5"
     >
-      <p class="text-white text-sm">
-        &copy; {new Date().getFullYear()}
-        {domain}. Todos los derechos reservados.
+      <p class="text-zinc-400 text-sm">
+        © {year}
+        {domain} · Hecho con <span class="text-[#f97316]">♥</span> para la comunidad
       </p>
 
       <a
         href="https://status.losperris.dev"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-4 md:mt-0 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
-        aria-label="Ver estado de los servicios (Página externa)"
+        aria-label="Estado de los servicios"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/4 text-xs text-zinc-400 hover:border-[#22c55e]/30 hover:text-[#22c55e] transition-all duration-200"
       >
-        <iframe
-          src="https://status.losperris.dev/badge?theme=dark"
-          width="250"
-          height="30"
-          title="Estado de los servicios de LosPerris"
-          loading="lazy"
-          style="color-scheme: normal; pointer-events: none; border: 0; overflow: hidden;"
-        ></iframe>
+        <span
+          class="w-1.5 h-1.5 rounded-full bg-[#22c55e] shadow-[0_0_6px_#22c55e]"
+        ></span>
+        Todos los servicios operativos
       </a>
     </div>
   </div>

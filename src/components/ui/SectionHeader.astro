@@ -4,6 +4,7 @@ interface Props {
   title: string;
   highlight?: string;
   description?: string;
+  pill?: string;
   class?: string;
 }
 
@@ -12,6 +13,7 @@ const {
   title,
   highlight,
   description,
+  pill,
   class: className = "",
 } = Astro.props;
 
@@ -25,14 +27,22 @@ const mxClass =
   align === "center" ? "mx-auto" : align === "right" ? "ml-auto" : "";
 ---
 
-<div class={`mb-16 relative z-10 ${alignClass} ${className}`}>
+<div class={`mb-16 relative z-10 flex flex-col ${alignClass} ${className}`}>
+  {
+    pill && (
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#f97316]/30 bg-[#f97316]/8 text-[#f97316] text-xs font-bold tracking-widest uppercase mb-6 w-fit">
+        {pill}
+      </span>
+    )
+  }
   <h2
-    class="text-4xl md:text-6xl font-black text-white mb-4 animate-[fadeInUp_0.8s_ease-out]"
+    class="text-4xl md:text-6xl font-black text-white mb-5 leading-[1.08] tracking-tight animate-[fadeInUp_0.8s_ease-out]"
   >
     {title}
     {
       highlight && (
-        <span class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_15px_rgba(249,115,22,0.2)] ml-2">
+        <span class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_20px_rgba(249,115,22,0.25)]">
+          {" "}
           {highlight}
         </span>
       )
@@ -42,7 +52,7 @@ const mxClass =
   {
     description && (
       <p
-        class={`text-text-secondary text-xl max-w-2xl font-light animate-[fadeInUp_0.8s_ease-out_0.2s_both] ${mxClass}`}
+        class={`text-zinc-400 text-xl max-w-2xl font-normal leading-relaxed animate-[fadeInUp_0.8s_ease-out_0.2s_both] ${mxClass}`}
       >
         {description}
       </p>

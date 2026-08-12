@@ -1,74 +1,21 @@
 ---
 import { apis } from "../../data/apis";
-import Button from "../ui/Button.astro";
 import SectionHeader from "../ui/SectionHeader.astro";
-import TimelineLine from "../ui/TimelineLine.astro";
 import ApiCard from "./ApiCard.astro";
-import { socialIcons } from "../../data/icons";
 ---
 
-<section
-  id="apis"
-  data-timeline-section
-  class="py-24 relative bg-[#050505] scroll-mt-32"
->
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-      <div class="lg:col-span-4 lg:sticky lg:top-32 text-left self-start">
-        <SectionHeader
-          title="APIS"
-          highlight="PÚBLICAS"
-          description="Recursos gratuitos para desarrolladores y creadores de contenido."
-          align="left"
-        />
-        <div class="hidden lg:block mt-8">
-          <Button href="/apis" class="w-full justify-center text-center py-4">
-            Ver todas las APIs{" "}
-            <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
-          </Button>
-        </div>
-      </div>
+<section id="apis" class="py-28 relative bg-[#050505] scroll-mt-20" data-reveal>
+  <div class="max-w-6xl mx-auto px-6">
+    <SectionHeader
+      pill="02 · APIs Públicas"
+      title="Todo lo que"
+      highlight="necesitas"
+      description="Endpoints gratuitos para streamers, creadores y desarrolladores. Sin autenticación en la mayoría."
+      align="center"
+    />
 
-      <div class="lg:col-span-8 lg:pl-16 relative" data-timeline-track>
-        <TimelineLine side="left" />
-
-        <div class="space-y-12 relative z-10 py-4">
-          {
-            apis
-              .filter((api) => api.popular)
-              .map((api, index) => (
-                <div
-                  class="relative pl-0 md:pl-20 text-left"
-                  data-timeline-item
-                >
-                  <div class="timeline-node timeline-node--left top-12">
-                    {api.iconId && socialIcons[api.iconId] ? (
-                      <div
-                        class="timeline-icon flex items-center justify-center w-full h-full text-white"
-                        set:html={socialIcons[api.iconId]}
-                      />
-                    ) : (
-                      <i
-                        class={`${api.icon || "fas fa-code"} text-xl timeline-icon`}
-                      />
-                    )}
-                  </div>
-
-                  <div class="timeline-content">
-                    <ApiCard api={api} index={index} />
-                  </div>
-                </div>
-              ))
-          }
-        </div>
-
-        <div class="mt-12 text-center lg:hidden relative pl-0 md:pl-20">
-          <Button href="/apis" class="px-8 py-3 text-lg">
-            Ver todas las APIs{" "}
-            <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
-          </Button>
-        </div>
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {apis.map((api, index) => <ApiCard api={api} index={index} />)}
     </div>
   </div>
 </section>

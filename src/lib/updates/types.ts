@@ -1,9 +1,4 @@
-export type UpdateApi =
-  | "Twitch"
-  | "Valorant"
-  | "Transcripts"
-  | "Códigos QR"
-  | "General";
+export type UpdateApi = "Twitch" | "Valorant" | "Códigos QR" | "General";
 
 export interface UpdateEntryRaw {
   id: string;
