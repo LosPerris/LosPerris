@@ -43,9 +43,7 @@ const nav = [
 
 <footer class="relative z-10 bg-[#050505] border-t border-white/6 mt-auto">
   <div class="max-w-6xl mx-auto px-6 py-10">
-    <!-- Top: logo + nav -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-      <!-- Branding -->
       <div class="md:col-span-1">
         <a href="/" class="flex items-center gap-3 mb-5 group w-fit">
           <img
@@ -63,7 +61,6 @@ const nav = [
           APIs públicas y gratuitas para streamers y desarrolladores.
         </p>
 
-        <!-- Iconos sociales -->
         <div class="flex items-center gap-3 mt-6">
           <a
             href={discordLink}
@@ -86,7 +83,6 @@ const nav = [
         </div>
       </div>
 
-      <!-- Nav columns -->
       {
         nav.map((col) => (
           <div>
@@ -115,7 +111,6 @@ const nav = [
       }
     </div>
 
-    <!-- Bottom: copyright + badge status -->
     <div
       class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5"
     >
