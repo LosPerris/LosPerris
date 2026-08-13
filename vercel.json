@@ -3,58 +3,8 @@
   "buildCommand": "pnpm run build",
   "installCommand": "pnpm install",
   "outputDirectory": "dist",
-  "redirects": [
-    {
-      "source": "/api",
-      "destination": "/apis",
-      "permanent": true
-    }
-  ],
   "rewrites": [],
   "headers": [
-    {
-      "source": "/maria",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "private, no-cache, no-store, must-revalidate"
-        },
-        {
-          "key": "Pragma",
-          "value": "no-cache"
-        }
-      ]
-    },
-    {
-      "source": "/maria/",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "private, no-cache, no-store, must-revalidate"
-        },
-        {
-          "key": "Pragma",
-          "value": "no-cache"
-        }
-      ]
-    },
-    {
-      "source": "/api/maria/:path*",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
     {
       "source": "/(.*)",
       "headers": [

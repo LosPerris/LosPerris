@@ -18,11 +18,7 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: "hover"
   },
-  integrations: [sitemap({
-    filter: (page) =>
-      !page.includes("/maria") &&
-      !page.includes("/api/maria"),
-  })],
+  integrations: [sitemap()],
   image: {
     domains: [
       "mc-heads.net",
@@ -33,10 +29,5 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
-  },
-  redirects: {
-    "/api": "/apis",
-    "/guias": "/bots/documentacion",
-    "/bots/guias": "/bots/documentacion",
   },
 });
