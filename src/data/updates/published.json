@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-15T04:35:55.624Z",
+  "syncedAt": "2026-08-15T06:23:11.986Z",
   "entries": [
+    {
+      "id": "gh-qr-f7ac8ac",
+      "title": "Añadir exportación en SVG del código QR",
+      "description": "",
+      "tag": "Feature",
+      "api": "Códigos QR",
+      "date": "2026-08-15T06:21:41.000Z",
+      "dateString": "15 Agosto 2026",
+      "commitSha": "f7ac8ac"
+    },
     {
       "id": "gh-twitch-4fabb4a",
       "title": "Analytics del panel más claros y landing sin flash del CTA",
@@ -606,6 +616,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 13
+    "lastPublished": 14
   }
 }
