@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-15T12:51:07.075Z",
+  "syncedAt": "2026-08-16T02:33:31.338Z",
   "entries": [
+    {
+      "id": "gh-valorant-bd9c84c",
+      "title": "Nuevo efecto visual pokémon, animaciones pop-in y mejoras de estabilidad en el widget",
+      "description": "- Añadido efecto PokemonStatEffect para simular caída de estadísticas - Mejorado el timing del contador de números - Añadida animación popIn para textos de victoria/derrota - Fijado el ancho del panel derecho del widget para evitar saltos en la interfaz - Limpieza de CSS sin usar y corrección de tipos en utilidades",
+      "tag": "Feature",
+      "api": "Valorant",
+      "date": "2026-08-16T02:32:16.000Z",
+      "dateString": "16 Agosto 2026",
+      "commitSha": "bd9c84c"
+    },
     {
       "id": "gh-qr-f7ac8ac",
       "title": "Añadir exportación en SVG del código QR",
@@ -616,6 +626,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 14
+    "lastPublished": 15
   }
 }
