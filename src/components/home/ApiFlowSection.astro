@@ -1,0 +1,247 @@
+---
+import { icons, socialIcons } from "../../data/icons";
+---
+
+<section class="py-24 relative overflow-hidden" id="flujo-api" data-reveal>
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="flex flex-col relative z-10">
+        <div class="mb-6">
+          <h2
+            class="text-4xl md:text-5xl font-medium tracking-tighter text-white leading-[1.1]"
+          >
+            Centraliza tu stream
+          </h2>
+        </div>
+
+        <p class="text-zinc-400 text-lg leading-relaxed mb-8 max-w-lg">
+          Integración nativa con Twitch, Discord, Nightbot y StreamElements. La
+          API procesa cada señal en contexto — quién ejecuta el comando, cuándo
+          y desde dónde — y devuelve datos en milisegundos.
+        </p>
+
+        <div class="flex items-center gap-4 mb-10">
+          <div
+            class="w-10 h-10 rounded-lg bg-[#0c0c0d] border border-zinc-800/80 flex items-center justify-center text-zinc-300 shadow-sm"
+            set:html={icons.twitch.replace("w-8 h-8", "w-5 h-5")}
+          />
+          <div
+            class="w-10 h-10 rounded-lg bg-[#0c0c0d] border border-zinc-800/80 flex items-center justify-center text-zinc-300 shadow-sm"
+            set:html={icons.discord.replace("w-8 h-8", "w-5 h-5")}
+          />
+          <div
+            class="w-10 h-10 rounded-lg bg-[#0c0c0d] border border-zinc-800/80 flex items-center justify-center text-zinc-300 shadow-sm"
+            set:html={socialIcons.valorant.replace("w-8 h-8", "w-5 h-5")}
+          />
+          <div
+            class="w-10 h-10 rounded-lg bg-[#0c0c0d] border border-zinc-800/80 flex items-center justify-center text-zinc-300 shadow-sm"
+            set:html={icons.nodedotjs.replace("w-8 h-8", "w-5 h-5")}
+          />
+        </div>
+
+        <a
+          href="#apis"
+          class="text-sm font-semibold text-white flex items-center gap-2 group w-max"
+        >
+          Descubrir todos los endpoints
+          <i
+            class="fas fa-arrow-right text-[11px] text-zinc-500 group-hover:text-[#f97316] transition-all group-hover:translate-x-1"
+          ></i>
+        </a>
+      </div>
+
+      <div
+        class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square flex items-center justify-center"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.08),transparent_70%)] rounded-full blur-3xl"
+        >
+        </div>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
+          ><defs
+            ><pattern
+              id="gridFlowPattern"
+              width="30"
+              height="30"
+              patternUnits="userSpaceOnUse"
+              ><path fill="none" stroke="#fff" stroke-width=".5" d="M30 0H0v30"
+              ></path></pattern
+            ></defs
+          ><rect width="100%" height="100%" fill="url(#gridFlowPattern)"
+          ></rect></svg
+        >
+
+        <div class="relative w-[320px] h-[320px] md:w-[380px] md:h-[380px]">
+          <svg
+            class="absolute inset-0 w-full h-full pointer-events-none z-0"
+            viewBox="0 0 400 400"
+          >
+            <g
+              stroke="rgba(255,255,255,0.15)"
+              stroke-width="1.5"
+              fill="none"
+              stroke-dasharray="4 4"
+            >
+              <!-- Top Left -->
+              <path d="M 80 80 L 150 150" class="data-flow-line"></path>
+              <!-- Top -->
+              <path
+                d="M 200 40 L 200 130"
+                class="data-flow-line"
+                style="animation-delay: -1s;"></path>
+              <!-- Top Right -->
+              <path
+                d="M 320 80 L 250 150"
+                class="data-flow-line"
+                style="animation-delay: -2s;"></path>
+              <!-- Right -->
+              <path
+                d="M 360 200 L 270 200"
+                class="data-flow-line"
+                style="animation-delay: -0.5s;"></path>
+              <!-- Bottom Right -->
+              <path
+                d="M 320 320 L 250 250"
+                class="data-flow-line"
+                style="animation-delay: -1.5s;"></path>
+              <!-- Bottom -->
+              <path
+                d="M 200 360 L 200 270"
+                class="data-flow-line"
+                style="animation-delay: -2.5s;"></path>
+              <!-- Bottom Left -->
+              <path
+                d="M 80 320 L 150 250"
+                class="data-flow-line"
+                style="animation-delay: -0.8s;"></path>
+              <!-- Left -->
+              <path
+                d="M 40 200 L 130 200"
+                class="data-flow-line"
+                style="animation-delay: -1.2s;"></path>
+            </g>
+          </svg>
+
+          <div
+            class="absolute top-[20px] left-[180px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: 0s;"
+            set:html={icons.react.replace("w-8 h-8", "w-5 h-5")}
+          />
+
+          <div
+            class="absolute top-[60px] right-[60px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: -1s;"
+            set:html={icons.discord.replace("w-8 h-8", "w-5 h-5")}
+          />
+
+          <div
+            class="absolute top-[180px] right-[20px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: -2s;"
+            set:html={icons.twitch.replace("w-8 h-8", "w-5 h-5")}
+          />
+
+          <div
+            class="absolute bottom-[60px] right-[60px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: -0.5s;"
+            set:html={socialIcons.valorant.replace("w-8 h-8", "w-5 h-5")}
+          />
+
+          <div
+            class="absolute bottom-[20px] left-[180px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: -1.5s;"
+            set:html={icons.supabase.replace("w-8 h-8", "w-5 h-5")}
+          />
+
+          <div
+            class="absolute bottom-[60px] left-[60px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: -2.5s;"
+            set:html={icons.nodedotjs.replace("w-8 h-8", "w-5 h-5")}
+          />
+
+          <div
+            class="absolute top-[180px] left-[20px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: -0.8s;"
+            set:html={icons.vercel.replace("w-8 h-8", "w-5 h-5 text-white")}
+          />
+
+          <div
+            class="absolute top-[60px] left-[60px] w-10 h-10 rounded-lg bg-[#090a0b] border border-zinc-800 flex items-center justify-center shadow-xl z-10 floating text-zinc-200"
+            style="animation-delay: -1.2s;"
+            set:html={icons.zod.replace("w-8 h-8", "w-5 h-5")}
+          />
+
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-36 md:h-36 z-20"
+          >
+            <div
+              class="absolute inset-0 bg-[#090a0b] border border-zinc-700/80 rounded-2xl shadow-[0_0_30px_rgba(249,115,22,0.1)] flex flex-col items-center justify-center gap-2 overflow-hidden group hover:border-zinc-700/80 transition-colors duration-500"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-[#f97316]/10 to-transparent opacity-50"
+              >
+              </div>
+
+              <img
+                src="/LosPerris-minimal.svg"
+                alt="LosPerris"
+                loading="lazy"
+                class="w-10 h-10 drop-shadow-[0_0_8px_rgba(249,115,22,0.6)] relative z-10"
+              />
+              <span
+                class="text-white font-bold text-sm tracking-tight relative z-10"
+                >LosPerris</span
+              >
+              <span
+                class="text-[9px] font-mono text-[#f97316] uppercase tracking-widest bg-[#f97316]/10 px-2 py-0.5 rounded border border-[#f97316]/20 relative z-10"
+                >API Core</span
+              >
+            </div>
+
+            <div
+              class="absolute inset-0 border border-[#f97316]/30 rounded-2xl animate-ping opacity-20"
+              style="animation-duration: 3s;"
+            >
+            </div>
+            <div
+              class="absolute -inset-4 border border-[#f97316]/10 rounded-3xl animate-pulse"
+              style="animation-duration: 4s;"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .floating {
+    animation: floating 4s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .data-flow-line {
+    stroke-dashoffset: 16;
+    animation: flowData 0.8s linear infinite;
+  }
+
+  @keyframes flowData {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>

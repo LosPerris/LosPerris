@@ -15,9 +15,9 @@ const {
 } = Astro.props;
 
 const baseStyles =
-  "bg-[#111111]/80 backdrop-blur-xl rounded-2xl border border-[#27272a] shadow-2xl transition-all duration-500";
+  "bg-[#090a0b] rounded-xl border border-zinc-800 transition-all duration-300";
 const hoverStyles = hoverEffect
-  ? "hover:-translate-y-2 hover:border-[#f97316]/50 hover:shadow-[0_10px_30px_rgba(249,115,22,0.1)]"
+  ? "hover:bg-white/[0.02] hover:border-zinc-700/80"
   : "";
 const animateStyles = animate
   ? "opacity-0 animate-[fadeInUp_0.6s_ease-out_forwards]"
@@ -27,12 +27,5 @@ const styles = `${baseStyles} ${hoverStyles} ${animateStyles} ${className || ""}
 ---
 
 <div class={`${styles} group relative overflow-hidden`} {...rest}>
-  <div
-    class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-  >
-  </div>
-
-  <div class="relative z-10 h-full">
-    <slot />
-  </div>
+  <slot />
 </div>

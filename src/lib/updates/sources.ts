@@ -38,7 +38,6 @@ function mapPublished(entries: UpdateEntryRaw[]): PublishedUpdateEntry[] {
   }));
 }
 
-/** Todo lo publicado en /actualizaciones (commits sync + entradas manuales en git). */
 export function fetchPublishedUpdates(): PublishedUpdateEntry[] {
   if (import.meta.env.SKIP_GITHUB_UPDATES === "true") {
     return [];
@@ -62,7 +61,6 @@ export function fetchPublishedUpdates(): PublishedUpdateEntry[] {
   );
 }
 
-/** Avisos «Próximamente». */
 export function fetchPlannedUpdates(): PlannedUpdateEntry[] {
   const parsed = parseUpdatesFile(plannedFile);
   if (!parsed.success) {

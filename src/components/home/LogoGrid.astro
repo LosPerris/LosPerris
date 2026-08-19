@@ -1,0 +1,54 @@
+---
+import { icons } from "../../data/icons";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  logos: { name: string; id: string }[];
+}
+
+const {
+  title = "Construido con las mejores tecnologías",
+  subtitle = "Nuestras herramientas están impulsadas por el ecosistema más moderno.",
+  logos,
+} = Astro.props;
+---
+
+<section class="py-16 relative overflow-hidden">
+  <div class="max-w-5xl mx-auto px-0">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-medium text-white mb-3 tracking-tight">
+        {title}
+      </h2>
+      <p class="text-zinc-400 text-lg max-w-2xl mx-auto">
+        {subtitle}
+      </p>
+    </div>
+
+    <div
+      class="relative w-full border border-zinc-800/80 rounded-2xl overflow-hidden bg-zinc-800/80 shadow-2xl"
+    >
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-[1px]">
+        {
+          logos.map((logo) => (
+            <div class="group relative flex flex-col sm:flex-row items-center justify-center gap-3 py-10 bg-[#050505] hover:bg-white/[0.02] transition-colors duration-500 cursor-default">
+              <div class="text-zinc-500 group-hover:text-white transition-colors duration-500 flex items-center justify-center">
+                {icons[logo.id] ? (
+                  <div
+                    set:html={icons[logo.id].replace("w-8 h-8", "w-6 h-6")}
+                  />
+                ) : (
+                  <i class="fas fa-cube text-xl" />
+                )}
+              </div>
+
+              <span class="text-zinc-500 font-medium text-[15px] tracking-wide group-hover:text-white transition-colors duration-500">
+                {logo.name}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

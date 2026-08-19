@@ -1,0 +1,89 @@
+---
+// ToastProvider.astro
+// Contenedor global para apilar notificaciones
+---
+
+<div
+  id="toast-container"
+  class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none items-end"
+>
+</div>
+
+<style is:global>
+  /* Animaciones globales para los Toasts */
+  .toast-enter {
+    animation: toast-slide-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+      forwards;
+  }
+
+  .toast-leave {
+    animation: toast-fade-out 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes toast-slide-in {
+    0% {
+      opacity: 0;
+      transform: translateX(100%) scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes toast-fade-out {
+    0% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(10px) scale(0.95);
+    }
+  }
+
+  /* Toast básico */
+  .toast-item {
+    pointer-events: auto;
+    background: #0c0c0d;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 380px;
+    transition: all 0.2s ease;
+  }
+
+  .toast-item:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Icono del toast */
+  .toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* Variantes */
+  .toast-item.success .toast-icon {
+    color: #10b981;
+  }
+
+  .toast-item.brand .toast-icon {
+    color: #f97316;
+  }
+</style>
+
+<script>
+  import "../../scripts/toast.ts";
+</script>

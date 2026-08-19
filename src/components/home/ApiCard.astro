@@ -1,6 +1,5 @@
 ---
 import Card from "../ui/Card.astro";
-import Button from "../ui/Button.astro";
 import { socialIcons } from "../../data/icons";
 
 interface ApiEndpoint {
@@ -17,27 +16,32 @@ interface Props {
     icon?: string;
     iconId?: string;
     color?: string;
-    hoverColor?: string;
     link: string;
     linkText?: string;
     baseUrl?: string;
     private?: boolean;
     endpoints?: ApiEndpoint[];
   };
-  index: number;
-  showTestedBadge?: boolean;
 }
 
-const { api, showTestedBadge = false } = Astro.props;
+const { api } = Astro.props;
 const isExternalLink = api.link.startsWith("http");
 ---
 
 <Card
-  class="api-card p-8 bg-none border border-white/6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-[#f97316]/25 hover:shadow-[0_0_30px_rgba(249,115,22,0.06)] rounded-3xl flex flex-col"
+  hoverEffect={false}
+  class="api-card p-6 md:p-8 flex flex-col h-full group bg-[#090a0b] hover:bg-white/[0.02] transition-all duration-300 relative border border-zinc-800/80 hover:border-zinc-700/80"
 >
-  <div class="flex items-start justify-between mb-6 gap-3">
+  <a
+    href={api.link}
+    target={isExternalLink ? "_blank" : undefined}
+    rel={isExternalLink ? "noopener noreferrer" : undefined}
+    class="absolute inset-0 z-20"
+    aria-label={`Ver detalles de ${api.title}`}></a>
+
+  <div class="flex items-start justify-between mb-6 gap-3 relative z-10">
     <div
-      class={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-3xl shrink-0 ${api.color || "text-white"}`}
+      class={`w-12 h-12 rounded-xl bg-white/[0.03] border border-white/5 backdrop-blur-sm flex items-center justify-center text-xl shrink-0 ${api.color || "text-zinc-300"} group-hover:scale-105 transition-transform duration-300`}
     >
       {
         api.iconId && socialIcons[api.iconId] ? (
@@ -50,40 +54,36 @@ const isExternalLink = api.link.startsWith("http");
         )
       }
     </div>
+
     <div class="flex flex-wrap items-center justify-end gap-2">
       {
         api.private && (
-          <span class="bg-[#5865F2]/15 px-3 py-1 rounded-full text-xs text-[#5865F2] font-bold border border-[#5865F2]/40 tracking-wider">
-            PRIVADA
-          </span>
-        )
-      }
-      {
-        showTestedBadge && (
-          <span class="bg-[#f97316]/20 px-3 py-1 rounded-full text-xs text-[#f97316] font-bold border border-[#f97316]/50 tracking-wider">
-            TESTED
+          <span class="flex items-center gap-1.5 bg-[#5865F2]/5 px-2 py-1 rounded-md text-[9px] text-[#5865F2] font-mono uppercase tracking-widest border border-[#5865F2]/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#5865F2] animate-pulse" />
+            Privada
           </span>
         )
       }
     </div>
   </div>
 
-  <h3 class="text-2xl font-bold text-white mb-3">
+  <h3
+    class="text-xl font-medium text-zinc-100 mb-2 tracking-tight relative z-10 group-hover:text-white transition-colors"
+  >
     {api.title}
   </h3>
-  <p class="text-zinc-400 leading-relaxed mb-8 grow">
+  <p
+    class="text-zinc-500 leading-relaxed text-[14px] mb-8 grow relative z-10 group-hover:text-zinc-400 transition-colors"
+  >
     {api.description}
   </p>
 
-  <div class="mt-auto">
-    <Button
-      href={api.link}
-      target={isExternalLink ? "_blank" : undefined}
-      rel={isExternalLink ? "noopener noreferrer" : undefined}
-      class="w-full justify-center text-sm py-3 rounded-xl"
-    >
-      {api.linkText || "Ver más"}{" "}
-      <i class="fas fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
-    </Button>
+  <div
+    class="mt-auto flex items-center text-[#f97316] text-[13px] font-semibold tracking-wide opacity-70 group-hover:opacity-100 transition-opacity relative z-10"
+  >
+    <span>{api.linkText || "Ver documentación"}</span>
+    <i
+      class="fas fa-arrow-right ml-2 text-[11px] transition-transform duration-300 group-hover:translate-x-1.5"
+      aria-hidden="true"></i>
   </div>
 </Card>

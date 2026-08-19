@@ -1,0 +1,241 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { apis } from "../../data/apis";
+import { socialIcons, icons } from "../../data/icons";
+import { Image } from "astro:assets";
+
+export function getStaticPaths() {
+  return apis.map((api) => ({
+    params: { slug: api.slug },
+    props: { api },
+  }));
+}
+
+const { api } = Astro.props;
+---
+
+<Layout title={`${api.title} | LosPerris`}>
+  <div
+    class="relative pt-32 pb-0 max-w-5xl mx-auto px-6 font-[Outfit,Inter,system-ui,sans-serif]"
+  >
+    <nav class="mb-12" aria-label="Breadcrumb">
+      <ol
+        class="flex items-center gap-2 sm:gap-3 text-[0.65rem] font-bold tracking-widest text-zinc-500 uppercase"
+      >
+        <li>
+          <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        </li>
+        <li class="flex items-center gap-2 sm:gap-3">
+          <span class="text-zinc-700">/</span>
+          <a href="/api" class="hover:text-white transition-colors"
+            >Directorio API</a
+          >
+        </li>
+        <li class="flex items-center gap-2 sm:gap-3">
+          <span class="text-zinc-700">/</span>
+          <span class="text-white truncate">{api.title}</span>
+        </li>
+      </ol>
+    </nav>
+
+    <article class="relative flex flex-col gap-16">
+      <header class="flex flex-col items-center text-center">
+        <div
+          class={`w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center shrink-0 mb-6 shadow-xl ${api.color}`}
+        >
+          {
+            api.iconId && socialIcons[api.iconId] ? (
+              <div
+                set:html={socialIcons[api.iconId].replace("w-8 h-8", "w-8 h-8")}
+                class="flex items-center justify-center"
+              />
+            ) : (
+              <i class={`${api.icon} text-2xl`} />
+            )
+          }
+        </div>
+
+        <h1
+          class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4"
+        >
+          {api.title}
+        </h1>
+
+        {
+          api.baseUrl && (
+            <a
+              href={api.baseUrl}
+              target="_blank"
+              class={`inline-flex items-center gap-2 text-sm font-mono text-zinc-500 hover:text-white transition-colors`}
+            >
+              {api.baseUrl}
+              <i class="fas fa-external-link-alt text-[10px]" />
+            </a>
+          )
+        }
+      </header>
+
+      <div class="w-full">
+        <div
+          class="aspect-[21/9] w-full rounded-2xl bg-[#090a0b] border border-zinc-800/80 shadow-2xl overflow-hidden flex items-center justify-center group relative ring-1 ring-white/5"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent z-10 pointer-events-none"
+          >
+          </div>
+
+          <Image
+            src={`/images/${api.slug}-preview.png`}
+            alt={`Preview de ${api.title}`}
+            width={1920}
+            height={1080}
+            loading="eager"
+            class="w-full h-full object-cover object-top relative z-0 transition-transform duration-1000 group-hover:scale-[1.02]"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+
+          <div
+            class="relative z-10 flex-col items-center gap-4 hidden w-full h-full justify-center"
+          >
+            {
+              api.iconId && socialIcons[api.iconId] ? (
+                <div
+                  set:html={socialIcons[api.iconId].replace(
+                    "w-8 h-8",
+                    "w-16 h-16",
+                  )}
+                  class="opacity-20 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700"
+                />
+              ) : (
+                <i
+                  class={`${api.icon} text-6xl opacity-20 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700`}
+                />
+              )
+            }
+            <span
+              class="text-[12px] font-mono text-zinc-600 uppercase tracking-widest border border-zinc-800/50 bg-black/50 px-3 py-1 rounded-full mt-4"
+            >
+              Imagen no encontrada: /images/{api.slug}-preview.png
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mx-auto w-full">
+        <div
+          class="prose prose-invert prose-zinc prose-lg max-w-none mb-10 text-center md:text-left"
+        >
+          {
+            api.longDescription ? (
+              api.longDescription
+                .split("\n")
+                .map((paragraph) => paragraph.trim())
+                .filter((p) => p)
+                .map((paragraph) => (
+                  <p class="text-zinc-400 text-[1.1rem] leading-relaxed mb-6">
+                    {paragraph}
+                  </p>
+                ))
+            ) : (
+              <p class="text-zinc-400 text-[1.1rem] leading-relaxed mb-6">
+                {api.description}
+              </p>
+            )
+          }
+        </div>
+
+        {
+          api.baseUrl && (
+            <div class="flex justify-center mt-12 mb-16">
+              <a
+                href={api.baseUrl}
+                target="_blank"
+                class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 hover:scale-[1.02] transition-all text-[15px] shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+              >
+                {api.linkText || "Visitar Web"}
+                <i class="fas fa-arrow-right text-sm" />
+              </a>
+            </div>
+          )
+        }
+      </div>
+
+      {
+        api.features && api.features.length > 0 && (
+          <section class="mb-20 w-full max-w-5xl mx-auto">
+            <div class="mb-6 flex items-center gap-3">
+              <div class="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-800/80 bg-[#090a0b]/80">
+                <i class="fas fa-book h-4 w-4 text-zinc-400" />
+              </div>
+              <h2 class="text-xl font-medium tracking-tight text-white">
+                Características Principales
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {api.features.map((feature, index) => (
+                <div class="flex flex-col rounded-xl border border-zinc-800/60 bg-[#090a0b]/60 p-6">
+                  <div class="mb-4 flex items-start justify-between">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-800/80 bg-[#090a0b]">
+                      <i
+                        class={`${feature.icon} h-5 w-5 ${api.color.replace("text-", "text-")}`}
+                      />
+                    </div>
+                  </div>
+                  <span class="mb-1 text-[0.7rem] font-bold tracking-widest text-zinc-500 uppercase">
+                    0{index + 1} / {api.slug}
+                  </span>
+                  <h3 class="mb-2 text-lg font-medium text-white">
+                    {feature.title}
+                  </h3>
+                  <p class="text-[0.95rem] leading-relaxed text-zinc-400">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        api.integrations && api.integrations.length > 0 && (
+          <section class="mb-32 w-full max-w-5xl mx-auto border-t border-zinc-800/80 pt-16">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-medium text-white mb-3 tracking-tight">
+                Construido para el ecosistema
+              </h2>
+              <p class="text-zinc-400 text-lg">
+                Integración perfecta y tecnologías utilizadas en {api.title}.
+              </p>
+            </div>
+
+            <div class="relative w-full rounded-2xl overflow-hidden ring-1 ring-zinc-800/60 bg-zinc-800/60">
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-[1px]">
+                {api.integrations.map((tech) => (
+                  <div class="group relative flex items-center justify-center gap-3 py-10 bg-[#090a0b] transition-colors duration-500 cursor-default">
+                    <div class="text-zinc-500 group-hover:text-white transition-colors duration-500 flex items-center justify-center shrink-0">
+                      {icons[tech.id] ? (
+                        <div
+                          set:html={icons[tech.id]
+                            .replace("fill-current", "fill-current")
+                            .replace("w-8 h-8", "w-6 h-6")}
+                        />
+                      ) : (
+                        <i class="fas fa-cube text-xl" />
+                      )}
+                    </div>
+
+                    <span class="text-zinc-500 font-medium text-[15px] tracking-wide group-hover:text-white transition-colors duration-500">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      }
+    </article>
+  </div>
+</Layout>

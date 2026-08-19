@@ -1,6 +1,5 @@
 ---
 import { socialIcons } from "../../data/icons";
-import { domain } from "../../data/community";
 
 interface Props {
   title: string;
@@ -11,6 +10,7 @@ interface Props {
   dateMs: number;
   variant?: "published" | "planned";
   commitSha?: string;
+  class?: string;
 }
 
 const {
@@ -22,9 +22,9 @@ const {
   dateMs,
   variant = "published",
   commitSha,
+  class: className,
 } = Astro.props;
 
-/** Webs públicas — los repos en GitHub son privados. */
 const projectUrls: Record<string, string> = {
   Valorant: "https://vlr.losperris.dev/",
   "Códigos QR": "https://qr.losperris.dev/",
@@ -33,118 +33,153 @@ const projectUrls: Record<string, string> = {
 };
 
 const projectUrl = projectUrls[api];
-
-const tagStyle: Record<string, string> = {
-  Fix: "text-red-400 bg-red-500/10 border-red-500/20",
-  Feature: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-  "Fix & Feat": "text-amber-400 bg-amber-500/10 border-amber-500/20",
-  A11y: "text-sky-400 bg-sky-500/10 border-sky-500/20",
-  Infra: "text-violet-400 bg-violet-500/10 border-violet-500/20",
-  Optimización: "text-teal-400 bg-teal-500/10 border-teal-500/20",
-};
-const defaultTagStyle = "text-[#f97316] bg-[#f97316]/10 border-[#f97316]/20";
-
-const apiStyle: Record<string, { cls: string; iconHtml: string }> = {
-  Twitch: {
-    cls: "text-[#9146ff] bg-[#9146ff]/10 border-[#9146ff]/25",
-    iconHtml: socialIcons.twitch.replace("w-8 h-8", "w-3 h-3"),
-  },
-  Valorant: {
-    cls: "text-[#ff4655] bg-[#ff4655]/10 border-[#ff4655]/25",
-    iconHtml: socialIcons.valorant.replace("w-8 h-8", "w-3 h-3"),
-  },
-  "Códigos QR": {
-    cls: "text-[#22c55e] bg-[#22c55e]/10 border-[#22c55e]/25",
-    iconHtml: `<i class="fas fa-qrcode text-[10px]"></i>`,
-  },
-};
-const defaultApiStyle = {
-  cls: "text-zinc-300 bg-zinc-800 border-zinc-700",
-  iconHtml: `<i class="fas fa-circle text-[10px]"></i>`,
-};
-
-const tc = tagStyle[tag] ?? defaultTagStyle;
-const ac = apiStyle[api] ?? defaultApiStyle;
 const isPlanned = variant === "planned";
+
 const showDescription =
   description.trim().length > 0 &&
   description.trim().toLowerCase() !== title.trim().toLowerCase();
+
+const apiStyle: Record<string, string> = {
+  Twitch: socialIcons.twitch.replace("w-8 h-8", "w-3 h-3"),
+  Valorant: socialIcons.valorant.replace("w-8 h-8", "w-3 h-3"),
+  "Códigos QR": `<i class="fas fa-qrcode text-[12px]"></i>`,
+};
+
+const iconHtml = apiStyle[api] || `<i class="fas fa-circle text-[10px]"></i>`;
 ---
 
-<div
+<article
+  class={`update-card flex flex-col p-6 md:p-8 bg-[#090a0b] border border-zinc-800/80 rounded-[1.25rem] mb-6 ${className || ""}`}
   data-api={api}
   data-date={dateMs}
   data-status={variant}
-  class:list={[
-    "update-card p-8 border bg-[#0a0a0a]/80 backdrop-blur-sm rounded-2xl relative overflow-hidden group transition-all duration-500",
-    isPlanned
-      ? "border-sky-500/25 hover:border-sky-500/50"
-      : "border-[#27272a] hover:border-[#f97316]/50",
-  ]}
 >
-  <div
-    class:list={[
-      "absolute top-0 left-0 w-1 h-full transition-opacity duration-300 opacity-50 group-hover:opacity-100",
-      isPlanned ? "bg-sky-500" : "bg-[#f97316]",
-    ]}
+  <header class="flex flex-wrap justify-between items-start gap-4 mb-6">
+    <div class="flex items-center gap-3 text-[13px] text-zinc-500 font-medium">
+      <span>{dateString}</span>
+      <span class="w-1 h-1 rounded-full bg-[#f97316]/50"></span>
+      <span>{tag}</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      {
+        isPlanned && (
+          <span class="flex items-center gap-2 bg-[#050505] border border-[#f97316]/20 px-3 py-1.5 rounded-full text-[11px] text-[#f97316] font-medium tracking-wide">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f97316] shadow-[0_0_8px_rgba(249,115,22,0.6)] animate-pulse" />
+            En camino
+          </span>
+        )
+      }
+      <span
+        class="flex items-center gap-2 bg-[#050505] border border-zinc-800/80 px-3 py-1.5 rounded-full text-[11px] text-zinc-300 font-medium tracking-wide"
+      >
+        <Fragment set:html={iconHtml} />
+        {api}
+      </span>
+    </div>
+  </header>
+
+  <h3
+    class="text-2xl sm:text-[28px] font-medium tracking-tight text-zinc-100 mb-4 leading-tight"
   >
-  </div>
-
-  <div class="flex flex-wrap items-center gap-3 mb-4">
-    <span
-      class="text-xs font-black tracking-wider text-white uppercase bg-white/5 px-3 py-1.5 rounded-lg border border-white/10"
-    >
-      {dateString}
-    </span>
-    {
-      isPlanned && (
-        <span class="px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border text-sky-300 bg-sky-500/10 border-sky-500/25">
-          En camino
-        </span>
-      )
-    }
-    <span
-      class={`px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border ${tc}`}
-    >
-      {tag}
-    </span>
-    <span
-      class={`px-3 py-1.5 text-xs font-bold tracking-wider uppercase rounded-lg border flex items-center gap-1.5 ml-auto sm:ml-0 ${ac.cls}`}
-    >
-      <Fragment set:html={ac.iconHtml} />
-      {api}
-    </span>
-  </div>
-
-  <h2 class="text-2xl font-bold text-white mb-3 tracking-tight">
     {title}
-  </h2>
+  </h3>
+
   {
     showDescription && (
-      <p class="text-base text-zinc-400 leading-relaxed">{description}</p>
+      <p class="text-[15px] sm:text-base text-zinc-400 leading-relaxed mb-10">
+        {description}
+      </p>
     )
   }
-  {
-    projectUrl && (
-      <div class="mt-3 flex flex-wrap items-center gap-3">
+
+  <footer
+    class="flex flex-wrap items-center gap-x-8 gap-y-4 mt-auto border-t border-zinc-800/50 pt-6"
+  >
+    {
+      projectUrl && (
         <a
           href={projectUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-[#f97316] transition-colors"
+          class="flex items-center gap-2.5 text-[13px] text-zinc-400 hover:text-white transition-colors font-medium"
         >
-          <i class="fas fa-arrow-up-right-from-square" aria-hidden="true" />
-          Ver proyecto
+          <i class="fas fa-arrow-up-right-from-square text-[#f97316]/60 text-[11px]" />
+          Visitar sitio de {api}
         </a>
-        {commitSha && (
-          <span
-            class="text-xs font-mono text-zinc-600"
-            title="Commit en repo privado"
-          >
-            {commitSha}
-          </span>
-        )}
-      </div>
-    )
+      )
+    }
+    {
+      commitSha && (
+        <div class="flex items-center gap-2.5 text-[13px] text-zinc-500 font-medium">
+          <i class="fas fa-code-commit text-[#f97316]/60 text-[11px]" />
+          Commit{" "}
+          <span class="font-mono text-xs">{commitSha.substring(0, 7)}</span>
+        </div>
+      )
+    }
+
+    <button
+      class="copy-link-btn flex items-center gap-2.5 text-[13px] text-zinc-500 hover:text-white transition-colors font-medium ml-auto"
+      data-url={`https://losperris.dev/actualizaciones#${commitSha || ""}`}
+    >
+      <i class="fas fa-link text-zinc-600 text-[11px]"></i>
+      Copiar enlace
+    </button>
+  </footer>
+</article>
+
+<style>
+  .update-card {
+    max-height: 800px;
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition:
+      max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.4s ease,
+      margin 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      border-width 0.5s ease,
+      transform 0.4s ease,
+      background-color 0.5s ease,
+      border-color 0.5s ease;
   }
-</div>
+
+  .update-card.hidden-card {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-width: 0 !important;
+    transform: scale(0.95) translateY(-10px) !important;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  function setupCopyButtons() {
+    const btns = document.querySelectorAll(".copy-link-btn");
+    btns.forEach((btn) => {
+      // Remover event listener previo si lo hay clonando
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode?.replaceChild(newBtn, btn);
+
+      newBtn.addEventListener("click", () => {
+        const url = (newBtn as HTMLElement).dataset.url || window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+          if (window.toast) {
+            window.toast.show({
+              message: "Enlace copiado al portapapeles",
+              variant: "brand",
+              icon: '<i class="fas fa-check"></i>',
+            });
+          }
+        });
+      });
+    });
+  }
+
+  setupCopyButtons();
+  document.addEventListener("astro:page-load", setupCopyButtons);
+</script>

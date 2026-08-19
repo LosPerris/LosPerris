@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { apis } from "../data/apis";
+import { socialIcons } from "../data/icons";
+import Card from "../components/ui/Card.astro";
+---
+
+<Layout title="Directorio de APIs | LosPerris">
+  <div class="relative pt-40 pb-32 max-w-6xl mx-auto px-6">
+    <nav class="mb-12" aria-label="Breadcrumb">
+      <ol
+        class="flex items-center gap-2 sm:gap-3 text-[0.65rem] font-bold tracking-widest text-zinc-500 uppercase"
+      >
+        <li>
+          <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        </li>
+        <li class="flex items-center gap-2 sm:gap-3">
+          <span class="text-zinc-700">/</span>
+          <span class="text-white truncate">Directorio API</span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="text-center mb-24 animate-[fadeIn_0.5s_ease-out_forwards]">
+      <h1
+        class="text-5xl md:text-6xl font-medium text-white mb-6 tracking-tight leading-tight"
+      >
+        Directorio de APIs
+      </h1>
+      <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto">
+        Explora nuestra documentación técnica. Selecciona una herramienta para
+        ver sus rutas públicas, métodos y ejemplos de integración.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        apis.map((api) => (
+          <a href={`/api/${api.slug}`} class="block group h-full">
+            <Card
+              hoverEffect={false}
+              class="h-full flex flex-col !p-8 bg-[#090a0b] hover:bg-white/[0.02] border-zinc-800/80 transition-colors duration-300 relative overflow-hidden"
+            >
+              <div
+                class={`w-12 h-12 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-xl mb-6 shadow-sm ${api.color}`}
+              >
+                {api.iconId && socialIcons[api.iconId] ? (
+                  <div
+                    set:html={socialIcons[api.iconId].replace(
+                      "w-8 h-8",
+                      "w-6 h-6",
+                    )}
+                    class="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                  />
+                ) : (
+                  <i
+                    class={`${api.icon} transition-transform duration-300 group-hover:scale-110`}
+                  />
+                )}
+              </div>
+
+              <h2 class="text-xl font-medium text-zinc-100 tracking-tight mb-3 group-hover:text-white transition-colors">
+                {api.title}
+              </h2>
+
+              <p class="text-sm text-zinc-500 leading-relaxed mb-8 flex-1 group-hover:text-zinc-400 transition-colors">
+                {api.description}
+              </p>
+
+              <div class="flex items-center text-zinc-400 text-[13px] font-semibold tracking-wide group-hover:text-white transition-colors mt-auto">
+                <span>Ver Documentación</span>
+                <i
+                  class="fas fa-arrow-right ml-2 text-[11px] transition-transform duration-300 group-hover:translate-x-1.5"
+                  aria-hidden="true"
+                />
+              </div>
+            </Card>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

@@ -4,17 +4,17 @@ import SectionHeader from "../ui/SectionHeader.astro";
 import ApiCard from "./ApiCard.astro";
 ---
 
-<section id="apis" class="py-28 relative bg-[#050505] scroll-mt-20" data-reveal>
+<section id="apis" class="py-28 relative scroll-mt-20" data-reveal>
   <div class="max-w-6xl mx-auto px-6">
     <SectionHeader
       title="Todo lo que"
-      highlight="necesitas"
-      description="Endpoints gratuitos para streamers, creadores y desarrolladores. Sin autenticación en la mayoría."
-      align="center"
+      highlight="necesitas."
+      description="Endpoints públicos gratuitos para streamers y desarrolladores. Sin autenticación en la mayoría de rutas, listos para integrarse en segundos."
+      align="split"
     />
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      {apis.map((api, index) => <ApiCard api={api} index={index} />)}
+      {apis.map((api) => <ApiCard api={api} />)}
     </div>
   </div>
 </section>

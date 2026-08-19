@@ -7,17 +7,14 @@ import { fetchPublishedUpdates } from "../../lib/updates";
 const sortedUpdates = fetchPublishedUpdates().slice(0, 3);
 ---
 
-<section
-  id="actualizaciones"
-  class="py-24 relative bg-[#050505] border-t border-[#f97316]/40"
->
+<section id="actualizaciones" class="py-24 relative">
   <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="flex flex-col items-center text-center mb-16">
+    <div class="mb-8">
       <SectionHeader
-        title="ÚLTIMAS"
-        highlight="ACTUALIZACIONES"
-        description="Historial de cambios, mejoras y correcciones de cada servicio."
-        align="center"
+        title="Últimas"
+        highlight="actualizaciones."
+        description="Mantente al día con el historial de cambios, mejoras de rendimiento y nuevos endpoints."
+        align="split"
       />
     </div>
 
@@ -25,26 +22,27 @@ const sortedUpdates = fetchPublishedUpdates().slice(0, 3);
       {
         sortedUpdates.map((update) => (
           <Card
-            hoverEffect={true}
-            class="p-6 border border-[#27272a] bg-[#0a0a0a]/50 flex flex-col h-full"
+            hoverEffect={false}
+            class="group p-6 flex flex-col h-full bg-[#090a0b] hover:bg-white/[0.02] transition-all duration-300 relative border border-zinc-800/80 hover:border-zinc-700/80 cursor-pointer"
           >
-            <div class="flex justify-between items-center mb-4">
-              <span class="text-xs font-bold tracking-wider text-zinc-400 uppercase">
+            <div class="flex justify-between items-center mb-6 gap-3">
+              <span class="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
                 {update.data.dateString}
               </span>
-              <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 text-[10px] font-bold tracking-wider text-zinc-300 uppercase bg-zinc-800 border border-zinc-700 rounded-full hidden sm:inline-block">
+              <div class="flex flex-wrap items-center justify-end gap-2">
+                <span class="flex items-center gap-1.5 bg-zinc-800/50 px-2 py-1 rounded-md text-[9px] text-zinc-400 font-mono uppercase tracking-widest border border-zinc-700/50 hidden sm:inline-flex">
                   {update.data.api}
                 </span>
-                <span class="px-2.5 py-1 text-[10px] font-bold tracking-wider text-[#f97316] uppercase bg-[#f97316]/10 border border-[#f97316]/20 rounded-full">
+                <span class="flex items-center gap-1.5 bg-zinc-800/50 px-2 py-1 rounded-md text-[9px] text-zinc-400 font-mono uppercase tracking-widest border border-zinc-700/50">
                   {update.data.tag}
                 </span>
               </div>
             </div>
-            <h3 class="text-xl font-bold text-white mb-3 tracking-tight">
+
+            <h3 class="text-xl font-medium text-zinc-100 mb-3 tracking-tight group-hover:text-white transition-colors">
               {update.data.title}
             </h3>
-            <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            <p class="text-[14px] text-zinc-500 leading-relaxed mb-4 group-hover:text-zinc-400 transition-colors">
               {update.data.description}
             </p>
           </Card>

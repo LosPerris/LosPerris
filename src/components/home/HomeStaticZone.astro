@@ -4,144 +4,265 @@ import {
   inviteCode,
   discordHelpApisLink,
 } from "../../data/community";
-import Button from "../ui/Button.astro";
-
-const links = [
-  {
-    title: "Actualizaciones",
-    description: "Historial de cambios de cada servicio.",
-    href: "/actualizaciones",
-    icon: "fas fa-clock-rotate-left",
-  },
-  {
-    title: "Discord",
-    description: "El sitio donde estamos de verdad.",
-    href: discordLink,
-    icon: "fab fa-discord",
-    external: true,
-  },
-  {
-    title: "Canal de APIs",
-    description: "Dudas técnicas de desarrollo.",
-    href: discordHelpApisLink,
-    icon: "fas fa-terminal",
-    external: true,
-  },
-  {
-    title: "Status",
-    description: "Estado actual de todos los servicios.",
-    href: "https://status.losperris.dev",
-    icon: "fas fa-circle-check",
-    external: true,
-  },
-];
+import Card from "../ui/Card.astro";
 ---
 
 <section
   id="comunidad"
-  class="py-28 relative bg-[#070707]"
+  class="py-16 relative"
   data-discord-stats
   data-invite-code={inviteCode}
   data-reveal
 >
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-20">
+  <div class="max-w-[1150px] mx-auto px-6">
+    <div class="mb-12 text-center max-w-3xl mx-auto flex flex-col items-center">
       <h2
-        class="text-4xl md:text-6xl font-black text-white mb-5 leading-tight tracking-tight"
+        class="text-4xl md:text-5xl font-medium text-white mb-4 leading-[1.1] tracking-tight"
       >
         Úsalas. Compártelas.<br />
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c]"
-        >
-          Mejóralas.
-        </span>
+        <span class="text-[#f97316]"> Mejóralas. </span>
       </h2>
       <p
-        class="text-zinc-400 text-xl max-w-xl mx-auto font-normal leading-relaxed mb-10"
+        class="text-zinc-400 text-lg md:text-xl font-normal leading-relaxed max-w-2xl mt-4"
       >
-        LosPerris es un proyecto de la comunidad. Cada sugerencia y reporte hace
-        que las APIs sean mejores para todos.
+        LosPerris es un ecosistema impulsado por la comunidad. Conecta tu
+        stream, automatiza tu chat y mantén cada comando visible desde un único
+        lugar.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button
-          href={discordLink}
-          target="_blank"
-          class="px-8 py-4 text-base rounded-2xl justify-center"
-        >
-          <i class="fab fa-discord mr-2"></i> Unirme al Discord
-        </Button>
-        <Button
-          href={discordHelpApisLink}
-          target="_blank"
-          variant="outline"
-          class="px-8 py-4 text-base rounded-2xl justify-center border-white/10"
-        >
-          Ayuda con APIs
-        </Button>
-      </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-      <div
-        class="rounded-3xl bg-[#0c0c0c] border border-white/6 p-8 flex flex-col justify-between"
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <Card
+        hoverEffect={false}
+        class="col-span-1 group relative !p-8 flex flex-col justify-between bg-[#090a0b] hover:bg-white/[0.02] border-zinc-800/80 transition-all duration-300 overflow-hidden cursor-pointer min-h-[360px]"
       >
-        <p
-          class="text-xs text-zinc-600 uppercase tracking-widest font-bold mb-8"
-        >
-          Servidor de Discord
-        </p>
-        <div class="space-y-6">
-          <div>
-            <p
-              class="text-5xl font-black text-white leading-none"
-              id="community-member-count"
-              data-stat="members"
-            >
-              —
-            </p>
-            <p class="text-sm text-zinc-500 mt-2 uppercase tracking-wider">
-              Miembros totales
-            </p>
+        <a
+          href={discordLink}
+          target="_blank"
+          class="absolute inset-0 z-20"
+          aria-label="Visitar el servidor de Discord"></a>
+
+        <div class="relative z-10 flex flex-col gap-4">
+          <div
+            class="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center mb-2"
+          >
+            <i
+              class="fab fa-discord text-2xl text-zinc-300 group-hover:text-[#5865F2] transition-colors duration-300"
+            ></i>
           </div>
-          <div class="w-full h-px bg-white/5"></div>
-          <div>
-            <p
-              class="text-5xl font-black text-[#22c55e] leading-none"
-              id="community-online-count"
-              data-stat="online"
+
+          <div class="space-y-6">
+            <div>
+              <div class="flex items-center gap-3">
+                <p
+                  class="text-4xl lg:text-5xl font-medium text-zinc-100 leading-none tracking-tighter"
+                  id="community-member-count"
+                  data-stat="members"
+                >
+                  —
+                </p>
+              </div>
+              <p
+                class="text-[13px] text-zinc-500 mt-4 font-medium tracking-wide"
+              >
+                Miembros totales
+              </p>
+            </div>
+
+            <div
+              class="w-full h-px bg-gradient-to-r from-white/5 to-transparent"
             >
-              —
-            </p>
-            <p class="text-sm text-zinc-500 mt-2 uppercase tracking-wider">
-              En línea ahora
-            </p>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-3">
+                <p
+                  class="text-3xl lg:text-4xl font-medium text-zinc-100 leading-none tracking-tight"
+                  id="community-online-count"
+                  data-stat="online"
+                >
+                  —
+                </p>
+              </div>
+              <p
+                class="text-[13px] text-zinc-500 mt-3 font-medium flex items-center gap-2"
+              >
+                <span class="relative flex h-2 w-2">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2 w-2 bg-[#22c55e]"
+                  ></span>
+                </span>
+                En línea ahora
+              </p>
+            </div>
           </div>
         </div>
+
+        <div class="mt-6 relative z-10">
+          <h3
+            class="text-xl font-medium text-zinc-100 mb-1 tracking-tight group-hover:text-white transition-colors"
+          >
+            La comunidad te espera
+          </h3>
+          <p
+            class="text-[13px] text-zinc-500 leading-relaxed mb-4 group-hover:text-zinc-400 transition-colors"
+          >
+            Únete al servidor oficial para sugerir ideas, reportar bugs y hablar
+            directamente con otros desarrolladores.
+          </p>
+          <div
+            class="flex items-center text-[#5865F2] text-[13px] font-semibold tracking-wide opacity-80 group-hover:opacity-100 transition-opacity"
+          >
+            <span>Configurar integración</span>
+            <i
+              class="fas fa-arrow-right ml-2 text-[11px] transition-transform duration-300 group-hover:translate-x-1.5"
+              aria-hidden="true"></i>
+          </div>
+        </div>
+      </Card>
+
+      <div class="col-span-1 flex flex-col gap-5">
+        <Card
+          hoverEffect={false}
+          class="group relative !p-6 flex flex-col bg-[#090a0b] hover:bg-white/[0.02] border-zinc-800/80 transition-all duration-300 overflow-hidden cursor-pointer flex-1"
+        >
+          <a
+            href="/actualizaciones"
+            class="absolute inset-0 z-20"
+            aria-label="Ir a Actualizaciones"></a>
+
+          <div class="flex items-center gap-3 mb-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center"
+            >
+              <i
+                class="fas fa-clock-rotate-left text-lg text-zinc-300 group-hover:text-[#f97316] transition-colors duration-300"
+              ></i>
+            </div>
+            <span
+              class="text-[11px] font-mono uppercase tracking-widest text-zinc-500"
+              >Log</span
+            >
+          </div>
+
+          <div class="mt-auto">
+            <h3
+              class="text-lg font-medium text-zinc-100 mb-1 tracking-tight group-hover:text-white transition-colors"
+            >
+              Historial de cambios
+            </h3>
+            <p
+              class="text-[13px] text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors"
+            >
+              Registro de actualizaciones, mejoras de rendimiento y nuevos
+              endpoints documentados al detalle.
+            </p>
+          </div>
+        </Card>
+
+        <Card
+          hoverEffect={false}
+          class="group relative !p-6 flex flex-col bg-[#090a0b] hover:bg-white/[0.02] border-zinc-800/80 transition-all duration-300 overflow-hidden cursor-pointer flex-1"
+        >
+          <a
+            href={discordHelpApisLink}
+            target="_blank"
+            class="absolute inset-0 z-20"
+            aria-label="Ayuda con APIs"></a>
+
+          <div class="flex items-center gap-3 mb-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center"
+            >
+              <i
+                class="fas fa-terminal text-lg text-zinc-300 group-hover:text-white transition-colors duration-300"
+              ></i>
+            </div>
+            <span
+              class="text-[11px] font-mono uppercase tracking-widest text-zinc-500"
+              >Soporte</span
+            >
+          </div>
+
+          <div class="mt-auto">
+            <h3
+              class="text-lg font-medium text-zinc-100 mb-1 tracking-tight group-hover:text-white transition-colors"
+            >
+              Canal de APIs
+            </h3>
+            <p
+              class="text-[13px] text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors"
+            >
+              Dudas técnicas de desarrollo, asistencia directa y resolución de
+              problemas por parte de la comunidad.
+            </p>
+          </div>
+        </Card>
       </div>
 
-      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {
-          links.map((link) => (
-            <a
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noopener noreferrer" : undefined}
-              class="group rounded-3xl bg-[#0c0c0c] border border-white/6 p-6 transition-all duration-300 hover:border-[#f97316]/25 hover:bg-[#0f0f0f] hover:shadow-[0_0_25px_rgba(249,115,22,0.04)]"
-            >
-              <div class="flex items-start justify-between mb-5">
-                <div class="w-10 h-10 rounded-xl bg-[#f97316]/10 border border-[#f97316]/15 flex items-center justify-center text-[#f97316] group-hover:scale-110 transition-transform duration-300">
-                  <i class={`${link.icon} text-sm`} />
-                </div>
-                <i class="fas fa-arrow-right text-zinc-700 text-xs mt-1 group-hover:text-[#f97316] group-hover:translate-x-0.5 transition-all duration-300" />
-              </div>
-              <h3 class="font-bold text-white text-sm mb-1.5">{link.title}</h3>
-              <p class="text-sm text-zinc-500 leading-relaxed">
-                {link.description}
-              </p>
-            </a>
-          ))
-        }
-      </div>
+      <Card
+        hoverEffect={false}
+        class="col-span-1 group relative !p-8 flex flex-col justify-between bg-[#090a0b] hover:bg-white/[0.02] border-zinc-800/80 transition-all duration-300 overflow-hidden cursor-pointer min-h-[360px]"
+      >
+        <a
+          href="https://status.losperris.dev"
+          target="_blank"
+          class="absolute inset-0 z-20"
+          aria-label="Ir al Status"></a>
+
+        <div class="relative z-10">
+          <h3
+            class="text-6xl lg:text-[64px] font-medium text-white leading-none tracking-tighter mb-4 transition-transform duration-500 group-hover:scale-[1.02] origin-left"
+          >
+            99<span class="text-zinc-500 tracking-normal">%</span>
+          </h3>
+
+          <div
+            class="w-full h-1 bg-zinc-800/50 rounded-full mt-8 overflow-hidden"
+          >
+            <div class="h-full bg-[#22c55e] w-[99%]"></div>
+          </div>
+          <div
+            class="flex items-center justify-between mt-3 text-[11px] font-mono uppercase tracking-widest text-zinc-500"
+          >
+            <span>Uptime garantizado</span>
+            <span class="text-[#22c55e]">Estable</span>
+          </div>
+        </div>
+
+        <div class="relative z-10 mt-8">
+          <div
+            class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center mb-4"
+          >
+            <i
+              class="fas fa-shield-halved text-lg text-zinc-300 group-hover:text-[#22c55e] transition-colors duration-300"
+            ></i>
+          </div>
+
+          <h3
+            class="text-xl font-medium text-zinc-100 mb-1 tracking-tight group-hover:text-white transition-colors"
+          >
+            Transparencia total
+          </h3>
+          <p
+            class="text-[13px] text-zinc-500 leading-relaxed mb-4 group-hover:text-zinc-400 transition-colors"
+          >
+            Revisa el estado en tiempo real de todos los servicios, latencia
+            histórica y reportes de incidentes pasados con total claridad.
+          </p>
+          <div
+            class="flex items-center text-zinc-400 text-[13px] font-semibold tracking-wide group-hover:text-white transition-colors"
+          >
+            <span>Ver Status Page</span>
+            <i
+              class="fas fa-arrow-right ml-2 text-[11px] transition-transform duration-300 group-hover:translate-x-1.5"
+              aria-hidden="true"></i>
+          </div>
+        </div>
+      </Card>
     </div>
   </div>
 </section>

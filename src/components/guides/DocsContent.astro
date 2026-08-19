@@ -111,7 +111,7 @@ const emojiToIcon: Record<string, string> = {
                     {section.commands.map((cmd) => (
                       <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-white/[0.02] transition-colors group">
                         <div class="shrink-0 sm:w-48">
-                          <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-[#f97316]/30 transition-colors">
+                          <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-zinc-700/80 transition-colors">
                             {cmd.emoji && (
                               <i
                                 class={`${emojiToIcon[cmd.emoji] || "fas fa-terminal"} opacity-70 text-[#f97316]`}
@@ -294,7 +294,7 @@ const emojiToIcon: Record<string, string> = {
                                         (cmd: Command) => `
                                         <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-white/[0.02] transition-colors group">
                                             <div class="shrink-0 sm:w-48">
-                                                <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-[#f97316]/30 transition-colors">
+                                                <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-zinc-700/80 transition-colors">
                                                     ${cmd.emoji ? `<i class="${(window as any).emojiToIcon?.[cmd.emoji] || "fas fa-terminal"} opacity-70 text-[#f97316]"></i>` : ""}
                                                     ${escape(cmd.name)}
                                                 </code>

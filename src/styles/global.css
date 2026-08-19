@@ -18,7 +18,8 @@ html {
   --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
-html, body {
+html,
+body {
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,6 +67,7 @@ html, body {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -78,16 +80,29 @@ html, body {
   }
 }
 
-/* Scrollbar oculta globalmente */
 ::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #18181b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #27272a;
 }
 
 * {
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: #18181b transparent;
 }
 
-/* Scroll reveal */
 .reveal-hidden {
   opacity: 0;
   transform: translateY(28px);

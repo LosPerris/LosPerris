@@ -1,4 +1,3 @@
-/** Texto plano seguro para entradas en lectura de build. */
 export function sanitizeUpdateText(text: string, maxLength = 2000): string {
   return text
     .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")

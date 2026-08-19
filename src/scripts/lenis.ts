@@ -4,7 +4,6 @@ let lenis: Lenis | null = null;
 let rafId = 0;
 let listenersBound = false;
 
-/** Compensa el header fijo (h-16) */
 const HEADER_OFFSET = -96;
 
 function initLenis() {
@@ -22,7 +21,6 @@ function initLenis() {
   rafId = requestAnimationFrame(raf);
 }
 
-/** Scroll a un elemento por id (hash) o a Y=0. Una sola API para todo el sitio. */
 export function scrollPageTo(
   target: number | string | HTMLElement,
   options: { immediate?: boolean } = {},
@@ -53,7 +51,6 @@ export function scrollPageTo(
   return true;
 }
 
-/** Arriba del todo, o a la ancla de la URL si existe (#actualizaciones, #apis, …). */
 export function scrollPageToTop(immediate = true) {
   const hash = window.location.hash;
   if (hash && hash !== "#") {
@@ -67,9 +64,6 @@ function isModifiedClick(e: MouseEvent): boolean {
   return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0;
 }
 
-/**
- * Anclas en la home: scroll con Lenis, sin View Transitions ni segundo clic.
- */
 function onNavClick(e: MouseEvent) {
   if (isModifiedClick(e)) return;
 
@@ -112,7 +106,7 @@ function onNavClick(e: MouseEvent) {
 
 function onPageLoad() {
   initLenis();
-  // Un frame: el DOM de la nueva página ya está listo (View Transitions)
+
   requestAnimationFrame(() => scrollPageToTop(true));
 }
 

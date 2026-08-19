@@ -1,6 +1,6 @@
 ---
 interface Props {
-  align?: "center" | "left" | "right";
+  align?: "center" | "left" | "right" | "split";
   title: string;
   highlight?: string;
   description?: string;
@@ -17,45 +17,54 @@ const {
   class: className = "",
 } = Astro.props;
 
+const isSplit = align === "split";
 const alignClass =
   align === "center"
     ? "text-center items-center"
     : align === "right"
       ? "text-right items-end"
-      : "text-left items-start";
+      : align === "split"
+        ? "flex-col lg:flex-row justify-between items-start lg:items-end gap-8"
+        : "text-left items-start";
 const mxClass =
   align === "center" ? "mx-auto" : align === "right" ? "ml-auto" : "";
 ---
 
-<div class={`mb-16 relative z-10 flex flex-col ${alignClass} ${className}`}>
-  {
-    pill && (
-      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#f97316]/30 bg-[#f97316]/8 text-[#f97316] text-xs font-bold tracking-widest uppercase mb-6 w-fit">
-        {pill}
-      </span>
-    )
-  }
-  <h2
-    class="text-4xl md:text-6xl font-black text-white mb-5 leading-[1.08] tracking-tight animate-[fadeInUp_0.8s_ease-out]"
-  >
-    {title}
+<div
+  class={`mb-20 relative z-10 flex ${isSplit ? "" : "flex-col"} ${alignClass} ${className}`}
+>
+  <div class={isSplit ? "w-full lg:w-[45%]" : "w-full"}>
     {
-      highlight && (
-        <span class="text-transparent bg-clip-text bg-gradient-to-br from-[#f97316] to-[#ea580c] drop-shadow-[0_0_20px_rgba(249,115,22,0.25)]">
-          {" "}
-          {highlight}
+      pill && (
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-zinc-300 text-xs font-bold tracking-widest uppercase mb-6 w-fit">
+          {pill}
         </span>
       )
     }
-  </h2>
+    <h2
+      class={`text-4xl md:text-5xl lg:text-6xl font-medium tracking-tighter text-white leading-[1.0] animate-[fadeInUp_0.8s_ease-out] ${isSplit ? "mb-0" : "mb-5"}`}
+    >
+      {title}
+      {
+        highlight && (
+          <span class="font-mono font-normal tracking-[0.05em] text-[#f97316]">
+            {" "}
+            {highlight}
+          </span>
+        )
+      }
+    </h2>
+  </div>
 
   {
     description && (
-      <p
-        class={`text-zinc-400 text-xl max-w-2xl font-normal leading-relaxed animate-[fadeInUp_0.8s_ease-out_0.2s_both] ${mxClass}`}
-      >
-        {description}
-      </p>
+      <div class={isSplit ? "w-full lg:w-[45%]" : "w-full"}>
+        <p
+          class={`text-zinc-400 text-xl font-normal leading-relaxed animate-[fadeInUp_0.8s_ease-out_0.2s_both] ${isSplit ? "" : "max-w-2xl"} ${mxClass}`}
+        >
+          {description}
+        </p>
+      </div>
     )
   }
 </div>

@@ -4,6 +4,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BackgroundEffects from "../components/ui/BackgroundEffects.astro";
+import ToastProvider from "../components/ui/ToastProvider.astro";
 import { siteUrl } from "../data/community";
 
 interface Props {
@@ -74,11 +75,11 @@ const ogImage = `${siteUrl}/LosPerris-minimal.svg`;
     <ClientRouter />
   </head>
   <body
-    class="bg-[#050505] min-h-screen relative text-white selection:bg-[#f97316] selection:text-white overflow-x-clip"
+    class="bg-[#090a0b] min-h-screen relative text-white selection:bg-[#f97316] selection:text-white overflow-x-clip"
   >
     {
       showBackgroundEffects && (
-        <div class="absolute top-0 inset-x-0 h-[90vh] overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute inset-0 h-full overflow-hidden -z-10 pointer-events-none">
           <BackgroundEffects />
         </div>
       )
@@ -88,6 +89,7 @@ const ogImage = `${siteUrl}/LosPerris-minimal.svg`;
       <slot />
     </main>
     {showFooter && <Footer />}
+    <ToastProvider />
 
     <script>
       import "../scripts/menu.ts";

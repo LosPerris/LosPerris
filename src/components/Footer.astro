@@ -41,7 +41,7 @@ const nav = [
 ];
 ---
 
-<footer class="relative z-10 bg-[#050505] border-t border-white/6 mt-auto">
+<footer class="relative z-10 bg-[#090a0b] border-t border-zinc-800/80 mt-auto">
   <div class="max-w-6xl mx-auto px-6 py-10">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="md:col-span-1">
@@ -49,7 +49,7 @@ const nav = [
           <img
             src="/LosPerris-minimal.svg"
             alt="LosPerris"
-            class="w-8 h-8 group-hover:scale-110 transition-transform duration-300"
+            class="w-8 h-8 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]"
             loading="lazy"
             decoding="async"
           />
@@ -57,7 +57,7 @@ const nav = [
             >LosPerris</span
           >
         </a>
-        <p class="text-zinc-400 text-sm leading-relaxed">
+        <p class="text-[14px] text-zinc-500 leading-relaxed">
           APIs públicas y gratuitas para streamers y desarrolladores.
         </p>
 
@@ -67,7 +67,7 @@ const nav = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Discord"
-            class="w-9 h-9 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-200"
+            class="w-9 h-9 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:text-[#5865F2] hover:border-[#5865F2]/40 hover:bg-[#5865F2]/10 transition-all duration-200"
           >
             <i class="fab fa-discord text-sm"></i>
           </a>
@@ -76,7 +76,7 @@ const nav = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Status"
-            class="w-9 h-9 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 hover:text-[#22c55e] hover:border-[#22c55e]/30 hover:bg-[#22c55e]/5 transition-all duration-200"
+            class="w-9 h-9 rounded-lg bg-zinc-800/50 border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:text-[#22c55e] hover:border-[#22c55e]/40 hover:bg-[#22c55e]/10 transition-all duration-200"
           >
             <i class="fas fa-circle-check text-sm"></i>
           </a>
@@ -86,7 +86,7 @@ const nav = [
       {
         nav.map((col) => (
           <div>
-            <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-5">
+            <h4 class="text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-5">
               {col.heading}
             </h4>
             <ul class="space-y-3">
@@ -96,7 +96,7 @@ const nav = [
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    class="text-sm text-zinc-400 hover:text-white transition-colors duration-200 flex items-center gap-1.5 group w-fit"
+                    class="text-[14px] text-zinc-400 hover:text-white transition-colors duration-200 flex items-center gap-1.5 group w-fit"
                   >
                     {link.label}
                     {link.external && (
@@ -112,9 +112,9 @@ const nav = [
     </div>
 
     <div
-      class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5"
+      class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-zinc-800/80"
     >
-      <p class="text-zinc-400 text-sm">
+      <p class="text-zinc-500 text-sm">
         © {year}
         {domain} · Hecho con <span class="text-[#f97316]">♥</span> para la comunidad
       </p>
@@ -124,12 +124,12 @@ const nav = [
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Estado de los servicios"
-        class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/8 bg-white/4 text-xs text-zinc-400 hover:border-[#22c55e]/30 hover:text-[#22c55e] transition-all duration-200"
+        class="flex items-center gap-1.5 bg-[#22c55e]/5 px-3 py-1.5 rounded-md text-[9px] text-[#22c55e] font-mono uppercase tracking-widest border border-[#22c55e]/20 hover:border-[#22c55e]/40 hover:bg-[#22c55e]/10 transition-all shadow-[0_0_10px_rgba(34,197,94,0.05)]"
       >
         <span
-          class="w-1.5 h-1.5 rounded-full bg-[#22c55e] shadow-[0_0_6px_#22c55e]"
+          class="w-1.5 h-1.5 rounded-full bg-[#22c55e] shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse"
         ></span>
-        Todos los servicios operativos
+        Sistemas operativos
       </a>
     </div>
   </div>

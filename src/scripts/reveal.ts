@@ -1,7 +1,3 @@
-/**
- * Scroll-reveal: aplica fadeInUp suave a secciones con [data-reveal]
- * cuando entran al viewport. Ligero, sin dependencias.
- */
 function initReveal() {
   const sections = document.querySelectorAll<HTMLElement>("[data-reveal]");
   if (!sections.length) return;
