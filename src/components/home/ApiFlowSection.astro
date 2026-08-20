@@ -235,13 +235,17 @@ import { icons, socialIcons } from "../../data/icons";
   }
 
   .data-flow-line {
-    stroke-dashoffset: 16;
-    animation: flowData 0.8s linear infinite;
+    animation: flowData 1.5s ease-in-out infinite;
+    will-change: opacity;
   }
 
   @keyframes flowData {
-    to {
-      stroke-dashoffset: 0;
+    0%,
+    100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.6;
     }
   }
 </style>

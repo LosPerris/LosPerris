@@ -109,7 +109,7 @@ const emojiToIcon: Record<string, string> = {
                 <div class="xl:col-span-7">
                   <div class="bg-[#0a0a0a] border border-[#27272a] rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex flex-col divide-y divide-[#27272a]/50">
                     {section.commands.map((cmd) => (
-                      <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-white/[0.02] transition-colors group">
+                      <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-[#0c0d0e] transition-colors group">
                         <div class="shrink-0 sm:w-48">
                           <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-zinc-700/80 transition-colors">
                             {cmd.emoji && (
@@ -292,7 +292,7 @@ const emojiToIcon: Record<string, string> = {
                                     ${section.commands
                                       .map(
                                         (cmd: Command) => `
-                                        <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-white/[0.02] transition-colors group">
+                                        <div class="p-5 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-[#0c0d0e] transition-colors group">
                                             <div class="shrink-0 sm:w-48">
                                                 <code class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050505] border border-[#27272a] text-white font-mono text-sm shadow-sm group-hover:border-zinc-700/80 transition-colors">
                                                     ${cmd.emoji ? `<i class="${(window as any).emojiToIcon?.[cmd.emoji] || "fas fa-terminal"} opacity-70 text-[#f97316]"></i>` : ""}

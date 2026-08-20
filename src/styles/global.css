@@ -98,7 +98,7 @@ body {
   background: #27272a;
 }
 
-* {
+html, body {
   scrollbar-width: thin;
   scrollbar-color: #18181b transparent;
 }
