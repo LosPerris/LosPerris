@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-21T21:28:09.963Z",
+  "syncedAt": "2026-08-21T22:03:20.276Z",
   "entries": [
+    {
+      "id": "gh-twitch-7afc802",
+      "title": "Campanita de novedades y cuenta en el sidebar",
+      "description": "Las notificaciones van en el header; la cuenta abajo a la izquierda con Feedback, Docs y Comunidad en el menú. Landing: lazy-load del logo del chat.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-21T21:59:40.000Z",
+      "dateString": "21 Agosto 2026",
+      "commitSha": "7afc802"
+    },
     {
       "id": "gh-twitch-bcb9510",
       "title": "Aviso de novedades en el panel (descarga de clips)",
@@ -686,6 +696,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 18
+    "lastPublished": 19
   }
 }
