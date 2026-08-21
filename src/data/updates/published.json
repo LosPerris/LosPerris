@@ -1,6 +1,56 @@
 {
-  "syncedAt": "2026-08-21T13:01:41.420Z",
+  "syncedAt": "2026-08-21T21:28:09.963Z",
   "entries": [
+    {
+      "id": "gh-twitch-bcb9510",
+      "title": "Aviso de novedades en el panel (descarga de clips)",
+      "description": "Banner dismissible en Inicio y Clips: cierra sesión y vuelve a entrar para desbloquear el permiso nuevo.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-08-21T21:25:11.000Z",
+      "dateString": "21 Agosto 2026",
+      "commitSha": "bcb9510"
+    },
+    {
+      "id": "gh-twitch-28da8bb",
+      "title": "Panel más claro: modales, cambio de tema y barra lateral",
+      "description": "Los modales entran y salen alineados con el resto del panel. El tema anima el cambio y el sidebar deja el soporte abajo.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-08-21T21:15:56.000Z",
+      "dateString": "21 Agosto 2026",
+      "commitSha": "28da8bb"
+    },
+    {
+      "id": "gh-twitch-3d26dc0",
+      "title": "Historial de cuenta, export CSV y plan que ya no se resetea al entrar",
+      "description": "El rol y la fecha de primer ingreso se conservan. En Seguridad ves logins y acciones; en Datos puedes bajar analytics en CSV.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-21T21:14:20.000Z",
+      "dateString": "21 Agosto 2026",
+      "commitSha": "3d26dc0"
+    },
+    {
+      "id": "gh-twitch-8ca6d05",
+      "title": "Descarga MP4 de clips desde el panel",
+      "description": "Usa la API oficial de Twitch. Hay que volver a iniciar sesión para conceder el permiso nuevo.",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-08-21T21:12:58.000Z",
+      "dateString": "21 Agosto 2026",
+      "commitSha": "8ca6d05"
+    },
+    {
+      "id": "gh-twitch-1d7a5e6",
+      "title": "Overlay de Preguntas en OBS, con color y tamaño en la URL",
+      "description": "Muestra la pregunta actual y la cola en escena. Color y escala van en la URL copiada, sin peticiones extra a Vercel.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-21T21:10:23.000Z",
+      "dateString": "21 Agosto 2026",
+      "commitSha": "1d7a5e6"
+    },
     {
       "id": "gh-valorant-9eaf37f",
       "title": "Sistema híbrido Client/Server para el overlay en OBS",
@@ -636,6 +686,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 15
+    "lastPublished": 18
   }
 }
