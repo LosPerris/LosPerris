@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-22T18:53:15.372Z",
+  "syncedAt": "2026-08-22T19:03:13.910Z",
   "entries": [
+    {
+      "id": "gh-twitch-232e5bd",
+      "title": "Modales más simples: sin iconos y primary a la izquierda",
+      "description": "Unifica el shell y los diálogos del panel con botón primario a la izquierda y sin iconos decorativos.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-22T19:01:14.000Z",
+      "dateString": "22 Agosto 2026",
+      "commitSha": "232e5bd"
+    },
     {
       "id": "gh-twitch-f2bdd82",
       "title": "Feedback solo por botón flotante, sin pestaña del panel",
