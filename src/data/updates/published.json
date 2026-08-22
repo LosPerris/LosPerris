@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-22T18:25:10.310Z",
+  "syncedAt": "2026-08-22T18:39:29.210Z",
   "entries": [
+    {
+      "id": "gh-twitch-d8923dd",
+      "title": "Feedback flotante con tema e i18n del panel",
+      "description": "El botón y el modal usan los colores del tema y textos en es/en/pt; queda un poco más arriba para no tapar el footer.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-22T18:37:55.000Z",
+      "dateString": "22 Agosto 2026",
+      "commitSha": "d8923dd"
+    },
     {
       "id": "gh-twitch-60fe655",
       "title": "Widget y panel de feedback integrados",
@@ -706,6 +716,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 17
+    "lastPublished": 18
   }
 }
