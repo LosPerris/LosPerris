@@ -1,6 +1,46 @@
 {
-  "syncedAt": "2026-08-25T13:00:16.147Z",
+  "syncedAt": "2026-08-25T18:27:37.475Z",
   "entries": [
+    {
+      "id": "gh-twitch-49dcbc6",
+      "title": "Header de landing más sólido y badge de mod bien orientado",
+      "description": "Fondo con blur para que no se mezcle al scroll; la espada apunta como en Twitch.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-25T18:24:00.000Z",
+      "dateString": "25 Agosto 2026",
+      "commitSha": "49dcbc6"
+    },
+    {
+      "id": "gh-twitch-44a706d",
+      "title": "Vista completa en herramientas y sidebar colapsable",
+      "description": "Focus mode con Escape, cuenta en el footer, menús bien encima del overlay e historial de Preguntas.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-25T18:22:54.000Z",
+      "dateString": "25 Agosto 2026",
+      "commitSha": "44a706d"
+    },
+    {
+      "id": "gh-twitch-21dfeca",
+      "title": "Analíticas más compactas y charts Hoy/7d más claros",
+      "description": "Menos scroll, barras delgadas, toggle Hoy↔7d con animación y empty states con subtítulo.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-25T18:21:49.000Z",
+      "dateString": "25 Agosto 2026",
+      "commitSha": "21dfeca"
+    },
+    {
+      "id": "gh-twitch-06a6b7f",
+      "title": "Anuncios de Ruleta bien atribuidos y feedback más claro",
+      "description": "source=roulette en /send-message; si Discord cae el feedback responde 503; se quita message del export.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-25T18:16:02.000Z",
+      "dateString": "25 Agosto 2026",
+      "commitSha": "06a6b7f"
+    },
     {
       "id": "gh-twitch-a385533",
       "title": "Feedback en el header y pulido de modales del panel",
@@ -746,6 +786,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 17
+    "lastPublished": 19
   }
 }
