@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-08-25T18:27:37.475Z",
+  "syncedAt": "2026-08-25T23:35:27.208Z",
   "entries": [
+    {
+      "id": "gh-twitch-70b07d5",
+      "title": "Menú de cuenta integrado al sidebar y controles más claros",
+      "description": "El menú se abre desde el footer del sidebar (arriba o a la derecha según estado), sin portal flotante. Toggle del rail con chevrons y items de cuenta solo con texto.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-08-25T23:30:54.000Z",
+      "dateString": "25 Agosto 2026",
+      "commitSha": "70b07d5"
+    },
     {
       "id": "gh-twitch-49dcbc6",
       "title": "Header de landing más sólido y badge de mod bien orientado",
@@ -786,6 +796,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 19
+    "lastPublished": 20
   }
 }
