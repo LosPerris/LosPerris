@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-04T03:40:53.161Z",
+  "syncedAt": "2026-09-04T03:49:39.707Z",
   "entries": [
+    {
+      "id": "gh-twitch-f0f4259",
+      "title": "Leaderboard 30d real y landing i18n completa",
+      "description": "El top de usuarios y el gráfico respetan el rango de 30 días; la landing lee el idioma guardado y deja de hardcodear CTAs/nav/recursos.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-04T03:47:40.000Z",
+      "dateString": "4 Septiembre 2026",
+      "commitSha": "f0f4259"
+    },
     {
       "id": "gh-twitch-1b0a216",
       "title": "Más control en datos, analytics 30d y landing EN/PT",
