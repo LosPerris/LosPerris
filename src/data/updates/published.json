@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-04T04:12:34.609Z",
+  "syncedAt": "2026-09-04T04:34:50.873Z",
   "entries": [
+    {
+      "id": "gh-twitch-3a1b5b2",
+      "title": "Home: solo los 3 comandos más usados en Recursos",
+      "description": "El panel deja de listar atajos fijos largos y muestra el top 3 según el uso de tu cuenta, para que Inicio no haga scroll.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-04T04:33:05.000Z",
+      "dateString": "4 Septiembre 2026",
+      "commitSha": "3a1b5b2"
+    },
     {
       "id": "gh-twitch-f0f4259",
       "title": "Leaderboard 30d real y landing i18n completa",
@@ -836,6 +846,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 13
+    "lastPublished": 14
   }
 }
