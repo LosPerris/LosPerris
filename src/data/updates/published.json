@@ -1,6 +1,46 @@
 {
-  "syncedAt": "2026-09-08T16:29:33.844Z",
+  "syncedAt": "2026-09-09T02:20:01.158Z",
   "entries": [
+    {
+      "id": "gh-twitch-2419d30",
+      "title": "Bot preferido y ayuda en Probar API",
+      "description": "Elige tu bot por defecto en Preferencias (solo comandos nuevos). Si la prueba falla por auth o cuota, el panel enlaza a la doc.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-09-09T02:16:49.000Z",
+      "dateString": "9 Septiembre 2026",
+      "commitSha": "2419d30"
+    },
+    {
+      "id": "gh-twitch-395877c",
+      "title": "Skeletons con la forma real de cada sección",
+      "description": "Los placeholders de carga imitan Home, Ajustes, comandos, tools y Clips. ErrorBoundary y overlays usan textos i18n.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-09T02:15:45.000Z",
+      "dateString": "9 Septiembre 2026",
+      "commitSha": "395877c"
+    },
+    {
+      "id": "gh-twitch-cf5018f",
+      "title": "Onboarding en Home vacío y reintento si falla la carga",
+      "description": "Si no hay actividad, Home guía al primer comando. Si el panel no carga, puedes reintentar sin recargar toda la página.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-09-09T02:12:10.000Z",
+      "dateString": "9 Septiembre 2026",
+      "commitSha": "cf5018f"
+    },
+    {
+      "id": "gh-twitch-89326e1",
+      "title": "Feedback anónimo, cerrar sesiones y Ajustes más claros",
+      "description": "Puedes enviar feedback sin identidad, cerrar todas las sesiones desde Zona de peligro, y en Datos el export elige HTML/CSV en un solo control.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-09T02:09:11.000Z",
+      "dateString": "9 Septiembre 2026",
+      "commitSha": "89326e1"
+    },
     {
       "id": "gh-twitch-0d4c3cb",
       "title": "Ajustes: User ID solo en General y texto de Plan y cuota",
@@ -886,6 +926,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 18
+    "lastPublished": 19
   }
 }
