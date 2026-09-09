@@ -1,6 +1,26 @@
 {
-  "syncedAt": "2026-09-09T16:26:13.249Z",
+  "syncedAt": "2026-09-09T22:48:48.581Z",
   "entries": [
+    {
+      "id": "gh-twitch-0faf0ff",
+      "title": "Reportes mensuales en el panel y avisos en la campanita",
+      "description": "Resumen del mes anterior con descarga CSV/HTML; se genera al abrir el panel.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-09T22:45:27.000Z",
+      "dateString": "9 Septiembre 2026",
+      "commitSha": "0faf0ff"
+    },
+    {
+      "id": "gh-twitch-2e49b0d",
+      "title": "Quitar bot preferido de Ajustes",
+      "description": "El bot se elige en cada comando; el default global en Ajustes ya no hace falta.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-09T22:40:40.000Z",
+      "dateString": "9 Septiembre 2026",
+      "commitSha": "2e49b0d"
+    },
     {
       "id": "gh-twitch-2419d30",
       "title": "Bot preferido y ayuda en Probar API",
@@ -926,6 +946,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 18
+    "lastPublished": 16
   }
 }
