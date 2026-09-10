@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-10T02:44:52.510Z",
+  "syncedAt": "2026-09-10T03:08:57.483Z",
   "entries": [
+    {
+      "id": "gh-twitch-58b61ca",
+      "title": "Reportes como informe del mes cerrado, no como Analíticas",
+      "description": "Carta archivada con descarga; copy y UI distintos del panel en vivo.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-10T03:06:38.000Z",
+      "dateString": "10 Septiembre 2026",
+      "commitSha": "58b61ca"
+    },
     {
       "id": "gh-twitch-a742cbc",
       "title": "Animación al filtrar actividad y skeleton de Analíticas centrado",
