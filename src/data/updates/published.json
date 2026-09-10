@@ -1,6 +1,66 @@
 {
-  "syncedAt": "2026-09-10T03:08:57.483Z",
+  "syncedAt": "2026-09-10T03:45:45.515Z",
   "entries": [
+    {
+      "id": "gh-twitch-54287d8",
+      "title": "Home: LIVE i18n, chips unificados e historial compacto con onboarding",
+      "description": "Badge EN VIVO traducido, filtros de tipo alineados y empty sin duplicar el onboarding.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-10T03:40:36.000Z",
+      "dateString": "10 Septiembre 2026",
+      "commitSha": "54287d8"
+    },
+    {
+      "id": "gh-twitch-a4a4a74",
+      "title": "Ajustes: respaldo de cuenta distinto del informe de Reportes",
+      "description": "Copy de exportación aclarado para no confundirlo con el informe mensual.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-10T03:39:04.000Z",
+      "dateString": "10 Septiembre 2026",
+      "commitSha": "a4a4a74"
+    },
+    {
+      "id": "gh-twitch-a09d855",
+      "title": "Campanita: título correcto cuando solo hay leídas",
+      "description": "Con notificaciones leídas muestra «Notificaciones», no «Sin notificaciones».",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-10T03:37:37.000Z",
+      "dateString": "10 Septiembre 2026",
+      "commitSha": "a09d855"
+    },
+    {
+      "id": "gh-twitch-414ca2b",
+      "title": "Jerarquía visual en reinicio de datos y zona de peligro",
+      "description": "Reset en ámbar, eliminar en rojo, y fechas desconocidas con i18n.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-10T03:36:12.000Z",
+      "dateString": "10 Septiembre 2026",
+      "commitSha": "414ca2b"
+    },
+    {
+      "id": "gh-twitch-1f434b3",
+      "title": "Analíticas: Suspense con placeholder y empty con marco",
+      "description": "Carga de charts más clara y estados vacíos alineados al marco del historial.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-10T03:35:13.000Z",
+      "dateString": "10 Septiembre 2026",
+      "commitSha": "1f434b3"
+    },
+    {
+      "id": "gh-twitch-6652d55",
+      "title": "Skeleton de carta al cambiar de mes en Reportes",
+      "description": "El panel muestra un borrador tipo informe mientras carga, también en el skeleton de sesión.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-10T03:34:12.000Z",
+      "dateString": "10 Septiembre 2026",
+      "commitSha": "6652d55"
+    },
     {
       "id": "gh-twitch-58b61ca",
       "title": "Reportes como informe del mes cerrado, no como Analíticas",
@@ -966,6 +1026,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 16
+    "lastPublished": 19
   }
 }
