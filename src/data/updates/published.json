@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-10T16:15:35.680Z",
+  "syncedAt": "2026-09-11T05:48:04.290Z",
   "entries": [
+    {
+      "id": "gh-twitch-7a72475",
+      "title": "Rediseño del onboarding de bienvenida y notificaciones en tiempo real",
+      "description": "",
+      "tag": "Feature",
+      "api": "Twitch",
+      "date": "2026-09-11T05:39:38.000Z",
+      "dateString": "11 Septiembre 2026",
+      "commitSha": "7a72475"
+    },
     {
       "id": "gh-twitch-0865b3e",
       "title": "Iconos en el menú de cuenta del sidebar",
@@ -1046,6 +1056,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 18
+    "lastPublished": 17
   }
 }
