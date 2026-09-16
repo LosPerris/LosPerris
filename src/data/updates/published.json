@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-16T05:10:43.344Z",
+  "syncedAt": "2026-09-16T05:18:48.185Z",
   "entries": [
+    {
+      "id": "gh-twitch-2754e3b",
+      "title": "Menú de descarga al ancho del botón e indicador del sidebar en secondary",
+      "description": "El desplegable HTML/CSV ya no incluye la flecha. La pastilla del menú lateral es compacta y sin tinte primary.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-16T05:16:34.000Z",
+      "dateString": "16 Septiembre 2026",
+      "commitSha": "2754e3b"
+    },
     {
       "id": "gh-twitch-d730305",
       "title": "El indicador del menú se desliza al cambiar de sección",
