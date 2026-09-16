@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-16T04:17:03.913Z",
+  "syncedAt": "2026-09-16T05:04:52.713Z",
   "entries": [
+    {
+      "id": "gh-twitch-bd4fb5e",
+      "title": "Descarga HTML/CSV en un solo botón partido",
+      "description": "En Reportes y Ajustes el formato se elige en la franja del lado y el botón grande descarga.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-16T05:02:21.000Z",
+      "dateString": "16 Septiembre 2026",
+      "commitSha": "bd4fb5e"
+    },
     {
       "id": "gh-twitch-7a72475",
       "title": "Rediseño del onboarding de bienvenida y notificaciones en tiempo real",
