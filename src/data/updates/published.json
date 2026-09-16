@@ -1,6 +1,36 @@
 {
-  "syncedAt": "2026-09-16T16:39:41.486Z",
+  "syncedAt": "2026-09-16T22:30:09.606Z",
   "entries": [
+    {
+      "id": "gh-twitch-f23d448",
+      "title": "Cómo funciona en Reportes: sheet que explica el archivo mensual",
+      "description": "Aclara que no es Analíticas en vivo y que reiniciar datos no borra los informes.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-16T22:27:27.000Z",
+      "dateString": "16 Septiembre 2026",
+      "commitSha": "f23d448"
+    },
+    {
+      "id": "gh-twitch-ee932eb",
+      "title": "Reiniciar estadísticas ya no borra los informes mensuales",
+      "description": "Los reportes son archivo del mes cerrado y se conservan; solo se eliminan con la cuenta.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-16T22:27:06.000Z",
+      "dateString": "16 Septiembre 2026",
+      "commitSha": "ee932eb"
+    },
+    {
+      "id": "gh-twitch-5f2a369",
+      "title": "Corregir el indicador del sidebar al expandir el menú",
+      "description": "La pastilla se oculta durante el pliegue/despliegue y usa el mismo redondeo que los botones.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-09-16T22:26:39.000Z",
+      "dateString": "16 Septiembre 2026",
+      "commitSha": "5f2a369"
+    },
     {
       "id": "gh-twitch-cf705d4",
       "title": "Restaurar el look del indicador del sidebar y mantener el deslizamiento",
@@ -1106,6 +1136,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 18
+    "lastPublished": 20
   }
 }
