@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-16T05:18:48.185Z",
+  "syncedAt": "2026-09-16T05:23:35.678Z",
   "entries": [
+    {
+      "id": "gh-twitch-c97c668",
+      "title": "La flecha de descarga usa el mismo estilo secondary que el botón",
+      "description": "",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-16T05:22:14.000Z",
+      "dateString": "16 Septiembre 2026",
+      "commitSha": "c97c668"
+    },
     {
       "id": "gh-twitch-2754e3b",
       "title": "Menú de descarga al ancho del botón e indicador del sidebar en secondary",
@@ -1086,6 +1096,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 16
+    "lastPublished": 17
   }
 }
