@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-17T02:00:08.473Z",
+  "syncedAt": "2026-09-17T02:24:17.841Z",
   "entries": [
+    {
+      "id": "gh-twitch-db05529",
+      "title": "Bola 8 con modelo Groq actual y minijuegos más claros",
+      "description": "Migra a openai/gpt-oss-120b tras el retiro de llama-3.3; iconos de Duelo/Preguntas más legibles, Ruleta Rusa de prueba más compacta y reels de Slots sin fondo tan negro.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-17T02:22:23.000Z",
+      "dateString": "17 Septiembre 2026",
+      "commitSha": "db05529"
+    },
     {
       "id": "gh-twitch-84bb084",
       "title": "Variables clicables, Reportes estable y pie de cuenta más claro",
