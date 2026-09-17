@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-16T22:53:13.810Z",
+  "syncedAt": "2026-09-17T01:21:48.036Z",
   "entries": [
+    {
+      "id": "gh-twitch-4743a67",
+      "title": "Cómo funciona en Q&A y pastilla del sidebar al ir a Ajustes",
+      "description": "El sheet explica Reportes con preguntas claras (sin “vs” ni “foto”) y el indicador deja de quedar en Inicio al abrir Ajustes, sin parpadeo al colapsar.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-17T01:15:51.000Z",
+      "dateString": "17 Septiembre 2026",
+      "commitSha": "4743a67"
+    },
     {
       "id": "gh-twitch-5b60c26",
       "title": "Sheet de Reportes como explicación y badge StreamElements en secondary",
@@ -1166,6 +1176,6 @@
   "syncHealth": {
     "consecutiveNoPublish": 0,
     "lastFetched": 36,
-    "lastPublished": 21
+    "lastPublished": 22
   }
 }
