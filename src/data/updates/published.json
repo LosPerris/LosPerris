@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-22T21:59:28.119Z",
+  "syncedAt": "2026-09-22T22:09:26.098Z",
   "entries": [
+    {
+      "id": "gh-twitch-d7395a9",
+      "title": "Banner si la API cae, permisos Twitch guiados y aviso de rotación de API key",
+      "description": "El panel avisa cuando /health falla. Actualizar permisos abre un sheet claro y solo fuerza re-consent en ese flujo. En Seguridad ves último uso de bots y un aviso a los 90 días sin regenerar.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-09-22T22:07:53.000Z",
+      "dateString": "22 Septiembre 2026",
+      "commitSha": "d7395a9"
+    },
     {
       "id": "gh-twitch-0ea232a",
       "title": "Overlay OBS con reintentar si se queda stale y API keys solo por hash",
