@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-22T22:09:26.098Z",
+  "syncedAt": "2026-09-22T22:43:15.023Z",
   "entries": [
+    {
+      "id": "gh-twitch-5e32a03",
+      "title": "Sidebar: el logo queda arriba al colapsar y expandir baja al pie",
+      "description": "Al estilo Netlify, al encoger el menú el brand se mantiene visible y el control para volver a abrir pasa junto a la cuenta.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-22T22:40:47.000Z",
+      "dateString": "22 Septiembre 2026",
+      "commitSha": "5e32a03"
+    },
     {
       "id": "gh-twitch-d7395a9",
       "title": "Banner si la API cae, permisos Twitch guiados y aviso de rotación de API key",
