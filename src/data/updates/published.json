@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-22T22:43:15.023Z",
+  "syncedAt": "2026-09-23T03:30:21.879Z",
   "entries": [
+    {
+      "id": "gh-twitch-e570a42",
+      "title": "Ruleta Bits: gira en OBS con cheers, se apaga sola y puede anunciarse en el chat",
+      "description": "Premios y umbral van en la URL del overlay. En el panel activas la escucha, pruebas en OBS y eliges si el canal escribe el premio al terminar. La ruleta entra y sale con pop, y el expandir del sidebar queda bajo el logo.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-23T03:27:17.000Z",
+      "dateString": "23 Septiembre 2026",
+      "commitSha": "e570a42"
+    },
     {
       "id": "gh-twitch-5e32a03",
       "title": "Sidebar: el logo queda arriba al colapsar y expandir baja al pie",
