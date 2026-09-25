@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-25T00:36:19.249Z",
+  "syncedAt": "2026-09-25T00:48:18.859Z",
   "entries": [
+    {
+      "id": "gh-twitch-79fb57e",
+      "title": "Pedir permisos nuevos al volver a entrar",
+      "description": "Cada login fuerza el consentimiento de Twitch con los scopes actuales. El aviso y la notificacion se ocultan si el permiso ya esta concedido.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-25T00:46:23.000Z",
+      "dateString": "25 Septiembre 2026",
+      "commitSha": "79fb57e"
+    },
     {
       "id": "gh-twitch-568f4da",
       "title": "Actualizar permisos de Twitch desde Ruleta Bits",
