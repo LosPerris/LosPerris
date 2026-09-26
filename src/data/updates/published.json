@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-09-26T03:08:48.179Z",
+  "syncedAt": "2026-09-26T03:18:08.308Z",
   "entries": [
+    {
+      "id": "gh-twitch-46d0495",
+      "title": "Hacer sonar el premio de la Ruleta Bits en OBS",
+      "description": "El overlay reanuda el audio antes de reproducir el sonido al revelar el ganador.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-26T03:16:30.000Z",
+      "dateString": "26 Septiembre 2026",
+      "commitSha": "46d0495"
+    },
     {
       "id": "gh-twitch-ee0525b",
       "title": "Ruleta Bits: sonido, tarjeta y tiempo en pantalla",
