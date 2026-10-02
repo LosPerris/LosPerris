@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-10-02T02:04:50.498Z",
+  "syncedAt": "2026-10-02T02:21:40.053Z",
   "entries": [
+    {
+      "id": "gh-twitch-2e4a1aa",
+      "title": "Endidura en las tabs del landing y textos más legibles",
+      "description": "La lengüeta de Panel/Comandos se desliza al cambiar. Sin bio se muestra un texto neutro; el nombre del panel y el pie se leen mejor en todos los temas.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-10-01T23:55:48.000Z",
+      "dateString": "1 Octubre 2026",
+      "commitSha": "2e4a1aa"
+    },
     {
       "id": "gh-twitch-87c9dd2",
       "title": "Endidura en las tabs del landing y textos más legibles",
@@ -10,6 +20,16 @@
       "date": "2026-10-01T23:55:48.000Z",
       "dateString": "1 Octubre 2026",
       "commitSha": "87c9dd2"
+    },
+    {
+      "id": "gh-twitch-450d5af",
+      "title": "Hacer sonar el premio de la Ruleta Bits en OBS",
+      "description": "El overlay reanuda el audio antes de reproducir el sonido al revelar el ganador.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-26T03:16:30.000Z",
+      "dateString": "26 Septiembre 2026",
+      "commitSha": "450d5af"
     },
     {
       "id": "gh-twitch-46d0495",
@@ -22,6 +42,16 @@
       "commitSha": "46d0495"
     },
     {
+      "id": "gh-twitch-9a3ccaa",
+      "title": "Ruleta Bits: sonido, tarjeta y tiempo en pantalla",
+      "description": "La ruleta queda en /dashboard/bits/roulette. En el overlay se elige el sonido, el estilo de la tarjeta y cuántos segundos se queda el ganador.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-26T02:51:50.000Z",
+      "dateString": "26 Septiembre 2026",
+      "commitSha": "9a3ccaa"
+    },
+    {
       "id": "gh-twitch-ee0525b",
       "title": "Ruleta Bits: sonido, tarjeta y tiempo en pantalla",
       "description": "La ruleta queda en /dashboard/bits/roulette. En el overlay se elige el sonido, el estilo de la tarjeta y cuántos segundos se queda el ganador.",
@@ -32,6 +62,16 @@
       "commitSha": "ee0525b"
     },
     {
+      "id": "gh-twitch-d1bc242",
+      "title": "Pedir permisos nuevos al volver a entrar",
+      "description": "Cada login fuerza el consentimiento de Twitch con los scopes actuales. El aviso y la notificacion se ocultan si el permiso ya esta concedido.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-25T00:46:23.000Z",
+      "dateString": "25 Septiembre 2026",
+      "commitSha": "d1bc242"
+    },
+    {
       "id": "gh-twitch-79fb57e",
       "title": "Pedir permisos nuevos al volver a entrar",
       "description": "Cada login fuerza el consentimiento de Twitch con los scopes actuales. El aviso y la notificacion se ocultan si el permiso ya esta concedido.",
@@ -40,6 +80,16 @@
       "date": "2026-09-25T00:46:23.000Z",
       "dateString": "25 Septiembre 2026",
       "commitSha": "79fb57e"
+    },
+    {
+      "id": "gh-twitch-a109cc0",
+      "title": "Actualizar permisos de Twitch desde Ruleta Bits",
+      "description": "CTA reutilizable en la sección y en notificaciones; mensaje de error más claro cuando falta el permiso de bits.",
+      "tag": "Fix",
+      "api": "Twitch",
+      "date": "2026-09-25T00:30:23.000Z",
+      "dateString": "25 Septiembre 2026",
+      "commitSha": "a109cc0"
     },
     {
       "id": "gh-twitch-568f4da",
