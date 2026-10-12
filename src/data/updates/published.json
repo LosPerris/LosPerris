@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-10-12T17:18:07.874Z",
+  "syncedAt": "2026-10-12T18:01:51.721Z",
   "entries": [
+    {
+      "id": "gh-twitch-85ef42a",
+      "title": "Overlays de OBS en tiempo real",
+      "description": "Los overlays reciben los cambios al instante (ruleta, tendencias, preguntas y cheers) y dejan de consultar la API en reposo. El panel deja de sincronizar cada minuto cuando el tiempo real está conectado.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-10-12T16:51:05.000Z",
+      "dateString": "12 Octubre 2026",
+      "commitSha": "85ef42a"
+    },
     {
       "id": "gh-twitch-0a5f906",
       "title": "Overlays de OBS en tiempo real",
@@ -10,6 +20,16 @@
       "date": "2026-10-12T16:51:05.000Z",
       "dateString": "12 Octubre 2026",
       "commitSha": "0a5f906"
+    },
+    {
+      "id": "gh-twitch-6f60dd8",
+      "title": "Endidura en las tabs del landing y textos más legibles",
+      "description": "La lengüeta de Panel/Comandos se desliza al cambiar. Sin bio se muestra un texto neutro; el nombre del panel y el pie se leen mejor en todos los temas.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-10-01T23:55:48.000Z",
+      "dateString": "1 Octubre 2026",
+      "commitSha": "6f60dd8"
     },
     {
       "id": "gh-twitch-2e4a1aa",
@@ -30,6 +50,16 @@
       "date": "2026-10-01T23:55:48.000Z",
       "dateString": "1 Octubre 2026",
       "commitSha": "87c9dd2"
+    },
+    {
+      "id": "gh-twitch-a2a4709",
+      "title": "Hacer sonar el premio de la Ruleta Bits en OBS",
+      "description": "El overlay reanuda el audio antes de reproducir el sonido al revelar el ganador.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-09-26T03:16:30.000Z",
+      "dateString": "26 Septiembre 2026",
+      "commitSha": "a2a4709"
     },
     {
       "id": "gh-twitch-450d5af",
