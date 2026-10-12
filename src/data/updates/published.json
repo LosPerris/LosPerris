@@ -1,6 +1,16 @@
 {
-  "syncedAt": "2026-10-11T17:37:38.332Z",
+  "syncedAt": "2026-10-12T16:54:43.992Z",
   "entries": [
+    {
+      "id": "gh-twitch-0a5f906",
+      "title": "Overlays de OBS en tiempo real",
+      "description": "Los overlays reciben los cambios al instante (ruleta, tendencias, preguntas y cheers) y dejan de consultar la API en reposo. El panel deja de sincronizar cada minuto cuando el tiempo real está conectado.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-10-12T16:51:05.000Z",
+      "dateString": "12 Octubre 2026",
+      "commitSha": "0a5f906"
+    },
     {
       "id": "gh-twitch-2e4a1aa",
       "title": "Endidura en las tabs del landing y textos más legibles",
