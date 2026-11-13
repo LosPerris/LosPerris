@@ -26,8 +26,6 @@ jobs:
 
       - name: Sincronizar y guardar published.json
         env:
-          # PAT opcional. No sobrescribir GITHUB_TOKEN: Actions lo necesita para git
-          # y puede leer otros repos si Settings → Actions → Access lo permite.
           UPDATE_SYNC_TOKEN: ${{ secrets.UPDATE_SYNC_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
