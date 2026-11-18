@@ -1,6 +1,26 @@
 {
-  "syncedAt": "2026-11-17T20:44:17.750Z",
+  "syncedAt": "2026-11-18T20:19:43.416Z",
   "entries": [
+    {
+      "id": "gh-twitch-79dc62a",
+      "title": "Actualizar capturas del README y del hero de la landing",
+      "description": "Sustituye las PNG antiguas del panel por WebP actuales (inicio, comandos, herramientas y minijuegos) y alinea el README con las mismas vistas.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-11-18T05:01:01.000Z",
+      "dateString": "18 Noviembre 2026",
+      "commitSha": "79dc62a"
+    },
+    {
+      "id": "gh-twitch-c0ccddf",
+      "title": "Más seguridad en login, overlays y EventSub",
+      "description": "Cierra tokens de otras apps Twitch, exchange solo por body, overlays sin apiKey en URL, Magic8 y revocaciones EventSub incorrectas.",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-11-17T23:55:21.000Z",
+      "dateString": "17 Noviembre 2026",
+      "commitSha": "c0ccddf"
+    },
     {
       "id": "gh-twitch-0f8ae16",
       "title": "Tras iniciar sesión con Twitch entras directo al panel",
@@ -1435,7 +1455,7 @@
   ],
   "syncHealth": {
     "consecutiveNoPublish": 0,
-    "lastFetched": 12,
-    "lastPublished": 3
+    "lastFetched": 14,
+    "lastPublished": 4
   }
 }
