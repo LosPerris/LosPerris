@@ -1,6 +1,8 @@
 ---
 import { discordLink } from "../data/community";
 
+const year = new Date().getFullYear();
+
 const navItems = [
   { name: "Inicio", href: "/" },
   { name: "Actualizaciones", href: "/actualizaciones" },
@@ -100,7 +102,7 @@ const navItems = [
 
   <div class="p-6 border-t border-white/5">
     <div class="flex items-center justify-between text-zinc-400 text-xs">
-      <span>LosPerris © 2026</span>
+      <span>LosPerris © {year}</span>
       <a
         href={discordLink}
         class="text-zinc-400 hover:text-white transition-colors text-lg"

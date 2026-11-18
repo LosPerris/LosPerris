@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { apis } from "../../data/apis";
 import { socialIcons, icons } from "../../data/icons";
-import { Image } from "astro:assets";
+import EndpointCard from "../../components/api/EndpointCard.astro";
 
 export function getStaticPaths() {
   return apis.map((api) => ({
@@ -84,7 +84,7 @@ const { api } = Astro.props;
           >
           </div>
 
-          <Image
+          <img
             src={`/images/${api.slug}-preview.png`}
             alt={`Preview de ${api.title}`}
             width={1920}
@@ -159,6 +159,32 @@ const { api } = Astro.props;
           )
         }
       </div>
+
+      {
+        api.endpoints && api.endpoints.length > 0 && (
+          <section class="mb-20 w-full max-w-5xl mx-auto">
+            <div class="mb-6 flex items-center gap-3">
+              <div class="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-800/80 bg-[#090a0b]/80">
+                <i class="fas fa-terminal h-4 w-4 text-zinc-400" />
+              </div>
+              <h2 class="text-xl font-medium tracking-tight text-white">
+                Endpoints
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4">
+              {api.endpoints.map((endpoint) => (
+                <EndpointCard
+                  method={endpoint.method}
+                  path={endpoint.path}
+                  description={endpoint.description}
+                  example={endpoint.example}
+                />
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       {
         api.features && api.features.length > 0 && (

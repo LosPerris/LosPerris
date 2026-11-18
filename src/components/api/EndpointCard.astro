@@ -5,7 +5,7 @@ interface Props {
   method: string;
   path: string;
   description: string;
-  example: string;
+  example?: string;
 }
 
 const { method, path, description, example } = Astro.props;
@@ -82,3 +82,34 @@ const methodBadge = getMethodColor(method);
     }
   </div>
 </Card>
+
+<script>
+  function bindCopyButtons() {
+    document
+      .querySelectorAll<HTMLButtonElement>(".copy-btn[data-clipboard]")
+      .forEach((btn) => {
+        if (btn.dataset.bound === "1") return;
+        btn.dataset.bound = "1";
+        btn.addEventListener("click", async () => {
+          const value = btn.dataset.clipboard;
+          if (!value) return;
+          try {
+            await navigator.clipboard.writeText(value);
+            const copyIcon = btn.querySelector(".fa-copy");
+            const checkIcon = btn.querySelector(".fa-check");
+            copyIcon?.classList.add("hidden");
+            checkIcon?.classList.remove("hidden");
+            window.setTimeout(() => {
+              copyIcon?.classList.remove("hidden");
+              checkIcon?.classList.add("hidden");
+            }, 1500);
+          } catch {
+            // Clipboard may be blocked; keep UI quiet.
+          }
+        });
+      });
+  }
+
+  bindCopyButtons();
+  document.addEventListener("astro:page-load", bindCopyButtons);
+</script>

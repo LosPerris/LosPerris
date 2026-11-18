@@ -1,0 +1,170 @@
+---
+// Clouds.astro
+---
+
+<svg width="0" height="0" class="absolute hidden">
+  <defs>
+    <g id="cloud-shape">
+      <circle cx="22" cy="40" r="16"></circle>
+      <circle cx="42" cy="28" r="22"></circle>
+      <circle cx="66" cy="22" r="25"></circle>
+      <circle cx="92" cy="30" r="19"></circle>
+      <circle cx="108" cy="40" r="13"></circle>
+      <path d="M18 38h94v17H18z"></path>
+    </g>
+    <g id="cloud-shape-sm">
+      <circle cx="15" cy="28" r="11"></circle>
+      <circle cx="30" cy="20" r="15"></circle>
+      <circle cx="48" cy="17" r="17"></circle>
+      <circle cx="65" cy="22" r="12"></circle>
+      <path d="M12 26h56v12H12z"></path>
+    </g>
+    <g id="cloud-shape-md">
+      <circle cx="18" cy="33" r="13"></circle>
+      <circle cx="36" cy="24" r="18"></circle>
+      <circle cx="57" cy="20" r="20"></circle>
+      <circle cx="78" cy="26" r="15"></circle>
+      <circle cx="91" cy="33" r="10"></circle>
+      <path d="M15 31h78v14H15z"></path>
+    </g>
+  </defs>
+</svg>
+
+<svg
+  viewBox="0 0 120 55"
+  fill="currentColor"
+  class="absolute top-[50px] left-0 w-[200px] sm:w-[280px] text-white opacity-[0.04] cloud-anim cloud-1"
+  ><use href="#cloud-shape"></use></svg
+>
+<svg
+  viewBox="0 0 120 55"
+  fill="currentColor"
+  class="absolute top-[200px] left-0 w-[160px] sm:w-[220px] text-white opacity-[0.03] cloud-anim cloud-1-clone"
+  ><use href="#cloud-shape"></use></svg
+>
+<svg
+  viewBox="0 0 100 45"
+  fill="currentColor"
+  class="absolute top-[400px] left-0 w-[220px] sm:w-[300px] text-[#f97316] opacity-[0.025] cloud-anim cloud-2"
+  ><use href="#cloud-shape-md"></use></svg
+>
+<svg
+  viewBox="0 0 100 45"
+  fill="currentColor"
+  class="absolute top-[700px] left-0 w-[180px] sm:w-[250px] text-[#f97316] opacity-[0.02] cloud-anim cloud-2-clone"
+  ><use href="#cloud-shape-md"></use></svg
+>
+<svg
+  viewBox="0 0 120 55"
+  fill="currentColor"
+  class="absolute top-[1200px] left-0 w-[200px] sm:w-[260px] text-white opacity-[0.04] cloud-anim cloud-3"
+  ><use href="#cloud-shape"></use></svg
+>
+<svg
+  viewBox="0 0 120 55"
+  fill="currentColor"
+  class="absolute top-[1700px] left-0 w-[160px] sm:w-[210px] text-white opacity-[0.03] cloud-anim cloud-3-clone"
+  ><use href="#cloud-shape"></use></svg
+>
+<svg
+  viewBox="0 0 100 45"
+  fill="currentColor"
+  class="absolute top-[2300px] left-0 w-[180px] sm:w-[240px] text-[#f97316] opacity-[0.03] cloud-anim cloud-4"
+  ><use href="#cloud-shape-md"></use></svg
+>
+<svg
+  viewBox="0 0 100 45"
+  fill="currentColor"
+  class="absolute top-[2800px] left-0 w-[140px] sm:w-[180px] text-[#f97316] opacity-[0.025] cloud-anim cloud-4-clone"
+  ><use href="#cloud-shape-md"></use></svg
+>
+<svg
+  viewBox="0 0 80 38"
+  fill="currentColor"
+  class="absolute top-[3400px] left-0 w-[160px] sm:w-[220px] text-white opacity-[0.035] cloud-anim cloud-5"
+  ><use href="#cloud-shape-sm"></use></svg
+>
+<svg
+  viewBox="0 0 80 38"
+  fill="currentColor"
+  class="absolute top-[4000px] left-0 w-[130px] sm:w-[180px] text-white opacity-[0.025] cloud-anim cloud-5-clone"
+  ><use href="#cloud-shape-sm"></use></svg
+>
+<svg
+  viewBox="0 0 80 38"
+  fill="currentColor"
+  class="absolute top-[4600px] left-0 w-[190px] sm:w-[250px] text-white opacity-[0.04] cloud-anim cloud-6"
+  ><use href="#cloud-shape-sm"></use></svg
+>
+<svg
+  viewBox="0 0 80 38"
+  fill="currentColor"
+  class="absolute top-[5200px] left-0 w-[150px] sm:w-[200px] text-white opacity-[0.03] cloud-anim cloud-6-clone"
+  ><use href="#cloud-shape-sm"></use></svg
+>
+
+<style>
+  .cloud-anim {
+    animation-name: move-cloud;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  .cloud-1 {
+    animation-duration: 45s;
+    animation-delay: 0s;
+  }
+  .cloud-1-clone {
+    animation-duration: 45s;
+    animation-delay: -22s;
+  }
+  .cloud-2 {
+    animation-duration: 70s;
+    animation-delay: -10s;
+  }
+  .cloud-2-clone {
+    animation-duration: 70s;
+    animation-delay: -45s;
+  }
+  .cloud-3 {
+    animation-duration: 55s;
+    animation-delay: -5s;
+  }
+  .cloud-3-clone {
+    animation-duration: 55s;
+    animation-delay: -32s;
+  }
+  .cloud-4 {
+    animation-duration: 90s;
+    animation-delay: -20s;
+  }
+  .cloud-4-clone {
+    animation-duration: 90s;
+    animation-delay: -65s;
+  }
+  .cloud-5 {
+    animation-duration: 65s;
+    animation-delay: -15s;
+  }
+  .cloud-5-clone {
+    animation-duration: 65s;
+    animation-delay: -47s;
+  }
+  .cloud-6 {
+    animation-duration: 80s;
+    animation-delay: -30s;
+  }
+  .cloud-6-clone {
+    animation-duration: 80s;
+    animation-delay: -70s;
+  }
+
+  @keyframes move-cloud {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(-100vw);
+    }
+  }
+</style>

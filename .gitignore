@@ -12,26 +12,26 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
 
-# macOS-specific files
+# OS
 .DS_Store
+Thumbs.db
+Desktop.ini
 
-# jetbrains setting folder
+# editors / local tooling
 .idea/
-
-# backup
-
-# vercel
-.vercel
-
-backup
-legacy_backup
-
-proyecto_LosPerris.code-workspace
-.vscode
-
+.vscode/
+.cursor/
 .agents/
+.vercel/
+proyecto_LosPerris.code-workspace
+
+# backups / scratch
+backup/
+legacy_backup/
+_archive/
+scratch-*

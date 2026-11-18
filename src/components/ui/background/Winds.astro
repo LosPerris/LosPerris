@@ -1,0 +1,94 @@
+---
+// Winds.astro
+---
+
+<div
+  class="absolute top-[130px] left-0 w-[500px] h-[1px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent wind-anim wind-1"
+>
+</div>
+<div
+  class="absolute top-[190px] left-0 w-[320px] h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent wind-anim wind-3"
+>
+</div>
+<div
+  class="absolute top-[310px] left-0 w-[280px] h-[2px] bg-gradient-to-r from-transparent via-[#f97316]/[0.12] to-transparent wind-anim wind-2"
+>
+</div>
+<div
+  class="absolute top-[420px] left-0 w-[180px] h-[1px] bg-gradient-to-r from-transparent via-white/[0.07] to-transparent wind-anim wind-5"
+>
+</div>
+<div
+  class="absolute top-[520px] left-0 w-[400px] h-[1px] bg-gradient-to-r from-transparent via-[#f97316]/[0.18] to-transparent wind-anim wind-4"
+>
+</div>
+<div
+  class="absolute top-[600px] left-0 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-white/[0.05] to-transparent wind-anim wind-6"
+>
+</div>
+<div
+  class="absolute top-[700px] left-0 w-[220px] h-[2px] bg-gradient-to-r from-transparent via-[#f97316]/[0.08] to-transparent wind-anim wind-7"
+>
+</div>
+<div
+  class="absolute top-[800px] left-0 w-[350px] h-[1px] bg-gradient-to-r from-transparent via-white/[0.09] to-transparent wind-anim wind-8"
+>
+</div>
+
+<style>
+  .wind-anim {
+    animation-name: move-wind;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform, opacity;
+  }
+  .wind-1 {
+    animation-duration: 6s;
+    animation-delay: 0s;
+  }
+  .wind-2 {
+    animation-duration: 10s;
+    animation-delay: -3s;
+  }
+  .wind-3 {
+    animation-duration: 8s;
+    animation-delay: -5s;
+  }
+  .wind-4 {
+    animation-duration: 12s;
+    animation-delay: -1s;
+  }
+  .wind-5 {
+    animation-duration: 7s;
+    animation-delay: -4s;
+  }
+  .wind-6 {
+    animation-duration: 15s;
+    animation-delay: -7s;
+  }
+  .wind-7 {
+    animation-duration: 9s;
+    animation-delay: -2s;
+  }
+  .wind-8 {
+    animation-duration: 11s;
+    animation-delay: -6s;
+  }
+
+  @keyframes move-wind {
+    0% {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+    8% {
+      opacity: 1;
+    }
+    92% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100vw);
+      opacity: 0;
+    }
+  }
+</style>
