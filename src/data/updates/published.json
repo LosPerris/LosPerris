@@ -1,6 +1,26 @@
 {
-  "syncedAt": "2026-11-21T19:00:48.254Z",
+  "syncedAt": "2026-11-22T19:25:04.758Z",
   "entries": [
+    {
+      "id": "gh-twitch-66450d8",
+      "title": "Exigir aceptación de políticas antes de conectar con Twitch.",
+      "description": "",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-11-21T19:35:48.000Z",
+      "dateString": "21 Noviembre 2026",
+      "commitSha": "66450d8"
+    },
+    {
+      "id": "gh-twitch-6c581a2",
+      "title": "Restaurar sección de streamers en la landing con marquee y fade lateral.",
+      "description": "",
+      "tag": "Infra",
+      "api": "Twitch",
+      "date": "2026-11-21T19:33:12.000Z",
+      "dateString": "21 Noviembre 2026",
+      "commitSha": "6c581a2"
+    },
     {
       "id": "gh-twitch-3420827",
       "title": "Favoritos del sidebar: sin Inicio/Analíticas/Reportes y sección encima de Comandos.",
